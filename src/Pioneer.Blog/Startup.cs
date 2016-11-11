@@ -106,6 +106,11 @@ namespace Pioneer.Blog
 
             app.UseMvc(routes =>
             {
+                // Areas support
+                routes.MapRoute(
+                  name: "areaRoute",
+                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                   name: "Post",
                   template: "post/{id}",
