@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "AutoMapper": "5.1.1",
+    "MailKit": "1.8.1",
+    "Pioneer.Blog.DAL": "1.0.0-*",
+    "Pioneer.Blog.Model": "1.0.0-*",
+    "Pioneer.Blog.Repository": "1.0.0-*"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  }
+}

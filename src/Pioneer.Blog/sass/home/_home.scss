@@ -1,0 +1,20 @@
+@import "../settings/_settings";
+
+.home-latest-posts {
+    padding: 3rem 0;
+
+    h2 {
+        text-align: center;
+    }
+}
+
+.home-post-card-date {
+    color: $dark-gray;
+    margin: 0 0 .5rem;
+}
+
+@media #{$small-only} {
+    .hg-large.home-hero {
+        height: 350px;
+    }
+}

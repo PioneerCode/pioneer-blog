@@ -1,0 +1,41 @@
+@import "../settings/_settings";
+@import "../settings/_foundation";
+@import "short-pagination";
+@import "footer-author";
+@import "footer-comments";
+@import "footer-popular-posts";
+@import "footer-section-title";
+@import "meta-data";
+@import "previous-next";
+@include foundation-everything;
+
+article {
+    a {
+        img {
+            margin: 0 0 1rem;
+        }
+    }
+
+    h5 {
+        border-left: 2px solid $dark-gray;
+        padding-left: 0.5rem;
+        letter-spacing: 0.4px;
+        margin-bottom: 1rem;
+        font-size: 18px;
+    }
+
+    footer {
+        padding: 1rem 0 0.5rem 0;
+        margin: 0 0 2rem 0;
+    }
+}
+
+@media #{$medium-up} {
+    article.post {
+        .title {
+            margin: 15px 0 0;
+            line-height: 75px;
+            font-size: 70px;
+        }
+    }
+}

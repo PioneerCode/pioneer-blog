@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es5",
+    "sourceMap": false
+  },
+  "exclude": [
+    "node_modules",
+    "bower_components",
+    "typings"
+  ]
+}

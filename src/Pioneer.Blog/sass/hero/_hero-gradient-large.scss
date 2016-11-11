@@ -1,0 +1,59 @@
+﻿@import "../settings/_foundation";
+@import "../../bower_components/foundation-sites/scss/util/breakpoint";
+@include foundation-everything;
+
+.hg-large {
+    height: 300px;
+
+    &:before {
+        height: 100px;
+        background-image: -webkit-linear-gradient(to top, transparent, $black);
+        background-image: linear-gradient(to top, transparent, $black);
+    }
+
+    &:after {
+        height: 300px;
+        background-image: -webkit-linear-gradient(to bottom, transparent, $black);
+        background-image: linear-gradient(to bottom, transparent, $black);
+    }
+
+    .hero-gradient-content {
+        padding: 6rem 0 0;
+    }
+}
+
+@media #{$medium-up} {
+    .hg-large {
+        height: 450px;
+
+        &:before {
+            height: 225px;
+        }
+
+        &:after {
+            height: 450px;
+        }
+
+        .hero-gradient-content {
+            padding: 10rem 0 0;
+        }
+    }
+}
+
+@media #{$large-up} {
+    .hg-large {
+        height: 600px;
+
+        &:before {
+            height: 300px;
+        }
+
+        &:after {
+            height: 600px;
+        }
+
+        .hero-gradient-content {
+            padding: 14rem 0 0;
+        }
+    }
+}

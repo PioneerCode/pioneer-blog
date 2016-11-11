@@ -1,0 +1,15 @@
+﻿@import "../settings/_settings";
+@import "../settings/_foundation";
+@import "_sidebar-title";
+@import "_sidebar-categories";
+@import "_sidebar-popular-posts";
+@import "_archive-post.scss";
+@include foundation-everything;
+
+.archive {
+    margin: 4rem 0;
+
+    .post-card-hero {
+        margin: 0 0 2rem;
+    }
+}

@@ -1,0 +1,50 @@
+@import "../settings/_foundation";
+@import "../../bower_components/foundation-sites/scss/util/breakpoint";
+@import "hero-gradient-large";
+@import "hero-gradient-small";
+@import "post-card-hero";
+@include foundation-everything;
+
+.hero-gradient {
+    width: 100%;
+    position: relative;
+    background: transparent;
+    text-align: center;
+    color: $white;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+    }
+
+    h1 {
+        font-weight: 300;
+    }
+
+    a {
+        color: $white;
+
+        &:hover {
+            color: $white;
+            text-decoration: none;
+        }
+    }
+}
+
+.hero-gradient-content {
+    position: relative;
+    z-index: 10;
+}

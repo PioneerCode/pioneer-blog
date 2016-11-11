@@ -1,0 +1,2 @@
+User-agent: *
+sitemap: http://pioneercode.com/sitemap.xml

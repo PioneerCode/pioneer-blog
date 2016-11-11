@@ -1,0 +1,19 @@
+﻿@model Post
+<article class="home-post-card">
+  <a href="/post/@Model.Url" class="post-card-hero" title="@Model.Title">
+    <span>
+      <img src="@Model.SmallImage" alt="@Model.Title" />
+    </span>
+  </a>
+  <div class="home-post-card-content">
+    <h4>
+      <a href="/post/@Model.Url">
+        @Model.Title
+      </a>
+    </h4>
+    <div class="home-post-card-date">
+      @Model.PostedOn.ToString("MM/dd/yy")
+    </div>
+    @Html.Raw(Model.Excerpt.Content)
+  </div>
+</article>

@@ -1,0 +1,5 @@
+﻿@model List<Category>
+@foreach (var category in Model)
+{
+    <a class="button small" href="/category/@category.Url">@category.Name</a>
+}
