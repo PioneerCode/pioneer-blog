@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section headEnd
+{
+  <link href="/app.css" rel="stylesheet" asp-append-version="true" />
+  <link href="/admin/app.css" rel="stylesheet" asp-append-version="true" />
+}
+
+@section nav
+{
+  <nav class="nav-main nav-admin">
+    <input type="hidden" class="nav-main-show" />
+    <div class="title-bar clearfix hide" data-responsive-toggle="example-menu" data-hide-for="medium">
+      <div class="title-bar-title float-left">
+        <a href="/" class="title">Pioneer <span>Code</span></a>
+      </div>
+      <button class="fa fa-bars fa-lg float-right" type="button" data-toggle></button>
+    </div>
+    <div class="top-bar" id="example-menu">
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="top-bar-left hide-for-small-only">
+            <ul class="menu">
+              <li class="menu-text">
+                <a href="/" class="title">Pioneer <span>Code</span></a>
+              </li>
+            </ul>
+          </div>
+          <div class="top-bar-right">
+            <ul class="menu">
+              <li>
+                <a href="/admin/home">
+                  HOME
+                </a>
+              </li>
+              <li>
+                <a href="/admin/post">
+                  POSTS
+                </a>
+              </li>
+              <li>
+                <a href="/admin/tag">
+                  TAGS
+                </a>
+              </li>
+              <li>
+                <a href="/admin/category">
+                  CATEGORIES
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+}
+
+<section class="body-content-admin">
+  @RenderBody()
+</section>
+
+@section bodyEnd
+{
+  <script src="/app.js" asp-append-version="true" async></script>
+}

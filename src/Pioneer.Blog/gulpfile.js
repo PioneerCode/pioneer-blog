@@ -15,7 +15,7 @@ function clean() {
 }
 
 function styles() {
-  return gulp.src("./sass/*.scss")
+  return gulp.src(["./sass/*.scss"])
     .pipe(sass({ outputStyle: "compressed" })
       .on("error", sass.logError))
     .pipe(cleanCss({ keepSpecialComments: 0 }))
@@ -30,6 +30,22 @@ function styles() {
       ]
     }))
     .pipe(gulp.dest("wwwroot/"));
+}
+
+function stylesAdmin() {
+  return gulp.src(["./sass/admin/*.scss"])
+    .pipe(sass({ outputStyle: "compressed" })
+      .on("error", sass.logError))
+    .pipe(cleanCss({ keepSpecialComments: 0 }))
+    .pipe(uncss({
+      html: [
+        'http://localhost:8000/admin/home',
+        'http://localhost:8000/admin/tag',
+        'http://localhost:8000/admin/post',
+        'http://localhost:8000/admin/category'
+      ]
+    }))
+    .pipe(gulp.dest("wwwroot/admin/"));
 }
 
 function scripts() {
@@ -68,8 +84,10 @@ function watch() {
   gulp.watch("./sass/**/*.scss", styles);
 }
 
-exports.clean = clean;
-exports.styles = styles;
-var build = gulp.series(clean, styles, libs, typescript, scripts, gulp.parallel(watch));
+function watchAdmin() {
+  gulp.watch("./sass/admin/**/*.scss", stylesAdmin);
+}
 
-gulp.task("default", build);
+exports.clean = clean;
+gulp.task("public", gulp.series(clean, styles, libs, typescript, scripts, gulp.parallel(watch)));
+gulp.task("admin", gulp.series(clean, stylesAdmin, gulp.parallel(watchAdmin)));

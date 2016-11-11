@@ -16,6 +16,7 @@ namespace Pioneer.Blog.Model
         public string SiteTitle { get; set; }
         public string DisqusShortname { get; set; }
         public string SiteUrl { get; set; }
+        public string GoogleAnalyticsId { get; set; }
         public List<int> PopularPosts { get; set; }
     }
 }
