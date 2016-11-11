@@ -6,7 +6,7 @@
     i {
         position: absolute;
         top: 50%;
-        margin-top: -7px;
+        margin-top: -10px;
     }
 
     p {
@@ -26,6 +26,13 @@
     }
 
     margin: 2rem 0 2rem;
+}
+
+.previous-next-nothing {
+    position: absolute;
+    top: 50%;
+    margin-top: -14px !important;
+    color: $medium-gray;
 }
 
 .previous-next-date {
