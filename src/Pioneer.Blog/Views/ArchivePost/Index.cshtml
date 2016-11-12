@@ -18,13 +18,21 @@
         @Html.Partial("ArchivePost/_SidebarTitle", "Popular Posts")
         @Html.Partial("ArchivePost/_SidebarPopularPosts", (List<Post>)ViewBag.PopularPosts)
       </div>
-      <div class="hide-for-small-only">
-        @Html.Partial("ArchivePost/_SidebarTitle", "Categories")
-        @Html.Partial("ArchivePost/_SidebarCategories", (List<Category>)ViewBag.Categories)
+      <div class="follow-us-on hide-for-small-only">
+        @Html.Partial("ArchivePost/_SidebarTitle", "New Posts")
+        @Html.Partial("ArchivePost/_SidebarNewPosts", (List<Post>)ViewBag.NewPosts)
       </div>
       <div class="follow-us-on hide-for-small-only">
         @Html.Partial("ArchivePost/_SidebarTitle", "Follow Us!")
         @Html.Partial("ArchivePost/_SidebarFollowUs")
+      </div>
+      <div class="hide-for-small-only">
+        @Html.Partial("ArchivePost/_SidebarTitle", "Tags")
+        @Html.Partial("ArchivePost/_SidebarTags", (List<Tag>)ViewBag.Tags)
+      </div>
+      <div class="hide-for-small-only">
+        @Html.Partial("ArchivePost/_SidebarTitle", "Categories")
+        @Html.Partial("ArchivePost/_SidebarCategories", (List<Category>)ViewBag.Categories)
       </div>
     </aside>
   </div>
