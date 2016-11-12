@@ -26,15 +26,18 @@ namespace Pioneer.Blog.Controllers.Web
         // GET: Blog
         public ActionResult Index(int page = 1)
         {
+            var post = _postService.GetAllPaged(4, page).ToList();
+            ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(_postService.GetTotalNumberOfPosts(), page, 4);
+
             ViewBag.Description = "Pioneer Code Blog Archives";
             ViewBag.Header = "Blog";
             ViewBag.Title = "Blog";
             ViewBag.Pager = "blog";
-            ViewBag.Categories = _categoryService.GetAll();
-            ViewBag.PopularPosts = _postService.GetPopularPosts();
 
-            var post = _postService.GetAllPaged(4, page).ToList();
-            ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(_postService.GetTotalNumberOfPosts(), page, 4);
+            ViewBag.Categories = _categoryService.GetAll();
+            ViewBag.Tags = _tagService.GetAll();
+            ViewBag.PopularPosts = _postService.GetPopularPosts();
+            ViewBag.NewPosts = _postService.GetAll(4).ToList();
 
             return View("../ArchivePost/Index", post);
         }
@@ -43,14 +46,17 @@ namespace Pioneer.Blog.Controllers.Web
         public ActionResult Tag(string id, int page = 1)
         {
             var posts = _postService.GetAllByTag(id, 4, page).ToList();
-
             ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(_postService.GetTotalNumberOfPostByTag(id), page, 4);
+
             ViewBag.Title = _tagService.GetTagNameFromTagUrlInTagCollection(id, posts[0].Tags.ToList());
             ViewBag.Description = "Pioneer Code Blog Tag Archives - " + ViewBag.Tag;
             ViewBag.Header = "Tag : " + posts[0].Tags.ElementAt(0).Name;
             ViewBag.Pager = "tag";
+
             ViewBag.Categories = _categoryService.GetAll();
+            ViewBag.Tags = _tagService.GetAll();
             ViewBag.PopularPosts = _postService.GetPopularPosts();
+            ViewBag.NewPosts = _postService.GetAll(4).ToList();
 
             return View("../ArchivePost/Index", posts);
         }
@@ -59,29 +65,17 @@ namespace Pioneer.Blog.Controllers.Web
         public ActionResult Category(string id, int page = 1)
         {
             var posts = _postService.GetAllByCategory(id, 4, page).ToList();
-
             ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(_postService.GetTotalNumberOfPostsByCategory(id), page, 4);
+
             ViewBag.Description = "Pioneer Code Blog Category Archives - " + ViewBag.Tag;
             ViewBag.Header = "Category : " + posts[0].Category.Name;
             ViewBag.Title = posts[0].Category.Name;
             ViewBag.Pager = "category";
+
             ViewBag.Categories = _categoryService.GetAll();
+            ViewBag.Tags = _tagService.GetAll();
             ViewBag.PopularPosts = _postService.GetPopularPosts();
-
-            return View("../ArchivePost/Index", posts);
-        }
-
-        // GET: Category
-        public ActionResult Author(string id, int? page = null)
-        {
-            var posts = _postService.GetAllByCategory(id, 4, page ?? 1).ToList();
-
-            ViewBag.Description = "Pioneer Code Blog Author Archives - " + ViewBag.Tag;
-            ViewBag.Header = "Author : " + posts[0].Category.Name;
-            ViewBag.Title = posts[0].Category.Name;
-            ViewBag.Pager = "author";
-            ViewBag.Categories = _categoryService.GetAll();
-            ViewBag.PopularPosts = _postService.GetPopularPosts();
+            ViewBag.NewPosts = _postService.GetAll(4).ToList();
 
             return View("../ArchivePost/Index", posts);
         }

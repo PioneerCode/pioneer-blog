@@ -2,6 +2,10 @@
 @import "../settings/_foundation";
 @include foundation-everything;
 
+.sidebar-popular-posts{
+    margin: 0 0 2rem;
+}
+
 .sidebar-popular-post {
     margin: 0 0 1rem;
     display: block;

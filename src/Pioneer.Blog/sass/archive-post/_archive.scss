@@ -1,9 +1,9 @@
 ﻿@import "../settings/_settings";
 @import "../settings/_foundation";
 @import "_sidebar-title";
-@import "_sidebar-categories";
 @import "_sidebar-popular-posts";
-@import "_archive-post.scss";
+@import "_sidebar-new-posts";
+@import "_archive-post";
 @include foundation-everything;
 
 .archive {
@@ -11,5 +11,15 @@
 
     .post-card-hero {
         margin: 0 0 2rem;
+    }
+}
+
+section.sidebar {
+    margin: 0 0 1.5rem;
+}
+
+.sidebar-button-collection {
+    a {
+        margin: 0 0 0.5rem;
     }
 }
