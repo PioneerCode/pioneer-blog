@@ -1,11 +1,12 @@
-﻿{
+{
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.0",
       "type": "platform"
     },
     "Pioneer.Blog.DAL": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore": "1.0.0"
+    "Microsoft.EntityFrameworkCore": "1.0.0",
+    "Pioneer.Blog.Model": "1.0.0-*"
   },
   "frameworks": {
     "netcoreapp1.0": {
