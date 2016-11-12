@@ -10,8 +10,11 @@ namespace Pioneer.Blog.Service
     public interface ITagService
     {
         List<Tag> GetAll();
-
         string GetTagNameFromTagUrlInTagCollection(string tagUrl, List<Tag> tags);
+        Tag GetById(int id);
+        Tag Add(Tag tag);
+        void Update(Tag tag);
+        void Remove(int id);
     }
 
     public class TagService : ITagService
@@ -46,6 +49,45 @@ namespace Pioneer.Blog.Service
                 return tag.Name;
             }
             return "";
+        }
+
+        /// <summary>
+        /// Get Tag by id
+        /// </summary>
+        /// <param name="id">Tag id</param>
+        /// <returns>Tag Object</returns>
+        public Tag GetById(int id)
+        {
+            return Mapper.Map<TagEntity, Tag>(_tagRepository.GetById(id));
+        }
+
+        /// <summary>
+        /// Create Tag record
+        /// </summary>
+        /// <param name="tag">Tag</param>
+        public Tag Add(Tag tag)
+        {
+            var response = _tagRepository.Add(Mapper.Map<Tag, TagEntity>(tag));
+            tag.TagId = response.TagId;
+            return tag;
+        }
+
+        /// <summary>
+        /// Update Tag record
+        /// </summary>
+        /// <param name="tag">Updated Tag</param>
+        public void Update(Tag tag)
+        {
+            _tagRepository.Update(tag);
+        }
+
+        /// <summary>
+        /// Delete Tag record based on id
+        /// </summary>
+        /// <param name="id">Tag Id</param>
+        public void Remove(int id)
+        {
+            _tagRepository.Remove(id);
         }
     }
 }
