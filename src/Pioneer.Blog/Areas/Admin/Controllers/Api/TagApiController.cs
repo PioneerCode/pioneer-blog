@@ -16,9 +16,14 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpGet]
-        public IEnumerable<Tag> GetAll()
+        public IEnumerable<Tag> GetAll(int? count, int? page)
         {
-            return _tagService.GetAll();
+            if (count == null || page == null)
+            {
+                return _tagService.GetAll();
+            }
+
+            return _tagService.GetAllPaged((int)count, (int)page);
         }
 
         [HttpGet("{id}", Name = "GetTag")]

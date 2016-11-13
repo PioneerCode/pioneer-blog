@@ -8,7 +8,8 @@ namespace Pioneer.Blog.Repository
 {
     public interface ITagRepository
     {
-        List<TagEntity> GetAll();
+        IEnumerable<TagEntity> GetAll();
+        IEnumerable<TagEntity> GetAllPaged(int count, int page);
         TagEntity GetById(int id);
         TagEntity Add(TagEntity tagEntity);
         void Update(Tag tag);
@@ -28,11 +29,11 @@ namespace Pioneer.Blog.Repository
         /// Get all Tags
         /// </summary>
         /// <returns>Tag Collection</returns>
-        public List<TagEntity> GetAll()
+        public IEnumerable<TagEntity> GetAll()
         {
-          return _blogContext
-                    .Tags
-                    .ToList();
+            return _blogContext
+                      .Tags
+                      .ToList();
         }
 
         /// <summary>
@@ -90,6 +91,21 @@ namespace Pioneer.Blog.Repository
 
             _blogContext.Tags.Remove(entity);
             _blogContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// Get a collection of tags by skipping x and taking y
+        /// </summary>
+        /// <param name="count">The total number of tags you want to Take</param>
+        /// <param name="page">The denomination of tags you want to skip. (page - 1) * count </param>
+        /// <returns>Collections of Tags</returns>
+        public IEnumerable<TagEntity> GetAllPaged(int count, int page)
+        {
+            return _blogContext
+                    .Tags
+                    .Skip((page - 1) * count)
+                    .Take(count)
+                    .ToList();
         }
     }
 }

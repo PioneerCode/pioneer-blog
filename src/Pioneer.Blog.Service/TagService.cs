@@ -9,7 +9,8 @@ namespace Pioneer.Blog.Service
 {
     public interface ITagService
     {
-        List<Tag> GetAll();
+        IEnumerable<Tag> GetAll();
+        IEnumerable<Tag> GetAllPaged(int count, int page = 1);
         string GetTagNameFromTagUrlInTagCollection(string tagUrl, List<Tag> tags);
         Tag GetById(int id);
         Tag Add(Tag tag);
@@ -30,7 +31,7 @@ namespace Pioneer.Blog.Service
         /// Get all tags
         /// </summary>
         /// <returns>Collection of tags</returns>
-        public List<Tag> GetAll()
+        public IEnumerable<Tag> GetAll()
         {
             return _tagRepository.GetAll().Select(Mapper.Map<TagEntity, Tag>).ToList();
         }
@@ -88,6 +89,17 @@ namespace Pioneer.Blog.Service
         public void Remove(int id)
         {
             _tagRepository.Remove(id);
+        }
+
+        /// <summary>
+        /// Get paged collection of tags
+        /// </summary>
+        /// <param name="count">Number of tags in page</param>
+        /// <param name="page">Page of tags</param>
+        /// <returns>Count of tags starting at page</returns>
+        public IEnumerable<Tag> GetAllPaged(int count = 10, int page = 1)
+        {
+            return _tagRepository.GetAllPaged(count, page).Select(Mapper.Map<TagEntity, Tag>);
         }
     }
 }
