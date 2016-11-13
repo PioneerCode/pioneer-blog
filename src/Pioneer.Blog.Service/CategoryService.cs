@@ -9,7 +9,12 @@ namespace Pioneer.Blog.Service
 {
     public interface ICategoryService
     {
-        List<Category> GetAll();
+        IEnumerable<Category> GetAll();
+        IEnumerable<Category> GetAllPaged(int count, int page);
+        Category GetById(int id);
+        Category Add(Category category);
+        void Update(Category item);
+        void Remove(int id);
     }
 
     public class CategoryService : ICategoryService
@@ -21,11 +26,67 @@ namespace Pioneer.Blog.Service
             _categoryRepository = categoryRepository;
         }
 
-        public List<Category> GetAll()
+        /// <summary>
+        /// Get all Categories
+        /// </summary>
+        /// <returns>Collection of Categories</returns>
+        public IEnumerable<Category> GetAll()
         {
             return _categoryRepository
                     .GetAll()
                     .Select(Mapper.Map<CategoryEntity, Category>).ToList();
+        }
+
+        /// <summary>
+        /// Get paged collection of category
+        /// </summary>
+        /// <param name="count">Number of categories in page</param>
+        /// <param name="page">Page of categories</param>
+        /// <returns>Count of categories starting at page</returns>
+        public IEnumerable<Category> GetAllPaged(int count, int page)
+        {
+            return _categoryRepository
+                    .GetAllPaged(count, page).Select(Mapper.Map<CategoryEntity, Category>);
+        }
+
+        /// <summary>
+        /// Get Category by id
+        /// </summary>
+        /// <param name="id">Category id</param>
+        /// <returns>Category Object</returns>
+        public Category GetById(int id)
+        {
+            return Mapper.Map<CategoryEntity, Category>(_categoryRepository.GetById(id));
+        }
+
+
+        /// <summary>
+        /// Create Category record
+        /// </summary>
+        /// <param name="category">Category</param>
+        public Category Add(Category category)
+        {
+            var response = _categoryRepository.Add(Mapper.Map<Category, CategoryEntity>(category));
+            category.CategoryId = response.CategoryId;
+            return category;
+        }
+
+        /// <summary>
+        /// Update Category record
+        /// </summary>
+        /// <param name="category">Updated Category</param>
+        public void Update(Category category)
+        {
+            _categoryRepository.Update(category);
+        }
+
+        /// <summary>
+        /// Delete Category record based on id
+        /// </summary>
+        /// <param name="id">Category Id</param>
+        public void Remove(int id)
+        {
+            _categoryRepository.Remove(id);
         }
     }
 }
