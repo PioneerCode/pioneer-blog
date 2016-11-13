@@ -13,20 +13,16 @@
   </div>
 </div>
 <section class="home-latest-posts">
-  <div class="row">
-    <div class="large-12 columns">
-      <div class="row">
-        <h2>Latest</h2>
-        <div class="bar"></div>
-        <div class="home-latest-post">
-          @foreach (var post in Model)
-          {
-              <div class="large-4 columns end">
-                @Html.Partial("_HomePostCard", (Post)post)
-              </div>
-          }
-        </div>
-      </div>
+  <div class="row width-100">
+    <h2>Latest</h2>
+    <div class="bar"></div>
+    <div class="home-latest-post">
+      @foreach (var post in Model)
+      {
+          <div class="large-3 columns end">
+            @Html.Partial("_HomePostCard", (Post)post)
+          </div>
+      }
     </div>
   </div>
 </section>
