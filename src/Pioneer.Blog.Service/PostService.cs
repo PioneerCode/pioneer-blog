@@ -22,7 +22,7 @@ namespace Pioneer.Blog.Service
         IEnumerable<Post> GetPreviousCurrentNextPost(string id);
         Post Add(Post post);
         void Update(Post item);
-        void Remove(int id);
+        void Remove(string id);
     }
 
     public class PostService : IPostService
@@ -175,7 +175,7 @@ namespace Pioneer.Blog.Service
         /// Delete Post record
         /// </summary>
         /// <param name="url">Post url</param>
-        public void Remove(int url)
+        public void Remove(string url)
         {
             _postRepository.Remove(url);
         }
