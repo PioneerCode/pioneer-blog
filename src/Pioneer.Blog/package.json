@@ -2,6 +2,10 @@
   "author": "Chad Ramos <chad@pioneercode.com>",
   "description": "Pioneer Code Blog",
   "devDependencies": {
+    "@types/core-js": "^0.9.34",
+    "@types/node": "^6.0.45",
+    "lite-server": "^2.2.2",
+
     "del": "2.2.2",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean-css": "^2.0.13",
@@ -11,6 +15,7 @@
     "gulp-uglify": "^1.5.4",
     "gulp-uncss": "1.0.6",
     "gulp-util": "^3.0.7",
+    "require-dir": "0.3.1",
     "typescript": "^2.0.7"
   },
   "license": "MIT",
@@ -24,6 +29,22 @@
   },
   "version": "0.1.0",
   "dependencies": {
+    "@angular/common": "~2.1.1",
+    "@angular/compiler": "~2.1.1",
+    "@angular/core": "~2.1.1",
+    "@angular/forms": "~2.1.1",
+    "@angular/http": "~2.1.1",
+    "@angular/platform-browser": "~2.1.1",
+    "@angular/platform-browser-dynamic": "~2.1.1",
+    "@angular/router": "~3.1.1",
+    "@angular/upgrade": "~2.1.1",
+    "angular-in-memory-web-api": "~0.1.13",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "systemjs": "0.19.39",
+    "zone.js": "^0.6.25",
+
     "clean-css": "^3.4.20"
   }
 }

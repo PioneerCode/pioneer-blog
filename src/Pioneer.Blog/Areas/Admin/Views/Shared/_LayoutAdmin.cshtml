@@ -2,11 +2,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 @section headEnd
 {
-  <link href="/app.css" rel="stylesheet" asp-append-version="true" />
-  <link href="/admin/app.css" rel="stylesheet" asp-append-version="true" />
+  <link href="~/app.css" rel="stylesheet" asp-append-version="true" />
+  <script src="~/admin/libs/libs.js" asp-append-version="true"></script>
+  <script src="~/admin/libs/core-js/shim.min.js"></script>
+  <script src="~/admin/libs/zone.js/zone.js"></script>
+  <script src="~/admin/libs/reflect-metadata/Reflect.js"></script>
+  <script src="~/admin/libs/systemjs/system.src.js"></script>
+  <script src="~/admin/systemjs.config.js"></script>
+  <script>
+    System.import('app').catch(function (err) { console.error(err); });
+  </script>
 }
 
 @section nav
@@ -60,10 +67,14 @@
 }
 
 <section class="body-content-admin">
+  <my-app>Loading...</my-app>
   @RenderBody()
 </section>
 
 @section bodyEnd
 {
-  <script src="/app.js" asp-append-version="true" async></script>
+  $(() => {
+    $(document).foundation();
+    $('.title-bar').removeClass('hide');
+  });
 }
