@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using AutoMapper;
 using Pioneer.Blog.DAL.Entites;
 using Pioneer.Blog.Model;
@@ -21,6 +20,9 @@ namespace Pioneer.Blog.Service
         IEnumerable<Post> GetAllByCategory(string category, int count, int page = 1);
         IEnumerable<Post> GetPopularPosts();
         IEnumerable<Post> GetPreviousCurrentNextPost(string id);
+        Post Add(Post post);
+        void Update(Post item);
+        void Remove(int id);
     }
 
     public class PostService : IPostService
@@ -146,6 +148,36 @@ namespace Pioneer.Blog.Service
             };
 
             return Mapper.Map<IList<PostEntity>, IList<Post>>(posts);
+        }
+
+        /// <summary>
+        /// Add Post record
+        /// </summary>
+        /// <param name="post">Post object</param>
+        /// <returns>New Post record</returns>
+        public Post Add(Post post)
+        {
+            var response = _postRepository.Add(Mapper.Map<Post, PostEntity>(post));
+            post.PostId = response.PostId;
+            return post;
+        }
+
+        /// <summary>
+        /// Update Post record
+        /// </summary>
+        /// <param name="post">Post Object</param>
+        public void Update(Post post)
+        {
+            _postRepository.Update(post);
+        }
+
+        /// <summary>
+        /// Delete Post record
+        /// </summary>
+        /// <param name="url">Post url</param>
+        public void Remove(int url)
+        {
+            _postRepository.Remove(url);
         }
     }
 }

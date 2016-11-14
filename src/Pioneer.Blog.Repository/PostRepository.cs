@@ -3,6 +3,7 @@ using Pioneer.Blog.DAL;
 using Pioneer.Blog.DAL.Entites;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Pioneer.Blog.Model;
 
 namespace Pioneer.Blog.Repository
 {
@@ -20,6 +21,9 @@ namespace Pioneer.Blog.Repository
         IEnumerable<PostEntity> GetPostsBasedOnIdCollection(List<int> postIds);
         PostEntity GetPreviousBasedOnId(int id);
         PostEntity GetNextBasedOnId(int id);
+        PostEntity Add(PostEntity map);
+        void Update(Post post);
+        void Remove(string url);
     }
 
     public class PostRepository : IPostRepository
@@ -219,6 +223,41 @@ namespace Pioneer.Blog.Repository
         public PostEntity GetNextBasedOnId(int id)
         {
             return (from x in _blogContext.Posts where x.PostId > id orderby x.PostId ascending select x).FirstOrDefault();
+        }
+
+        public PostEntity Add(PostEntity post)
+        {
+            _blogContext
+              .Posts
+              .Add(post);
+            _blogContext.SaveChanges();
+
+            return post;
+        }
+
+        public void Update(PostEntity post)
+        {
+            var entity = _blogContext
+                .Posts
+                .FirstOrDefault(x => x.Url == post.Url);
+
+            // Save logic 
+
+            _blogContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// Remove post object
+        /// </summary>
+        /// <param name="url">Post URL</param>
+        public void Remove(string url)
+        {
+            var entity = _blogContext
+                .Posts
+                .FirstOrDefault(x => x.Url == url);
+
+            _blogContext.Posts.Remove(entity);
+            _blogContext.SaveChanges();
         }
     }
 }
