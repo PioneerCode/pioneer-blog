@@ -68,7 +68,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
             return new NoContentResult();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{url}")]
         public IActionResult Delete(string url)
         {
             var todo = _postService.GetById(url);

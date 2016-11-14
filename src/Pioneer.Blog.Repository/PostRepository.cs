@@ -225,6 +225,11 @@ namespace Pioneer.Blog.Repository
             return (from x in _blogContext.Posts where x.PostId > id orderby x.PostId ascending select x).FirstOrDefault();
         }
 
+        /// <summary>
+        /// Add new post
+        /// </summary>
+        /// <param name="post">Post model</param>
+        /// <returns>New Post entity</returns>
         public PostEntity Add(PostEntity post)
         {
             _blogContext
@@ -235,7 +240,11 @@ namespace Pioneer.Blog.Repository
             return post;
         }
 
-        public void Update(PostEntity post)
+        /// <summary>
+        /// Update post record
+        /// </summary>
+        /// <param name="post">Post model</param>
+        public void Update(Post post)
         {
             var entity = _blogContext
                 .Posts
