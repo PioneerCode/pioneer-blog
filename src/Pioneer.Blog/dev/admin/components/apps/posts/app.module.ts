@@ -3,7 +3,7 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { HttpModule }     from '@angular/http';
 
 import { AppComponent }                     from './app.component';
-import { TagsPageComponent }                 from '../../pages/tags/tags-page.component';
+import { PostsPageComponent }                 from '../../pages/posts/posts-page.component';
 import { PaginatedCollectionListComponent } from '../../paginated-collection-list/paginated-collection-list.component';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { PaginatedCollectionListComponent } from '../../paginated-collection-lis
   ],
   declarations: [
     AppComponent,
-    TagsPageComponent,
+      PostsPageComponent,
     PaginatedCollectionListComponent
   ],
   bootstrap: [

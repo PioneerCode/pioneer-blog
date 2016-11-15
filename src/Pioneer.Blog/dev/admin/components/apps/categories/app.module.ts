@@ -3,7 +3,7 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { HttpModule }     from '@angular/http';
 
 import { AppComponent }                     from './app.component';
-import { CategoryPageComponent }            from '../../pages/category/category-page.component';
+import { CategoriesPageComponent }            from '../../pages/categories/categories-page.component';
 import { PaginatedCollectionListComponent } from '../../paginated-collection-list/paginated-collection-list.component';
 import { CategoryRepository }               from '../../../repositories/category.repository';
 
@@ -14,7 +14,7 @@ import { CategoryRepository }               from '../../../repositories/category
   ],
   declarations: [
     AppComponent,
-    CategoryPageComponent,
+      CategoriesPageComponent,
     PaginatedCollectionListComponent
   ],
   bootstrap: [
