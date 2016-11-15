@@ -6,7 +6,6 @@
   <meta name="description" content="@ViewBag.Description">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   @RenderSection("metaShared", false)
-  @RenderSection("metaPage", false)
   <style type="text/css">
     .hide {
       display: none;
@@ -17,7 +16,7 @@
 <body>
   @RenderSection("nav", false)
   @RenderBody()
-  @await Html.PartialAsync("_Footer")
+  @Html.Partial("_Footer")
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
   @RenderSection("bodyEnd", false)
 </body>

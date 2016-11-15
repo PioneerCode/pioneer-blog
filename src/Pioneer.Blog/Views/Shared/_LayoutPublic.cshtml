@@ -11,9 +11,8 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@(" @")chad_ramos">
   <meta name="twitter:domain" content="PioneerCode">
+  @RenderSection("metaPage", false)
 }
-
-@RenderSection("metaPage", false)
 
 @section headEnd {
   <link href="/app.css" rel="stylesheet" asp-append-version="true" />
@@ -22,13 +21,13 @@
 @section nav {
   <nav class="nav-main">
     <input type="hidden" class="nav-main-show" />
-    <div class="title-bar clearfix hide" data-responsive-toggle="example-menu" data-hide-for="medium">
+    <div class="title-bar clearfix hide" data-responsive-toggle="pioneer-public-menu" data-hide-for="medium">
       <div class="title-bar-title float-left">
         <a href="/" class="title">Pioneer <span>Code</span></a>
       </div>
       <button class="fa fa-bars fa-lg float-right" type="button" data-toggle></button>
     </div>
-    <div class="top-bar" id="example-menu">
+    <div class="top-bar" id="pioneer-public-menu">
       <div class="row">
         <div class="large-12 columns">
           <div class="top-bar-left hide-for-small-only">

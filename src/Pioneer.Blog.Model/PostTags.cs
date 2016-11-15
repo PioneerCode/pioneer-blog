@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Pioneer.Blog.Model
+﻿namespace Pioneer.Blog.Model
 {
     public class PostTag
     {

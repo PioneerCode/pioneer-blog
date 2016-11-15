@@ -5,28 +5,28 @@
 @section headEnd
 {
   <link href="~/app.css" rel="stylesheet" asp-append-version="true" />
+  <link href="~/admin/app.css" rel="stylesheet" asp-append-version="true" />
   <script src="~/admin/libs/libs.js" asp-append-version="true"></script>
-  <script src="~/admin/libs/core-js/shim.min.js"></script>
-  <script src="~/admin/libs/zone.js/zone.js"></script>
-  <script src="~/admin/libs/reflect-metadata/Reflect.js"></script>
-  <script src="~/admin/libs/systemjs/system.src.js"></script>
-  <script src="~/admin/systemjs.config.js"></script>
+  <script src="~/admin/libs/core-js/shim.min.js" asp-append-version="true"></script>
+  <script src="~/admin/libs/zone.js/zone.js" asp-append-version="true"></script>
+  <script src="~/admin/libs/reflect-metadata/Reflect.js" asp-append-version="true"></script>
+  <script src="~/admin/libs/systemjs/system.src.js" asp-append-version="true"></script>
+  <script src="~/admin/systemjs.config.js" asp-append-version="true"></script>
   <script>
-    System.import('app').catch(function (err) { console.error(err); });
+    System.import('@ViewBag.SystemJsImportPath').catch(function (err) { console.error(err); });
   </script>
 }
 
 @section nav
 {
   <nav class="nav-main nav-admin">
-    <input type="hidden" class="nav-main-show" />
-    <div class="title-bar clearfix hide" data-responsive-toggle="example-menu" data-hide-for="medium">
+    <div class="title-bar clearfix hide" data-responsive-toggle="pioneer-admin-menu" data-hide-for="medium">
       <div class="title-bar-title float-left">
         <a href="/" class="title">Pioneer <span>Code</span></a>
       </div>
       <button class="fa fa-bars fa-lg float-right" type="button" data-toggle></button>
     </div>
-    <div class="top-bar" id="example-menu">
+    <div class="top-bar" id="pioneer-admin-menu">
       <div class="row">
         <div class="large-12 columns">
           <div class="top-bar-left hide-for-small-only">
@@ -39,23 +39,13 @@
           <div class="top-bar-right">
             <ul class="menu">
               <li>
-                <a href="/admin/home">
-                  HOME
-                </a>
-              </li>
-              <li>
-                <a href="/admin/post">
-                  POSTS
-                </a>
-              </li>
-              <li>
-                <a href="/admin/tag">
-                  TAGS
-                </a>
-              </li>
-              <li>
-                <a href="/admin/category">
+                <a href="/admin/categories">
                   CATEGORIES
+                </a>
+              </li>
+              <li>
+                <a href="/admin/tags">
+                  TAGS
                 </a>
               </li>
             </ul>
@@ -67,14 +57,28 @@
 }
 
 <section class="body-content-admin">
-  <my-app>Loading...</my-app>
+  <pc-app></pc-app>
   @RenderBody()
 </section>
 
-@section bodyEnd
-{
-  $(() => {
-    $(document).foundation();
-    $('.title-bar').removeClass('hide');
-  });
+@section bodyEnd {
+  <script>
+    $(() => {
+      $(document).foundation();
+      $('.title-bar').removeClass('hide');
+    });
+
+    var header = $('.nav-main');
+
+    $(window).on('scroll', () => {
+      var top = header.offset().top;
+      if (top >= 100) {
+        header.addClass('nav-main-show');
+      } else {
+        header.removeClass('nav-main-show');
+      }
+    });
+
+    $(window).trigger('scroll');
+  </script>
 }

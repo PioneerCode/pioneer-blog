@@ -1,0 +1,42 @@
+﻿@import "../../../sass/foundation";
+
+.article-meta-data {
+    width: 100%;
+    display: table;
+    background: $black;
+    margin: 0 0 1.5rem;
+}
+
+.article-meta-data-section {
+    color: $white;
+    text-align: center;
+    vertical-align: middle;
+    display: block;
+    padding: 1rem 0;
+
+    a {
+        color: $white;
+
+        &:hover {
+            color: $primary-color;
+            text-decoration: none;
+            transition: ease all .3s;
+        }
+    }
+}
+
+a.article-meta-data-section {
+    &:hover {
+        text-decoration: none;
+        color: $white;
+        background-color: $primary-color;
+        transition: ease all .3s;
+    }
+}
+
+@media #{$medium-up} {
+    .article-meta-data-section {
+        height: 4rem;
+        display: table-cell;
+    }
+}

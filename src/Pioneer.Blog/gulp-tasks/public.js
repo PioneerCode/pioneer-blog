@@ -16,7 +16,7 @@ function clean() {
 }
 
 function styles() {
-  return gulp.src(['./sass/*.scss'])
+  return gulp.src(['./dev/public/app.scss'])
     .pipe(sass({ outputStyle: 'compressed' })
       .on('error', sass.logError))
     .pipe(cleanCss({ keepSpecialComments: 0 }))
@@ -57,8 +57,7 @@ function libs() {
 function scripts() {
   return gulp.src([
   'temp/lib/libs.js',
-  'temp/*.js',
-  '!temp/public/**/*'
+  'temp/public/*.js'
   ], { base: './temp/' })
       .pipe(concat('app.js'))
       .pipe(uglify())
@@ -67,7 +66,7 @@ function scripts() {
 
 function watch() {
   gulp.watch('./typescript/app.ts', gulp.series(typescript, scripts));
-  gulp.watch('./sass/**/*.scss', styles);
+  gulp.watch('./dev/public/**/*.scss', styles);
 }
 
 gulp.task('public', gulp.series(clean, styles, libs, typescript, scripts, gulp.parallel(watch)));

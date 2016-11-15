@@ -12,25 +12,29 @@ var tsProject = ts.createProject('tsconfig.json');
 function clean() {
   return del([
     'temp/admin/**',
-    'wwwroot/admin/app/**',
-    'wwwroot/admin/libs/**'
+    'wwwroot/admin/app/**'
   ]);
 }
 
 function styles() {
-  return gulp.src(['./sass/admin/*.scss'])
+  return gulp.src(['./dev/admin/app.scss'])
     .pipe(sass({ outputStyle: 'compressed' })
       .on('error', sass.logError))
     .pipe(cleanCss({ keepSpecialComments: 0 }))
     .pipe(uncss({
       html: [
-        'http://localhost:8000/admin/home',
-        'http://localhost:8000/admin/tag',
-        'http://localhost:8000/admin/post',
-        'http://localhost:8000/admin/category'
+        'http://localhost:8000/admin/home'
       ]
     }))
     .pipe(gulp.dest('wwwroot/admin/'));
+}
+
+function componentStyles() {
+  return gulp.src(['./dev/admin/components/**/*.scss'])
+  .pipe(sass({ outputStyle: 'compressed' })
+    .on('error', sass.logError))
+  .pipe(cleanCss({ keepSpecialComments: 0 }))
+  .pipe(gulp.dest('wwwroot/admin/app/components'));
 }
 
 function libs() {
@@ -74,9 +78,11 @@ function scripts() {
       .pipe(gulp.dest('wwwroot/admin/app'));
 }
 
-function watch() {
-  gulp.watch('./sass/admin/**/*.scss', styles);
-  gulp.watch('./typescript/admin/**/*.ts', gulp.series(libs, typescript, scripts));
+function templates() {
+  return gulp.src([
+  'dev/admin/components/**/*.html'
+  ], { base: './dev/admin/components/' })
+      .pipe(gulp.dest('wwwroot/admin/app/components'));
 }
 
 function typescript() {
@@ -85,4 +91,18 @@ function typescript() {
     .pipe(gulp.dest('temp'));
 }
 
-gulp.task('admin', gulp.series(clean, moveLibs, libs, typescript, scripts, styles, gulp.parallel(watch)));
+function watch() {
+  gulp.watch('./dev/admin/**/*.scss', styles);
+  gulp.watch('dev/admin/components/**/*.html', templates);
+  gulp.watch('./dev/admin/**/*.ts', gulp.series(typescript, scripts));
+}
+
+gulp.task('admin', gulp.series(
+  clean,
+  moveLibs,
+  //libs,
+  typescript,
+  scripts,
+  templates,
+  gulp.parallel(watch)
+  ));
