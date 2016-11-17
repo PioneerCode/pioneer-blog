@@ -2,9 +2,14 @@
 import { BrowserModule }  from '@angular/platform-browser';
 import { HttpModule }     from '@angular/http';
 
+import { CategoryService}                   from './category.service';
+
+import { CategoryRepository }               from './category.repository';
+
 import { AppComponent }                     from './app.component';
 import { CategoriesPageComponent }          from './categories-page.component';
-import { CategoryRepository }               from './category.repository';
+
+import { TruncatePipe }   from '../../pipes/truncate.pipe';
 
 @NgModule({
   imports: [
@@ -13,7 +18,12 @@ import { CategoryRepository }               from './category.repository';
   ],
   declarations: [
     AppComponent,
-    CategoriesPageComponent
+    CategoriesPageComponent,
+    TruncatePipe
+  ],
+  providers: [
+    CategoryRepository,
+    CategoryService
   ],
   bootstrap: [
     AppComponent

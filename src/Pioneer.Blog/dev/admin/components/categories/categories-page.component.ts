@@ -1,8 +1,20 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit }    from '@angular/core';
+import { CategoryService }          from './category.service';
+import { Category }                 from '../../models/category';
 
 @Component({
   selector: 'pc-categories-page',
-  templateUrl: './app/components/pages/categories/categories-page.component.html'
+  templateUrl: './app/components/categories/templates/categories-page.component.html'
 })
+export class CategoriesPageComponent implements OnInit{
+  constructor(private categoryService: CategoryService) {
+  }
 
-export class CategoriesPageComponent { }
+  ngOnInit(): void {
+    this.categoryService.init();
+  }
+
+  getAll(): Category[] {
+    return this.categoryService.getAll();
+  }
+}

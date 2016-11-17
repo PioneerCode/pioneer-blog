@@ -1,6 +1,10 @@
 ﻿<div class="row">
   <div class="large-3 columns">
-    <pc-paginated-collection-list></pc-paginated-collection-list>
+    <ul>
+      <li *ngFor="let tag of getAll()">
+        <span>{{ tag.name | truncate : 20 }}</span>
+      </li>
+    </ul>
   </div>
   <div class="large-9 columns">
   </div>

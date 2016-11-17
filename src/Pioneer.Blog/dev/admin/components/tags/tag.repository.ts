@@ -1,18 +1,18 @@
 ﻿import { Injectable }               from '@angular/core';
 import { Headers, Http, Response }  from '@angular/http';
-import { Category }                     from '../../models/category';
+import { Tag }                     from '../../models/tag';
 import {Observable}                 from "rxjs/Rx";
 
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class CategoryRepository {
-  private categoryUrl = '/api/categories';
+export class TagRepository {
+  private tagUrl = '/api/tags';
 
   constructor(private http: Http) { }
 
-  getAll(): Promise<Category[]> {
-    return this.http.get(this.categoryUrl)
+  getAll(): Promise<Tag[]> {
+    return this.http.get(this.tagUrl)
       .toPromise()
       .then(res => {
         const body = res.json();

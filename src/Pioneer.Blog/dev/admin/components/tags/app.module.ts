@@ -2,8 +2,14 @@
 import { BrowserModule }  from '@angular/platform-browser';
 import { HttpModule }     from '@angular/http';
 
-import { AppComponent }                     from './app.component';
-import { TagsPageComponent }                from './tags-page.component';
+import { TagRepository }   from './tag.repository';
+
+import { TagService }      from './tag.service';
+
+import { AppComponent }         from './app.component';
+import { TagsPageComponent }   from './tags-page.component';
+
+import { TruncatePipe }   from '../../pipes/truncate.pipe';
 
 @NgModule({
   imports: [
@@ -12,7 +18,12 @@ import { TagsPageComponent }                from './tags-page.component';
   ],
   declarations: [
     AppComponent,
-    TagsPageComponent
+    TagsPageComponent,
+    TruncatePipe
+  ],
+  providers: [
+    TagRepository,
+    TagService
   ],
   bootstrap: [
     AppComponent

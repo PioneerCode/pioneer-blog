@@ -1,21 +1,21 @@
 ﻿import { Component, OnInit }    from '@angular/core';
-import { PostService }  from './post.service';
-import { Post }         from '../../models/post';
+import { PostService }          from './post.service';
+import { Post }                 from '../../models/post';
 
 @Component({
-    selector: 'pc-posts-page',
-    templateUrl: './app/components/posts/templates/posts-page.component.html'
+  selector: 'pc-posts-page',
+  templateUrl: './app/components/posts/templates/posts-page.component.html'
 })
-    
-export class PostsPageComponent implements OnInit  {
-    constructor(private postService: PostService) {
-    }
 
-    ngOnInit(): void {
-      this.postService.init();
-    }
+export class PostsPageComponent implements OnInit {
+  constructor(private postService: PostService) {
+  }
 
-    getAll(): Post[] {
-      return this.postService.getAll();
-    }
+  ngOnInit(): void {
+    this.postService.init();
+  }
+
+  getAll(): Post[] {
+    return this.postService.getAll();
+  }
 }

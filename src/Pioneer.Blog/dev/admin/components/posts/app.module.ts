@@ -9,6 +9,8 @@ import { PostService }      from './post.service';
 import { AppComponent }         from './app.component';
 import { PostsPageComponent }   from './posts-page.component';
 
+import { TruncatePipe }   from '../../pipes/truncate.pipe';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -16,7 +18,8 @@ import { PostsPageComponent }   from './posts-page.component';
   ],
   declarations: [
     AppComponent,
-    PostsPageComponent
+    PostsPageComponent,
+    TruncatePipe
   ],
   providers: [
     PostRepository,
