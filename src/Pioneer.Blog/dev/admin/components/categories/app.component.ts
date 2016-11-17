@@ -2,7 +2,7 @@
 
 @Component({
   selector: 'pc-app',
-  templateUrl: './app/components/apps/posts/app.component.html'
+  templateUrl: './app/components/categories/templates/app.component.html'
 })
 
 export class AppComponent { }

@@ -1,0 +1,17 @@
+﻿<div class="row">
+  <div class="large-3 columns">
+    <ul>
+      <li *ngFor="let post of posts" 
+          (click)="onSelect(hero)" 
+          [class.selected]="post === selectedPost">
+        <span>{{post.title}}</span>
+        <button class="delete"
+                (click)="delete(hero); $event.stopPropagation()">
+          x
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="large-9 columns">
+  </div>
+</div>

@@ -262,3 +262,5 @@ ModelManifest.xml
 /src/Pioneer.Blog/wwwroot/app.css
 /src/Pioneer.Blog/wwwroot/admin/app
 /src/Pioneer.Blog/wwwroot/admin/libs
+/src/Pioneer.Blog/dev/admin/**/*.js
+/src/Pioneer.Blog/dev/typings/**/*

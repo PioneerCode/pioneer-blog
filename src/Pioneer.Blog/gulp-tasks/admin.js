@@ -23,7 +23,7 @@ function styles() {
     .pipe(cleanCss({ keepSpecialComments: 0 }))
     .pipe(uncss({
       html: [
-        'http://localhost:8000/admin/home'
+        'http://localhost:8000/admin/posts'
       ]
     }))
     .pipe(gulp.dest('wwwroot/admin/'));
@@ -93,16 +93,15 @@ function typescript() {
 
 function watch() {
   gulp.watch('./dev/admin/**/*.scss', styles);
-  gulp.watch('dev/admin/components/**/*.html', templates);
+  gulp.watch('./dev/admin/components/**/*.html', templates);
   gulp.watch('./dev/admin/**/*.ts', gulp.series(typescript, scripts));
 }
 
 gulp.task('admin', gulp.series(
   clean,
-  moveLibs,
-  //libs,
   typescript,
   scripts,
   templates,
+  styles,
   gulp.parallel(watch)
   ));

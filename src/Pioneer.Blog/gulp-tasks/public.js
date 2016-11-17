@@ -57,7 +57,7 @@ function libs() {
 function scripts() {
   return gulp.src([
   'temp/lib/libs.js',
-  'temp/public/*.js'
+  'dev/public/**/*.js'
   ], { base: './temp/' })
       .pipe(concat('app.js'))
       .pipe(uglify())
@@ -69,4 +69,4 @@ function watch() {
   gulp.watch('./dev/public/**/*.scss', styles);
 }
 
-gulp.task('public', gulp.series(clean, styles, libs, typescript, scripts, gulp.parallel(watch)));
+gulp.task('public', gulp.series(clean, typescript, libs, scripts, gulp.parallel(watch)));
