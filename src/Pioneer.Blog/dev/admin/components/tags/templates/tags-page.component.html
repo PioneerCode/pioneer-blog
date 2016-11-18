@@ -17,6 +17,7 @@
   <div class="large-3 columns">
     <ul class="admin-collection-list">
       <li *ngFor="let tag of tagService.getAll()"
+          [class.selected]="tag.tagId === tagService.getCurrent().tagId"
           (click)="tagService.setCurrent(tag.tagId)">
         <span>{{ tag.name | truncate : 20 }}</span>
       </li>

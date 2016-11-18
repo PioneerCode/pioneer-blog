@@ -45,6 +45,11 @@ body {
             background: $primary-color;
         }
     }
+
+    li.selected {
+        color: $white;
+        background: $primary-color;
+    }
 }
 
 .admin-post-description {

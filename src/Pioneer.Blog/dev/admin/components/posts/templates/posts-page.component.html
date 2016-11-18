@@ -9,6 +9,7 @@
     <div class="large-3 columns">
       <ul class="admin-collection-list">
         <li *ngFor="let post of postService.getAll()"
+            [class.selected]="post.postId === postService.getCurrent().postId"
             (click)="postService.setCurrent(post.url)">
           <span>{{ post.title | truncate : 20 }}</span>
         </li>
