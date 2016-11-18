@@ -14,4 +14,16 @@ export class TagsPageComponent implements OnInit {
   ngOnInit(): void {
     this.tagService.init();
   }
+
+  remove(id: number): void {
+    if (confirm(`Are you sure you want to delete "${this.tagService.getCurrent().name}" from the tags list?`)) {
+      this.tagService.remove(id);
+    }
+  }
+
+  save(): void {
+    if (confirm(`Are you sure you want to save "${this.tagService.getCurrent().name}" changes`)) {
+      this.tagService.save();
+    }
+  }
 }

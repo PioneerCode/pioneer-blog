@@ -1,4 +1,10 @@
 ﻿<div class="row">
+  <div class="large-12 columns">
+    <h1 class="float-left">Categories</h1>
+    <button class="button float-right admin-add-button">Add</button>
+  </div>
+</div>
+<div class="row">
   <div class="large-3 columns">
     <ul class="admin-collection-list">
       <li *ngFor="let category of categoryService.getAll()"
@@ -18,5 +24,9 @@
       <input type="text"
              [(ngModel)]="categoryService.getCurrent().url">
     </label>
+    <button class="button alert float-right"
+            (click)="deleteRecord(categoryService.getCurrent().categoryId)">
+      Delete
+    </button>
   </div>
 </div>

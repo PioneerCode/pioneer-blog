@@ -31,6 +31,34 @@ export class TagService {
       });
   }
 
+  create(): Promise<Tag> {
+    return this.tagRepository.create()
+      .then((resp: Tag) => {
+        this.selectedTag = resp;
+        this.tags.push(this.selectedTag);
+        return this.selectedTag;
+      });
+  }
+
+  save(): Promise<void> {
+    return this.tagRepository.save(this.selectedTag)
+      .then(() => {
+        for (let i = 0; i < this.tags.length; i++) {
+          if (this.selectedTag.tagId === this.tags[i].tagId) {
+            this.tags[i] = this.selectedTag;
+          }
+        }
+      });
+  }
+
+  remove(id: number): Promise<void> {
+    return this.tagRepository.remove(id)
+      .then(() => {
+        this.tags = this.tags.filter(obj => (obj.tagId !== id));
+        this.setCurrent(this.tags[0].tagId);
+      });
+  }
+
   private getTags(): Promise<Tag[]> {
     return this.tagRepository
       .getAll()

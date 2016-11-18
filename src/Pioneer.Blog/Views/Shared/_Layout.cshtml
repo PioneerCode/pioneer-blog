@@ -14,10 +14,11 @@
   @RenderSection("headEnd", false)
 </head>
 <body>
-<input type="hidden" class="large-3 large-9 fieldset"/>
-@RenderSection("nav", false)
-@RenderBody()
-@Html.Partial("_Footer")
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
-@RenderSection("bodyEnd", false)
+  <!-- TODO: Keep an eye on this.  Some of these classes are admin specific.-->
+  <input type="hidden" class="large-3 large-9 fieldset alert button" />
+  @RenderSection("nav", false)
+  @RenderBody()
+  @Html.Partial("_Footer")
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+  @RenderSection("bodyEnd", false)
 </body>

@@ -24,4 +24,10 @@ export class PostsPageComponent implements OnInit {
         return this.postService.init();
       });
   }
+
+  deleteRecord(idUrl: string): void {
+    if (confirm(`Are you sure you want to delete "${this.postService.getCurrent().title}" from the posts list?`)) {
+
+    }
+  }
 }

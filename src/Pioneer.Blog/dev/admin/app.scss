@@ -28,6 +28,10 @@ body {
     }
 }
 
+.admin-button-group {
+    margin: 1.5rem 0 0;
+}
+
 .admin-collection-list {
     list-style-type: none;
     margin: 0;
@@ -35,6 +39,7 @@ body {
     li {
         cursor: pointer;
         padding: 2px 0.5rem;
+
         &:hover {
             color: $white;
             background: $primary-color;

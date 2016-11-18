@@ -13,4 +13,10 @@ export class CategoriesPageComponent implements OnInit{
   ngOnInit(): void {
     this.categoryService.init();
   }
+
+  deleteRecord(id: number): void {
+    if (confirm(`Are you sure you want to delete "${this.categoryService.getCurrent().name}" from the categories list?`)) {
+      
+    }
+  }
 }

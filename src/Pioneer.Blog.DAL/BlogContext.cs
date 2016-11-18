@@ -28,18 +28,6 @@ namespace Pioneer.Blog.DAL
         {
             // Insure Identity Entities are accounted for.
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<PostEntity>()
-                .HasAlternateKey(c => c.Url)
-                .HasName("AlternateKey_PostUrl");
-
-            modelBuilder.Entity<TagEntity>()
-                .HasAlternateKey(c => c.Url)
-                .HasName("AlternateKey_TagUrl");
-
-            modelBuilder.Entity<CategoryEntity>()
-                .HasAlternateKey(c => c.Url)
-                .HasName("AlternateKey_CategoryUrl");
         }
     }
 }

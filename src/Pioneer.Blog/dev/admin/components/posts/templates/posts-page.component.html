@@ -1,5 +1,11 @@
 ﻿<section class="admin-posts">
   <div class="row">
+    <div class="large-12 columns">
+      <h1 class="float-left">Posts</h1>
+      <button class="button float-right admin-add-button">Add</button>
+    </div>
+  </div>
+  <div class="row">
     <div class="large-3 columns">
       <ul class="admin-collection-list">
         <li *ngFor="let post of postService.getAll()"
@@ -94,6 +100,10 @@
                  type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
         </span>
       </fieldset>
+      <button class="button alert float-right"
+              (click)="deleteRecord(postService.getCurrent().url)">
+        Delete
+      </button>
     </div>
   </div>
 </section>

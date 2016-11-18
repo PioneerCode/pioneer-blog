@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using Pioneer.Blog.DAL.Entites;
@@ -64,10 +65,17 @@ namespace Pioneer.Blog.Service
 
         /// <summary>
         /// Create Tag record
+        /// If a Name is not provided, set Name and URL to a GUID
         /// </summary>
         /// <param name="tag">Tag</param>
         public Tag Add(Tag tag)
         {
+            if (tag.Name == null)
+            {
+                tag.Name = Guid.NewGuid().ToString();
+                tag.Url = tag.Name;
+            }
+
             var response = _tagRepository.Add(Mapper.Map<Tag, TagEntity>(tag));
             tag.TagId = response.TagId;
             return tag;
