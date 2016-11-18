@@ -8,89 +8,87 @@
   </div>
   <div class="large-9 columns">
     <div class="row">
-      <div class="large-6 columns">
-        <label>
-          Id
-          <input type="text"
-                 [(ngModel)]="getCurrent().postId">
-        </label>
-      </div>
-      <div class="large-6 columns">
+      <div class="large-12 columns">
         <label>
           Title
           <input type="text"
-                 [(ngModel)]="getCurrent().title">
+                 [(ngModel)]="postService.getCurrent().title">
         </label>
       </div>
     </div>
     <div class="row">
-      <div class="large-6 columns">
-        <label>
-          Description
-          <input type="text"
-                 [(ngModel)]="getCurrent().description">
-        </label>
-      </div>
-      <div class="large-6 columns">
+      <div class="large-12 columns">
         <label>
           Url
           <input type="text"
-                 [(ngModel)]="getCurrent().url">
+                 [(ngModel)]="postService.getCurrent().url">
         </label>
       </div>
     </div>
     <div class="row">
-      <div class="large-6 columns">
+      <div class="large-12 columns">
         <label>
-          Link
-          <input type="text"
-                 [(ngModel)]="getCurrent().link">
-        </label>
-      </div>
-      <div class="large-6 columns">
-        <label>
-          Meta
-          <input type="text"
-                 [(ngModel)]="getCurrent().meta">
+          Description
+          <textarea [(ngModel)]="postService.getCurrent().description"></textarea>
         </label>
       </div>
     </div>
     <div class="row">
-      <div class="large-4 columns">
+      <div class="large-12 columns">
         <label>
           Large Image
           <input type="text"
-                 [(ngModel)]="getCurrent().image">
-        </label>
-      </div>
-      <div class="large-4 columns">
-        <label>
-          Small Image
-          <input type="text"
-                 [(ngModel)]="getCurrent().smallImage">
-        </label>
-      </div>
-      <div class="large-4 columns">
-        <label>
-          Icon Image
-          <input type="text"
-                 [(ngModel)]="getCurrent().iconImage">
+                 [(ngModel)]="postService.getCurrent().image">
         </label>
       </div>
     </div>
     <div class="row">
-      <div class="large-6 columns">
+      <div class="large-12 columns">
+        <label>
+          Small Image
+          <input type="text"
+                 [(ngModel)]="postService.getCurrent().smallImage">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <label>
+          Icon Image
+          <input type="text"
+                 [(ngModel)]="postService.getCurrent().iconImage">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <label>
+          Code Link
+          <input type="text"
+                 [(ngModel)]="postService.getCurrent().link">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 columns">
+        <label>
+          Meta
+          <input type="text"
+                 [(ngModel)]="postService.getCurrent().meta">
+        </label>
+      </div>
+      <div class="large-4 columns">
         <label>
           Posted On
           <input type="text"
-                 [(ngModel)]="getCurrent().postedOn">
+                 [(ngModel)]="postService.getCurrent().postedOn">
         </label>
       </div>
-      <div class="large-6 columns">
+      <div class="large-4 columns">
         <label>
           Modified On
           <input type="text"
-                 [(ngModel)]="getCurrent().modifiedOn">
+                 [(ngModel)]="postService.getCurrent().modifiedOn">
         </label>
       </div>
     </div>
@@ -114,7 +112,9 @@
       <div class="large-12 columns">
         <fieldset class="fieldset">
           <legend>Categories</legend>
-          <textarea></textarea>
+          <span *ngFor="let category of categoryService.getAll()">
+            <input id="" type="checkbox"><label for="">{{ category.name | truncate : 20 }}</label>
+          </span>
         </fieldset>
       </div>
     </div>
@@ -122,7 +122,9 @@
       <div class="large-12 columns">
         <fieldset class="fieldset">
           <legend>Tags</legend>
-          <textarea></textarea>
+          <span *ngFor="let tag of tagService.getAll()">
+            <input id="" type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
+          </span>
         </fieldset>
       </div>
     </div>

@@ -17,4 +17,16 @@ body {
     textarea {
         margin: 0;
     }
+
+    [type='checkbox'] + label {
+        display: inline-block;
+        margin-left: 0.5rem;
+        margin-right: 1rem;
+        margin-bottom: 0;
+        vertical-align: baseline;
+    }
+
+    [type='checkbox'] + label[for] {
+        cursor: pointer;
+    }
 }
