@@ -32,17 +32,17 @@
           </div>
           <div class="top-bar-right">
             <ul class="menu">
-              <li>
+              <li class="@(ViewBag.Selected == "posts" ? "selected" : "")">
                 <a href="/admin/posts">
                   POSTS
                 </a>
               </li>
-              <li>
+              <li class="@(ViewBag.Selected == "categories" ? "selected" : "")">
                 <a href="/admin/categories">
                   CATEGORIES
                 </a>
               </li>
-              <li>
+              <li class="@(ViewBag.Selected == "tags" ? "selected" : "")">
                 <a href="/admin/tags">
                   TAGS
                 </a>

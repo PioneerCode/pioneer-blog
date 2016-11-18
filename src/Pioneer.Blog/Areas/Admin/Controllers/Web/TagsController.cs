@@ -8,6 +8,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Web
         public IActionResult Index()
         {
             ViewBag.Title = "Admin | Tags";
+            ViewBag.Selected = "tags";
             ViewBag.SystemJsImportPath = "app/components/tags/main.js";
             return View();
         }

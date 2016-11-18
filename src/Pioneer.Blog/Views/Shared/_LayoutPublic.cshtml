@@ -39,17 +39,17 @@
           </div>
           <div class="top-bar-right">
             <ul class="menu">
-              <li>
+              <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
                 <a href="/blog">
                   BLOG
                 </a>
               </li>
-              <li>
+              <li class="@(ViewBag.Selected == "about" ? "selected" : "")">
                 <a href="/about">
                   ABOUT
                 </a>
               </li>
-              <li>
+              <li class="@(ViewBag.Selected == "contact" ? "selected" : "")">
                 <a href="/contact">
                   CONTACT
                 </a>
