@@ -26,10 +26,10 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
             return _postService.GetAllPaged((int)count, (int)page);
         }
 
-        [HttpGet("{id}", Name = "GetPost")]
-        public IActionResult GetById(string url)
+        [HttpGet("{url}", Name = "GetPost")]
+        public IActionResult GetById(string url, bool includeExcerpt = false)
         {
-            var item = _postService.GetById(url);
+            var item = _postService.GetById(url, includeExcerpt);
             if (item == null)
             {
                 return NotFound();

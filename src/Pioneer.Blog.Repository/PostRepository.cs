@@ -3,6 +3,7 @@ using Pioneer.Blog.DAL;
 using Pioneer.Blog.DAL.Entites;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Pioneer.Blog.Model;
 
 namespace Pioneer.Blog.Repository
@@ -12,7 +13,7 @@ namespace Pioneer.Blog.Repository
         int GetTotalNumberOfPosts();
         int GetTotalNumberOfPostsByCategory(string category);
         int GetTotalNumberOfPostByTag(string tag);
-        PostEntity GetById(string id);
+        PostEntity GetById(string id, bool includeExceprt);
         IEnumerable<PostEntity> GetTop(int top);
         IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle);
         IEnumerable<PostEntity> GetAllPaged(int count, int page = 1);
@@ -76,16 +77,25 @@ namespace Pioneer.Blog.Repository
         /// Get Post by id
         /// </summary>
         /// <param name="id">Id of post</param>
+        /// <param name="includeExcerpt">Include excerpt</param>
         /// <returns>Post</returns>
-        public PostEntity GetById(string id)
+        public PostEntity GetById(string id, bool includeExcerpt)
         {
-            return _blogContext
-                    .Posts
-                    .Include(x => x.Article)
-                    .Include(x => x.Category)
-                    .Include(x => x.PostTags)
-                        .ThenInclude(i => i.Tag)
-                    .First(x => x.Url == id);
+            var query = _blogContext
+                .Posts
+                .Where(x => true);
+
+            if (includeExcerpt)
+            {
+                query = query.Include(x => x.Excerpt);
+            }
+
+            return query
+                .Include(x => x.Article)
+                .Include(x => x.Category)
+                .Include(x => x.PostTags)
+                    .ThenInclude(i => i.Tag)
+                .First(x => x.Url == id);
         }
 
         /// <summary>

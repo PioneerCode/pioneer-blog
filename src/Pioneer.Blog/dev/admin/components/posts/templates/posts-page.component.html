@@ -98,7 +98,7 @@
         <div class="large-12 columns">
           <fieldset class="fieldset">
             <legend>Excerpt</legend>
-            <textarea></textarea>
+            <textarea [(ngModel)]="postService.getCurrent().excerpt.content" *ngIf="postService.getCurrent().excerpt"></textarea>
           </fieldset>
         </div>
       </div>
@@ -106,7 +106,7 @@
         <div class="large-12 columns">
           <fieldset class="fieldset">
             <legend>Article</legend>
-            <textarea></textarea>
+            <textarea [(ngModel)]="postService.getCurrent().article.content" *ngIf="postService.getCurrent().article"></textarea>
           </fieldset>
         </div>
       </div>

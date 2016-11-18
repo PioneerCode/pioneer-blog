@@ -24,13 +24,13 @@ export class PostService {
   }
 
   private getPosts(): Promise<Post[]> {
-    return this.postRepository
-      .getAll()
+    return this.postRepository.getAll(false, false)
       .then((posts: Post[]) => {
-        this.posts = posts
-        if (this.posts.length > 0) {
-          this.selectedPost = posts[0];
-        }
+        this.posts = posts;
+        return this.postRepository.get(this.posts[0].url, true);
+      })
+      .then((resp: Post) => {
+        this.selectedPost = resp;
         return this.posts;
       });
   }

@@ -16,8 +16,20 @@ export class PostsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tagService.init();
-    this.categoryService.init();
-    this.postService.init();
+    this.tagService.init()
+      .then(() => {
+        return this.categoryService.init();
+      })
+      .then(() => {
+        return this.postService.init();
+      });
+  }
+
+  getAll(): Post[] {
+    return this.postService.getAll();
+  }
+
+  getCurrent(): Post {
+    return this.postService.getCurrent();
   }
 }
