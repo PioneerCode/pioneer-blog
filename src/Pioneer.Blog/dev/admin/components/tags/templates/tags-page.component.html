@@ -1,27 +1,22 @@
 ﻿<div class="row">
   <div class="large-3 columns">
-    <ul>
-      <li *ngFor="let tag of getAll()">
+    <ul class="admin-collection-list">
+      <li *ngFor="let tag of getAll()"
+          (click)="tagService.setCurrent(tag.tagId)">
         <span>{{ tag.name | truncate : 20 }}</span>
       </li>
     </ul>
   </div>
   <div class="large-9 columns">
-    <div class="row">
-      <div class="large-6 columns">
-        <label>
-          Name
-          <input type="text"
-                 [(ngModel)]="getCurrent().name">
-        </label>
-      </div>
-      <div class="large-6 columns">
-        <label>
-          Url
-          <input type="text" 
-                 [(ngModel)]="getCurrent().url">
-        </label>
-      </div>
-    </div>
+    <label>
+      Name
+      <input type="text"
+             [(ngModel)]="tagService.getCurrent().name">
+    </label>
+    <label>
+      Url
+      <input type="text"
+             [(ngModel)]="tagService.getCurrent().url">
+    </label>
   </div>
 </div>

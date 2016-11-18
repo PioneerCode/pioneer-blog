@@ -15,10 +15,6 @@ body {
 }
 
 .fieldset {
-    textarea {
-        margin: 0;
-    }
-
     [type='checkbox'] + label {
         display: inline-block;
         margin-left: 0.5rem;

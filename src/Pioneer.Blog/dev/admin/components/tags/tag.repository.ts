@@ -11,6 +11,16 @@ export class TagRepository {
 
   constructor(private http: Http) { }
 
+  get(id: number, includeExcerpt = false): Promise<Tag> {
+    return this.http.get(this.tagUrl + '/' + id)
+      .toPromise()
+      .then(res => {
+        const body = res.json();
+        return body || {} as Tag;
+      })
+      .catch(this.handleError);
+  }
+
   getAll(): Promise<Tag[]> {
     return this.http.get(this.tagUrl)
       .toPromise()

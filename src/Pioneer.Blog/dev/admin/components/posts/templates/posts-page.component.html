@@ -9,69 +9,41 @@
       </ul>
     </div>
     <div class="large-9 columns">
-      <div class="row">
-        <div class="large-12 columns">
-          <label>
-            Title
-            <input type="text"
-                   [(ngModel)]="postService.getCurrent().title">
-          </label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <label>
-            Url
-            <input type="text"
-                   [(ngModel)]="postService.getCurrent().url">
-          </label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <label>
-            Description
-            <textarea [(ngModel)]="postService.getCurrent().description" 
-                      class="admin-post-description"></textarea>
-          </label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <label>
-            Large Image
-            <input type="text"
-                   [(ngModel)]="postService.getCurrent().image">
-          </label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <label>
-            Small Image
-            <input type="text"
-                   [(ngModel)]="postService.getCurrent().smallImage">
-          </label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <label>
-            Icon Image
-            <input type="text"
-                   [(ngModel)]="postService.getCurrent().iconImage">
-          </label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <label>
-            Code Link
-            <input type="text"
-                   [(ngModel)]="postService.getCurrent().link">
-          </label>
-        </div>
-      </div>
+      <label>
+        Title
+        <input type="text"
+               [(ngModel)]="postService.getCurrent().title">
+      </label>
+      <label>
+        Url
+        <input type="text"
+               [(ngModel)]="postService.getCurrent().url">
+      </label>
+      <label>
+        Description
+        <textarea [(ngModel)]="postService.getCurrent().description"
+                  class="admin-post-description"></textarea>
+      </label>
+      <label>
+        Large Image
+        <input type="text"
+               [(ngModel)]="postService.getCurrent().image">
+      </label>
+      <label>
+        Small Image
+        <input type="text"
+               [(ngModel)]="postService.getCurrent().smallImage">
+      </label>
+      <label>
+        Icon Image
+        <input type="text"
+               [(ngModel)]="postService.getCurrent().iconImage">
+      </label>
+      <label>
+        Code Link
+        <input type="text"
+               [(ngModel)]="postService.getCurrent().link">
+      </label>
       <div class="row">
         <div class="large-4 columns">
           <label>
@@ -95,49 +67,33 @@
           </label>
         </div>
       </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <fieldset class="fieldset">
-            <legend>Excerpt</legend>
-            <textarea [(ngModel)]="postService.getCurrent().excerpt.content" 
-                      *ngIf="postService.getCurrent().excerpt"></textarea>
-          </fieldset>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <fieldset class="fieldset">
-            <legend>Article</legend>
-            <textarea [(ngModel)]="postService.getCurrent().article.content" 
-                      *ngIf="postService.getCurrent().article"></textarea>
-          </fieldset>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <fieldset class="fieldset">
-            <legend>Categories</legend>
-            <span *ngFor="let category of categoryService.getAll()" class="admin-post-collection-item">
-              <input id="" 
-                     type="checkbox"
-                     [checked]="postService.getCurrent().category.categoryId === category.categoryId" 
-                     *ngIf="postService.getCurrent().category">
-              <label for="">{{ category.name | truncate : 20 }}</label>
-            </span>
-          </fieldset>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <fieldset class="fieldset">
-            <legend>Tags</legend>
-            <span *ngFor="let tag of tagService.getAll()" class="admin-post-collection-item">
-              <input id="" 
-                     type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
-            </span>
-          </fieldset>
-        </div>
-      </div>
+      <label>
+        Excerpt
+        <textarea [(ngModel)]="postService.getCurrent().excerpt.content"
+                  *ngIf="postService.getCurrent().excerpt"></textarea>
+      </label>
+      <label>
+        Article
+        <textarea [(ngModel)]="postService.getCurrent().article.content"
+                  *ngIf="postService.getCurrent().article"></textarea>
+      </label>
+      <fieldset class="fieldset">
+        <legend>Categories</legend>
+        <span *ngFor="let category of categoryService.getAll()" class="admin-post-collection-item">
+          <input id=""
+                 type="checkbox"
+                 [checked]="postService.getCurrent().category.categoryId === category.categoryId"
+                 *ngIf="postService.getCurrent().category">
+          <label for="">{{ category.name | truncate : 20 }}</label>
+        </span>
+      </fieldset>
+      <fieldset class="fieldset">
+        <legend>Tags</legend>
+        <span *ngFor="let tag of tagService.getAll()" class="admin-post-collection-item">
+          <input id=""
+                 type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
+        </span>
+      </fieldset>
     </div>
   </div>
 </section>

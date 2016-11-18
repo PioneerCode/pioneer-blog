@@ -1,27 +1,21 @@
 ﻿<div class="row">
   <div class="large-3 columns">
-    <ul>
+    <ul class="admin-collection-list">
       <li *ngFor="let category of getAll()">
         <span>{{ category.name | truncate : 20 }}</span>
       </li>
     </ul>
   </div>
   <div class="large-9 columns">
-    <div class="row">
-      <div class="large-6 columns">
-        <label>
-          Name
-          <input type="text"
-                 [(ngModel)]="getCurrent().name">
-        </label>
-      </div>
-      <div class="large-6 columns">
-        <label>
-          Url
-          <input type="text"
-                 [(ngModel)]="getCurrent().url">
-        </label>
-      </div>
-    </div>
+    <label>
+      Name
+      <input type="text"
+             [(ngModel)]="getCurrent().name">
+    </label>
+    <label>
+      Url
+      <input type="text"
+             [(ngModel)]="getCurrent().url">
+    </label>
   </div>
 </div>
