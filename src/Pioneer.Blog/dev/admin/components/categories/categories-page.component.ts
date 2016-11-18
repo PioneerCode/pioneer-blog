@@ -16,7 +16,13 @@ export class CategoriesPageComponent implements OnInit{
 
   deleteRecord(id: number): void {
     if (confirm(`Are you sure you want to delete "${this.categoryService.getCurrent().name}" from the categories list?`)) {
-      
+      this.categoryService.remove(id);
+    }
+  }
+
+  save(): void {
+    if (confirm(`Are you sure you want to save "${this.categoryService.getCurrent().name}" changes`)) {
+      this.categoryService.save();
     }
   }
 }

@@ -31,6 +31,34 @@ export class CategoryService {
       });
   }
 
+  create(): Promise<Category> {
+    return this.categoryRepository.create()
+      .then((resp: Category) => {
+        this.selectedCategory = resp;
+        this.categories.push(this.selectedCategory);
+        return this.selectedCategory;
+      });
+  }
+
+  save(): Promise<void> {
+    return this.categoryRepository.save(this.selectedCategory)
+      .then(() => {
+        for (let i = 0; i < this.categories.length; i++) {
+          if (this.selectedCategory.categoryId === this.categories[i].categoryId) {
+            this.categories[i] = this.selectedCategory;
+          }
+        }
+      });
+  }
+
+  remove(id: number): Promise<void> {
+    return this.categoryRepository.remove(id)
+      .then(() => {
+        this.categories = this.categories.filter(obj => (obj.categoryId !== id));
+        this.setCurrent(this.categories[0].categoryId);
+      });
+  }
+
   private getCategories(): Promise<Category[]> {
     return this.categoryRepository
       .getAll()

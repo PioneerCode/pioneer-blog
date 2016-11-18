@@ -1,7 +1,16 @@
 ﻿<div class="row">
   <div class="large-12 columns">
     <h1 class="float-left">Categories</h1>
-    <button class="button float-right admin-add-button">Add</button>
+    <div class="button-group float-right admin-button-group">
+      <button class="button"
+              (click)="save(categoryService.getCurrent().categoryId)">
+        Save
+      </button>
+      <button class="button admin-add-button"
+              (click)="categoryService.create()">
+        Add
+      </button>
+    </div>
   </div>
 </div>
 <div class="row">

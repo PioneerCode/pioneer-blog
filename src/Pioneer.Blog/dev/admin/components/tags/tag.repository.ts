@@ -1,7 +1,7 @@
 ﻿import { Injectable }               from '@angular/core';
 import { Headers, Http, Response }  from '@angular/http';
-import { Tag }                     from '../../models/tag';
-import {Observable}                 from "rxjs/Rx";
+import { Tag }                      from '../../models/tag';
+import {Observable}                 from 'rxjs/Rx';
 
 import 'rxjs/add/operator/toPromise';
 

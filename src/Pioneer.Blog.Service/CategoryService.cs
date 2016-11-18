@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Pioneer.Blog.DAL.Entites;
 using Pioneer.Blog.Model;
@@ -62,10 +63,17 @@ namespace Pioneer.Blog.Service
 
         /// <summary>
         /// Create Category record
+        /// If a Name is not provided, set Name and URL to a GUID
         /// </summary>
         /// <param name="category">Category</param>
         public Category Add(Category category)
         {
+            if (category.Name == null)
+            {
+                category.Name = Guid.NewGuid().ToString();
+                category.Url = category.Name;
+            }
+
             var response = _categoryRepository.Add(Mapper.Map<Category, CategoryEntity>(category));
             category.CategoryId = response.CategoryId;
             return category;

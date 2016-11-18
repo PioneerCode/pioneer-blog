@@ -2,7 +2,16 @@
   <div class="row">
     <div class="large-12 columns">
       <h1 class="float-left">Posts</h1>
-      <button class="button float-right admin-add-button">Add</button>
+      <div class="button-group float-right admin-button-group">
+        <button class="button"
+                (click)="save(postService.getCurrent().url)">
+          Save
+        </button>
+        <button class="button admin-add-button"
+                (click)="postService.create()">
+          Add
+        </button>
+      </div>
     </div>
   </div>
   <div class="row">
