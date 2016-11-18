@@ -8,7 +8,7 @@ import { Post }                 from '../../models/post';
 })
 
 export class PostsPageComponent implements OnInit {
-  constructor(private postService: PostService) {
+  constructor(public postService: PostService) {
   }
 
   ngOnInit(): void {
@@ -17,5 +17,9 @@ export class PostsPageComponent implements OnInit {
 
   getAll(): Post[] {
     return this.postService.getAll();
+  }
+
+  getCurrent(): Post {
+    return this.postService.getCurrent();
   }
 }

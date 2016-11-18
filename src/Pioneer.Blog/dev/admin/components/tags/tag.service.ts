@@ -19,9 +19,19 @@ export class TagService {
     return this.tags;
   }
 
+  getCurrent(): Tag {
+    return this.selectedTag;
+  }
+
   private getTags(): Promise<Tag[]> {
     return this.tagRepository
       .getAll()
-      .then((tags: Tag[]) => this.tags = tags);
+      .then((tags: Tag[]) => {
+        this.tags = tags
+        if (this.tags.length > 0) {
+          this.selectedTag = tags[0];
+        }
+        return this.tags;
+      });
   }
 }

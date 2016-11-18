@@ -1,11 +1,130 @@
 ﻿<div class="row">
   <div class="large-3 columns">
     <ul>
-      <li *ngFor="let post of getAll()">
+      <li *ngFor="let post of postService.getAll()">
         <span>{{ post.title | truncate : 20 }}</span>
       </li>
     </ul>
   </div>
   <div class="large-9 columns">
+    <div class="row">
+      <div class="large-6 columns">
+        <label>
+          Id
+          <input type="text"
+                 [(ngModel)]="getCurrent().postId">
+        </label>
+      </div>
+      <div class="large-6 columns">
+        <label>
+          Title
+          <input type="text"
+                 [(ngModel)]="getCurrent().title">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 columns">
+        <label>
+          Description
+          <input type="text"
+                 [(ngModel)]="getCurrent().description">
+        </label>
+      </div>
+      <div class="large-6 columns">
+        <label>
+          Url
+          <input type="text"
+                 [(ngModel)]="getCurrent().url">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 columns">
+        <label>
+          Link
+          <input type="text"
+                 [(ngModel)]="getCurrent().link">
+        </label>
+      </div>
+      <div class="large-6 columns">
+        <label>
+          Meta
+          <input type="text"
+                 [(ngModel)]="getCurrent().meta">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 columns">
+        <label>
+          Large Image
+          <input type="text"
+                 [(ngModel)]="getCurrent().image">
+        </label>
+      </div>
+      <div class="large-4 columns">
+        <label>
+          Small Image
+          <input type="text"
+                 [(ngModel)]="getCurrent().smallImage">
+        </label>
+      </div>
+      <div class="large-4 columns">
+        <label>
+          Icon Image
+          <input type="text"
+                 [(ngModel)]="getCurrent().iconImage">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 columns">
+        <label>
+          Posted On
+          <input type="text"
+                 [(ngModel)]="getCurrent().postedOn">
+        </label>
+      </div>
+      <div class="large-6 columns">
+        <label>
+          Modified On
+          <input type="text"
+                 [(ngModel)]="getCurrent().modifiedOn">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <fieldset class="fieldset">
+          <legend>Excerpt</legend>
+          <textarea></textarea>
+        </fieldset>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <fieldset class="fieldset">
+          <legend>Article</legend>
+          <textarea></textarea>
+        </fieldset>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <fieldset class="fieldset">
+          <legend>Categories</legend>
+          <textarea></textarea>
+        </fieldset>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <fieldset class="fieldset">
+          <legend>Tags</legend>
+          <textarea></textarea>
+        </fieldset>
+      </div>
+    </div>
   </div>
 </div>

@@ -7,5 +7,21 @@
     </ul>
   </div>
   <div class="large-9 columns">
+    <div class="row">
+      <div class="large-6 columns">
+        <label>
+          Name
+          <input type="text"
+                 [(ngModel)]="getCurrent().name">
+        </label>
+      </div>
+      <div class="large-6 columns">
+        <label>
+          Url
+          <input type="text"
+                 [(ngModel)]="getCurrent().url">
+        </label>
+      </div>
+    </div>
   </div>
 </div>

@@ -18,4 +18,8 @@ export class TagsPageComponent implements OnInit {
   getAll(): Tag[] {
     return this.tagService.getAll();
   }
+
+  getCurrent(): Tag {
+    return this.tagService.getCurrent();
+  }
 }

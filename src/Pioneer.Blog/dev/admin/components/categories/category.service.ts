@@ -6,22 +6,32 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CategoryService {
-  categorys = [] as Category[];
+  categories = [] as Category[];
   selectedCategory = {} as Category;
 
   constructor(private categoryRepository: CategoryRepository) { }
 
   init(): Promise<Category[]> {
-    return this.getCategorys();
+    return this.getCategories();
   }
 
   getAll(): Category[] {
-    return this.categorys;
+    return this.categories;
   }
 
-  private getCategorys(): Promise<Category[]> {
+  getCurrent(): Category {
+    return this.selectedCategory;
+  }
+
+  private getCategories(): Promise<Category[]> {
     return this.categoryRepository
       .getAll()
-      .then((categorys: Category[]) => this.categorys = categorys);
+      .then((categories: Category[]) => {
+        this.categories = categories
+        if (this.categories.length > 0) {
+          this.selectedCategory = categories[0];
+        }
+        return this.categories;
+      });
   }
 }

@@ -1,9 +1,20 @@
-﻿@import "../sass/_foundation.scss";
+﻿@import "../sass/_settings.scss";
+
+body {
+    background: $black;
+}
 
 .nav-admin {
     background: $black;
 }
 
 .body-content-admin {
-    margin: 55px 0 0;
+    background: #fff;
+    padding: 55px 0 2rem;
+}
+
+.fieldset {
+    textarea {
+        margin: 0;
+    }
 }

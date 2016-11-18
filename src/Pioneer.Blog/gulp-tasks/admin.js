@@ -21,11 +21,6 @@ function styles() {
     .pipe(sass({ outputStyle: 'compressed' })
       .on('error', sass.logError))
     .pipe(cleanCss({ keepSpecialComments: 0 }))
-    .pipe(uncss({
-      html: [
-        'http://localhost:8000/admin/posts'
-      ]
-    }))
     .pipe(gulp.dest('wwwroot/admin/'));
 }
 
