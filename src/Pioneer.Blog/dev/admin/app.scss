@@ -1,4 +1,5 @@
-﻿@import "../sass/_settings.scss";
+﻿@import "../sass/_settings";
+@import "../sass/_foundation";
 
 body {
     background: $black;
@@ -28,6 +29,20 @@ body {
 
     [type='checkbox'] + label[for] {
         cursor: pointer;
+    }
+}
+
+.admin-collection-list {
+    list-style-type: none;
+    margin: 0;
+
+    li {
+        cursor: pointer;
+        padding: 2px 0.5rem;
+        &:hover {
+            color: $white;
+            background: $primary-color;
+        }
     }
 }
 

@@ -1,8 +1,9 @@
 ﻿<section class="admin-posts">
   <div class="row">
     <div class="large-3 columns">
-      <ul>
-        <li *ngFor="let post of postService.getAll()">
+      <ul class="admin-collection-list">
+        <li *ngFor="let post of postService.getAll()"
+            (click)="postService.setCurrent(post.url)">
           <span>{{ post.title | truncate : 20 }}</span>
         </li>
       </ul>
@@ -98,7 +99,8 @@
         <div class="large-12 columns">
           <fieldset class="fieldset">
             <legend>Excerpt</legend>
-            <textarea [(ngModel)]="postService.getCurrent().excerpt.content" *ngIf="postService.getCurrent().excerpt"></textarea>
+            <textarea [(ngModel)]="postService.getCurrent().excerpt.content" 
+                      *ngIf="postService.getCurrent().excerpt"></textarea>
           </fieldset>
         </div>
       </div>
@@ -106,7 +108,8 @@
         <div class="large-12 columns">
           <fieldset class="fieldset">
             <legend>Article</legend>
-            <textarea [(ngModel)]="postService.getCurrent().article.content" *ngIf="postService.getCurrent().article"></textarea>
+            <textarea [(ngModel)]="postService.getCurrent().article.content" 
+                      *ngIf="postService.getCurrent().article"></textarea>
           </fieldset>
         </div>
       </div>
@@ -115,7 +118,11 @@
           <fieldset class="fieldset">
             <legend>Categories</legend>
             <span *ngFor="let category of categoryService.getAll()" class="admin-post-collection-item">
-              <input id="" type="checkbox"><label for="">{{ category.name | truncate : 20 }}</label>
+              <input id="" 
+                     type="checkbox"
+                     [checked]="postService.getCurrent().category.categoryId === category.categoryId" 
+                     *ngIf="postService.getCurrent().category">
+              <label for="">{{ category.name | truncate : 20 }}</label>
             </span>
           </fieldset>
         </div>
@@ -125,7 +132,8 @@
           <fieldset class="fieldset">
             <legend>Tags</legend>
             <span *ngFor="let tag of tagService.getAll()" class="admin-post-collection-item">
-              <input id="" type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
+              <input id="" 
+                     type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
             </span>
           </fieldset>
         </div>

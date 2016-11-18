@@ -24,12 +24,4 @@ export class PostsPageComponent implements OnInit {
         return this.postService.init();
       });
   }
-
-  getAll(): Post[] {
-    return this.postService.getAll();
-  }
-
-  getCurrent(): Post {
-    return this.postService.getCurrent();
-  }
 }

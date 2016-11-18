@@ -23,6 +23,14 @@ export class PostService {
     return this.selectedPost;
   }
 
+  setCurrent(idUrl: string): Promise<Post> {
+    return this.postRepository.get(idUrl, true)
+      .then((resp: Post) => {
+        this.selectedPost = resp;
+        return this.selectedPost;
+      });
+  }
+
   private getPosts(): Promise<Post[]> {
     return this.postRepository.getAll(false, false)
       .then((posts: Post[]) => {
