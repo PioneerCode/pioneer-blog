@@ -43,7 +43,7 @@ namespace Pioneer.Blog.Service
             root.Add(GetGenericElement(xmlns, string.Format(url, "contact")));
             root.Add(GetGenericElement(xmlns, string.Format(url, "blog")));
 
-            foreach (var post in _postService.GetAll())
+            foreach (var post in _postService.GetAll(false, false))
             {
                 root.Add(new XElement(
                     xmlns + "url",

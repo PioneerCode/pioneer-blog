@@ -14,7 +14,7 @@ namespace Pioneer.Blog.Service
         int GetTotalNumberOfPostsByCategory(string category);
         int GetTotalNumberOfPostByTag(string tag);
         Post GetById(string id);
-        IEnumerable<Post> GetAll(int? top = null);
+        IEnumerable<Post> GetAll(bool includeExcerpt = true, bool includeArticle = true, int? top = null);
         IEnumerable<Post> GetAllPaged(int count, int page = 1);
         IEnumerable<Post> GetAllByTag(string tag, int count, int page = 1);
         IEnumerable<Post> GetAllByCategory(string category, int count, int page = 1);
@@ -76,13 +76,15 @@ namespace Pioneer.Blog.Service
         /// <summary>
         /// Get all posts or get top posts
         /// </summary>
+        /// <param name="includeExcerpt">Include Excerpt</param>
+        /// <param name="includeArticle">Include Article</param>
         /// <param name="top">Take top.  If null returns all posts</param>
         /// <returns>Collection of Post</returns>
-        public IEnumerable<Post> GetAll(int? top = null)
+        public IEnumerable<Post> GetAll(bool includeExcerpt = true, bool includeArticle = true, int? top = null)
         {
             var posts = top != null
                 ? _postRepository.GetTop((int)top).ToList()
-                : _postRepository.GetAll().ToList();
+                : _postRepository.GetAll(includeExcerpt, includeArticle).ToList();
 
             return posts.Select(Mapper.Map<PostEntity, Post>);
         }

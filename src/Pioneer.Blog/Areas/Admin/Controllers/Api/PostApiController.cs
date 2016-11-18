@@ -16,11 +16,11 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpGet]
-        public IEnumerable<Post> GetAll(int? count, int? page)
+        public IEnumerable<Post> GetAll(int? count, int? page, bool includeExceprt = true, bool includeArticle = true)
         {
             if (count == null || page == null)
             {
-                return _postService.GetAll();
+                return _postService.GetAll(includeExceprt, includeArticle);
             }
 
             return _postService.GetAllPaged((int)count, (int)page);

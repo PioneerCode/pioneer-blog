@@ -1,132 +1,135 @@
-﻿<div class="row">
-  <div class="large-3 columns">
-    <ul>
-      <li *ngFor="let post of postService.getAll()">
-        <span>{{ post.title | truncate : 20 }}</span>
-      </li>
-    </ul>
+﻿<section class="admin-posts">
+  <div class="row">
+    <div class="large-3 columns">
+      <ul>
+        <li *ngFor="let post of postService.getAll()">
+          <span>{{ post.title | truncate : 20 }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="large-9 columns">
+      <div class="row">
+        <div class="large-12 columns">
+          <label>
+            Title
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().title">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>
+            Url
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().url">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>
+            Description
+            <textarea [(ngModel)]="postService.getCurrent().description" 
+                      class="admin-post-description"></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>
+            Large Image
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().image">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>
+            Small Image
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().smallImage">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>
+            Icon Image
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().iconImage">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>
+            Code Link
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().link">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-4 columns">
+          <label>
+            Meta
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().meta">
+          </label>
+        </div>
+        <div class="large-4 columns">
+          <label>
+            Posted On
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().postedOn">
+          </label>
+        </div>
+        <div class="large-4 columns">
+          <label>
+            Modified On
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().modifiedOn">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <fieldset class="fieldset">
+            <legend>Excerpt</legend>
+            <textarea></textarea>
+          </fieldset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <fieldset class="fieldset">
+            <legend>Article</legend>
+            <textarea></textarea>
+          </fieldset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <fieldset class="fieldset">
+            <legend>Categories</legend>
+            <span *ngFor="let category of categoryService.getAll()" class="admin-post-collection-item">
+              <input id="" type="checkbox"><label for="">{{ category.name | truncate : 20 }}</label>
+            </span>
+          </fieldset>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <fieldset class="fieldset">
+            <legend>Tags</legend>
+            <span *ngFor="let tag of tagService.getAll()" class="admin-post-collection-item">
+              <input id="" type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
+            </span>
+          </fieldset>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="large-9 columns">
-    <div class="row">
-      <div class="large-12 columns">
-        <label>
-          Title
-          <input type="text"
-                 [(ngModel)]="postService.getCurrent().title">
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>
-          Url
-          <input type="text"
-                 [(ngModel)]="postService.getCurrent().url">
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>
-          Description
-          <textarea [(ngModel)]="postService.getCurrent().description"></textarea>
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>
-          Large Image
-          <input type="text"
-                 [(ngModel)]="postService.getCurrent().image">
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>
-          Small Image
-          <input type="text"
-                 [(ngModel)]="postService.getCurrent().smallImage">
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>
-          Icon Image
-          <input type="text"
-                 [(ngModel)]="postService.getCurrent().iconImage">
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <label>
-          Code Link
-          <input type="text"
-                 [(ngModel)]="postService.getCurrent().link">
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-4 columns">
-        <label>
-          Meta
-          <input type="text"
-                 [(ngModel)]="postService.getCurrent().meta">
-        </label>
-      </div>
-      <div class="large-4 columns">
-        <label>
-          Posted On
-          <input type="text"
-                 [(ngModel)]="postService.getCurrent().postedOn">
-        </label>
-      </div>
-      <div class="large-4 columns">
-        <label>
-          Modified On
-          <input type="text"
-                 [(ngModel)]="postService.getCurrent().modifiedOn">
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <fieldset class="fieldset">
-          <legend>Excerpt</legend>
-          <textarea></textarea>
-        </fieldset>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <fieldset class="fieldset">
-          <legend>Article</legend>
-          <textarea></textarea>
-        </fieldset>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <fieldset class="fieldset">
-          <legend>Categories</legend>
-          <span *ngFor="let category of categoryService.getAll()">
-            <input id="" type="checkbox"><label for="">{{ category.name | truncate : 20 }}</label>
-          </span>
-        </fieldset>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">
-        <fieldset class="fieldset">
-          <legend>Tags</legend>
-          <span *ngFor="let tag of tagService.getAll()">
-            <input id="" type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
-          </span>
-        </fieldset>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
