@@ -14,12 +14,4 @@ export class TagsPageComponent implements OnInit {
   ngOnInit(): void {
     this.tagService.init();
   }
-
-  getAll(): Tag[] {
-    return this.tagService.getAll();
-  }
-
-  getCurrent(): Tag {
-    return this.tagService.getCurrent();
-  }
 }

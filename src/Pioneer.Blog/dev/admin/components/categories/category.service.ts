@@ -23,14 +23,23 @@ export class CategoryService {
     return this.selectedCategory;
   }
 
+  setCurrent(id: number): Promise<Category> {
+    return this.categoryRepository.get(id, true)
+      .then((resp: Category) => {
+        this.selectedCategory = resp;
+        return this.selectedCategory;
+      });
+  }
+
   private getCategories(): Promise<Category[]> {
     return this.categoryRepository
       .getAll()
       .then((categories: Category[]) => {
-        this.categories = categories
-        if (this.categories.length > 0) {
-          this.selectedCategory = categories[0];
-        }
+        this.categories = categories;
+        return this.categoryRepository.get(this.categories[0].categoryId, true);
+      })
+      .then((resp: Category) => {
+        this.selectedCategory = resp;
         return this.categories;
       });
   }

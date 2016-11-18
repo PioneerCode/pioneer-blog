@@ -11,6 +11,16 @@ export class CategoryRepository {
 
   constructor(private http: Http) { }
 
+  get(id: number, includeExcerpt = false): Promise<Category> {
+    return this.http.get(this.categoryUrl + '/' + id)
+      .toPromise()
+      .then(res => {
+        const body = res.json();
+        return body || {} as Category;
+      })
+      .catch(this.handleError);
+  }
+
   getAll(): Promise<Category[]> {
     return this.http.get(this.categoryUrl)
       .toPromise()

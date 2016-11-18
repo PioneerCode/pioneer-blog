@@ -13,12 +13,4 @@ export class CategoriesPageComponent implements OnInit{
   ngOnInit(): void {
     this.categoryService.init();
   }
-
-  getAll(): Category[] {
-    return this.categoryService.getAll();
-  }
-
-  getCurrent(): Category {
-    return this.categoryService.getCurrent();
-  }
 }

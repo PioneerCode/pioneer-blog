@@ -1,7 +1,8 @@
 ﻿<div class="row">
   <div class="large-3 columns">
     <ul class="admin-collection-list">
-      <li *ngFor="let category of getAll()">
+      <li *ngFor="let category of categoryService.getAll()"
+          (click)="categoryService.setCurrent(category.categoryId)">
         <span>{{ category.name | truncate : 20 }}</span>
       </li>
     </ul>
@@ -10,12 +11,12 @@
     <label>
       Name
       <input type="text"
-             [(ngModel)]="getCurrent().name">
+             [(ngModel)]="categoryService.getCurrent().name">
     </label>
     <label>
       Url
       <input type="text"
-             [(ngModel)]="getCurrent().url">
+             [(ngModel)]="categoryService.getCurrent().url">
     </label>
   </div>
 </div>
