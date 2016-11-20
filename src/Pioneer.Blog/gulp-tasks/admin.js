@@ -94,6 +94,8 @@ function watch() {
 
 gulp.task('admin', gulp.series(
   clean,
+  //moveLibs,
+  //libs,
   typescript,
   scripts,
   templates,
