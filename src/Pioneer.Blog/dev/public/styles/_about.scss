@@ -1,0 +1,48 @@
+@import "../../sass/foundation";
+
+.about {
+    .who-is {
+        padding: 4rem 0 2rem;
+        text-align: center;
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        .image-container {
+            text-align: center;
+
+            img {
+                max-width: 75%;
+            }
+        }
+    }
+}
+
+@media #{$medium-up} {
+    .about {
+        .who-is {
+            .image-container {
+                img {
+                    max-width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media #{$large-up} {
+    .about {
+        .who-is {
+            text-align: left;
+            padding: 4rem 0;
+
+            .image-container {
+                img {
+                    margin: 5% 0 0;
+                    max-width: 75%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,63 @@
+﻿@import "../sass/_settings";
+@import "../sass/_foundation";
+
+body {
+    background: $black;
+}
+
+.nav-admin {
+    background: $black;
+}
+
+.body-content-admin {
+    background: #fff;
+    padding: 55px 0 2rem;
+}
+
+[type='checkbox'] + label {
+    display: inline-block;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+    vertical-align: baseline;
+}
+
+[type='checkbox'] + label[for] {
+    cursor: pointer;
+}
+
+.admin-checkbox-vertial-align {
+    margin: 1.75rem 0 0;
+}
+
+.admin-button-group {
+    margin: 1.5rem 0 0;
+}
+
+.admin-collection-list {
+    list-style-type: none;
+    margin: 0;
+
+    li {
+        cursor: pointer;
+        padding: 2px 0.5rem;
+
+        &:hover {
+            color: $white;
+            background: $primary-color;
+        }
+    }
+
+    li.selected {
+        color: $white;
+        background: $primary-color;
+    }
+}
+
+.admin-post-description {
+    min-height: 100px;
+}
+
+.admin-post-collection-item {
+    float: left;
+}

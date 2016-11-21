@@ -3,6 +3,8 @@ using Pioneer.Blog.DAL;
 using Pioneer.Blog.DAL.Entites;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using Pioneer.Blog.Model;
 
 namespace Pioneer.Blog.Repository
 {
@@ -11,15 +13,18 @@ namespace Pioneer.Blog.Repository
         int GetTotalNumberOfPosts();
         int GetTotalNumberOfPostsByCategory(string category);
         int GetTotalNumberOfPostByTag(string tag);
-        PostEntity GetById(string id);
+        PostEntity GetById(string id, bool includeExceprt);
         IEnumerable<PostEntity> GetTop(int top);
-        IEnumerable<PostEntity> GetAll();
+        IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle, bool includeUnpublished);
         IEnumerable<PostEntity> GetAllPaged(int count, int page = 1);
         IEnumerable<PostEntity> GetAllByTagPaged(string tag, int count, int page = 1);
         IEnumerable<PostEntity> GetAllByCategoryPaged(string category, int count, int page = 1);
         IEnumerable<PostEntity> GetPostsBasedOnIdCollection(List<int> postIds);
         PostEntity GetPreviousBasedOnId(int id);
         PostEntity GetNextBasedOnId(int id);
+        PostEntity Add(PostEntity map);
+        void Update(Post post);
+        void Remove(string url);
     }
 
     public class PostRepository : IPostRepository
@@ -72,16 +77,25 @@ namespace Pioneer.Blog.Repository
         /// Get Post by id
         /// </summary>
         /// <param name="id">Id of post</param>
+        /// <param name="includeExcerpt">Include excerpt</param>
         /// <returns>Post</returns>
-        public PostEntity GetById(string id)
+        public PostEntity GetById(string id, bool includeExcerpt)
         {
-            return _blogContext
-                    .Posts
-                    .Include(x => x.Article)
-                    .Include(x => x.Category)
-                    .Include(x => x.PostTags)
-                        .ThenInclude(i => i.Tag)
-                    .First(x => x.Url == id);
+            var query = _blogContext
+                .Posts
+                .Where(x => true);
+
+            if (includeExcerpt)
+            {
+                query = query.Include(x => x.Excerpt);
+            }
+
+            return query
+                .Include(x => x.Article)
+                .Include(x => x.Category)
+                .Include(x => x.PostTags)
+                    .ThenInclude(i => i.Tag)
+                .First(x => x.Url == id);
         }
 
         /// <summary>
@@ -105,18 +119,37 @@ namespace Pioneer.Blog.Repository
         /// <summary>
         /// Return all Posts
         /// </summary>
+        /// <param name="includeExcerpt">Include Excerpt</param>
+        /// <param name="includeArticle">Include Article</param>
+        /// <param name="includeUnpublished">Include Unpublished</param>
         /// <returns>Collection of posts</returns>
-        public IEnumerable<PostEntity> GetAll()
+        public IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle, bool includeUnpublished)
         {
-            return _blogContext
-                    .Posts
-                    .Where(x => x.Published)
-                    .Include(x => x.Excerpt)
-                    .Include(x => x.Category)
-                    .Include(x => x.PostTags)
-                        .ThenInclude(i => i.Tag)
-                    .OrderByDescending(x => x.PostedOn)
-                    .ToList();
+            var query = _blogContext
+                .Posts
+                .Where(x => true);
+
+            if (!includeUnpublished)
+            {
+                query = query.Where(x => x.Published);
+            }
+
+            if (includeExcerpt)
+            {
+                query = query.Include(x => x.Excerpt);
+            }
+
+            if (includeArticle)
+            {
+                query = query.Include(x => x.Article);
+            }
+
+            query = query.Include(x => x.Category)
+                .Include(x => x.PostTags)
+                    .ThenInclude(i => i.Tag)
+                .OrderByDescending(x => x.PostedOn);
+
+            return query.ToList();
         }
 
         /// <summary>
@@ -219,6 +252,50 @@ namespace Pioneer.Blog.Repository
         public PostEntity GetNextBasedOnId(int id)
         {
             return (from x in _blogContext.Posts where x.PostId > id orderby x.PostId ascending select x).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Add new post
+        /// </summary>
+        /// <param name="post">Post model</param>
+        /// <returns>New Post entity</returns>
+        public PostEntity Add(PostEntity post)
+        {
+            _blogContext
+              .Posts
+              .Add(post);
+            _blogContext.SaveChanges();
+
+            return post;
+        }
+
+        /// <summary>
+        /// Update post record
+        /// </summary>
+        /// <param name="post">Post model</param>
+        public void Update(Post post)
+        {
+            var entity = _blogContext
+                .Posts
+                .FirstOrDefault(x => x.Url == post.Url);
+
+            // Save logic 
+
+            _blogContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// Remove post object
+        /// </summary>
+        /// <param name="url">Post URL</param>
+        public void Remove(string url)
+        {
+            var entity = _blogContext
+                .Posts
+                .FirstOrDefault(x => x.Url == url);
+
+            _blogContext.Posts.Remove(entity);
+            _blogContext.SaveChanges();
         }
     }
 }

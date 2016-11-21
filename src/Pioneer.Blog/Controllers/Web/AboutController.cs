@@ -10,6 +10,7 @@ namespace Pioneer.Blog.Controllers.Web
         public IActionResult Index()
         {
             ViewBag.Description = "About Pioneer Code and Chad Ramos";
+            ViewBag.Selected = "about";
             return View();
         }
     }

@@ -1,48 +1,49 @@
 ﻿@model List<Post>
 
-<section class="previous-next row" data-equalizer data-equalize-on="medium">
-  <input type="hidden" class="previous-next-nothing fa-hand-paper-o"/>
-  <div class="large-6 columns">
-    @if (Model[2] != null)
-    {
-      <a class="callout" href="@Model[2].Url" title="@Model[2].Title" data-equalizer-watch>
-        <div class="previous-next-content-left">
-          <p class="previous-next-date">@Model[2].PostedOn.ToString("MMM d, yyyy")</p>
-          <p class="previous-next-title">@Model[2].Title</p>
-          <i class="fa fa-backward"></i>
-        </div>
-      </a>
-    }
-    else
-    {
-      <div class="callout" data-equalizer-watch>
-        <div class="previous-next-content-left">
-          <p class="previous-next-nothing">Nothing to see this way.</p>
-          <i class="fa fa-hand-paper-o"></i>
-        </div>
-      </div>
-    }
-  </div>
-  <div class="large-6 columns">
-    @if (Model[0] != null)
-    {
-      <a class="callout" href="@Model[0].Url" title="@Model[0].Title" data-equalizer-watch>
-        <div class="previous-next-content-right">
-          <i class="fa fa-forward"></i>
-          <p class="previous-next-date">@Model[0].PostedOn.ToString("MMM d, yyyy")</p>
-          <p class="previous-next-title">@Model[0].Title</p>
-        </div>
-      </a>
-    }
-    else
-    {
-      <div class="callout" data-equalizer-watch>
-        <div class="previous-next-content-right">
-          <i class="fa fa-hand-paper-o"></i>
-          <p class="previous-next-nothing" style="right: 1rem;">Nothing to see this way.</p>
-        </div>
-      </div>
-    }
-
-  </div>
-</section>
+<div class="row" data-equalizer data-equalize-on="medium">
+  <section class="previous-next">
+    <input type="hidden" class="previous-next-nothing fa-hand-paper-o" />
+    <div class="large-6 columns">
+      @if (Model[2] != null)
+      {
+          <a class="callout" href="@Model[2].Url" title="@Model[2].Title" data-equalizer-watch>
+            <div class="previous-next-content-left">
+              <p class="previous-next-date">@Model[2].PostedOn.ToString("MMM d, yyyy")</p>
+              <p class="previous-next-title">@Model[2].Title</p>
+              <i class="fa fa-backward"></i>
+            </div>
+          </a>
+      }
+      else
+      {
+          <div class="callout" data-equalizer-watch>
+            <div class="previous-next-content-left">
+              <p class="previous-next-nothing">Nothing to see this way.</p>
+              <i class="fa fa-hand-paper-o"></i>
+            </div>
+          </div>
+      }
+    </div>
+    <div class="large-6 columns">
+      @if (Model[0] != null)
+      {
+          <a class="callout" href="@Model[0].Url" title="@Model[0].Title" data-equalizer-watch>
+            <div class="previous-next-content-right">
+              <i class="fa fa-forward"></i>
+              <p class="previous-next-date">@Model[0].PostedOn.ToString("MMM d, yyyy")</p>
+              <p class="previous-next-title">@Model[0].Title</p>
+            </div>
+          </a>
+      }
+      else
+      {
+          <div class="callout" data-equalizer-watch>
+            <div class="previous-next-content-right">
+              <i class="fa fa-hand-paper-o"></i>
+              <p class="previous-next-nothing" style="right: 1rem;">Nothing to see this way.</p>
+            </div>
+          </div>
+      }
+    </div>
+  </section>
+</div>
