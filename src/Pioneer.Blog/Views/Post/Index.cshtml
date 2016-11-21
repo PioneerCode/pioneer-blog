@@ -1,7 +1,8 @@
-﻿@model List<Post>
-@{
+﻿@{
+    Layout = "~/Views/Post/_Template.cshtml";
     ViewBag.Title = Model[(int)PreviousCurrentNextPosition.Current].Title;
 }
+@model List<Post>
 <article class="post">
   <section class="hero-gradient hg-large" data-parallax="scroll" data-image-src="@Model[(int)PreviousCurrentNextPosition.Current].Image">
     <div class="row hero-gradient-content">

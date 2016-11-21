@@ -1,0 +1,93 @@
+@import "../../sass/foundation";
+
+footer.main {
+    padding: 3rem 0;
+    background: $black;
+    color: $dark-gray;
+    text-align: center;
+
+    .meta {
+        p {
+            text-align: center;
+            font-size: 12px;
+            margin: 0;
+            color: $dark-gray;
+        }
+
+        .disclaimer {
+            font-style: italic;
+        }
+    }
+
+    .copy {
+        color: #666;
+    }
+
+    p {
+        color: $dark-gray;
+        font-size: 14px;
+    }
+
+    .heading {
+        color: $medium-gray;
+        font-weight: bold;
+    }
+
+    ui.menu.vertical {
+        margin: 1rem 0 0;
+    }
+
+    ul.menu {
+        margin: -7px 0 1rem;
+
+
+        li:last-child {
+            margin: 0;
+        }
+    }
+
+    p.email {
+        a {
+            font-size: 1.5rem;
+            font-weight: 100;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    p.chad a {
+        font-weight: 300;
+    }
+
+    a {
+        font-weight: bold;
+        color: $medium-gray;
+        font-size: 14px;
+
+
+        &:hover {
+            text-decoration: none;
+            color: $white;
+            transition: color 0.5s ease;
+        }
+    }
+}
+
+@media #{$medium-up} {
+    footer.main {
+        text-align: left;
+        padding: 6rem 0;
+
+        p.email {
+            a {
+                font-size: 2rem;
+            }
+        }
+
+        ui.menu.vertical {
+            margin: 0;
+        }
+    }
+}

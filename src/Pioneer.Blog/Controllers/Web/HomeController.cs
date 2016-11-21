@@ -20,7 +20,7 @@ namespace Pioneer.Blog.Controllers.Web
         {
             ViewBag.Description =
                 "PioneerCode.com | How-to's, life hacks and observations for the modern day software developer.";
-            return View(_postService.GetAll(4));
+            return View(_postService.GetAll(true, false, false, 4));
         }
 
         public IActionResult SiteMap()

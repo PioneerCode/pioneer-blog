@@ -1,0 +1,44 @@
+﻿<div class="row">
+  <div class="large-12 columns">
+    <h1 class="float-left">Tags</h1>
+    <div class="button-group float-right admin-button-group">
+      <button class="button"
+              (click)="save(tagService.getCurrent().tagId)">
+        Save
+      </button>
+      <button class="button admin-add-button"
+              (click)="tagService.create()">
+        Add
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="large-3 columns">
+    <ul class="admin-collection-list">
+      <li *ngFor="let tag of tagService.getAll()"
+          [class.selected]="tag.tagId === tagService.getCurrent().tagId"
+          (click)="tagService.setCurrent(tag.tagId)">
+        <span>{{ tag.name | truncate : 20 }}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="large-9 columns">
+    <label>
+      Name
+      <input type="text"
+             [(ngModel)]="tagService.getCurrent().name">
+    </label>
+    <label>
+      Url
+      <input type="text"
+             [(ngModel)]="tagService.getCurrent().url">
+    </label>
+    <div class="button-group float-right">
+      <button class="button alert"
+              (click)="remove(tagService.getCurrent().tagId)">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

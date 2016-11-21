@@ -1,18 +1,18 @@
-﻿{
+{
   "dependencies": {
-    "Microsoft.NETCore.App": {
-      "version": "1.0.0",
-      "type": "platform"
-    },
+    "Microsoft.EntityFrameworkCore": "1.1.0",
     "Pioneer.Blog.DAL": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore": "1.0.0"
+    "Pioneer.Blog.Model": "1.0.0-*"
   },
   "frameworks": {
-    "netcoreapp1.0": {
-      "imports": [
-        "dotnet5.6",
-        "portable-net45+win8"
-      ]
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        }
+      },
+      "imports": "dnxcore50"
     }
   }
 }

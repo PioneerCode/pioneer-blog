@@ -1,0 +1,49 @@
+﻿@import "../../../sass/foundation";
+
+.sidebar-popular-posts{
+    margin: 0 0 2rem;
+}
+
+.sidebar-popular-post {
+    margin: 0 0 1rem;
+    display: block;
+
+    p {
+        margin-bottom: 0;
+        display: block;
+    }
+}
+
+.sidebar-popular-post-left {
+    float: left !important;
+    margin: 0 0.5rem 0 0;
+}
+
+.sidebar-popular-post-right {
+    overflow: hidden;
+}
+
+.sidebar-popular-post-image {
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-size: 14px;
+}
+
+.sidebar-popular-post-title {
+    font-size: 14px;
+    margin-top: -5px;
+    color: $body-font-color;
+}
+
+.sidebar-popular-post-date {
+    font-size: 12px !important;
+    font-style: italic;
+    color: $dark-gray;
+}
+
+.sidebar-popular-post-category {
+    font-size: 14px;
+}

@@ -2,7 +2,7 @@
 {
     public class Article
     {
-        public int ExcerptId { get; set; }
+        public int ArticleId { get; set; }
 
         public string Content { get; set; }
     }
