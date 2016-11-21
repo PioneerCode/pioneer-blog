@@ -13,6 +13,10 @@
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.1.0",
     "Microsoft.AspNetCore.Http.Extensions": "1.1.0",
     "Microsoft.AspNetCore.Mvc": "1.1.0",
+    "Microsoft.AspNetCore.Razor.Tools": {
+      "version": "1.0.0-preview2-final",
+      "type": "build"
+    },
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
     "Microsoft.AspNetCore.StaticFiles": "1.1.0",
@@ -23,7 +27,8 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
-    "Microsoft.Extensions.Configuration.Json": "1.1.0"
+    "Microsoft.Extensions.Configuration.Json": "1.1.0",
+    "Pioneer.Blog.DAL": "1.0.0-*"
   },
   "frameworks": {
     "netcoreapp1.1": {
@@ -58,6 +63,7 @@
     ]
   },
   "tools": {
+    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final",
     "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final"
   },
