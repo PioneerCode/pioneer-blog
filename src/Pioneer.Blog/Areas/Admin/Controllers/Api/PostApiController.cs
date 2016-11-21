@@ -16,11 +16,14 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpGet]
-        public IEnumerable<Post> GetAll(int? count, int? page, bool includeExceprt = true, bool includeArticle = true)
+        public IEnumerable<Post> GetAll(int? count, int? page, 
+            bool includeExceprt = true, 
+            bool includeArticle = true, 
+            bool includeUnpublished = false)
         {
             if (count == null || page == null)
             {
-                return _postService.GetAll(includeExceprt, includeArticle);
+                return _postService.GetAll(includeExceprt, includeArticle, includeUnpublished);
             }
 
             return _postService.GetAllPaged((int)count, (int)page);
@@ -47,7 +50,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
             }
 
             _postService.Add(post);
-            return CreatedAtRoute("GetPost", new { id = post.PostId }, post);
+            return CreatedAtRoute("GetPost", new { url = post.Url }, post);
         }
 
         [HttpPut("{id}")]

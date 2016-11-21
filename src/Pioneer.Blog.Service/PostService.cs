@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Pioneer.Blog.DAL.Entites;
 using Pioneer.Blog.Model;
@@ -14,7 +15,7 @@ namespace Pioneer.Blog.Service
         int GetTotalNumberOfPostsByCategory(string category);
         int GetTotalNumberOfPostByTag(string tag);
         Post GetById(string id, bool includeExceprt = false);
-        IEnumerable<Post> GetAll(bool includeExcerpt = true, bool includeArticle = true, int? top = null);
+        IEnumerable<Post> GetAll(bool includeExcerpt = true, bool includeArticle = true, bool includeUnpublished = false, int ? top = null);
         IEnumerable<Post> GetAllPaged(int count, int page = 1);
         IEnumerable<Post> GetAllByTag(string tag, int count, int page = 1);
         IEnumerable<Post> GetAllByCategory(string category, int count, int page = 1);
@@ -79,13 +80,17 @@ namespace Pioneer.Blog.Service
         /// </summary>
         /// <param name="includeExcerpt">Include Excerpt</param>
         /// <param name="includeArticle">Include Article</param>
+        /// <param name="includeUnpublished">Includ Unpublished</param>
         /// <param name="top">Take top.  If null returns all posts</param>
         /// <returns>Collection of Post</returns>
-        public IEnumerable<Post> GetAll(bool includeExcerpt = true, bool includeArticle = true, int? top = null)
+        public IEnumerable<Post> GetAll(bool includeExcerpt = true, 
+            bool includeArticle = true, 
+            bool includeUnpublished = false, 
+            int ? top = null)
         {
             var posts = top != null
                 ? _postRepository.GetTop((int)top).ToList()
-                : _postRepository.GetAll(includeExcerpt, includeArticle).ToList();
+                : _postRepository.GetAll(includeExcerpt, includeArticle, includeUnpublished).ToList();
 
             return posts.Select(Mapper.Map<PostEntity, Post>);
         }
@@ -139,7 +144,7 @@ namespace Pioneer.Blog.Service
         /// </summary>
         /// <param name="id">Current post url</param>
         /// <returns>Collection with first index being previous, second index being current and third index being next</returns>
-        // TODO: Profile and work to reduce tips to the database
+        // TODO: Profile and work to reduce trips to the database
         public IEnumerable<Post> GetPreviousCurrentNextPost(string id)
         {
             var currentPost = _postRepository.GetById(id, false);
@@ -160,6 +165,18 @@ namespace Pioneer.Blog.Service
         /// <returns>New Post record</returns>
         public Post Add(Post post)
         {
+            if (post.Title == null)
+            {
+                post.Title = Guid.NewGuid().ToString();
+                post.Url = post.Title;
+            }
+
+            post.Category = null;
+            post.PostedOn = DateTime.Now;
+            post.ModifiedOn = post.PostedOn;
+            post.CreatedOn = post.PostedOn;
+            post.Published = false;
+
             var response = _postRepository.Add(Mapper.Map<Post, PostEntity>(post));
             post.PostId = response.PostId;
             return post;

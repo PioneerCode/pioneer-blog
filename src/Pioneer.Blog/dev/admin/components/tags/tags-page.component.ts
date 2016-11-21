@@ -1,6 +1,5 @@
 ﻿import { Component, OnInit }    from '@angular/core';
-import { TagService }          from './tag.service';
-import { Tag }                 from '../../models/tag';
+import { TagService }           from './tag.service';
 
 @Component({
   selector: 'pc-tags-page',

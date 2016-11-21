@@ -1,4 +1,4 @@
-﻿import { Injectable, OnInit }   from '@angular/core';
+﻿import { Injectable }   from '@angular/core';
 import { TagRepository }       from './tag.repository';
 import { Tag }                 from '../../models/tag';
 
@@ -54,7 +54,7 @@ export class TagService {
   remove(id: number): Promise<void> {
     return this.tagRepository.remove(id)
       .then(() => {
-        this.tags = this.tags.filter(obj => (obj.tagId !== id));
+        this.tags = this.tags.filter((obj: Tag) => (obj.tagId !== id));
         this.setCurrent(this.tags[0].tagId);
       });
   }

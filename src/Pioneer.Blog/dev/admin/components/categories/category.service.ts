@@ -1,4 +1,4 @@
-﻿import { Injectable, OnInit }   from '@angular/core';
+﻿import { Injectable }               from '@angular/core';
 import { CategoryRepository }       from './category.repository';
 import { Category }                 from '../../models/category';
 
@@ -54,14 +54,13 @@ export class CategoryService {
   remove(id: number): Promise<void> {
     return this.categoryRepository.remove(id)
       .then(() => {
-        this.categories = this.categories.filter(obj => (obj.categoryId !== id));
+        this.categories = this.categories.filter((obj: Category) => (obj.categoryId !== id));
         this.setCurrent(this.categories[0].categoryId);
       });
   }
 
   private getCategories(): Promise<Category[]> {
-    return this.categoryRepository
-      .getAll()
+    return this.categoryRepository.getAll()
       .then((categories: Category[]) => {
         this.categories = categories;
         return this.categoryRepository.get(this.categories[0].categoryId, true);

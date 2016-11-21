@@ -41,6 +41,9 @@ namespace Pioneer.Blog.Model
         public DateTime PostedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+        public bool Published { get; set; }
+
         public IEnumerable<Tag> Tags { get; set; }
         public Article Article { get; set; }
         public Category Category { get; set; }

@@ -15,7 +15,7 @@ namespace Pioneer.Blog.Repository
         int GetTotalNumberOfPostByTag(string tag);
         PostEntity GetById(string id, bool includeExceprt);
         IEnumerable<PostEntity> GetTop(int top);
-        IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle);
+        IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle, bool includeUnpublished);
         IEnumerable<PostEntity> GetAllPaged(int count, int page = 1);
         IEnumerable<PostEntity> GetAllByTagPaged(string tag, int count, int page = 1);
         IEnumerable<PostEntity> GetAllByCategoryPaged(string category, int count, int page = 1);
@@ -121,12 +121,18 @@ namespace Pioneer.Blog.Repository
         /// </summary>
         /// <param name="includeExcerpt">Include Excerpt</param>
         /// <param name="includeArticle">Include Article</param>
+        /// <param name="includeUnpublished">Include Unpublished</param>
         /// <returns>Collection of posts</returns>
-        public IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle)
+        public IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle, bool includeUnpublished)
         {
             var query = _blogContext
                 .Posts
-                .Where(x => x.Published);
+                .Where(x => true);
+
+            if (!includeUnpublished)
+            {
+                query = query.Where(x => x.Published);
+            }
 
             if (includeExcerpt)
             {

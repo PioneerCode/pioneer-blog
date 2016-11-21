@@ -1,7 +1,6 @@
 ﻿import { Injectable }               from '@angular/core';
-import { Headers, Http, Response }  from '@angular/http';
+import { Http, Response }           from '@angular/http';
 import { Category }                 from '../../models/category';
-import {Observable}                 from 'rxjs/Rx';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -11,11 +10,11 @@ export class CategoryRepository {
 
   constructor(private http: Http) { }
 
-  get(id: number, includeExcerpt = false): Promise<Category> {
+  get(id: number, includeExcerpt: boolean = false): Promise<Category> {
     return this.http.get(this.url + '/' + id)
       .toPromise()
-      .then(res => {
-        const body = res.json();
+      .then((res: Response) => {
+        const body: Category = res.json();
         return body || {} as Category;
       })
       .catch(this.handleError);
@@ -24,8 +23,8 @@ export class CategoryRepository {
   getAll(): Promise<Category[]> {
     return this.http.get(this.url)
       .toPromise()
-      .then(res => {
-        const body = res.json();
+      .then((res: Response) => {
+        const body: Category[] = res.json();
         return body || [];
       })
       .catch(this.handleError);
@@ -34,8 +33,8 @@ export class CategoryRepository {
   create(): Promise<Category> {
     return this.http.post(this.url, {} as Category)
       .toPromise()
-      .then(res => {
-        const body = res.json();
+      .then((res: Response) => {
+        const body: Category = res.json();
         return body || [];
       })
       .catch(this.handleError);

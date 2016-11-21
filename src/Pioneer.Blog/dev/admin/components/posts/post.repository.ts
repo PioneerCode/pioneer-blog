@@ -1,33 +1,56 @@
 ﻿import { Injectable }               from '@angular/core';
-import { Headers, Http, Response }  from '@angular/http';
+import { Http, Response }  from '@angular/http';
 import { Post }                     from '../../models/post';
-import { Observable }               from 'rxjs/Rx';
 
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PostRepository {
-  private postUrl = '/api/posts';
+  private url = '/api/posts';
 
   constructor(private http: Http) { }
 
-  get(idUrl: string, includeExcerpt = false): Promise<Post> {
-    return this.http.get(this.postUrl + '/' + idUrl + '?includeExcerpt=' + includeExcerpt)
+  get(idUrl: string, includeExcerpt: boolean = false): Promise<Post> {
+    return this.http.get(this.url + '/' + idUrl + '?includeExcerpt=' + includeExcerpt)
       .toPromise()
-      .then(res => {
-        const body = res.json();
+      .then((res: Response) => {
+        const body: Post = res.json();
         return body || {} as Post;
       })
       .catch(this.handleError);
   }
 
-  getAll(includeExcerpt = true, includeArticle = true): Promise<Post[]> {
-    return this.http.get(this.postUrl + '?includeExceprt=' + includeExcerpt + '&includeArticle' + includeArticle)
+  getAll(includeExcerpt: boolean = true,
+    includeArticle: boolean = true,
+    includeUnpublished: boolean = true): Promise<Post[]> {
+    return this.http.get(this.url + '?includeExceprt=' + includeExcerpt + '&includeArticle=' + includeArticle + '&includeUnpublished=' + includeUnpublished)
       .toPromise()
-      .then(res => {
-        const body = res.json();
+      .then((res: Response) => {
+        const body: Post[] = res.json();
         return body || [] as Post[];
       })
+      .catch(this.handleError);
+  }
+
+  create(): Promise<Post> {
+    return this.http.post(this.url, {} as Post)
+      .toPromise()
+      .then((res: Response) => {
+        const body: Post = res.json();
+        return body || [];
+      })
+      .catch(this.handleError);
+  }
+
+  save(post: Post): Promise<Response> {
+    return this.http.put(this.url + '\\' + post.postId, post)
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  remove(idUrl: string): Promise<Response> {
+    return this.http.delete(this.url + '\\' + idUrl)
+      .toPromise()
       .catch(this.handleError);
   }
 

@@ -2,7 +2,6 @@
 import { PostService }          from './post.service';
 import { CategoryService }      from '../categories/category.service';
 import { TagService }           from '../tags/tag.service';
-import { Post }                 from '../../models/post';
 
 @Component({
   selector: 'pc-posts-page',
@@ -27,7 +26,13 @@ export class PostsPageComponent implements OnInit {
 
   deleteRecord(idUrl: string): void {
     if (confirm(`Are you sure you want to delete "${this.postService.getCurrent().title}" from the posts list?`)) {
+      this.postService.remove(idUrl);
+    }
+  }
 
+  save(): void {
+    if (confirm(`Are you sure you want to save "${this.postService.getCurrent().title}" changes`)) {
+      this.postService.save();
     }
   }
 }
