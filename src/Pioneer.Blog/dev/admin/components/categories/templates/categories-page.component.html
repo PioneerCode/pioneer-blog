@@ -19,7 +19,7 @@
       <li *ngFor="let category of categoryService.getAll()"
           [class.selected]="category.categoryId === categoryService.getCurrent().categoryId"
           (click)="categoryService.setCurrent(category.categoryId)">
-        <span>{{ category.name | truncate : 20 }}</span>
+        <span>{{ category.name | truncate : 25 }}</span>
       </li>
     </ul>
   </div>

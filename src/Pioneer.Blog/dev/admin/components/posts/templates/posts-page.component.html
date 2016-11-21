@@ -20,7 +20,7 @@
         <li *ngFor="let post of postService.getAll()"
             [class.selected]="post.postId === postService.getCurrent().postId"
             (click)="postService.setCurrent(post.url)">
-          <span>{{ post.title | truncate : 20 }}</span>
+          <span>{{ post.title | truncate : 25 }}</span>
         </li>
       </ul>
     </div>
@@ -63,24 +63,43 @@
       <div class="row">
         <div class="large-4 columns">
           <label>
-            Meta
+            Created On
             <input type="text"
-                   [(ngModel)]="postService.getCurrent().meta">
+                   [ngModel]="postService.getCurrent().createdOn | date:'MM-dd-yyyy'"
+                   disabled>
           </label>
         </div>
         <div class="large-4 columns">
           <label>
             Posted On
             <input type="text"
-                   [(ngModel)]="postService.getCurrent().postedOn">
+                   [ngModel]="postService.getCurrent().postedOn | date:'MM-dd-yyyy'"
+                   disabled>
           </label>
         </div>
         <div class="large-4 columns">
           <label>
             Modified On
             <input type="text"
-                   [(ngModel)]="postService.getCurrent().modifiedOn">
+                   [ngModel]="postService.getCurrent().modifiedOn | date:'MM-dd-yyyy'"
+                   disabled>
           </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-9 columns">
+          <label>
+            Meta
+            <input type="text"
+                   [(ngModel)]="postService.getCurrent().meta">
+          </label>
+        </div>
+        <div class="large-3 columns">
+          <div class="admin-checkbox-vertial-align">
+            <input id=""
+                   type="checkbox"
+                   [checked]="postService.getCurrent().published"><label for="">Published</label>
+          </div>
         </div>
       </div>
       <label>
@@ -98,8 +117,7 @@
         <span *ngFor="let category of categoryService.getAll()" class="admin-post-collection-item">
           <input id=""
                  type="checkbox"
-                 [checked]="postService.getCurrent().category.categoryId === category.categoryId"
-                 *ngIf="postService.getCurrent().category">
+                 [checked]="postService.getCurrent().category && postService.getCurrent().category.categoryId === category.categoryId">
           <label for="">{{ category.name | truncate : 20 }}</label>
         </span>
       </fieldset>
