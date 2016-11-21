@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if (DEBUG)
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Service;
@@ -85,3 +86,4 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
     }
 }
+#endif

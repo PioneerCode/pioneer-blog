@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿#if (DEBUG)
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace Pioneer.Blog.Controllers.Web
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
 
-        public AccountController(UserManager<UserEntity> userManager, 
+        public AccountController(UserManager<UserEntity> userManager,
             SignInManager<UserEntity> signInManager)
         {
             _userManager = userManager;
@@ -128,3 +129,4 @@ namespace Pioneer.Blog.Controllers.Web
         }
     }
 }
+#endif

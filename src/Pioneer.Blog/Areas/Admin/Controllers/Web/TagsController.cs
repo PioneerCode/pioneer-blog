@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿#if (DEBUG)
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Pioneer.Blog.Areas.Admin.Controllers.Web
@@ -16,3 +17,4 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Web
         }
     }
 }
+#endif

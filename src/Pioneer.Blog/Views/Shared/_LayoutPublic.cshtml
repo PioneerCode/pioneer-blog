@@ -19,7 +19,7 @@
 }
 
 @section nav {
-    <nav class="nav-main">
+  <nav class="nav-main">
     <input type="hidden" class="nav-main-show" />
     <div class="title-bar clearfix hide" data-responsive-toggle="pioneer-public-menu" data-hide-for="medium">
       <div class="title-bar-title float-left">
@@ -54,9 +54,11 @@
                   CONTACT
                 </a>
               </li>
-              <li>
-                @await Html.PartialAsync("_LoginPartial")
-              </li>
+              <environment names="Development">
+                <li>
+                  @await Html.PartialAsync("_LoginPartial")
+                </li>
+              </environment>
             </ul>
           </div>
         </div>
