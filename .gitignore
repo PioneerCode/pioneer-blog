@@ -260,3 +260,5 @@ ModelManifest.xml
 /src/Pioneer.Blog/typescript/typings
 /src/Pioneer.Blog/wwwroot/app.js
 /src/Pioneer.Blog/wwwroot/app.css
+/src/Pioneer.Blog/wwwroot/admin
+/src/Pioneer.Blog/typings
