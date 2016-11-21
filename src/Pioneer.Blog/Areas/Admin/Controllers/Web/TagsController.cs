@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Pioneer.Blog.Areas.Admin.Controllers.Web
 {
-    [Area("admin")]
+    [Area("Admin")]
+    [Authorize]
     public class TagsController : Controller
     {
         public IActionResult Index()
