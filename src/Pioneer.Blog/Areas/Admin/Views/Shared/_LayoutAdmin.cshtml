@@ -47,9 +47,11 @@
                   TAGS
                 </a>
               </li>
-              <li>
-                @await Html.PartialAsync("_LoginPartial")
-              </li>
+              <environment names="Development">
+                <li>
+                  @await Html.PartialAsync("_LoginPartial")
+                </li>
+              </environment>
             </ul>
           </div>
         </div>

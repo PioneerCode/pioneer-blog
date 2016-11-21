@@ -44,12 +44,16 @@
   "publishOptions": {
     "include": [
       "wwwroot",
-      "**/*.cshtml",
+      "Views/**/*.cshtml",
       "appsettings.json",
       "appsettings.production.json",
-      "web.config",
       "logs",
       "robots.txt"
+    ],
+    "exclude": [
+      "Areas/**/*",
+      "wwwroot/admin/**/*",
+      "Views/Account/**/*.cshtml"
     ]
   },
   "runtimeOptions": {
@@ -66,6 +70,5 @@
     "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final",
     "Microsoft.Extensions.SecretManager.Tools": "1.0.0-preview2-final"
-  },
-  "userSecretsId": "aspnet-Pioneer.Blog-ededa749-10cc-43c4-8bd0-62e9017116f7"
+  }
 }
