@@ -81,6 +81,7 @@ namespace Pioneer.Blog
 
             if (env.IsDevelopment())
             {
+                app.UseMiddleware<StackifyMiddleware.RequestTracerMiddleware>();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();

@@ -28,7 +28,8 @@
     "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
-    "Pioneer.Blog.DAL": "1.0.0-*"
+    "Pioneer.Blog.DAL": "1.0.0-*",
+    "StackifyMiddleware": "2.0.3"
   },
   "frameworks": {
     "netcoreapp1.1": {
