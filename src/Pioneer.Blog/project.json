@@ -54,6 +54,7 @@
     "exclude": [
       "Areas/**/*",
       "wwwroot/admin/**/*",
+      "wwwroot/posts/**/*",
       "Views/Account/**/*.cshtml"
     ]
   },
