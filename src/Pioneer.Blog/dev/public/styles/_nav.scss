@@ -10,7 +10,7 @@
     left: 0;
 
     .menu > li > a {
-        margin: 0;
+        margin: 0 0.5rem 0 0;
         font-weight: bold;
 
         &:hover {
@@ -22,14 +22,17 @@
         }
     }
 
+    .menu > li > a.margin-zero {
+        margin: 0;
+    }
+
     li {
         overflow: hidden;
     }
 
     li.selected {
-        border-bottom: $primary-color 3px solid;
-
         a {
+            border-bottom: $primary-color 3px solid;
             padding-bottom: 9px;
         }
     }
@@ -61,6 +64,12 @@
         }
     }
 
+    .menu li.selected a:not(.title) {
+        &:before {
+            background: none;
+        }
+    }
+
     .top-bar {
         padding: 0.5rem 0;
     }
@@ -85,7 +94,6 @@
             }
         }
     }
-
 }
 
 .nav-main-log-off {

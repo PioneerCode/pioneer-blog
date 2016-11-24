@@ -58,7 +58,7 @@ function libs() {
 function scripts() {
   return gulp.src([
   'temp/lib/libs.js',
-  'dev/public/**/*.js'
+  'temp/public/**/*.js'
   ], { base: './temp/' })
       .pipe(concat('app.js'))
       .pipe(uglify())
