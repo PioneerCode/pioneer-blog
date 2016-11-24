@@ -1,2 +1,3 @@
-# pioneer-blog
-Pioneer Code Website - Build on ASP.Net Core
+# Pioneer Blog
+
+Active code based used for [Pioneer Code](http://pioneercode).
