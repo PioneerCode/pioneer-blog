@@ -26,10 +26,6 @@
         margin: 0;
     }
 
-    .menu li:last-child a {
-        margin: 0;
-    }
-
     li {
         overflow: hidden;
     }
@@ -65,6 +61,12 @@
 
             color: $white;
             transition: color 0.35s ease;
+        }
+    }
+
+    .menu li.selected a:not(.title) {
+        &:before {
+            background: none;
         }
     }
 
