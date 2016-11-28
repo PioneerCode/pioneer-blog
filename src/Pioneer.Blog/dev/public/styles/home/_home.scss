@@ -14,21 +14,40 @@
 }
 
 .home-greatest-posts {
-    padding: 4rem 0;
+    padding: 6rem 0;
     background: $black;
+    background-image: url('images/popular.jpg');
+    background-attachment: fixed;
+    background-position: right;
+    width: 100%;
+    position: relative;
 
-    p {
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+        height: 100%;
+        background-image: -webkit-linear-gradient(to right, transparent, $black,$black);
+        background-image: linear-gradient(to right, transparent, $black,$black);
+    }
+
+    p, a {
         font-size: 18px;
         color: $white;
+        position: relative;
     }
 }
 
 a.home-greatest-posts-card {
     display: block;
     color: $white;
-    border-bottom: 1px solid $dark-gray;
+    border-bottom: 1px solid #172f23;
     margin: 0 0 1rem;
     padding: 0 0 1rem;
+    position: relative;
 
     h4 {
         font-weight: 300;
@@ -36,6 +55,7 @@ a.home-greatest-posts-card {
 }
 
 .home-greatest-posts-card-image {
+    position: relative;
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -50,9 +70,15 @@ a.home-greatest-posts-card {
 .home-sign-up {
     padding: 3rem 0 2rem;
     background: $white;
+    text-align: center;
+
+    p {
+        margin: 0 0 2rem;
+    }
 
     input[type=text] {
         background: $black;
+        padding: 1rem;
         color: $white;
         border: none;
 
