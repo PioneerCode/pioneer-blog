@@ -19,7 +19,7 @@ namespace Pioneer.Blog.Service
         IEnumerable<Post> GetAllPaged(int count, int page = 1);
         IEnumerable<Post> GetAllByTag(string tag, int count, int page = 1);
         IEnumerable<Post> GetAllByCategory(string category, int count, int page = 1);
-        IEnumerable<Post> GetPopularPosts();
+        IEnumerable<Post>GetPopularPosts();
         IEnumerable<Post> GetPreviousCurrentNextPost(string id);
         Post Add(Post post);
         void Update(Post item);

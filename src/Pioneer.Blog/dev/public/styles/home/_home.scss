@@ -13,6 +13,59 @@
     margin: 0 0 .5rem;
 }
 
+.home-greatest-posts {
+    padding: 4rem 0;
+    background: $black;
+
+    p {
+        font-size: 18px;
+        color: $white;
+    }
+}
+
+a.home-greatest-posts-card {
+    display: block;
+    color: $white;
+    border-bottom: 1px solid $dark-gray;
+    margin: 0 0 1rem;
+    padding: 0 0 1rem;
+
+    h4 {
+        font-weight: 300;
+    }
+}
+
+.home-greatest-posts-card-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-size: 14px;
+    border: 2px solid $white;
+    margin: 0 1rem 0 0;
+}
+
+.home-sign-up {
+    padding: 3rem 0 2rem;
+    background: $white;
+
+    input[type=text] {
+        background: $black;
+        color: $white;
+        border: none;
+
+        &:focus {
+            background: $black;
+        }
+    }
+
+    input[type=submit] {
+        background: $primary-color;
+    }
+}
+
 @media #{$small-only} {
     .hg-large.home-hero {
         height: 350px;

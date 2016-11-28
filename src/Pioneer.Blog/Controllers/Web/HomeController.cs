@@ -20,6 +20,8 @@ namespace Pioneer.Blog.Controllers.Web
         {
             ViewBag.Description =
                 "PioneerCode.com | How-to's, life hacks and observations for the modern day software developer.";
+
+            ViewBag.PopularPosts = _postService.GetPopularPosts();
             return View(_postService.GetAll(true, false, false, 4));
         }
 

@@ -230,6 +230,7 @@ namespace Pioneer.Blog.Repository
                     .Posts
                         .Where(t => postIds.Contains(t.PostId))
                     .Include(x => x.Category)
+                    .Include(x => x.Excerpt)
                     .OrderBy(d => postIds.IndexOf(d.PostId)).ToList()
                     .ToList();
         }

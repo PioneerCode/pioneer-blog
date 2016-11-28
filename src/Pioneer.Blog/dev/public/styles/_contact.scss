@@ -8,6 +8,20 @@
 }
 
 .contact {
+    input[type="submit"] {
+        border: none;
+        background: none;
+        font-size: 40px;
+        font-weight: bold;
+        letter-spacing: -2.5px;
+        color: #999;
+
+        &:hover {
+            color: map-get($foundation-palette, pioneer);
+            transition: color 0.5s ease;
+        }
+    }
+
     header {
         text-align: center;
         margin: 5rem 0;

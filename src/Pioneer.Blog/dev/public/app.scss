@@ -47,19 +47,6 @@ h1, h2, h3, h4, h5 {
     border-left: 6px solid map-get($foundation-palette, pioneer);
 }
 
-input[type="submit"] {
-    border: none;
-    background: none;
-    font-size: 40px;
-    font-weight: bold;
-    letter-spacing: -2.5px;
-    color: #999;
-
-    &:hover {
-        color: map-get($foundation-palette, pioneer);
-        transition: color 0.5s ease;
-    }
-}
 
 pre {
     background: $black;
