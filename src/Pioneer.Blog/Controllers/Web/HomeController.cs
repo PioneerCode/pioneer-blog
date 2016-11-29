@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.DAL;
@@ -13,14 +12,14 @@ namespace Pioneer.Blog.Controllers.Web
     {
         private readonly IPostService _postService;
         private readonly ISiteMapService _siteMapService;
-        private readonly IMailingListService _mailingListService;
+        private readonly ICommunicationService _communicationService;
 
         public HomeController(IPostService postService,
-            ISiteMapService siteMapService, IMailingListService mailingListService)
+            ISiteMapService siteMapService, ICommunicationService communicationService)
         {
             _postService = postService;
             _siteMapService = siteMapService;
-            _mailingListService = mailingListService;
+            _communicationService = communicationService;
         }
 
         public IActionResult Index()
@@ -36,7 +35,7 @@ namespace Pioneer.Blog.Controllers.Web
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        //TODO: Figure out how to combine logic is Index
+        //TODO: Figure out how to combine logic with Index
         public ActionResult SignUp(SignUpViewModel model)
         {
             ViewBag.Description =
@@ -51,7 +50,7 @@ namespace Pioneer.Blog.Controllers.Web
                 return View("Index", model);
             }
 
-            var response = _mailingListService.SignUp(model);
+            var response = _communicationService.SignUpToMailingList(model);
 
             if (response.Status != OperationStatus.Created)
             {

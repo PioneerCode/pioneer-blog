@@ -64,10 +64,9 @@ namespace Pioneer.Blog
             services.AddTransient<IPostRepository, PostRepository>();
 
             // Services
-            services.AddTransient<IMailingListService, MailingListService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IPostService, PostService>();
-            services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<ICommunicationService, CommunicationService>();
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<ISiteMapService, SiteMapService>();
         }
