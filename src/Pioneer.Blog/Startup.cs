@@ -58,11 +58,13 @@ namespace Pioneer.Blog
             services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
 
             // Repositories
+            services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
 
             // Services
+            services.AddTransient<IMailingListService, MailingListService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<IContactService, ContactService>();

@@ -62,7 +62,7 @@ function scripts() {
   'temp/public/**/*.js'
   ], { base: './temp/' })
       .pipe(concat('app.js'))
-      .pipe(uglify())
+      //.pipe(uglify())
       .pipe(gulp.dest('wwwroot'));
 }
 
