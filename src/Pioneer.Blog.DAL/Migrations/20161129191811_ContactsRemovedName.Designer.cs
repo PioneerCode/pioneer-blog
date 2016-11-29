@@ -8,9 +8,10 @@ using Pioneer.Blog.DAL;
 namespace Pioneer.Blog.DAL.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    partial class BlogContextModelSnapshot : ModelSnapshot
+    [Migration("20161129191811_ContactsRemovedName")]
+    partial class ContactsRemovedName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
