@@ -15,7 +15,7 @@
 </div>
 <section class="home-latest-posts">
   <div class="row width-100">
-    <h3><span>Latest</span></h3>
+    <h3 class="header-surround-bar"><span>Latest</span></h3>
     <div class="home-latest-post">
       @foreach (var post in Model)
       {
@@ -27,7 +27,7 @@
   </div>
 </section>
 <section class="home-greatest-posts">
-  <h3><span>Popular Posts</span></h3>
+  <h3 class="header-surround-bar"><span>Popular Posts</span></h3>
   <div class="row ">
     <div class="large-6 columns">
       @foreach (var post in (ViewBag.PopularPosts as ICollection<Post>).Take(2))

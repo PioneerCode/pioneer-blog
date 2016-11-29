@@ -2,26 +2,6 @@
 
 .home-latest-posts {
     padding: 3rem 0;
-
-    h3 {
-        text-align: center;
-        margin: 0 0 2rem;
-        font-weight: 300;
-
-        span {
-            margin: 0 1rem;
-        }
-
-        &:before, &:after {
-            display: inline-block;
-            content: "";
-            width: 70px;
-            margin-top: -2px;
-            vertical-align: middle;
-            background: $primary-color;
-            height: 1px !important;
-        }
-    }
 }
 
 .home-post-card-date {
@@ -40,24 +20,8 @@
 
     h3 {
         position: relative;
-        text-align: center;
         margin: 0 0 4rem;
-        font-weight: 300;
         color: $white;
-
-        span {
-            margin: 0 1rem;
-        }
-
-        &:before, &:after {
-            display: inline-block;
-            content: "";
-            width: 70px;
-            margin-top: -2px;
-            vertical-align: middle;
-            background: $primary-color;
-            height: 1px !important;
-        }
     }
 
     &:before {
@@ -84,13 +48,12 @@
     width: 100%;
     height: auto;
     color: $white;
-    /*background-color: rgba(255, 255, 255, 0.2);*/
 }
 
 a.home-greatest-posts-card {
     display: block;
     color: $white;
-    border-bottom: 1px solid #172f23;
+    border-bottom: 1px solid darken(desaturate( $primary-color, 10% ), 20%);
     margin: 0 0 1rem;
     padding: 0 0 1rem;
     position: relative;
