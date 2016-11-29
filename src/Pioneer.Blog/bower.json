@@ -5,7 +5,8 @@
   "dependencies": {
     "font-awesome": "4.6.1",
     "foundation-sites": "^6.2.3",
-    "parallax.js": "^1.4.2"
+    "parallax.js": "^1.4.2",
+    "smooth-scroll.js": "10.1.0"
   },
   "description": "Pioneer Code",
   "homepage": "http://www.pioneercode.com",
