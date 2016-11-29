@@ -1,11 +1,9 @@
 @import "../../../sass/foundation";
+@import "home-greatest-posts";
+@import "home-sign-up";
 
 .home-latest-posts {
     padding: 3rem 0;
-
-    h2 {
-        text-align: center;
-    }
 }
 
 .home-post-card-date {
