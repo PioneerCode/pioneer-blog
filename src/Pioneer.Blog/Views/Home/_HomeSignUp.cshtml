@@ -3,14 +3,21 @@
     <div class="large-10 large-push-1 columns">
       <h4><span>Get Top Notch Bits Sent Straight To Your Inbox!</span></h4>
       <p>Stay up to date on all the happenings at Pioneer Code, receive exclusive offers and be the first to hear about new content.</p>
-      <div class="input-group">
-        <input class="input-group-field" type="text" placeholder="Your email address...">
-        <div class="input-group-button">
-          <button type="submit" class="button">
-            <i class="fa fa-envelope-o"></i>&nbsp;SEND
-          </button>
+      <form data-abide novalidate>
+        <div data-abide-error class="alert callout" style="display: none;">
+          <p><i class="fa fa-alert"></i>Yo, you need to supply a valid email-address.</p>
         </div>
-      </div>
+        <div>
+          <div class="input-group">
+            <input class="input-group-field" type="email" placeholder="Your email address..." pattern="email" required>
+            <div class="input-group-button">
+              <button type="submit" class="button">
+                <i class="fa fa-envelope-o"></i>&nbsp;SEND
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </section>
