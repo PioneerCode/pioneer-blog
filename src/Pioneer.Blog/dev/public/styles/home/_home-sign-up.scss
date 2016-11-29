@@ -1,0 +1,55 @@
+﻿@import "../../../sass/foundation";
+
+.home-sign-up {
+    padding: 4rem 0 3rem;
+    background: $white;
+    text-align: center;
+
+
+    h4 {
+        text-align: center;
+        margin: 0 0 1.5rem;
+        font-weight: 300;
+
+        span {
+            margin: 0 1rem;
+        }
+
+        &:before, &:after {
+            display: inline-block;
+            content: "";
+            width: 70px;
+            margin-top: -2px;
+            vertical-align: middle;
+            background: $primary-color;
+            height: 1px !important;
+        }
+    }
+
+    p {
+        margin: 0 0 3rem;
+    }
+
+    input[type=text] {
+        background: $black;
+        padding: 1rem;
+        color: $white;
+        border: none;
+
+        &:focus {
+            background: $black;
+        }
+    }
+
+    input[type=submit] {
+        background: $primary-color;
+    }
+
+    @include breakpoint(small only) {
+        h4 {
+            &:before, &:after {
+                width: 10px;
+            }
+        }
+    }
+}

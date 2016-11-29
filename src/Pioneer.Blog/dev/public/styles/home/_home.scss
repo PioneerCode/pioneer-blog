@@ -1,4 +1,6 @@
 @import "../../../sass/foundation";
+@import "home-greatest-posts";
+@import "home-sign-up";
 
 .home-latest-posts {
     padding: 3rem 0;
@@ -7,119 +9,6 @@
 .home-post-card-date {
     color: $dark-gray;
     margin: 0 0 .5rem;
-}
-
-.home-greatest-posts {
-    padding: 6rem 0;
-    background: $black;
-    background-image: url('images/popular.jpg');
-    background-attachment: fixed;
-    background-position: right;
-    width: 100%;
-    position: relative;
-
-    h3 {
-        position: relative;
-        margin: 0 0 4rem;
-        color: $white;
-    }
-
-    &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        display: block;
-        height: 100%;
-        background-image: -webkit-linear-gradient(to right, transparent, $black,$black);
-        background-image: linear-gradient(to right, transparent, $black,$black);
-    }
-
-    p, a {
-        font-size: 18px;
-        color: $white;
-        position: relative;
-    }
-}
-
-.home-greatest-posts-content {
-    position: relative;
-    width: 100%;
-    height: auto;
-    color: $white;
-}
-
-a.home-greatest-posts-card {
-    display: block;
-    color: $white;
-    border-bottom: 1px solid darken(desaturate( $primary-color, 10% ), 20%);
-    margin: 0 0 1rem;
-    padding: 0 0 1rem;
-    position: relative;
-
-    h4 {
-        font-weight: 300;
-    }
-}
-
-.home-greatest-posts-card-image {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    font-size: 14px;
-    border: 2px solid $white;
-    margin: 0 1rem 0 0;
-}
-
-.home-sign-up {
-    padding: 4rem 0 3rem;
-    background: $white;
-    text-align: center;
-
-
-    h4 {
-        text-align: center;
-        margin: 0 0 1.5rem;
-        font-weight: 300;
-
-        span {
-            margin: 0 1rem;
-        }
-
-        &:before, &:after {
-            display: inline-block;
-            content: "";
-            width: 70px;
-            margin-top: -2px;
-            vertical-align: middle;
-            background: $primary-color;
-            height: 1px !important;
-        }
-    }
-
-    p {
-        margin: 0 0 3rem;
-    }
-
-    input[type=text] {
-        background: $black;
-        padding: 1rem;
-        color: $white;
-        border: none;
-
-        &:focus {
-            background: $black;
-        }
-    }
-
-    input[type=submit] {
-        background: $primary-color;
-    }
 }
 
 @media #{$small-only} {
