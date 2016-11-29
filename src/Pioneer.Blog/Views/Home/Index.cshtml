@@ -15,40 +15,45 @@
 </div>
 <section class="home-latest-posts">
   <div class="row width-100">
-    <h2>Latest</h2>
-    <div class="bar"></div>
+    <h3><span>Latest</span></h3>
     <div class="home-latest-post">
       @foreach (var post in Model)
       {
-      <div class="large-3 columns end">
-        @Html.Partial("_HomePostCard", (Post)post)
-      </div>
+          <div class="large-3 columns end">
+            @Html.Partial("_HomePostCard", (Post)post)
+          </div>
       }
     </div>
   </div>
 </section>
 <section class="home-greatest-posts">
-  <div class="row">
+  <h3><span>Popular Posts</span></h3>
+  <div class="row ">
     <div class="large-6 columns">
-
-    </div>
-    <div class="large-6 columns">
-      <p>Popular Posts</p>
-      @foreach (var post in (List<Post>)ViewBag.PopularPosts)
+      @foreach (var post in (ViewBag.PopularPosts as ICollection<Post>).Take(2))
       {
           <a class="clearfix home-greatest-posts-card" href="/post/@post.Url" title="@post.Title">
             <div class="home-greatest-posts-card-image float-left" style="background-image: url('@post.IconImage')"></div>
             <h4>@post.Title</h4>
           </a>
       }
-      <a class="float-right" href="/blog" title="Blog Posts">Read More This Way <i class="fa fa-hand-o-right"></i></a>
+    </div>
+    <div class="large-6 columns">
+      @foreach (var post in (ViewBag.PopularPosts as ICollection<Post>).Skip(2))
+      {
+          <a class="clearfix home-greatest-posts-card" href="/post/@post.Url" title="@post.Title">
+            <div class="home-greatest-posts-card-image float-left" style="background-image: url('@post.IconImage')"></div>
+            <h4>@post.Title</h4>
+          </a>
+      }
+      <a class="float-right" href="/blog" title="Blog Posts"><i class="fa fa-hand-o-right">&nbsp;</i>Read More This Way </a>
     </div>
   </div>
 </section>
 <section class="home-sign-up">
   <div class="row">
-    <div class="large-12 columns">
-      <h5>Get Top Notch Bits Sent Straight To Your Inbox!</h5>
+    <div class="large-10 large-push-1 columns">
+      <h4><span>Get Top Notch Bits Sent Straight To Your Inbox!</span></h4>
       <p>Stay up to date on all the happenings at Pioneer Code, receive exclusive offers and be the first to hear about new content.</p>
       <div class="input-group">
         <input class="input-group-field" type="text" placeholder="Your email address...">

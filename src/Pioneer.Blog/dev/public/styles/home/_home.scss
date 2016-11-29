@@ -3,8 +3,24 @@
 .home-latest-posts {
     padding: 3rem 0;
 
-    h2 {
+    h3 {
         text-align: center;
+        margin: 0 0 2rem;
+        font-weight: 300;
+
+        span {
+            margin: 0 1rem;
+        }
+
+        &:before, &:after {
+            display: inline-block;
+            content: "";
+            width: 70px;
+            margin-top: -2px;
+            vertical-align: middle;
+            background: $primary-color;
+            height: 1px !important;
+        }
     }
 }
 
@@ -21,6 +37,28 @@
     background-position: right;
     width: 100%;
     position: relative;
+
+    h3 {
+        position: relative;
+        text-align: center;
+        margin: 0 0 4rem;
+        font-weight: 300;
+        color: $white;
+
+        span {
+            margin: 0 1rem;
+        }
+
+        &:before, &:after {
+            display: inline-block;
+            content: "";
+            width: 70px;
+            margin-top: -2px;
+            vertical-align: middle;
+            background: $primary-color;
+            height: 1px !important;
+        }
+    }
 
     &:before {
         content: "";
@@ -39,6 +77,14 @@
         color: $white;
         position: relative;
     }
+}
+
+.home-greatest-posts-content {
+    position: relative;
+    width: 100%;
+    height: auto;
+    color: $white;
+    /*background-color: rgba(255, 255, 255, 0.2);*/
 }
 
 a.home-greatest-posts-card {
@@ -68,12 +114,33 @@ a.home-greatest-posts-card {
 }
 
 .home-sign-up {
-    padding: 3rem 0 2rem;
+    padding: 4rem 0 3rem;
     background: $white;
     text-align: center;
 
+
+    h4 {
+        text-align: center;
+        margin: 0 0 1.5rem;
+        font-weight: 300;
+
+        span {
+            margin: 0 1rem;
+        }
+
+        &:before, &:after {
+            display: inline-block;
+            content: "";
+            width: 70px;
+            margin-top: -2px;
+            vertical-align: middle;
+            background: $primary-color;
+            height: 1px !important;
+        }
+    }
+
     p {
-        margin: 0 0 2rem;
+        margin: 0 0 3rem;
     }
 
     input[type=text] {
