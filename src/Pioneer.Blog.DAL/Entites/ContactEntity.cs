@@ -9,9 +9,6 @@ namespace Pioneer.Blog.DAL.Entites
         [Key]
         public int ContactId { get; set; }
 
-        [MaxLength(100)]
-        public string Name { get; set; }
-
         [MaxLength(254)]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }

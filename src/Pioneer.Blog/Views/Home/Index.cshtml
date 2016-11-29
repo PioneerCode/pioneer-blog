@@ -13,6 +13,6 @@
     </div>
   </div>
 </div>
-@Html.Partial("_HomeLatestPosts")
+@Html.Partial("_HomeLatestPosts", (List<Post>)ViewBag.LatestPosts)
 @Html.Partial("_HomeGreatestPosts")
 @Html.Partial("_HomeSignUp")

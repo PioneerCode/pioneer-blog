@@ -5,7 +5,6 @@
     background: $white;
     text-align: center;
 
-
     h4 {
         text-align: center;
         margin: 0 0 1.5rem;
@@ -30,7 +29,7 @@
         margin: 0 0 3rem;
     }
 
-    input[type=text] {
+    input[type=email] {
         background: $black;
         padding: 1rem;
         color: $white;
@@ -41,8 +40,21 @@
         }
     }
 
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        transition: background-color 5000s ease-in-out 0s;
+        -webkit-text-fill-color: $white !important;
+    }
+
     input[type=submit] {
         background: $primary-color;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
     }
 
     @include breakpoint(small only) {

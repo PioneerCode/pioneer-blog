@@ -11,11 +11,11 @@ namespace Pioneer.Blog.Controllers.Web
     /// </summary>
     public class ContactController : Controller
     {
-        private readonly IContactService _contactService;
+        private readonly ICommunicationService _communicationService;
 
-        public ContactController(IContactService contactService)
+        public ContactController(ICommunicationService communicationService)
         {
-            _contactService = contactService;
+            _communicationService = communicationService;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Pioneer.Blog.Controllers.Web
                 return View("~/Views/Contact/Index.cshtml");
             }
 
-            var response = _contactService.Send(model);
+            var response = _communicationService.SendContactEmailNotification(model);
             ViewBag.IsValid = true;
 
             switch (response.Status)

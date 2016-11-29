@@ -8,9 +8,10 @@ using Pioneer.Blog.DAL;
 namespace Pioneer.Blog.DAL.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    partial class BlogContextModelSnapshot : ModelSnapshot
+    [Migration("20161129191719_IdentityUpdates")]
+    partial class IdentityUpdates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -158,6 +159,9 @@ namespace Pioneer.Blog.DAL.Migrations
 
                     b.Property<string>("Email")
                         .HasAnnotation("MaxLength", 254);
+
+                    b.Property<string>("Name")
+                        .HasAnnotation("MaxLength", 100);
 
                     b.HasKey("ContactId");
 

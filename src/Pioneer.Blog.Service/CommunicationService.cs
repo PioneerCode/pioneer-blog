@@ -1,31 +1,37 @@
 ﻿using System;
+using AutoMapper;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using Pioneer.Blog.DAL;
+using Pioneer.Blog.DAL.Entites;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Model.Views;
+using Pioneer.Blog.Repository;
 
 namespace Pioneer.Blog.Service
 {
-    public interface IContactService
+    public interface ICommunicationService
     {
-        OperationResult<ContactViewModel> Send(ContactViewModel model);
+        OperationResult<ContactViewModel> SendContactEmailNotification(ContactViewModel model);
+        OperationResult<Contact> SignUpToMailingList(SignUpViewModel model);
     }
 
-    public class ContactService : IContactService
+    public class CommunicationService : ICommunicationService
     {
         private readonly IOptions<AppConfiguration> _appConfiguration;
+        private readonly IContactRepository _contactRepository;
 
-        public ContactService(IOptions<AppConfiguration> appConfiguration)
+        public CommunicationService(IOptions<AppConfiguration> appConfiguration, IContactRepository contactRepository)
         {
             _appConfiguration = appConfiguration;
+            _contactRepository = contactRepository;
         }
 
         /// <summary>
-        /// Send contact email
+        /// When an notification email that someone is trying to contact you.
         /// </summary>
-        public OperationResult<ContactViewModel> Send(ContactViewModel model)
+        public OperationResult<ContactViewModel> SendContactEmailNotification(ContactViewModel model)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(_appConfiguration.Value.SiteTitle + " - Contact", model.Email));
@@ -52,6 +58,20 @@ namespace Pioneer.Blog.Service
                 // TODO: Log
                 return new OperationResult<ContactViewModel>(model, OperationStatus.Error);
             }
+        }
+
+        /// <summary>
+        /// Sign someone up to the mailing list.
+        /// </summary>
+        public OperationResult<Contact> SignUpToMailingList(SignUpViewModel model)
+        {
+            if (_contactRepository.GetByEmail(model.Email) != null)
+            {
+                return new OperationResult<Contact>(null, OperationStatus.Error, "This email has already been added to the mailing list.");
+            }
+
+            var response = _contactRepository.Add(Mapper.Map<Contact, ContactEntity>(new Contact { Email = model.Email }));
+            return new OperationResult<Contact>(Mapper.Map<ContactEntity, Contact>(response), OperationStatus.Created);
         }
     }
 }
