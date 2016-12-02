@@ -2,7 +2,7 @@
   <h3 class="header-surround-bar"><span>Popular Posts</span></h3>
   <div class="row ">
     <div class="large-6 columns">
-      @foreach (var post in (ViewBag.PopularPosts as ICollection<Post>).Take(2))
+      @foreach (var post in (ViewBag.PopularPosts as ICollection<Post>).Take(3))
       {
           <a class="clearfix home-greatest-posts-card" href="/post/@post.Url" title="@post.Title">
             <div class="home-greatest-posts-card-image float-left" style="background-image: url('@post.IconImage')"></div>
@@ -11,7 +11,7 @@
       }
     </div>
     <div class="large-6 columns">
-      @foreach (var post in (ViewBag.PopularPosts as ICollection<Post>).Skip(2))
+      @foreach (var post in (ViewBag.PopularPosts as ICollection<Post>).Skip(3))
       {
           <a class="clearfix home-greatest-posts-card" href="/post/@post.Url" title="@post.Title">
             <div class="home-greatest-posts-card-image float-left" style="background-image: url('@post.IconImage')"></div>
