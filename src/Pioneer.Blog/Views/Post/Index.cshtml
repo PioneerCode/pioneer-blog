@@ -13,11 +13,11 @@
       </div>
     </div>
   </section>
-  @await Html.PartialAsync("_MetaData", Model[(int)PreviousCurrentNextPosition.Current])
+  @Html.Partial("_MetaData", Model[(int)PreviousCurrentNextPosition.Current])
   <div class="row">
     <div class="large-10 large-push-1 columns">
-      @Html.Partial("_SocialShare")
-      @Html.Raw(Model[(int) PreviousCurrentNextPosition.Current].Article.Content)
+      @Html.Partial("_SocialShare", Model[(int)PreviousCurrentNextPosition.Current])
+      @Html.Raw(Model[(int)PreviousCurrentNextPosition.Current].Article.Content)
     </div>
   </div>
   @Html.Partial("_PreviousNext")
