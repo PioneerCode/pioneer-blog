@@ -1,7 +1,18 @@
 @import "../../../sass/foundation";
 @import "home-greatest-posts";
 @import "home-sign-up";
-@import "home-social";
+
+.home-social-icons {
+    margin: 1rem 0 1rem;
+    font-size: 1.5rem;
+
+    a {
+        color: $dark-gray;
+        &:hover {
+            color: $primary-color;
+        }
+    }
+}
 
 .home-latest-posts {
     padding: 3rem 0;
