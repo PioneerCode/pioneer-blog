@@ -21,10 +21,39 @@ $blogger-color: #fb8f3d;
 $soundcloud-color: #ff3a00;
 $reddit-color: #ff5700;
 
+@import "../../sass/settings";
 
 .social-icons {
     text-align: center;
-    margin: 0 0 1rem 0;
+
+
+    a {
+        color: $dark-gray;
+        
+        &:hover {
+            transition: 0.25s all ease-in;
+        }
+
+        &:hover.twitter {
+            color: $twitter-color;
+        }
+
+        &:hover.facebook {
+            color: $facebook-color;
+        }
+
+        &:hover.reddit {
+            color: $reddit-color;
+        }
+
+        &:hover.google-plus {
+            color: $googleplus-color;
+        }
+
+        &:hover.linkedin {
+            color: $linkedin-color;
+        }
+    }
 }
 
 .social-buttons {
