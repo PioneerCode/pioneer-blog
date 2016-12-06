@@ -2,7 +2,7 @@
 <ul class="menu simple social-icons">
   <li>
     <a href="@string.Format("https://twitter.com/share?url=http://pioneercode.com/post/{0}/&text={1}", Model.Url, Uri.EscapeDataString(Model.Title))"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;"
        class="twitter">
       <i class="fa fa-twitter"></i>
     </a>
@@ -29,7 +29,7 @@
   </li>
   <li>
     <a href="@string.Format("https://reddit.com/submit?url=http://pioneercode.com/post/{0}&title={1}", Model.Url, Uri.EscapeDataString(Model.Title))"
-       onclick="window.open(this.href, 'reddit-share', 'width=580,height=550');return false;"
+       onclick="window.open(this.href, 'reddit-share', 'width=580,height=550'); return false;"
        class="reddit">
       <i class="fa fa-reddit-alien"></i>
     </a>
