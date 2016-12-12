@@ -48,7 +48,7 @@ function libs() {
     'bower_components/foundation-sites/dist/plugins/foundation.util.mediaQuery.js',
     'bower_components/foundation-sites/dist/plugins/foundation.equalizer.js',
     'bower_components/foundation-sites/dist/plugins/foundation.abide.js',
-    'bower_components/parallax.js/parallax.js',
+    'scripts/parallax.js',
     'bower_components/smooth-scroll.js/dist/js/smooth-scroll.min.js',
     'scripts/syntaxhighlighter.js'
   ])
