@@ -1,8 +1,30 @@
-﻿@import "../../../sass/foundation";
+﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 
 .archive-post {
     border-bottom: 1px solid $light-gray;
     margin: 0 0 3rem;
+
+    @include breakpoint(medium up) {
+        .archive-post-date {
+            width: 100%;
+            text-align: center;
+            font-weight: 100;
+        }
+
+        .archive-post-date-top {
+            padding: 3px 0;
+            font-size: 1.5rem;
+            background: $light-gray;
+        }
+
+        .archive-post-date-bottom {
+            font-size: 12px;
+            padding: 3px 0;
+            text-transform: uppercase;
+            color: $white;
+            background: map-get($foundation-palette, pioneer);
+        }
+    }
 }
 
 .archive-post-header {
@@ -48,30 +70,5 @@ ul.archive-post-meta {
         i, > a {
             display: inline;
         }
-    }
-}
-
-@media #{$medium-up} {
-    .archive-post-content {
-    }
-
-    .archive-post-date {
-        width: 100%;
-        text-align: center;
-        font-weight: 100;
-    }
-
-    .archive-post-date-top {
-        padding: 3px 0;
-        font-size: 1.5rem;
-        background: $light-gray;
-    }
-
-    .archive-post-date-bottom {
-        font-size: 12px;
-        padding: 3px 0;
-        text-transform: uppercase;
-        color: $white;
-        background: map-get($foundation-palette, pioneer);
     }
 }

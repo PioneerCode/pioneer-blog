@@ -1,4 +1,4 @@
-﻿@import "../../../sass/foundation";
+﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 
 .hg-large {
     height: 300px;
@@ -18,10 +18,8 @@
     .hero-gradient-content {
         padding: 6rem 0 0;
     }
-}
 
-@media #{$medium-up} {
-    .hg-large {
+    @include breakpoint(medium up) {
         height: 450px;
 
         &:before {
@@ -36,10 +34,8 @@
             padding: 10rem 0 0;
         }
     }
-}
 
-@media #{$large-up} {
-    .hg-large {
+    @include breakpoint(large up) {
         height: 600px;
 
         &:before {

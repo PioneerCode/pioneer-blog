@@ -1,4 +1,4 @@
-﻿@import "../../../sass/foundation";
+﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 
 .hg-small {
     height: 200px;
@@ -30,10 +30,4 @@
     .hero-gradient-content {
         padding: 5rem 0 0;
     }
-}
-
-@media #{$medium-up} {
-}
-
-@media #{$large-up} {
 }

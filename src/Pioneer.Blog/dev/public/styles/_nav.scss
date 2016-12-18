@@ -1,5 +1,4 @@
-@import "../../sass/foundation";
-
+/// <reference path="../../../bower_components/foundation-sites/scss/foundation" />
 .nav-main {
     position: fixed;
     width: 100%;
@@ -94,6 +93,16 @@
             }
         }
     }
+
+    @include breakpoint(medium up) {
+        .top-bar, .menu {
+            background-color: rgba(0,0,0,0);
+        }
+
+        a {
+            color: $white;
+        }
+    }
 }
 
 .nav-main-log-off {
@@ -105,17 +114,5 @@
 
     a {
         color: $black;
-    }
-}
-
-@media #{screen and $medium-up} {
-    .nav-main {
-        .top-bar, .menu {
-            background-color: rgba(0,0,0,0);
-        }
-
-        a {
-            color: $white;
-        }
     }
 }

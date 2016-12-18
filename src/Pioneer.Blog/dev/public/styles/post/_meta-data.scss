@@ -1,4 +1,4 @@
-﻿@import "../../../sass/foundation";
+﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 
 .article-meta-data {
     width: 100%;
@@ -32,10 +32,8 @@ a.article-meta-data-section {
         background-color: $primary-color;
         transition: ease all .3s;
     }
-}
 
-@media #{$medium-up} {
-    .article-meta-data-section {
+    @include breakpoint(medium up) {
         height: 4rem;
         display: table-cell;
     }

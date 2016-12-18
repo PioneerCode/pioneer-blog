@@ -8,6 +8,10 @@ var cleanCss = require('gulp-clean-css');
 var uncss = require('gulp-uncss');
 var ts = require('gulp-typescript');
 var tsProject = ts.createProject('tsconfig.json');
+var sassPaths = [
+  'bower_components/normalize.scss/sass',
+  'bower_components/foundation-sites/scss',
+];
 
 function clean() {
   return del([
@@ -17,8 +21,10 @@ function clean() {
 
 function styles() {
   return gulp.src(['./dev/public/app.scss'])
-    .pipe(sass({ outputStyle: 'compressed' })
-      .on('error', sass.logError))
+    .pipe(sass({
+      includePaths: sassPaths,
+      outputStyle: 'compressed'
+    }).on('error', sass.logError))
     .pipe(cleanCss({ keepSpecialComments: 0 }))
     .pipe(uncss({
       html: [
