@@ -37,34 +37,26 @@
               </li>
             </ul>
           </div>
-          <div class="top-bar-right" data-dropdown-menu>
-            <ul class="menu">
+          <div class="top-bar-right">
+            <ul class="dropdown menu" data-dropdown-menu>
               <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
-                <a href="/blog" title="Blog">
-                  BLOG
-                </a>
+                <a href="/blog" title="Blog">BLOG</a>
               </li>
-              <li class="@(ViewBag.Selected == "article" ? "selected" : "")">
-                <a href="#">
-                  ARTICLES
-                </a>
-                <ul class="menu vertical">
+              <li>
+                <a href="#">ARTICLES</a>
+                <ul class="menu vertical @(ViewBag.Selected == "visual-studio-shortcuts" ? "selected" : "")">
                   <li><a href="/article/visual-studio-shortcuts" title="Visual Studio Shortcuts">VISUAL STUDIO SHORTCUTS</a></li>
                 </ul>
               </li>
               <li class="@(ViewBag.Selected == "about" ? "selected" : "")">
-                <a href="/about" title="About">
-                  ABOUT
-                </a>
+                <a href="/about" title="About">ABOUT</a>
               </li>
               <li class="@(ViewBag.Selected == "contact" ? "selected" : "")">
-                <a href="/contact" class="margin-zero" title="Contact">
-                  CONTACT
-                </a>
+                <a href="/contact" class="margin-zero" title="Contact">CONTACT</a>
               </li>
               <environment names="Development">
                 <li>
-                  @await Html.PartialAsync("_LoginPartial")
+                  @Html.Partial("_LoginPartial")
                 </li>
               </environment>
             </ul>
@@ -80,12 +72,12 @@
 </section>
 
 @section bodyEnd {
-  @* TODO: Make this aysnc.  Issue currently is jQuery load.*@
+  @* TODO: Make this aysnc.  Issue currently is jQuery load. *@
   <script src="/app.js" asp-append-version="true"></script>
   <script>
     @if (!string.IsNullOrEmpty(ViewBag.Anchor))
     {
-        <text>smoothScroll.init({speed: 0});</text>
+        <text>smoothScroll.init({ speed: 0 });</text>
         <text>var anchor = document.querySelector('@Html.Raw(ViewBag.Anchor)');</text>
         <text>smoothScroll.animateScroll(anchor);</text>
     }

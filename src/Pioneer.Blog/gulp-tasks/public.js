@@ -26,17 +26,17 @@ function styles() {
       outputStyle: 'compressed'
     }).on('error', sass.logError))
     .pipe(cleanCss({ keepSpecialComments: 0 }))
-    .pipe(uncss({
-      html: [
-        'http://localhost:8000',
-        'http://localhost:8000/about',
-        'http://localhost:8000/contact',
-        'http://localhost:8000/blog',
-        'http://localhost:8000/account/register',
-        'http://localhost:8000/post/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host',
-        'http://localhost:8000/post/asp-net-core-mvc-pagination-using-a-tag-helper'
-      ]
-    }))
+    //.pipe(uncss({
+    //  html: [
+    //    'http://localhost:8000',
+    //    'http://localhost:8000/about',
+    //    'http://localhost:8000/contact',
+    //    'http://localhost:8000/blog',
+    //    'http://localhost:8000/account/register',
+    //    'http://localhost:8000/post/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host',
+    //    'http://localhost:8000/post/asp-net-core-mvc-pagination-using-a-tag-helper'
+    //  ]
+    //}))
     .pipe(gulp.dest('wwwroot/'));
 }
 

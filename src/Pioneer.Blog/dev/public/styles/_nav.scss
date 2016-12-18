@@ -8,8 +8,18 @@
     top: 0;
     left: 0;
 
+    [role="menuitem"] {
+        a {
+            color: $primary-color;
+        }
+    }
+
+    ul.menu li ul {
+        background-color: $white;
+    }
+
     .menu > li > a {
-        margin: 0 0.5rem 0 0;
+        margin: 0;
         font-weight: bold;
 
         &:hover {
@@ -25,47 +35,10 @@
         margin: 0;
     }
 
-    li {
-        overflow: hidden;
-    }
-
     li.selected {
         a {
             border-bottom: $primary-color 3px solid;
             padding-bottom: 9px;
-        }
-    }
-
-    a:not(.title) {
-        transform: translateY(0px);
-        transition: color 0.35s ease;
-
-        &:before {
-            content: '';
-            z-index: -1;
-            position: absolute;
-            left: -100%;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: map-get($foundation-palette, pioneer);
-            transition: .35s ease left;
-            border-radius: 2px;
-        }
-
-        &:hover {
-            &:before {
-                left: 0;
-            }
-
-            color: $white;
-            transition: color 0.35s ease;
-        }
-    }
-
-    .menu li.selected a:not(.title) {
-        &:before {
-            background: none;
         }
     }
 
@@ -81,6 +54,7 @@
         button {
             width: 1rem;
             height: 20px;
+            color: $white;
         }
     }
 
@@ -95,12 +69,22 @@
     }
 
     @include breakpoint(medium up) {
-        .top-bar, .menu {
-            background-color: rgba(0,0,0,0);
+        [role="menuitem"] {
+            a {
+                color: $white;
+            }
         }
 
-        a {
-            color: $white;
+        ul.menu li ul {
+            background-color: $black;
+        }
+
+        .menu > li > a {
+            margin: 0 0.5rem 0 0;
+        }
+
+        .top-bar, .menu {
+            background-color: rgba(0,0,0,0);
         }
     }
 }
@@ -114,5 +98,19 @@
 
     a {
         color: $black;
+    }
+}
+
+.no-js {
+    @include breakpoint(small only) {
+        .top-bar {
+            display: none;
+        }
+    }
+
+    @include breakpoint(medium) {
+        .title-bar {
+            display: none;
+        }
     }
 }
