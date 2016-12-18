@@ -43,11 +43,16 @@ function typescript() {
 function libs() {
   return gulp.src([
     'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.core.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.responsiveToggle.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.util.mediaQuery.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.equalizer.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.abide.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.core.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.equalizer.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.abide.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.keyboard.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.box.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.nest.js',
     'scripts/parallax.js',
     'bower_components/smooth-scroll.js/dist/js/smooth-scroll.min.js',
     'scripts/syntaxhighlighter.js'

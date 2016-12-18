@@ -33,24 +33,32 @@
           <div class="top-bar-left hide-for-small-only">
             <ul class="menu">
               <li class="menu-text">
-                <a href="/" class="title">Pioneer <span>Code</span></a>
+                <a href="/" class="title" title="Pioneer Code">Pioneer <span>Code</span></a>
               </li>
             </ul>
           </div>
-          <div class="top-bar-right">
+          <div class="top-bar-right" data-dropdown-menu>
             <ul class="menu">
               <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
-                <a href="/blog">
+                <a href="/blog" title="Blog">
                   BLOG
                 </a>
               </li>
+              <li class="@(ViewBag.Selected == "article" ? "selected" : "")">
+                <a href="#">
+                  ARTICLES
+                </a>
+                <ul class="menu vertical">
+                  <li><a href="/article/visual-studio-shortcuts" title="Visual Studio Shortcuts">VISUAL STUDIO SHORTCUTS</a></li>
+                </ul>
+              </li>
               <li class="@(ViewBag.Selected == "about" ? "selected" : "")">
-                <a href="/about">
+                <a href="/about" title="About">
                   ABOUT
                 </a>
               </li>
               <li class="@(ViewBag.Selected == "contact" ? "selected" : "")">
-                <a href="/contact" class="margin-zero">
+                <a href="/contact" class="margin-zero" title="Contact">
                   CONTACT
                 </a>
               </li>

@@ -4,7 +4,7 @@
   ],
   "dependencies": {
     "font-awesome": "4.6.1",
-    "foundation-sites": "^6.2.3",
+    "foundation-sites": "^6.3.0",
     "parallax.js": "^1.4.2",
     "smooth-scroll.js": "10.1.0"
   },
@@ -24,9 +24,5 @@
   ],
   "name": "Pioneer Code Blog",
   "private": true,
-  "version": "0.1.0",
-  "resolutions": {
-    "foundation-sites": "^6.2.3",
-    "font-awesome": "^4.6.3"
-  }
+  "version": "0.1.0"
 }
