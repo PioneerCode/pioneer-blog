@@ -8,7 +8,9 @@ namespace Pioneer.Blog.Controllers.Web
         // GET: Blog
         public ActionResult VisualStudioShortcuts()
         {
+            ViewBag.Title = "Visual Studio Shortcuts";
             ViewBag.Description = "Visual Studio Shortcuts";
+            ViewBag.Selected = "visual-studio-shortcuts";
             return View("~/Views/Article/VisualStudioShortcuts.cshtml", new ArticleViewModel());
         }
     }
