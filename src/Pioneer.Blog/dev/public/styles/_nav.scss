@@ -11,6 +11,11 @@
     [role="menuitem"] {
         a {
             color: $primary-color;
+
+            &:hover {
+                color: $primary-color;
+                transition: all 0.25s ease-out;
+            }
         }
     }
 

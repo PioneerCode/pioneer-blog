@@ -5,13 +5,11 @@
 
     &:before {
         height: 100px;
-        background-image: -webkit-linear-gradient(to top, transparent, $black);
         background-image: linear-gradient(to top, transparent, $black);
     }
 
     &:after {
         height: 300px;
-        background-image: -webkit-linear-gradient(to bottom, transparent, $black);
         background-image: linear-gradient(to bottom, transparent, $black);
     }
 
