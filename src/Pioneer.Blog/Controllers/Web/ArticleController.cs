@@ -11,7 +11,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.Title = "Visual Studio Shortcuts";
             ViewBag.Description = "Visual Studio Shortcuts";
             ViewBag.Selected = "visual-studio-shortcuts";
-            return View("~/Views/Article/VisualStudioShortcuts.cshtml", new ArticleViewModel());
+            return View("~/Views/Article/VisualStudioShortcuts/VisualStudioShortcuts.cshtml", new ArticleViewModel());
         }
     }
 }

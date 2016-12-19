@@ -37,7 +37,8 @@ function styles() {
         'http://localhost:8000/blog',
         'http://localhost:8000/account/register',
         'http://localhost:8000/post/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host',
-        'http://localhost:8000/post/asp-net-core-mvc-pagination-using-a-tag-helper'
+        'http://localhost:8000/post/asp-net-core-mvc-pagination-using-a-tag-helper',
+        'http://localhost:8000/article/visual-studio-shortcuts'
       ]
     }))
     .pipe(autoprefixer({
@@ -58,6 +59,7 @@ function libs() {
     'bower_components/foundation-sites/dist/js/plugins/foundation.core.js',
     'bower_components/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
     'bower_components/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.tabs.js',
     'bower_components/foundation-sites/dist/js/plugins/foundation.equalizer.js',
     'bower_components/foundation-sites/dist/js/plugins/foundation.abide.js',
     'bower_components/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js',
@@ -65,6 +67,7 @@ function libs() {
     'bower_components/foundation-sites/dist/js/plugins/foundation.util.box.js',
     'bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.js',
     'bower_components/foundation-sites/dist/js/plugins/foundation.util.nest.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader.js',
     'scripts/parallax.js',
     'bower_components/smooth-scroll.js/dist/js/smooth-scroll.min.js',
     'scripts/syntaxhighlighter.js'
