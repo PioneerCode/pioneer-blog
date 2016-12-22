@@ -6,9 +6,9 @@ namespace Pioneer.Blog.DAL
 {
     public class BlogContext : IdentityDbContext<UserEntity>
     {
-        public BlogContext(DbContextOptions options) : base(options)
-        {
-        }
+        public BlogContext(DbContextOptions<BlogContext> options)
+            : base(options)
+        { }
 
         public DbSet<PostEntity> Posts { get; set; }
 
