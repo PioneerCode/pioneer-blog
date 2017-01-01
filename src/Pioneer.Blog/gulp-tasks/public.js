@@ -24,8 +24,7 @@ function clean() {
 function styles() {
   return gulp.src(['./dev/public/app.scss'])
     .pipe(sass({
-      includePaths: sassPaths,
-      outputStyle: 'compressed'
+      includePaths: sassPaths
     }).on('error', sass.logError))
     .pipe(cleanCss({ keepSpecialComments: 0 }))
     .pipe(uncss({
