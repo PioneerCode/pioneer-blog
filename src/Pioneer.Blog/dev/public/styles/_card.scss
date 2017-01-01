@@ -1,5 +1,20 @@
 ﻿/// <reference path="../../../bower_components/foundation-sites/scss/foundation" />
 
 .card {
+    text-align: center;
+    border: 1px solid $medium-gray;
 
+    .title {
+        font-size: 22px;
+        padding: 1rem;
+        font-weight: lighter;
+        background: $light-gray;
+        margin: 0;
+    }
+
+    .action {
+        padding: 1rem;
+        color: $white;
+        background: $primary-color;
+    }
 }
