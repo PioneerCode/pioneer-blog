@@ -1,5 +1,19 @@
 ﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 .vs-shortcuts {
+    background: lighten($light-gray, 5%);
+
+    .row {
+        max-width: 100%;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    h4 {
+        margin: 2rem 0 0.5rem;
+    }
+
     .tabs {
         .is-active a {
         }
@@ -13,4 +27,5 @@
 }
 
 .vs-shortcuts-content {
+    background: lighten($light-gray, 5%);
 }
