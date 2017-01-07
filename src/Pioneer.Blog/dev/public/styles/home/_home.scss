@@ -1,4 +1,4 @@
-@import "../../../sass/foundation";
+/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 @import "home-greatest-posts";
 @import "home-sign-up";
 
@@ -11,8 +11,8 @@
     margin: 0 0 .5rem;
 }
 
-@media #{$small-only} {
-    .hg-large.home-hero {
+.hg-large.home-hero {
+    @include breakpoint(small only) {
         height: 350px;
     }
 }

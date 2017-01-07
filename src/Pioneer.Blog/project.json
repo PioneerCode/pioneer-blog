@@ -55,6 +55,7 @@
       "Areas/**/*",
       "wwwroot/admin/**/*",
       "wwwroot/posts/**/*",
+      "wwwroot/styles.html",
       "Views/Account/**/*.cshtml"
     ]
   },

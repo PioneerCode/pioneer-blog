@@ -1,4 +1,4 @@
-@import "../../sass/foundation";
+/// <reference path="../../../bower_components/foundation-sites/scss/foundation" />
 
 .about {
     .who-is {
@@ -17,10 +17,8 @@
             }
         }
     }
-}
 
-@media #{$medium-up} {
-    .about {
+    @include breakpoint(medium up) {
         .who-is {
             .image-container {
                 img {
@@ -29,10 +27,8 @@
             }
         }
     }
-}
 
-@media #{$large-up} {
-    .about {
+    @include breakpoint(large up) {
         .who-is {
             text-align: left;
             padding: 4rem 0;

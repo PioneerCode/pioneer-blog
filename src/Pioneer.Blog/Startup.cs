@@ -116,6 +116,11 @@ namespace Pioneer.Blog
                   template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapRoute(
+                  name: "ArticleVisualStudioShortcuts",
+                  template: "article/visual-studio-shortcuts",
+                  defaults: new { controller = "Article", action = "VisualStudioShortcuts" });
+
+                routes.MapRoute(
                   name: "Post",
                   template: "post/{id}",
                   defaults: new { controller = "Post", action = "Index" });

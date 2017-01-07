@@ -1,4 +1,4 @@
-﻿@import "../../../sass/foundation";
+﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 
 .home-greatest-posts {
     padding: 4rem 0 2rem;
@@ -23,7 +23,6 @@
         width: 100%;
         display: block;
         height: 100%;
-        background-image: -webkit-linear-gradient(to right, transparent, $black,$black);
         background-image: linear-gradient(to right, transparent, $black,$black);
     }
 

@@ -1,4 +1,4 @@
-@import "../../../sass/foundation";
+/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 @import "short-pagination";
 @import "footer-author";
 @import "footer-comments";
@@ -28,8 +28,8 @@ article {
     }
 }
 
-@media #{$medium-up} {
-    article.post {
+article.post {
+    @include breakpoint(medium up) {
         .title {
             margin: 15px 0 0;
             line-height: 75px;

@@ -7,7 +7,13 @@ var del = require('del');
 var cleanCss = require('gulp-clean-css');
 var uncss = require('gulp-uncss');
 var ts = require('gulp-typescript');
+var autoprefixer = require('gulp-autoprefixer');
 var tsProject = ts.createProject('tsconfig.json');
+
+var sassPaths = [
+  'bower_components/normalize.scss/sass',
+  'bower_components/foundation-sites/scss'
+];
 
 function clean() {
   return del([
@@ -16,20 +22,27 @@ function clean() {
 }
 
 function styles() {
+  //.pipe(uncss({
+  //  html: [
+  //    'http://localhost:8000',
+  //    'http://localhost:8000/styles.html',
+  //    'http://localhost:8000/about',
+  //    'http://localhost:8000/contact',
+  //    'http://localhost:8000/blog',
+  //    'http://localhost:8000/account/register',
+  //    'http://localhost:8000/post/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host',
+  //    'http://localhost:8000/post/asp-net-core-mvc-pagination-using-a-tag-helper',
+  //    'http://localhost:8000/article/visual-studio-shortcuts'
+  //  ]
+  //}))
   return gulp.src(['./dev/public/app.scss'])
-    .pipe(sass({ outputStyle: 'compressed' })
-      .on('error', sass.logError))
+    .pipe(sass({
+      includePaths: sassPaths
+    }).on('error', sass.logError))
     .pipe(cleanCss({ keepSpecialComments: 0 }))
-    .pipe(uncss({
-      html: [
-        'http://localhost:8000',
-        'http://localhost:8000/about',
-        'http://localhost:8000/contact',
-        'http://localhost:8000/blog',
-        'http://localhost:8000/account/register',
-        'http://localhost:8000/post/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host',
-        'http://localhost:8000/post/asp-net-core-mvc-pagination-using-a-tag-helper'
-      ]
+
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions', 'ie >= 9']
     }))
     .pipe(gulp.dest('wwwroot/'));
 }
@@ -43,11 +56,18 @@ function typescript() {
 function libs() {
   return gulp.src([
     'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.core.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.responsiveToggle.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.util.mediaQuery.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.equalizer.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.abide.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.core.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.tabs.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.equalizer.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.abide.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.keyboard.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.box.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.nest.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader.js',
     'scripts/parallax.js',
     'bower_components/smooth-scroll.js/dist/js/smooth-scroll.min.js',
     'scripts/syntaxhighlighter.js'
