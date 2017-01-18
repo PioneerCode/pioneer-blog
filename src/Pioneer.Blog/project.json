@@ -8,7 +8,6 @@
     "Pioneer.Blog.Model": "1.0.0-*",
     "Pioneer.Blog.Repository": "1.0.0-*",
     "Pioneer.Blog.Service": "1.0.0-*",
-    "Pioneer.Pagination": "1.0.2",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.1.0",
     "Microsoft.AspNetCore.Http.Extensions": "1.1.0",
@@ -29,7 +28,8 @@
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
     "Pioneer.Blog.DAL": "1.0.0-*",
-    "StackifyMiddleware": "2.0.3"
+    "StackifyMiddleware": "2.0.3",
+    "Pioneer.Pagination": "1.1.0"
   },
   "frameworks": {
     "netcoreapp1.1": {
