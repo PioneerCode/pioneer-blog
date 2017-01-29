@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <link href="/app.css" rel="stylesheet" />
+  <script src="/app.js"></script>
+</head>
+<body>
+  <div class="row">
+    <div class="large-10 large-push-1 columns">
+      <article>
+        <p>With .NET Core, we get a lot of stuff for free.  If you so choose, wiring up your applications (ASP.NET or Console) with things like Dependency Injection, Configuration and Logging is as simple as can be.  .NET Core bakes these features into the framework and usage of does not require a trade off of power or flexibility. </p>
+        <p>Following, I will walk you through getting up and running with all three of these items in a .NET Core console application.</p>
+        <h2>Setup</h2>
+        <h3>Project</h3>
+        <p>First thing first, lets create a new project.  Open up Visual Studio, hit <b>Ctrl+Shift+N</b> and select the <b>Console Application (.NET Core) project type from the templates,</b></p>
+        <img src="../images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/create-project.png" title="Create Project" style="max-width: 941px;" />
+        <br />
+        <br />
+        <p>Visual studio will scaffold a project for you which will end up looking like this.</p>
+        <img src="../images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/project.png" title="New Console Project" style="max-width: 297px;" />
+        <br />
+        <br />
+        <h3>Dependencies</h3>
+        <p>.NET Core is all about opting into dependencies as opposed to opting out.  That being said we will need to pull in a few nuget packages to facilitate our needs. Open up your <b>project.json</b> file and add the following packages to your dependencies node. Versions might differ depending on what version of .NET Core you are using.</p>
+        <pre class="brush: json">  "dependencies": {
+    "Microsoft.NETCore.App": "1.1.0",
+    "Microsoft.Extensions.DependencyInjection": "1.1.0",
+    "Microsoft.Extensions.Configuration.Json": "1.1.0",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
+    "Microsoft.Extensions.Configuration": "1.1.0",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
+    "Microsoft.Extensions.Logging": "1.1.0",
+    "Microsoft.Extensions.Logging.Console": "1.1.0",
+    "Microsoft.Extensions.Logging.Debug": "1.1.0"
+  },
+</pre>
+        <h2>Dependency Injection</h2>
+        <p>Now that our project is ready, we need to wire up our dependency injection container so we have means to register the individual components we will be using in our program. For this demonstration, we will be registering a new service called <b>TestService</b>.  Go ahead and create a new file called <b>TestService.cs</b> and add the following.</p>
+        <pre class="brush: csharp">public interface ITestService
+{
+}
+
+class TestService : ITestService
+{
+}</pre>
+        <p>To maintain a separation of concern between our business based logic and the logic we use to configure and run the actual counsel application, lets create a new class called <b>App.cs</b>. The goal being that we will use <b>Program.cs</b> to bootstrap everything need to support our application and then fire off all the logic that in needed to support out "business" needs.</p>
+        <pre class="brush: csharp">public class App
+{
+    private readonly ITestService _testService;
+    public App(ITestService testService)
+    {
+        _testService = testService;
+    }
+
+    public void Run()
+    {
+        _testService.Run();
+        System.Console.ReadKey();
+    }
+}</pre>
+        <p>As you can see, we will use the <b>Run()</b> function as the main entry to our application and we use our DI container to pass in an Interface of the type <b>ITestService</b>.</p>
+        <p>Open up your <b>Program.cs</b> file and add the following.</p>
+        <h2>Configuration</h2>
+        <p></p>
+        <h2>Logging</h2>
+        <p></p>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
