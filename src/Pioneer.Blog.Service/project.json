@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "AutoMapper": "5.2.0",
-    "MailKit": "1.10.1",
+    "MailKit": "1.10.2",
     "Pioneer.Blog.DAL": "1.0.0-*",
     "Pioneer.Blog.Model": "1.0.0-*",
     "Pioneer.Blog.Repository": "1.0.0-*"
