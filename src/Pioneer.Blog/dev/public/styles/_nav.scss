@@ -53,6 +53,10 @@
 
     .menu-text {
         padding: 0;
+
+    a {
+        color: $white;
+    }
     }
 
     .title-bar {
@@ -100,10 +104,6 @@
 
 .nav-main-show {
     background-color: rgba(9,19,14,0.9);
-
-    a {
-        color: $black;
-    }
 }
 
 .no-js {
