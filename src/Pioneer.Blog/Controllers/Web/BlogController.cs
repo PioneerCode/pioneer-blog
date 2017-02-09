@@ -52,7 +52,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.Title = _tagService.GetTagNameFromTagUrlInTagCollection(id, posts[0].Tags.ToList());
             ViewBag.Description = "Pioneer Code Blog Tag Archives - " + ViewBag.Tag;
             ViewBag.Header = "Tag : " + posts[0].Tags.ElementAt(0).Name;
-            ViewBag.Pager = "tag";
+            ViewBag.Pager = "tag/" + id;
             ViewBag.Selected = "blog";
 
             ViewBag.Categories = _categoryService.GetAll();
@@ -72,7 +72,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.Description = "Pioneer Code Blog Category Archives - " + ViewBag.Tag;
             ViewBag.Header = "Category : " + posts[0].Category.Name;
             ViewBag.Title = posts[0].Category.Name;
-            ViewBag.Pager = "category";
+            ViewBag.Pager = "category/" + id;
             ViewBag.Selected = "blog";
 
             ViewBag.Categories = _categoryService.GetAll();

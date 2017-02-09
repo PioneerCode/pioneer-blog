@@ -68,9 +68,8 @@ namespace Pioneer.Blog.Repository
         {
             return _blogContext
                     .Posts
-                    //.Where(x => x.Tags.Any(t => t.Url.ToLower() == tag))
-                    // .Include(x => x.Tags)
-                    .Count();
+                    .Include(x => x.PostTags)
+                    .Count(x => x.PostTags.Any(t => t.Tag.Url == tag));
         }
 
         /// <summary>
