@@ -25,6 +25,7 @@ namespace Pioneer.Blog.Controllers.Web
         {
             ViewBag.Description = "Contact the folks at Pioneer Code.";
             ViewBag.IsValid = true;
+            ViewBag.Selected = "contact";
             return View();
         }
 
@@ -43,6 +44,7 @@ namespace Pioneer.Blog.Controllers.Web
 
             var response = _communicationService.SendContactEmailNotification(model);
             ViewBag.IsValid = true;
+            ViewBag.Selected = "contact";
 
             switch (response.Status)
             {
