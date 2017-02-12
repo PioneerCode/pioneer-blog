@@ -1,11 +1,13 @@
 ﻿#if (DEBUG)
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Service;
 
 namespace Pioneer.Blog.Areas.Admin.Controllers.Api
 {
+    [Authorize]
     [Route("api/posts")]
     public class PostApiController : Controller
     {
