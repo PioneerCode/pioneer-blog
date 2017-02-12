@@ -53,7 +53,8 @@ namespace Pioneer.Blog.Controllers.Web
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
                 return RedirectToLocal(returnUrl);
@@ -104,7 +105,7 @@ namespace Pioneer.Blog.Controllers.Web
         }
 
         /// <summary>
-        /// Expload Errors into model state
+        /// Explode Errors into model state
         /// </summary>
         private void AddErrors(IdentityResult result)
         {
