@@ -1,11 +1,13 @@
 ﻿#if (DEBUG)
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Service;
 
 namespace Pioneer.Blog.Areas.Admin.Controllers.Api
 {
+    [Authorize]
     [Route("api/tags")]
     public class TagApiController : Controller
     {
@@ -40,6 +42,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPost]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Create([FromBody]Tag tag)
         {
             if (tag == null)
@@ -52,6 +55,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Update(int id, [FromBody] Tag item)
         {
             if (item == null || item.TagId != id)
@@ -70,6 +74,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Delete(int id)
         {
             var todo = _tagService.GetById(id);

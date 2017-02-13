@@ -51,6 +51,11 @@ namespace Pioneer.Blog
 
             ConfigureServicesIdentity(services);
 
+            services.AddAuthorization(cfg =>
+            {
+                cfg.AddPolicy("SuperUsers", p => p.RequireClaim("isSuperUser", "true"));
+            });
+
             services.AddMvc();
 
             // Add application services.
@@ -74,8 +79,8 @@ namespace Pioneer.Blog
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, 
-            IHostingEnvironment env, 
+        public void Configure(IApplicationBuilder app,
+            IHostingEnvironment env,
             ILoggerFactory loggerFactory,
             IdentitySetup identitySetup)
         {
@@ -113,7 +118,7 @@ namespace Pioneer.Blog
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
-           ConfigureMvc(app);
+            ConfigureMvc(app);
         }
 
         private static void ConfigureMvc(IApplicationBuilder app)
