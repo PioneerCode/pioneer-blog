@@ -51,22 +51,14 @@ namespace Pioneer.Blog.Controllers.Web
             ViewData["ReturnUrl"] = returnUrl;
             if (!ModelState.IsValid) return View(model);
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
                 return RedirectToLocal(returnUrl);
             }
 
-            if (result.IsLockedOut)
-            {
-                return View("Lockout");
-            }
-
-            // If we got this far, something failed, redisplay form
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            // If we got this far, something failed, re-display form
+            ModelState.AddModelError(string.Empty, "Failed to login.");
             return View(model);
         }
 
@@ -98,6 +90,7 @@ namespace Pioneer.Blog.Controllers.Web
                 await _signInManager.SignInAsync(user, false);
                 return RedirectToLocal(returnUrl);
             }
+
             AddErrors(result);
 
             // If we got this far, something failed, redisplay form

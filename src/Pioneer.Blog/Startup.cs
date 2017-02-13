@@ -57,6 +57,8 @@ namespace Pioneer.Blog
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
             services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
 
+            services.AddTransient<IdentitySetup>();
+
             // Repositories
             services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
@@ -72,7 +74,10 @@ namespace Pioneer.Blog
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory,
+            IdentitySetup identitySetup)
         {
             ServiceMapperConfig.Config();
 
@@ -85,6 +90,7 @@ namespace Pioneer.Blog
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
+                identitySetup.Setup().Wait();
             }
             else
             {
