@@ -53,7 +53,7 @@ namespace Pioneer.Blog
 
             services.AddAuthorization(cfg =>
             {
-                cfg.AddPolicy("SuperUsers", p => p.RequireClaim("isSuperUser", "true"));
+                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
             });
 
             services.AddMvc();
