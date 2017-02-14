@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -47,15 +49,20 @@ namespace Pioneer.Blog
             services.AddDbContext<BlogContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<UserEntity, IdentityRole>()
-                .AddEntityFrameworkStores<BlogContext>()
-                .AddDefaultTokenProviders();
+            ConfigureServicesIdentity(services);
+
+            services.AddAuthorization(cfg =>
+            {
+                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
+            });
 
             services.AddMvc();
 
             // Add application services.
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
             services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
+
+            services.AddTransient<IdentitySetup>();
 
             // Repositories
             services.AddTransient<IContactRepository, ContactRepository>();
@@ -71,9 +78,11 @@ namespace Pioneer.Blog
             services.AddTransient<ISiteMapService, SiteMapService>();
         }
 
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app,
+            IHostingEnvironment env,
+            ILoggerFactory loggerFactory,
+            IdentitySetup identitySetup)
         {
             ServiceMapperConfig.Config();
 
@@ -86,6 +95,7 @@ namespace Pioneer.Blog
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
+                identitySetup.Setup().Wait();
             }
             else
             {
@@ -108,61 +118,105 @@ namespace Pioneer.Blog
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
+            ConfigureMvc(app);
+        }
+
+        private static void ConfigureMvc(IApplicationBuilder app)
+        {
             app.UseMvc(routes =>
             {
                 // Areas support
                 routes.MapRoute(
-                  name: "areaRoute",
-                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapRoute(
-                  name: "ArticleVisualStudioShortcuts",
-                  template: "article/visual-studio-shortcuts",
-                  defaults: new { controller = "Article", action = "VisualStudioShortcuts" });
+                    name: "ArticleVisualStudioShortcuts",
+                    template: "article/visual-studio-shortcuts",
+                    defaults: new { controller = "Article", action = "VisualStudioShortcuts" });
 
                 routes.MapRoute(
-                  name: "Post",
-                  template: "post/{id}",
-                  defaults: new { controller = "Post", action = "Index" });
+                    name: "Post",
+                    template: "post/{id}",
+                    defaults: new { controller = "Post", action = "Index" });
 
                 routes.MapRoute(
-                  name: "BlogPost",
-                  template: "post",
-                  defaults: new { controller = "blog", action = "Index" });
+                    name: "BlogPost",
+                    template: "post",
+                    defaults: new { controller = "blog", action = "Index" });
 
                 routes.MapRoute(
-                  name: "BlogTag",
-                  template: "tag",
-                  defaults: new { controller = "blog", action = "Index" });
+                    name: "BlogTag",
+                    template: "tag",
+                    defaults: new { controller = "blog", action = "Index" });
 
                 routes.MapRoute(
-                  name: "BlogCategory",
-                  template: "category",
-                  defaults: new { controller = "blog", action = "Index" });
+                    name: "BlogCategory",
+                    template: "category",
+                    defaults: new { controller = "blog", action = "Index" });
 
                 routes.MapRoute(
-                   name: "Category",
-                   template: "category/{id}/{page?}",
-                   defaults: new { controller = "blog", action = "Category" });
+                    name: "Category",
+                    template: "category/{id}/{page?}",
+                    defaults: new { controller = "blog", action = "Category" });
 
                 routes.MapRoute(
-                   name: "Tag",
-                   template: "tag/{id}/{page?}",
-                   defaults: new { controller = "blog", action = "Tag" });
+                    name: "Tag",
+                    template: "tag/{id}/{page?}",
+                    defaults: new { controller = "blog", action = "Tag" });
 
                 routes.MapRoute(
-                   name: "Blog",
-                   template: "blog/{page?}",
-                   defaults: new { controller = "blog", action = "Index" });
+                    name: "Blog",
+                    template: "blog/{page?}",
+                    defaults: new { controller = "blog", action = "Index" });
 
                 routes.MapRoute(
-                   name: "SiteMap",
-                   template: "sitemap.xml",
-                   defaults: new { controller = "home", action = "SiteMap" });
+                    name: "SiteMap",
+                    template: "sitemap.xml",
+                    defaults: new { controller = "home", action = "SiteMap" });
 
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+        private static void ConfigureServicesIdentity(IServiceCollection services)
+        {
+            services.AddIdentity<UserEntity, IdentityRole>()
+                .AddEntityFrameworkStores<BlogContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(config =>
+            {
+                config.Cookies.ApplicationCookie.Events =
+                    new CookieAuthenticationEvents
+                    {
+                        OnRedirectToLogin = ctx =>
+                        {
+                            // If we were redirect to login from api..
+                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                            {
+                                ctx.Response.StatusCode = 401;
+                                return Task.FromResult<object>(null);
+                            }
+
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                            return Task.FromResult<object>(null);
+                        },
+                        OnRedirectToAccessDenied = ctx =>
+                        {
+                            // If access is denied from api...
+                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                            {
+                                ctx.Response.StatusCode = 403;
+                                return Task.FromResult<object>(null);
+                            }
+
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                            return Task.FromResult<object>(null);
+                        }
+                    };
             });
         }
     }

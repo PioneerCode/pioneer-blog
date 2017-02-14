@@ -1,11 +1,13 @@
 ﻿#if (DEBUG)
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Service;
 
 namespace Pioneer.Blog.Areas.Admin.Controllers.Api
 {
+    [Authorize]
     [Route("api/posts")]
     public class PostApiController : Controller
     {
@@ -43,6 +45,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPost]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Create([FromBody]Post post)
         {
             if (post == null)
@@ -55,6 +58,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Update(string url, [FromBody] Post item)
         {
             if (item == null || item.Url != url)
@@ -73,6 +77,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpDelete("{url}")]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Delete(string url)
         {
             var todo = _postService.GetById(url);
