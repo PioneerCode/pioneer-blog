@@ -120,11 +120,15 @@ ul.meta {
     margin-bottom: 2rem;
 }
 
-p.note {
+p.note, div.note {
     background: $light-gray;
     font-size: 14px;
     border-left: 3px solid $primary-color;
     padding: 1rem;
+}
+
+div.note {
+    margin: 0 0 1rem;
 }
 
 a.button.empty {
