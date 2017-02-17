@@ -10,7 +10,7 @@
       <article>
         <p class="note">Being this blog post was created using a VS 2017 RC, things are bound to change over time.  I will do my best to keep this post up-to-date as we get closer to a GA/RTM release of VS 2017.</p>
         <p>
-          March 7th, 2017 is just around the corner and with it comes the general availability of <a href="https://www.visualstudio.com/" title="Visual Studio 2017" target="_blank">Visual Studio 2017</a>. Those who have been exploring the RC builds might have noticed a slew of updates coming to the <b>dotnet new</b> command in the dotnet command line. One such feature now allows us to create project templates that can be installed from a <a href="https://www.nuget.org/profiles/chad_ramos" title="NuGet" target="_blank">NuGet</a> package or local folder.
+          March 7th, 2017 is just around the corner and with it comes the general availability of <a href="https://www.visualstudio.com/" title="Visual Studio 2017" target="_blank">Visual Studio 2017</a>. Those who have been exploring the RC builds might have noticed a slew of updates coming to the <b>dotnet new</b> command in the dotnet cli. One such feature now allows us to create project templates that can be installed from a <a href="https://www.nuget.org/profiles/chad_ramos" title="NuGet" target="_blank">NuGet</a> package or local folder.
         </p>
         <p>
           I will use the <a href="https://github.com/PioneerCode/pioneer-console-boilerplate" title="Pioneer Console Boilerplate" target="_blank">Pioneer Console Boilerplate</a> project I created to demonstrate the concepts of <a href="" title="Dependency Injection, Logging, and Configuration In A .NET Core Console Application" target="_blankd">"Dependency Injection, Logging and Configuration In A .NET Core Console Application</a>" to show the following.
@@ -22,6 +22,7 @@
           <li><a href="#remove">Removing your template.</li>
           <li><a href="#publish">Publishing and installing from Nuget.</a></li>
         </ol>
+        <p>That being said, it is worth mentioning that there is zero reason as to why this would not work in an ASP.Net project.  Templating is universal to .NET Core.</p>
         <h2 id="migrating">Migrating project.json</h2>
         <p>
           In an effort to simplify compatibility with MSBuild, <b>project.json</b> is being retired in favor of <b>.csproj</b>. The process, in most cases, is dirt simple. You have one of two options, run <b>dotnet migrate</b> or automation provided by Visual Studio 2017. For this project, I choose to have Visual Studio guide me through the process.
@@ -54,9 +55,9 @@
               <ul>
                 <li>In it I reference a build script used to generate necessary files.</li>
                 <li><a href="https://github.com/aspnet/JavaScriptServices/blob/dev/templates/package-builder/src/build/build.ts" target="_blank" title="JavascriptServices GitHub">JavascriptServices</a> by <a href="http://blog.stevensanderson.com/" target="_blank" title="Steve Standerson">Steve Standerson</a>.</li>
-                <li>Going straight to the source and asking <a href="https://twitter.com/sayedihashimi" title="Sayed I. Hashimi" target="_blank">Sayed I. Hashimi</a> on twitter.</li>
               </ul>
             </li>
+            <li>Going straight to the source and asking <a href="https://twitter.com/sayedihashimi" title="Sayed I. Hashimi" target="_blank">Sayed I. Hashimi</a> on twitter.</li>
           </ol>
         </div>
         <p>
@@ -95,7 +96,7 @@
         <a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-project.png" title="New Project." target="_blank">
           <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-project.png" alt="New Project." style="max-width: 759px;" />
         </a>
-        <h3>Where Does Your New Template Cache Live & How Do I Remove My Template From That Cache?</h3>
+        <h3>Where Does Your New Template Cache Live?</h3>
         <p class="note">This section only exists because I was curious. At this point, I  would not recommend manually editing these files.</p>
         <p>
           By running the <b>dotnet new -i [source]</b> command, you are telling the cli to cache a reference to your package configuration. The <b>dotnetcli</b> needs to store this information in order to display your templates information when running <b>dotnet new</b>. That being the case, I started searching around my local directories to find the file(s) holding this information.
@@ -106,13 +107,13 @@
         <a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-cache.png" title="Template cache" target="_blank">
           <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-cache.png" alt="Template cache" style="max-width: 960px;" />
         </a>
-        <p class="note">After manually deleting the references to my template from these files, <b>dotnet new -l</b> no longer had a reference to my template.</p>
+        <p class="note">Side note, after manually deleting the references to my template from these files, <b>dotnet new -l</b> no longer had a reference to my template.</p>
         <a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/empty-list.png" title="Empty List" target="_blank">
           <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/empty-list.png" alt="Empty List" style="max-width: 735px;" />
         </a>
         <h2 id="remove">Removing your template</h2>
-        <p class="note">Fair warning, being I can't find documentation on the <b>reinit</b> flag I can only assume that you will lose all configuration you have done to your environment.</p>
-        <p>At the moment there is no syntax to remove a single template.  It appears to be coming, though.  That being said, you can run <b>dotnet new --debug:reinit</b> to re-initialize your environment.   Of which will effectively remove any new templates you added. </p>
+        <p class="note">Fair warning, being I can't find documentation on the <b>reinit</b> flag I can only assume that you will lose all configuration you have done to your environment if it is ran.</p>
+        <p>At the moment there is no syntax to remove a single template.  Though, it appears to be coming soon.  That being said, you can run <b>dotnet new --debug:reinit</b> to re-initialize your environment.   Of which will effectively remove any new templates you added. </p>
         <a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/tweet.png" title="Tweet" target="_blank">
           <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/tweet.png" alt="Tweet" style="max-width: 631px; border: 1px solid #ccc;" />
         </a>
@@ -120,7 +121,7 @@
         <p>What if we want to serve up our template through a NuGet package? Lucky for us, the process is pretty straight forward.</p>
         <h3>Creating A nuspec file</h3>
         <p class="note">For a full reference of possible configuration, you can visit the official <a href="https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package">Creating A Package</a> documentation.  At the date of this publishing, V4.0 of <b>nuget.exe</b> was still a RC.  That being said, the <b>packageTypes</b> node was not yet documented because it is new to V4.0.</p>
-        <p>We need to first create a manifest that describes our package.  This file in the NuGet world is refereed to as a <b>nuspec</b> file. That being said, let's start out by creating a file called <b>Templates.nuspec</b> place at the root of your project for the time being.</p>
+        <p>We need to first create a manifest that describes our package.  This file in the NuGet world is refereed to as a <b>nuspec</b> file. That being said, let's start out by creating a file called <b>Templates.nuspec</b> and place it at the root of your project for the time being.</p>
         <p>I added the following to my file.</p>
         <pre class="brush: xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"&gt;
@@ -164,7 +165,7 @@
         <p>My package was then made available at <a href="https://www.nuget.org/packages/Pioneer.Console.Boilerplate/" title="Pioneer Console Boilerplate Nuget Feed" target="_blank">Pioneer.Console.Boilerplate</a>.</p>
         <p class="note">For more information on how to publish your package, head over to the official <a href="https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package">Creating A Package</a> documentation.</p>
         <h3>Consuming Your Package</h3>
-        <p>Now that your package is available from the NuGet repository, you can install your template directly from your need feed.</p>
+        <p>Now that your package is available from the NuGet repository, you can install your template directly from your new feed.</p>
         <p>After running <b>dotnet new -i Pioneer.Console.Boilerplate::*</b>, I ended up with the following.</p>
         <a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" title="Dot Net new list." target="_blank">
           <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" alt="Dot Net new list." style="max-width: 1551px;" />
