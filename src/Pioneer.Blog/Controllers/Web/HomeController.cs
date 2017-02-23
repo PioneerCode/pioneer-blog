@@ -25,7 +25,7 @@ namespace Pioneer.Blog.Controllers.Web
         public IActionResult Index()
         {
             ViewBag.Description =
-                "PioneerCode.com | How-to's, life hacks and observations for the modern day software developer.";
+                "Hi, my name is Chad Ramos. I am a Chicago-based software developer with a strong passion for modern development practices.";
 
             ViewBag.PopularPosts = _postService.GetPopularPosts().ToList();
             ViewBag.LatestPosts = _postService.GetAll(true, false, false, 4).ToList();
