@@ -8,15 +8,15 @@
   <span class="article-meta-data-section">
     <i class="fa fa-tags" aria-hidden="true"></i>
     @{
-      var i = 0;
-      var last = Model.Tags.Count - 1;
+        var i = 0;
+        var last = Model.Tags.Count - 1;
     }
     @foreach (var tag in Model.Tags)
     {
-      <a href="/tag/@tag.Url">@tag.Name</a>
+        <a href="/tag/@tag.Url">@tag.Name</a>
       if (i < last)
       {
-        <span>,</span>
+            <span>,</span>
       }
       i++;
     }
@@ -26,8 +26,8 @@
   </a>
   @if (Model.Link != null)
   {
-    <a href="@Model.Link" title="code" class="article-meta-data-section" target="_blank">
-      <i class="fa fa-code" aria-hidden="true"></i> Code
-    </a>
+      <a href="@Model.Link" title="code" class="article-meta-data-section" target="_blank">
+        <i class="fa fa-code" aria-hidden="true"></i> Code
+      </a>
   }
 </div>
