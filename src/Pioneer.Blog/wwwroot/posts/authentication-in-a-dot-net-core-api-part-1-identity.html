@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <link href="/app.css" rel="stylesheet" />
+  <script src="/app.js"></script>
+</head>
+<body>
+  <div class="row">
+    <div class="large-10 large-push-1 columns">
+      <article>
+        <div class="note">
+          <ol>
+            <li>Cookie authentication with Identity.</li>
+            <li>Setting up proper 404 and 403 reposes to your api.</li>
+            <li>Token authentication with JWT, JSON Web Tokens.</li>
+          </ol>
+          <p>In this series I am going to outline some basic approaches to authenticating your .NET Core API using either ASP.NET Core Identity or token-based authentication with a JSON Web Token (JWT).  I will also explore how to configure you application to return proper response types to both Redirect To Login and Redirect To Access Denied event when using ASP.NET Core Identity.</p>
+        </div>
+        <h2>Setup</h2>
+        <p>We will use the <a href="https://github.com/PioneerCode/pioneer-blog">Pioneer Code Blog</a> source code to illustrate how to secure API endpoints that allow for CRUD operations against the supporting tables in our database. Lets take look at the file structure and identify where the API controllers exist today.</p>
+        <a href="" target="blank" title="Solution Explorer Area API Endpoints">
+          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/solution-explorer-start.jpg" alt="Solution Explorer Area API Endpoints" style="max-width: 336px;" />
+        </a>
+        <p>As you can see, I created an Area to house all my operations that are related to the Administration of my site. In this Area lives a collection of API Controllers that correspond to individual tables (entities) in the database.</p>
+        <p class="note">For more information about creating Areas, you can visit my blog post entitled <a href="http://pioneercode.com/post/creating-areas-in-asp-net-core" target="_blank" title="Creating Areas In ASP.NET MVC Core">Creating Areas In ASP.NET MVC Core</a>. </p>
+        <p>Top keep things simple lets focus one a single endpoint in a single API controller.</p>
+        <pre class="brush: csharp">[Route("api/categories")]
+public class CategoryApiController : Controller
+{
+    private readonly ICategoryService _categoryService;
+    public CategoryApiController(ICategoryService categoryService)
+    {
+        _categoryService = categoryService;
+    }
+    [HttpGet]
+    public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
+    {
+        if (count == null || page == null)
+        {
+            return _categoryService.GetAll();
+        }
+        return _categoryService.GetAllPaged((int)count, (int)page);
+    }
+}</pre>
+        <h2>Identity</h2>
+        <h3>Configuration</h3>
+        <h2>Attributes</h2>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
