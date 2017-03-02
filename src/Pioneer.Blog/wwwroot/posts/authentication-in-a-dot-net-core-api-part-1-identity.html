@@ -17,7 +17,7 @@
         </div>
         <h2>Setup</h2>
         <p>To demonstrate these concepts of Authentication, I will use the <a href="https://github.com/PioneerCode/pioneer-blog">Pioneer Code Blog</a> source code to illustrate how I secured API endpoints that allow for CRUD operations against the supporting tables in its database. That being said, lets take look at the file structure and identify where the API controllers exist today.</p>
-        <a href="" target="blank" title="Solution Explorer Area API Endpoints">
+        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/solution-explorer-start.jpg" target="blank" title="Solution Explorer Area API Endpoints">
           <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/solution-explorer-start.jpg" alt="Solution Explorer Area API Endpoints" style="max-width: 336px;" />
         </a>
         <p>As you can see, I created an Area to house all my operations that are related to the administration of my site.  Notably, those that allow me to managed my blog posts. In this Area, title "Admin", lives a collection of API Controllers that correspond to the individual tables (entities) in the database.</p>
@@ -42,6 +42,10 @@ public class CategoryApiController : Controller
     }
 }</pre>
         <p>Here you can see an endpoint the maps to a GET request on the <b>api/categories</b> endpoint. If we make a request to this endpoint, we will get a collection of </p>
+        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/un-auth.jpg" target="blank" title="Unauthenticated Endpoint">
+          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/un-auth.jpg" alt="Unauthenticated Endpoint" style="max-width: 898px;" />
+        </a>
+        <p>As expected, we are getting a 200 Response which contains our collection of categories.</p>
         <h2>Identity</h2>
         <h3>Configuration</h3>
         <h2>Attributes</h2>
