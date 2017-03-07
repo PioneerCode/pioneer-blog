@@ -53,11 +53,14 @@ public class CategoryApiController : Controller
           </cite>
         </blockquote>
         <p>We will start out securing our api endpoints by introducing ASP.NET Core Identity in to our application. If you are working from an MVC project, Identity is available the <b>Microsoft.AspNetCore.Builder</b> lib.  Of which, is scaffold in just about every MVC project you are creating.  If you are creating an API without the "typical" MVC lib project dependencies, you might have to add a reference  to <b>&lt;PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" /&gt;</b> in you csproj file.</p>
-        <p>For our case, we will configure Identity in the <b>Startup.cs</b> file.</p>
         <h3>Setting up DbContext</h3>
         <p>Before we configure our Identity service, we first must insure out data-store is in order.  To do this, I needed to implement my existing <b>Blog Context</b> as an derived class of <b>IdentityDbContext&lt;UserEntity&gt;</b>. I set the type as <b>UserEntity</b>, which itself is a derived class of <b>IdentityUser</b>.</p>
-
         <p>In short, this now insure my db context has all the necessary configuration needed for Identity and my <b>UserEntity</b>  share all the base types provided by <b>IdentityUser</b> while being expendable to suite any future needs.</p>
+        <h3>Configuring Identity</h3>
+        <p>Once our data store is in order, we can now add and configure our Identity Service.  In your <b>Startup.ConfigServices(IServiceCollection services)</b> function, I added the following.</p>
+        <pre class="brush: csharp">services.AddIdentity&lt;UserEntity, IdentityRole&gt;()
+    .AddEntityFrameworkStores&lt;BlogContext&gt;()
+    .AddDefaultTokenProviders();</pre>
         <pre class="brush: csharp">public void Configure(IApplicationBuilder app,
     IHostingEnvironment env,
     ILoggerFactory loggerFactory,
