@@ -57,10 +57,11 @@ public class CategoryApiController : Controller
         <p>Before we configure our Identity service, we first must insure out data-store is in order.  To do this, I needed to implement my existing <b>Blog Context</b> as an derived class of <b>IdentityDbContext&lt;UserEntity&gt;</b>. I set the type as <b>UserEntity</b>, which itself is a derived class of <b>IdentityUser</b>.</p>
         <p>In short, this now insure my db context has all the necessary configuration needed for Identity and my <b>UserEntity</b>  share all the base types provided by <b>IdentityUser</b> while being expendable to suite any future needs.</p>
         <h3>Configuring Identity</h3>
-        <p>Once our data store is in order, we can now add and configure our Identity Service.  In your <b>Startup.ConfigServices(IServiceCollection services)</b> function, I added the following.</p>
+        <p>Once our data store is in order, we can now add and configure our Identity Service.  In the <b>Startup.ConfigServices(IServiceCollection services)</b> function, I added the following.</p>
         <pre class="brush: csharp">services.AddIdentity&lt;UserEntity, IdentityRole&gt;()
-    .AddEntityFrameworkStores&lt;BlogContext&gt;()
-    .AddDefaultTokenProviders();</pre>
+    .AddEntityFrameworkStores&lt;BlogContext&gt;();</pre>
+        <p>This effectively adds Identity to the Pioneer Blog services collection.</p>
+        <p>Next, we need to conf</p>
         <pre class="brush: csharp">public void Configure(IApplicationBuilder app,
     IHostingEnvironment env,
     ILoggerFactory loggerFactory,
