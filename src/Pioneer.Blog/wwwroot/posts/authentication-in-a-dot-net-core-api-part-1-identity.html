@@ -11,7 +11,7 @@
         <div class="note">
           <p>In this series I am going to outline some basic approaches to authenticating your .NET Core API using either ASP.NET Core Identity or token-based authentication with a JSON Web Token (JWT).  I will also explore how to configure your application to return proper response types to both Redirect To Login and Redirect To Access Denied events when using ASP.NET Core Identity.</p>
           <ol>
-            <li>Authenticating and returning proper Responses with Identity.</li>
+            <li>Authenticating and returning proper Responses with ASP.NET Core Identity.</li>
             <li>Token authentication with JWT, JSON Web Tokens.</li>
           </ol>
         </div>
@@ -45,8 +45,14 @@ public class CategoryApiController : Controller
         <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/un-auth.jpg" target="blank" title="Unauthenticated Endpoint">
           <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/un-auth.jpg" alt="Unauthenticated Endpoint" style="max-width: 898px;" />
         </a>
-        <h2>Identity</h2>
-        <p><a href="" title="ASP.Net Core Identity" target="_blank"></a></p>
+        <h2>ASP.NET Identity</h2>
+        <blockquote>
+          ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login providers such as Facebook, Google, Microsoft Account, Twitter and more. 
+          <cite>
+            <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity" title="ASP.Net Core Identity" target="_blank">ASP.NET Core Identity</a>
+          </cite>
+        </blockquote>
+        <p>We will start out securing our api endpoints by introducing ASP.NET Core Identity in to our application.</p>
         <h3>Configuration</h3>
         <h2>Attributes</h2>
       </article>
