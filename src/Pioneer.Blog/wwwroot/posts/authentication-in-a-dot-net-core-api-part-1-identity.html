@@ -9,7 +9,7 @@
     <div class="large-10 large-push-1 columns">
       <article>
         <div class="note">
-          <p>In this series I am going to outline some basic approaches to authenticating your .NET Core API using either ASP.NET Core Identity or token-based authentication with a JSON Web Token (JWT).  I will also explore how to configure you application to return proper response types to both Redirect To Login and Redirect To Access Denied event when using ASP.NET Core Identity.</p>
+          <p>In this series I am going to outline some basic approaches to authenticating your .NET Core API using either ASP.NET Core Identity or token-based authentication with a JSON Web Token (JWT).  I will also explore how to configure your application to return proper response types to both Redirect To Login and Redirect To Access Denied events when using ASP.NET Core Identity.</p>
           <ol>
             <li>Authenticating and returning proper Responses with Identity.</li>
             <li>Token authentication with JWT, JSON Web Tokens.</li>
@@ -20,7 +20,7 @@
         <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/solution-explorer-start.jpg" target="blank" title="Solution Explorer Area API Endpoints">
           <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/solution-explorer-start.jpg" alt="Solution Explorer Area API Endpoints" style="max-width: 336px;" />
         </a>
-        <p>As you can see, I created an Area to house all my operations that are related to the administration of my site.  Notably, those that allow me to managed my blog posts. In this Area, title "Admin", lives a collection of API Controllers that correspond to the individual tables (entities) in the database.</p>
+        <p>As you can see, I created an Area to house all my operations that are related to the administration of my site.  Notably, those that allow me to managed my blog posts. In this Area, titled "Admin", lives a collection of API Controllers that correspond to the individual tables (entities) in the database.</p>
         <p class="note">For more information about creating Areas, you can visit my blog post entitled <a href="http://pioneercode.com/post/creating-areas-in-asp-net-core" target="_blank" title="Creating Areas In ASP.NET MVC Core">Creating Areas In ASP.NET MVC Core</a>. </p>
         <p>Top keep things simple lets focus one a single endpoint in a single API controller.</p>
         <pre class="brush: csharp">[Route("api/categories")]
@@ -41,12 +41,12 @@ public class CategoryApiController : Controller
         return _categoryService.GetAllPaged((int)count, (int)page);
     }
 }</pre>
-        <p>Here you can see an endpoint the maps to a GET request on the <b>api/categories</b> endpoint. If we make a request to this endpoint, we will get a collection of </p>
+        <p>Here you can see an endpoint the maps to a GET request on the <b>api/categories</b> endpoint. If we make a request to this endpoint, we will get a collection of categories with a Response of <b>200 OK</b>.</p>
         <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/un-auth.jpg" target="blank" title="Unauthenticated Endpoint">
           <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/un-auth.jpg" alt="Unauthenticated Endpoint" style="max-width: 898px;" />
         </a>
-        <p>As expected, we are getting a 200 Response which contains our collection of categories.</p>
         <h2>Identity</h2>
+        <p><a href="" title="ASP.Net Core Identity" target="_blank"></a></p>
         <h3>Configuration</h3>
         <h2>Attributes</h2>
       </article>
