@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F593D50C-BC93-4CB7-86C6-6B295F35D783}"
 	ProjectSection(SolutionItems) = preProject
@@ -9,19 +9,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F593D50C-BC9
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B15762AF-BA5F-4D2A-BB30-D497203F0A77}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Pioneer.Blog", "src\Pioneer.Blog\Pioneer.Blog.xproj", "{27E97E68-B2C0-4D67-82C1-D3725ACE28B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog", "src\Pioneer.Blog\Pioneer.Blog.csproj", "{27E97E68-B2C0-4D67-82C1-D3725ACE28B2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Pioneer.Blog.DAL", "src\Pioneer.Blog.DAL\Pioneer.Blog.DAL.xproj", "{E5ED3866-3188-4C9D-A171-D3380E052226}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.DAL", "src\Pioneer.Blog.DAL\Pioneer.Blog.DAL.csproj", "{E5ED3866-3188-4C9D-A171-D3380E052226}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Pioneer.Blog.Model", "src\Pioneer.Blog.Model\Pioneer.Blog.Model.xproj", "{2583BCEA-0C12-4599-B96E-0FD91C3F2D5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Model", "src\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj", "{2583BCEA-0C12-4599-B96E-0FD91C3F2D5F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Pioneer.Blog.Service", "src\Pioneer.Blog.Service\Pioneer.Blog.Service.xproj", "{9CD00B57-02E8-4792-B26F-62072CF44B96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Service", "src\Pioneer.Blog.Service\Pioneer.Blog.Service.csproj", "{9CD00B57-02E8-4792-B26F-62072CF44B96}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Pioneer.Blog.Repository", "src\Pioneer.Blog.Repository\Pioneer.Blog.Repository.xproj", "{67E97DDC-4716-4D1E-B78F-272A81475DBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Repository", "src\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj", "{67E97DDC-4716-4D1E-B78F-272A81475DBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
