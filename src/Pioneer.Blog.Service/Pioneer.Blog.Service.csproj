@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>Pioneer.Blog.Service</AssemblyName>
+    <PackageId>Pioneer.Blog.Service</PackageId>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pioneer.Blog.DAL\Pioneer.Blog.DAL.csproj" />
+    <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
+    <ProjectReference Include="..\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="5.2.0" />
+    <PackageReference Include="MailKit" Version="1.10.2" />
+  </ItemGroup>
+
+</Project>
