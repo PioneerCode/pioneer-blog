@@ -10,13 +10,14 @@
       <article>
         <div class="note">
           <p>In this series I am going to outline some basic approaches to authenticating your .NET Core API using either ASP.NET Core Identity or token-based authentication with a JSON Web Token (JWT).  I will also explore how to configure your application to return proper response types to both Redirect To Login and Redirect To Access Denied events when using ASP.NET Core Identity.</p>
+          <h4>Authentication In A Dot Net Core Api</h4>
           <ol>
             <li>Authenticating and returning proper Responses with ASP.NET Core Identity.</li>
             <li>Token authentication with JWT, JSON Web Tokens.</li>
           </ol>
         </div>
         <h2>Setup</h2>
-        <p>To demonstrate these concepts of Authentication, I will use the <a href="https://github.com/PioneerCode/pioneer-blog">Pioneer Code Blog</a> source code to illustrate how I secured API endpoints that allow for CRUD operations against the supporting tables in its database. That being said, lets take look at the file structure and identify where the API controllers exist today.</p>
+        <p>To demonstrate these concepts of authentication, I will use the <a href="https://github.com/PioneerCode/pioneer-blog">Pioneer Code Blog</a> source code to illustrate how I secured API endpoints that allow for CRUD operations against the supporting tables in its database. That being said, lets take look at the file structure and identify where the API controllers exist today.</p>
         <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/solution-explorer-start.jpg" target="blank" title="Solution Explorer Area API Endpoints">
           <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/solution-explorer-start.jpg" alt="Solution Explorer Area API Endpoints" style="max-width: 336px;" />
         </a>
@@ -47,15 +48,15 @@ public class CategoryApiController : Controller
         </a>
         <h2>ASP.NET Identity</h2>
         <blockquote>
-          ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login providers such as Facebook, Google, Microsoft Account, Twitter and more. 
+          ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create an account and login with a user name and password or they can use an external login providers such as Facebook, Google, Microsoft Account, Twitter and more.
           <cite>
             <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity" title="ASP.Net Core Identity" target="_blank">ASP.NET Core Identity</a>
           </cite>
         </blockquote>
-        <p>We will start out securing our api endpoints by introducing ASP.NET Core Identity in to our application. If you are working from an MVC project, Identity is available the <b>Microsoft.AspNetCore.Builder</b> lib.  Of which, is scaffold in just about every MVC project you are creating.  If you are creating an API without the "typical" MVC lib project dependencies, you might have to add a reference  to <b>&lt;PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" /&gt;</b> in you csproj file.</p>
+        <p>We will start out securing our api endpoints by introducing ASP.NET Core Identity into our application. If you are working from an MVC project, Identity is available in the <b>Microsoft.AspNetCore.Builder</b> lib.  Of which, is scaffold in just about every MVC project you are creating.  If you are creating an API without the "typical" MVC lib project dependencies, you might have to add a reference  to <b>&lt;PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" /&gt;</b> in your csproj file.</p>
         <h3>Setting up DbContext</h3>
-        <p>Before we configure our Identity service, we first must insure out data-store is in order.  To do this, I needed to implement my existing <b>Blog Context</b> as an derived class of <b>IdentityDbContext&lt;UserEntity&gt;</b>. I set the type as <b>UserEntity</b>, which itself is a derived class of <b>IdentityUser</b>.</p>
-        <p>In short, this now insure my db context has all the necessary configuration needed for Identity and my <b>UserEntity</b>  share all the base types provided by <b>IdentityUser</b> while being expendable to suite any future needs.</p>
+        <p>Before we configure our Identity service, we first must insure our database is in order.  To do this, I needed to implement my existing <b>Blog Context</b> as a derived class of <b>IdentityDbContext&lt;UserEntity&gt;</b>. I set the type as <b>UserEntity</b>, which itself is a derived class of <b>IdentityUser</b>.</p>
+        <p>In short, this now insures my db context has all the necessary configuration needed for Identity and my <b>UserEntity</b> shares all the base types provided by <b>IdentityUser</b> while being expendable to suite any future needs.</p>
         <h3>Configuring Identity</h3>
         <p>Once our data store is in order, we can now add and configure our Identity Service.  In the <b>Startup.ConfigServices(IServiceCollection services)</b> function, I added the following.</p>
         <pre class="brush: csharp">services.AddIdentity&lt;UserEntity, IdentityRole&gt;()
