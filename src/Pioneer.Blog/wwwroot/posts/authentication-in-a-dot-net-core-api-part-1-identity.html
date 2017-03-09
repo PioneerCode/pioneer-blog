@@ -72,7 +72,47 @@ public class CategoryApiController : Controller
     app.UseIdentity();
     // Add MVC
 }</pre>
-        <h2>Attributes</h2>
+        <h2>Authorization Attribute</h2>
+        <p>In order to tell Identity that we don't want to allow unauthorized user access to our endpoint, we need to add the Authorazation Attribute to either our class or directly on a method.  This depends on the the scope you want to apply to your authoration plan.</p>
+        <pre class="brush: csharp">[Authorize]
+[HttpGet]
+public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
+{
+    if (count == null || page == null)
+    {
+        return _categoryService.GetAll();
+    }
+    return _categoryService.GetAllPaged((int)count, (int)page);
+}</pre>
+        <p>Lets try hitting our api endpoint again.</p>
+        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/failed-redirect.jpg" target="blank" title="Fail and Redirect">
+          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/failed-redirect.jpg" alt="Fail and Redirect" style="max-width: 899px;" />
+        </a>
+        <p>This time around we are not getting any Categories back in the Response.  Which is great.  This is what we wanted.  But what about our Status Code being <b>200 OK</b> and the Response paylod returning HTML?  This happends because Idenity by default is configured to redirect an unauthenticated request to a login in page.  Because our request secussfully did such, by return the markup of our login in page, we get a status of <b>200 OK</b>.</p>
+        <p>This obviously does not suite our APIs needs.  That being said, lets configure our <b>IdentityOptions</b> to take in account cases where we do not want to redirect to login and instead we want to return a <b>401 Unauthorized</b> response.  In our <b>Startup.ConfigServices(IServiceCollection services)</b> method add the following.</p>
+        <pre class="brush: csharp">services.Configure&lt;IdentityOptions&gt;(config =&gt;
+{
+    config.Cookies.ApplicationCookie.Events =
+        new CookieAuthenticationEvents
+        {
+            OnRedirectToLogin = ctx =>
+            {
+                if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                {
+                    ctx.Response.StatusCode = 401;
+                    return Task.FromResult&lt;object&gt;(null);
+                }
+
+                ctx.Response.Redirect(ctx.RedirectUri);
+                return Task.FromResult&lt;object&gt;(null);
+            }
+        };
+});</pre> 
+        <p>In our <b>IdentityOptions</b> configuration, we are setting up a menas of interception an Event. The Event we will be interceptiong is the <b>OnRedirectToLogin</b> Event.  When this Event is raised, we first check our url segement to see if it starts with "/api".  If it does and the response is of the type <b>200 OK</b>, we know we have run into the exact issue identified above.  This time though we will simply return immeditaly with a status code of <b>401 Unauthorized</b>.</p>
+        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/401-identity.jpg" target="blank" title="401 Identity">
+          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/401-identity.jpg" alt="401 Identity" style="max-width: 899px;" />
+        </a>
+        <p>This time around when hitting our Categories endpoint, we are now getting a proper <b>401 Unauthorized</b> status.</p>
       </article>
     </div>
   </div>
