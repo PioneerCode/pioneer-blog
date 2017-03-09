@@ -53,16 +53,16 @@ public class CategoryApiController : Controller
             <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity" title="ASP.Net Core Identity" target="_blank">ASP.NET Core Identity</a>
           </cite>
         </blockquote>
-        <p>We will start out securing our api endpoints by introducing ASP.NET Core Identity into our application. If you are working from an MVC project, Identity is available in the <b>Microsoft.AspNetCore.Builder</b> lib.  Of which, is scaffold in just about every MVC project you are creating.  If you are creating an API without the "typical" MVC lib project dependencies, you might have to add a reference  to <b>&lt;PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" /&gt;</b> in your csproj file.</p>
+        <p>We will start out securing our API endpoints by introducing ASP.NET Core Identity into our application. If you are working on an MVC project, Identity is available in the <b>Microsoft.AspNetCore.Builder</b> lib.  Of which, is scaffold in just about every MVC project you are creating.  If you are creating an API without the "typical" MVC lib project dependencies, you might have to add a reference  to <b>&lt;PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" /&gt;</b> in your csproj file.</p>
         <h3>Setting up DbContext</h3>
-        <p>Before we configure our Identity service, we first must insure our database is in order.  To do this, I needed to implement my existing <b>Blog Context</b> as a derived class of <b>IdentityDbContext&lt;UserEntity&gt;</b>. I set the type as <b>UserEntity</b>, which itself is a derived class of <b>IdentityUser</b>.</p>
-        <p>In short, this now insures my db context has all the necessary configuration needed for Identity and my <b>UserEntity</b> shares all the base types provided by <b>IdentityUser</b> while being expendable to suite any future needs.</p>
+        <p>Before we configure our Identity service, we first must ensure our database is in order.  To do this, I needed to implement my existing <b>Blog Context</b> as a derived class of <b>IdentityDbContext&lt;UserEntity&gt;</b>. I set the type as <b>UserEntity</b>, which itself is a derived class of <b>IdentityUser</b>.</p>
+        <p>In short, this now ensures my db context has all the necessary configuration needed for Identity and my <b>UserEntity</b> shares all the base types provided by <b>IdentityUser</b> while being expendable to suite any future needs.</p>
         <h3>Configuring Identity</h3>
         <p>Once our data store is in order, we can now add and configure our Identity Service.  In the <b>Startup.ConfigServices(IServiceCollection services)</b> function, I added the following.</p>
         <pre class="brush: csharp">services.AddIdentity&lt;UserEntity, IdentityRole&gt;()
     .AddEntityFrameworkStores&lt;BlogContext&gt;();</pre>
         <p>This effectively adds Identity to the Pioneer Blog services collection.</p>
-        <p>Next, we need to tell our application to use Idenity.  This need to be done before we add MVC in order to apply authentication to our MVC calls.  Remeber that order of operation does matter when setting your apps configuration.</p>
+        <p>Next, we need to tell our application to use Identity.  This need to be done before we add MVC in order to apply authentication to our MVC calls do to order of operation concerns.</p>
         <pre class="brush: csharp">public void Configure(IApplicationBuilder app,
     IHostingEnvironment env,
     ILoggerFactory loggerFactory,
@@ -73,7 +73,7 @@ public class CategoryApiController : Controller
     // Add MVC
 }</pre>
         <h2>Authorization Attribute</h2>
-        <p>In order to tell Identity that we don't want to allow unauthorized user access to our endpoint, we need to add the Authorazation Attribute to either our class or directly on a method.  This depends on the the scope you want to apply to your authoration plan.</p>
+        <p>In order to tell Identity that we don't want to allow unauthorized user access to our endpoint, we need to add the Authorization Attribute to either our class or directly on a method.  This depends on the scope you want to apply to your authorization plan.</p>
         <pre class="brush: csharp">[Authorize]
 [HttpGet]
 public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
@@ -84,7 +84,7 @@ public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
     }
     return _categoryService.GetAllPaged((int)count, (int)page);
 }</pre>
-        <p>Lets try hitting our api endpoint again.</p>
+        <p>Lets try hitting our API endpoint again.</p>
         <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/failed-redirect.jpg" target="blank" title="Fail and Redirect">
           <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/failed-redirect.jpg" alt="Fail and Redirect" style="max-width: 899px;" />
         </a>
