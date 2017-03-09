@@ -62,7 +62,7 @@ public class CategoryApiController : Controller
         <pre class="brush: csharp">services.AddIdentity&lt;UserEntity, IdentityRole&gt;()
     .AddEntityFrameworkStores&lt;BlogContext&gt;();</pre>
         <p>This effectively adds Identity to the Pioneer Blog services collection.</p>
-        <p>Next, we need to conf</p>
+        <p>Next, we need to tell our application to use Idenity.  This need to be done before we add MVC in order to apply authentication to our MVC calls.  Remeber that order of operation does matter when setting your apps configuration.</p>
         <pre class="brush: csharp">public void Configure(IApplicationBuilder app,
     IHostingEnvironment env,
     ILoggerFactory loggerFactory,
@@ -70,9 +70,8 @@ public class CategoryApiController : Controller
 {
     // Shortened.....
     app.UseIdentity();
+    // Add MVC
 }</pre>
-        <p>Now lets configure our service</p>
-        <h3>Configuration</h3>
         <h2>Attributes</h2>
       </article>
     </div>
