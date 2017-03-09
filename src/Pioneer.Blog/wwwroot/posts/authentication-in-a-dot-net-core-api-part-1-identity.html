@@ -89,7 +89,7 @@ public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
           <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/failed-redirect.jpg" alt="Fail and Redirect" style="max-width: 899px;" />
         </a>
         <p>This time around we are not getting any Categories back in the Response.  Which is great.  This is what we wanted.  But what about our Status Code being <b>200 OK</b> and the Response paylod returning HTML?  This happends because Idenity by default is configured to redirect an unauthenticated request to a login in page.  Because our request secussfully did such, by return the markup of our login in page, we get a status of <b>200 OK</b>.</p>
-        <p>This obviously does not suite our APIs needs.  That being said, lets configure our <b>IdentityOptions</b> to take in account cases where we do not want to redirect to login and instead we want to return a <b>401 Unauthorized</b> response.  In our <b>Startup.ConfigServices(IServiceCollection services)</b> method add the following.</p>
+        <p>This obviously does not suit our APIs needs.  That being said, let's configure our <b>IdentityOptions</b> to take in account cases where we do not want to redirect to login and instead we want to return a <b>401 Unauthorized</b> response.  In our <b>Startup.ConfigServices(IServiceCollection services)</b> method add the following.</p>
         <pre class="brush: csharp">services.Configure&lt;IdentityOptions&gt;(config =&gt;
 {
     config.Cookies.ApplicationCookie.Events =
