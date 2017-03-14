@@ -107,12 +107,37 @@ public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
                 return Task.FromResult&lt;object&gt;(null);
             }
         };
-});</pre> 
-        <p>In our <b>IdentityOptions</b> configuration, we are setting up a way to intercept an Event. The Event we will be intercepting is the <b>OnRedirectToLogin</b> Event.  When this Event is raised, we first check our URL segment to see if it starts with "/api".  If it does and the response is of the type <b>200 OK</b>, we know we have run into the exact issue identified above.  This time though we will return immeditaley with a status code of <b>401 Unauthorized</b>.</p>
+});</pre>
+        <p>In our <b>IdentityOptions</b> configuration we are setting up a way to intercept an Event, of which is the <b>OnRedirectToLogin</b> Event.  When this Event is raised, we first check our URL segment to see if it starts with "/api".  If it does and the response is of the type <b>200 OK</b>, we know we have run into the exact issue identified above.  This time though, we will return immediately with a status code of <b>401 Unauthorized</b>.</p>
         <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/401-identity.jpg" target="blank" title="401 Identity">
           <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/401-identity.jpg" alt="401 Identity" style="max-width: 899px;" />
         </a>
         <h2>Authenticating</h2>
+        <p>None that we have effectively denied access to our route, we need a way to grant access.  To do this with Identity, we need to create a account the <b>Microsoft.AspNetCore.Identity.UserManager&lt;UserEntity&gt;</b> class.  I accomplished in my <b>AccountController</b> with the following code.</p>
+        <pre class="brush: csharp">[HttpPost]
+[AllowAnonymous]
+[ValidateAntiForgeryToken]
+public async Task&lt;IActionResult&gt; Register(RegisterViewModel model, string returnUrl = null)
+{
+    ViewData[&quot;ReturnUrl&quot;] = returnUrl;
+
+    if (!ModelState.IsValid) return View(model);
+
+    var user = new UserEntity { UserName = model.Email, Email = model.Email };
+    var result = await _userManager.CreateAsync(user, model.Password);
+    if (result.Succeeded)
+    {
+        await _signInManager.SignInAsync(user, false);
+        return RedirectToLocal(returnUrl);
+    }
+
+    AddErrors(result);
+
+    // If we got this far, something failed, redisplay form
+    return View(model);
+}</pre>
+        <p>In short, a POST request is preformed against this route with the necessary information in its payload needed to create a new account.  Supporting functionality such as logging a user in, is also illustrated in the <b>AccountController</b> of this project.  I encourage you to take a look at the latest version of this controller in the <a href="https://github.com/PioneerCode/pioneer-blog">Pioneer Code Blog</a> repository.</p>
+        <p>Once we have an account setup with Identity, we need to login to get the necessary cookie payload used to pass authentication with Identity. </p>
       </article>
     </div>
   </div>

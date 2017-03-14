@@ -13,10 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-1-identity\great-success.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="wwwroot\**\*;Views\**\*.cshtml;logs\**\*;robots.txt">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
