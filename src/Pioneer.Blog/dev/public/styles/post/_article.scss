@@ -8,32 +8,34 @@
 @import "previous-next";
 
 article {
-    a {
-        img {
-            margin: 0 0 1rem;
-        }
-    }
+  a {
+    font-weight: bold;
 
-    h5 {
-        border-left: 2px solid $dark-gray;
-        padding-left: 0.5rem;
-        letter-spacing: 0.4px;
-        margin-bottom: 1rem;
-        font-size: 18px;
+    img {
+      margin: 0 0 1rem;
     }
+  }
 
-    footer {
-        padding: 1rem 0 0.5rem 0;
-        margin: 0 0 2rem 0;
-    }
+  h5 {
+    border-left: 2px solid $dark-gray;
+    padding-left: 0.5rem;
+    letter-spacing: 0.4px;
+    margin-bottom: 1rem;
+    font-size: 18px;
+  }
+
+  footer {
+    padding: 1rem 0 0.5rem 0;
+    margin: 0 0 2rem 0;
+  }
 }
 
 article.post {
-    @include breakpoint(medium up) {
-        .title {
-            margin: 15px 0 0;
-            line-height: 75px;
-            font-size: 70px;
-        }
+  @include breakpoint(medium up) {
+    .title {
+      margin: 15px 0 0;
+      line-height: 75px;
+      font-size: 70px;
     }
+  }
 }

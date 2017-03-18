@@ -12,14 +12,21 @@
           <p>In this series I am going to outline some basic approaches to authenticating your .NET Core API using either ASP.NET Core Identity or token-based authentication with a JSON Web Token (JWT).  I will also explore how to configure your application to return proper response types to both Redirect To Login and Redirect To Access Denied events when using ASP.NET Core Identity.</p>
           <h4>Authentication In A Dot Net Core Api</h4>
           <ol>
-            <li>Authenticating and returning proper Responses with ASP.NET Core Identity.</li>
-            <li>Token authentication with JWT, JSON Web Tokens.</li>
+            <li>
+              <a href="" title="ASP.NET Core Identity Access Denied" target="_blank">ASP.NET Core Identity, Accessed Denied.</a>
+            </li>
+            <li>
+              <a href="" title="ASP.NET Core Identity Access Granted" target="_blank">ASP.NET Core Identity, Accessed Granted. (Coming Soon)</a>
+            </li>
+            <li>
+              <a href="" title="Token authentication with JWT, JSON Web Tokens" target="_blank">Token authentication with JWT, JSON Web Tokens. (Coming Soon)</a>
+            </li>
           </ol>
         </div>
         <h2>Setup</h2>
         <p>To demonstrate these concepts of authentication, I will use the <a href="https://github.com/PioneerCode/pioneer-blog">Pioneer Code Blog</a> source code to illustrate how I secured API endpoints that allow for CRUD operations against the supporting tables in its database. That being said, lets take look at the file structure and identify where the API controllers exist today.</p>
-        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity/solution-explorer-start.jpg" target="blank" title="Solution Explorer Area API Endpoints">
-          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity/solution-explorer-start.jpg" alt="Solution Explorer Area API Endpoints" style="max-width: 336px;" />
+        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/solution-explorer-start.jpg" target="blank" title="Solution Explorer Area API Endpoints">
+          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/solution-explorer-start.jpg" alt="Solution Explorer Area API Endpoints" style="max-width: 336px;" />
         </a>
         <p>As you can see, I created an Area to house all my operations that are related to the administration of my site.  Notably, those that allow me to managed my blog posts. In this Area, titled "Admin", lives a collection of API Controllers that correspond to the individual tables (entities) in the database.</p>
         <p class="note">For more information about creating Areas, you can visit my blog post entitled <a href="http://pioneercode.com/post/creating-areas-in-asp-net-core" target="_blank" title="Creating Areas In ASP.NET MVC Core">Creating Areas In ASP.NET MVC Core</a>. </p>
