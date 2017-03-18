@@ -13,6 +13,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-1-identity-access denied\401-identity.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-1-identity-access denied\failed-redirect.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-1-identity-access denied\solution-explorer-start.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-1-identity-access denied\un-auth.jpg" />
+    <Content Include="wwwroot\posts\authentication-in-a-dot-net-core-api-part-1-identity-access-denied - Copy.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\posts\authentication-in-a-dot-net-core-api-part-1-identity-access-denied.html" />
+    <Content Include="wwwroot\posts\authentication-in-a-dot-net-core-api-part-2-identity-access-granted.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="wwwroot\**\*;Views\**\*.cshtml;logs\**\*;robots.txt">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
@@ -50,6 +62,10 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-2-identity-access-granted\" />
   </ItemGroup>
 
 </Project>
