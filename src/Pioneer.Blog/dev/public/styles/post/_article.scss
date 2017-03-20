@@ -9,7 +9,7 @@
 
 article {
   a {
-    font-weight: bold;
+
 
     img {
       margin: 0 0 1rem;
@@ -27,6 +27,12 @@ article {
   footer {
     padding: 1rem 0 0.5rem 0;
     margin: 0 0 2rem 0;
+  }
+}
+
+.post {
+  a {
+    font-weight: bold;
   }
 }
 

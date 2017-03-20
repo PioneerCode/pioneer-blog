@@ -1,22 +1,26 @@
 ﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 
 .popular-posts {
-    border-bottom: 1px solid $black;
+  border-bottom: 1px solid $black;
 
-    p {
-        line-height: 1.25rem;
-        margin: 0;
-    }
+  p {
+    line-height: 1.25rem;
+    margin: 0;
+  }
+
+  a {
+    display: block;
+  }
+
+  .category {
+    margin: 5px 0 0;
 
     a {
-        display: block;
+      font-weight: normal;
     }
+  }
 
-    .category {
-        margin: 5px 0 0;
-    }
-
-    .content {
-        margin: 0 0 1rem 0;
-    }
+  .content {
+    margin: 0 0 1rem 0;
+  }
 }
