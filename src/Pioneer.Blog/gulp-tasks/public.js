@@ -68,7 +68,6 @@ function libs() {
     'bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.js',
     'bower_components/foundation-sites/dist/js/plugins/foundation.util.nest.js',
     'bower_components/foundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader.js',
-    'scripts/parallax.js',
     'bower_components/smooth-scroll.js/dist/js/smooth-scroll.min.js',
     'scripts/syntaxhighlighter.js'
   ])
