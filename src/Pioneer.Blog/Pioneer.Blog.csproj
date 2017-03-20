@@ -13,12 +13,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-1-identity-access denied\401-identity.jpg" />
-    <Content Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-1-identity-access denied\failed-redirect.jpg" />
-    <Content Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-1-identity-access denied\solution-explorer-start.jpg" />
-    <Content Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-1-identity-access denied\un-auth.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\401-identity.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied-icon.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied-sm.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\failed-redirect.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\solution-explorer-start.jpg" />
+    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\un-auth.jpg" />
+    <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied.html" />
     <Content Include="wwwroot\posts\authentication-in-a-dot-net-core-api-part-1-identity-access-denied.html" />
-    <Content Include="wwwroot\posts\authentication-in-a-dot-net-core-api-part-2-identity-access-granted.html" />
+    <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,7 +66,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\authentication-in-a-dot-net-core-api-part-2-identity-access-granted\" />
+    <Folder Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted\" />
   </ItemGroup>
 
 </Project>

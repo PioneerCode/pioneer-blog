@@ -13,7 +13,7 @@
           <h4>Authentication In A Dot Net Core API</h4>
           <ol style="margin-bottom: 0;">
             <li>
-              <a href="/posts/authentication-in-a-dot-net-core-api-part-1-identity-access-denied.html" title="ASP.NET Core Identity Access Denied" target="_blank">ASP.NET Core Identity, Accessed Denied.</a>
+              <a href="/posts/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied.html" title="ASP.NET Core Identity Access Denied" target="_blank">ASP.NET Core Identity, Accessed Denied.</a>
             </li>
             <li>
               <a href="" title="ASP.NET Core Identity Access Granted" target="_blank">ASP.NET Core Identity, Accessed Granted. (Coming Soon)</a>
@@ -25,8 +25,8 @@
         </div>
         <h2>Setup</h2>
         <p>To demonstrate these concepts of authentication, I will use the <a href="https://github.com/PioneerCode/pioneer-blog">Pioneer Code Blog</a> source code to illustrate how I secured API endpoints that allow for CRUD operations against the supporting tables in its database. That being said, let's take look at the file structure and identify where the API controllers exist today.</p>
-        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/solution-explorer-start.jpg" target="blank" title="Solution Explorer Area API Endpoints">
-          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/solution-explorer-start.jpg" alt="Solution Explorer Area API Endpoints" style="max-width: 336px;" />
+        <a href="/images/authentication-in-a-asp-dot-net-core-api-part-1-identity-access denied/solution-explorer-start.jpg" target="blank" title="Solution Explorer Area API Endpoints">
+          <img src="/images/authentication-in-a-asp-dot-net-core-api-part-1-identity-access denied/solution-explorer-start.jpg" alt="Solution Explorer Area API Endpoints" style="max-width: 336px;" />
         </a>
         <p>As you can see, I created an Area to house all my operations that are related to the administration of my site.  Notably, those that allow me to managed my blog posts. In the Area titled "Admin" lives a collection of API Controllers that correspond to individual tables (entities) in the database.</p>
         <p class="note">For more information about creating Areas, you can visit my blog post entitled <a href="http://pioneercode.com/post/creating-areas-in-asp-net-core" target="_blank" title="Creating Areas In ASP.NET MVC Core">Creating Areas In ASP.NET MVC Core</a>. </p>
@@ -35,10 +35,12 @@
 public class CategoryApiController : Controller
 {
     private readonly ICategoryService _categoryService;
+
     public CategoryApiController(ICategoryService categoryService)
     {
         _categoryService = categoryService;
     }
+
     [HttpGet]
     public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
     {
@@ -46,12 +48,13 @@ public class CategoryApiController : Controller
         {
             return _categoryService.GetAll();
         }
+
         return _categoryService.GetAllPaged((int)count, (int)page);
     }
 }</pre>
         <p>Here you can see an endpoint the maps to a GET request on the <b>api/categories</b> endpoint. If we make a request to this endpoint, we will get a collection of categories with a Response of <b>200 OK</b>.</p>
-        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/un-auth.jpg" target="blank" title="Unauthenticated Endpoint">
-          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/un-auth.jpg" alt="Unauthenticated Endpoint" style="max-width: 898px;" />
+        <a href="/images/authentication-in-a-asp-dot-net-core-api-part-1-identity-access denied/un-auth.jpg" target="blank" title="Unauthenticated Endpoint">
+          <img src="/images/authentication-in-a-asp-dot-net-core-api-part-1-identity-access denied/un-auth.jpg" alt="Unauthenticated Endpoint" style="max-width: 898px;" />
         </a>
         <h2>ASP.NET Identity</h2>
         <blockquote>
@@ -89,11 +92,12 @@ public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
     {
         return _categoryService.GetAll();
     }
+
     return _categoryService.GetAllPaged((int)count, (int)page);
 }</pre>
         <p>Let's try hitting our API endpoint again.</p>
-        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/failed-redirect.jpg" target="blank" title="Fail and Redirect">
-          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/failed-redirect.jpg" alt="Fail and Redirect" style="max-width: 899px;" />
+        <a href="/images/authentication-in-a-asp-dot-net-core-api-part-1-identity-access denied/failed-redirect.jpg" target="blank" title="Fail and Redirect">
+          <img src="/images/authentication-in-a-asp-dot-net-core-api-part-1-identity-access denied/failed-redirect.jpg" alt="Fail and Redirect" style="max-width: 899px;" />
         </a>
         <p>This time around we are not getting any Categories back in the Response.  Which is great, this is what we wanted.  But what about our Status Code being <b>200 OK</b> and the Response payload returning HTML?  This happened because Identity by default is configured to redirect an unauthenticated request to a login in page.</p>
         <p>This obviously does not suit our APIs needs.  That being said, let's configure our <b>IdentityOptions</b> to take in account cases where we do not want to redirect to login and instead we want to return a <b>401 Unauthorized</b> response.  In the <b>Startup.ConfigServices(IServiceCollection services)</b> method add the following.</p>
@@ -116,8 +120,8 @@ public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
         };
 });</pre>
         <p>In the <b>IdentityOptions</b> configuration we are setting up a way to intercept an Event, of which is the <b>OnRedirectToLogin</b> Event.  When this Event is raised, we first check our URL segment to see if it starts with "/api".  If it does and the response is of type <b>200 OK</b>, we know we have run into the exact issue identified above.  This time, we will return immediately with a status code of <b>401 Unauthorized</b>.</p>
-        <a href="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/401-identity.jpg" target="blank" title="401 Identity">
-          <img src="/images/authentication-in-a-dot-net-core-api-part-1-identity-access denied/401-identity.jpg" alt="401 Identity" style="max-width: 899px;" />
+        <a href="/images/authentication-in-a-asp-dot-net-core-api-part-1-identity-access denied/401-identity.jpg" target="blank" title="401 Identity">
+          <img src="/images/authentication-in-a-asp-dot-net-core-api-part-1-identity-access denied/401-identity.jpg" alt="401 Identity" style="max-width: 899px;" />
         </a>
         <p>That is it!  We now have a way to block access to API endpoints of our choosing using Identity.  In the next part of this series, I will talk about adding a way to register a user using Identity and allowing access to API endpoints that require authentication.</p>
       </article>

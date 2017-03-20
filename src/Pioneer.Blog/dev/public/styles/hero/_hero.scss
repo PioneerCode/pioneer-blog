@@ -4,42 +4,44 @@
 @import "post-card-hero";
 
 .hero-gradient {
+  background-attachment: fixed;
+  background-position: top center;
+  background-size: cover;
+  position: relative;
+  background: transparent;
+  text-align: center;
+  color: $white;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    position: relative;
-    background: transparent;
-    text-align: center;
+    display: block;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+  }
+
+  h1 {
+    font-weight: 300;
+  }
+
+  a {
     color: $white;
 
-    &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        display: block;
+    &:hover {
+      color: $white;
+      text-decoration: none;
     }
-
-    &:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        display: block;
-    }
-
-    h1 {
-        font-weight: 300;
-    }
-
-    a {
-        color: $white;
-
-        &:hover {
-            color: $white;
-            text-decoration: none;
-        }
-    }
+  }
 }
 
 .hero-gradient-content {
