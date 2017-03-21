@@ -14,26 +14,36 @@
     }
 }
 
+.post a.article-meta-data-section, .post .article-meta-data-section {
+  font-weight: normal;
+
+  a {
+    font-weight: normal;
+  }
+}
+
 .article-meta-data-section {
+  color: $white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1rem 0;
+  display: block;
+
+
+  @include breakpoint(medium up) {
+    display: table-cell;
+  }
+
+  a {
     color: $white;
-    text-align: center;
-    vertical-align: middle;
-    padding: 1rem 0;
-    display: block;
+    font-weight: normal;
 
-    @include breakpoint(medium up) {
-        display: table-cell;
+    &:hover {
+      color: $primary-color;
+      text-decoration: none;
+      transition: ease all .3s;
     }
-
-    a {
-        color: $white;
-
-        &:hover {
-            color: $primary-color;
-            text-decoration: none;
-            transition: ease all .3s;
-        }
-    }
+  }
 }
 
 a.article-meta-data-section {

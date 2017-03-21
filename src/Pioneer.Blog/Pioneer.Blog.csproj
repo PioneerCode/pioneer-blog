@@ -21,7 +21,6 @@
     <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\solution-explorer-start.jpg" />
     <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\un-auth.jpg" />
     <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied.html" />
-    <Content Include="wwwroot\posts\authentication-in-a-dot-net-core-api-part-1-identity-access-denied.html" />
     <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted.html" />
   </ItemGroup>
 
