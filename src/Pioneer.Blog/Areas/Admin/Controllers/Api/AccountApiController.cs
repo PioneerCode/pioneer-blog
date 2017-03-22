@@ -22,7 +22,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] AccountRegister model)
+        public async Task<IActionResult> Create([FromBody] AccountRegisterLogin model)
         {
             if (!ModelState.IsValid)
             {
@@ -38,6 +38,24 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
             }
 
             await _signInManager.SignInAsync(user, false);
+
+            return Ok();
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] AccountRegisterLogin model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, lockoutOnFailure: false);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest();
+            }
 
             return Ok();
         }
