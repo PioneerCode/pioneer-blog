@@ -22,6 +22,7 @@
     <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\un-auth.jpg" />
     <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied.html" />
     <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted.html" />
+    <Content Include="wwwroot\posts\buiding-and-debugging-the-dot-net-new-templating-engine-in-visual-studio.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +67,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted\" />
+    <Folder Include="wwwroot\images\buiding-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\" />
   </ItemGroup>
 
 </Project>

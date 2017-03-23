@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <link href="/app.css" rel="stylesheet" />
+  <script src="/app.js"></script>
+</head>
+<body>
+  <div class="row">
+    <div class="large-10 large-push-1 columns">
+      <article>
+        <p>Recently the folks at Microsoft have blessed us with a brand new Template Engine, of which is invoked by <b>dotnet new</b> command in the .NET Core command-line (CLI) interface. There has been a lot of buzz around it lately and for good reason.  With it comes the ability to create and scaffold templates that will suite just about any need. In its early stages it already has a slew of features available to it and by the looks of its corresponding <a href="https://github.com/dotnet/templating" title="DotNet Template GitHub Repository">GitHub repository</a>, there is a lot promise for it moving forward.</p>
+        <p>Those who are going to want to contribute to this project or are simply interested in having the latest development features available to them are going to need to understand how to work directly with the Template Engine code. With help from a few members Template Engine team, I have recently have gone through the pain of early adoption and have managed to figure out how to build and debug the code. Following I will outline the steps needed to so such using Visual Studio.</p>
+        <h2>Getting The Code</h2>
+        <p>As noted above, the <a href="https://github.com/dotnet/templating" title="DotNet Template GitHub Repository">Template Engine's</a> official repository lives on GitHub. Depending on your intentions, you are going to want to do one of two things.</p>
+        <ol>
+          <li>If you plan on contributing to the code-base, you will want to fork the repository to your own account and clone directly form there.</li>
+          <li>If you are simply looking to produce a build of the latest code, you can clone directly from the Template Engine repository.</li>
+        </ol>
+        <p>It is worth noting that the current "default" branch is the working development branch. The "master" branch is the build branch and it does not accept contributions directly.</p>
+        <h2>Building & Running</h2>
+        <p>Now that you have the code locally, open up a command prompt and navigation to the root of the repository.  Here you will find two "setup" scripts.  <b>Setup.cmd</b> which is for Windows and <b>Setup.sh</b> which is for Mac or Linux.  Based on your environment, run the appropriate script. This will kick of a series of automated build steps that will create a new command, <b>dotnet new3</b>, and make it available in your command line.</p>
+        <p>The entire build takes about a minute to complete and you should end up with something similar to the following.</p>
+        <a href="/images/buiding-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/build-success.png" title="Successful Template Engine Build" target="_blank">
+          <img src="/images/buiding-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/build-success.png" style="max-width: 979px;" alt="Successful Template Engine Build" />
+        </a>
+        <p>Now that we have a successful build, we can start passing arguments against the newly added <b>dotnet new3</b> command.  Anything that is available in <b>dotnet new</b> should be available in <b>dotnet new3</b> plus any additional features that are available in the development branch you used for the build.  For more info on what currently is in development, I would recommend keeping and eye on the repository <a href="https://github.com/dotnet/templating/issues" title="DotNet Template GitHub Issues">Issues</a> and <a href="https://github.com/dotnet/templating/projects" title="DotNet Template GitHub Repository">Projects</a> pages.</p>
+        <p>It is worth mentioning that the life-cycle of your current build is limited to your current command-line session. Meaning, when you close the command line that session will be terminated. Of which will require to re-build the next time you open up a new session.</p>
+        <h2>Debugging</h2>
+
+      </article>
+    </div>
+  </div>
+</body>
+</html>
