@@ -20,9 +20,18 @@
     <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\failed-redirect.jpg" />
     <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\solution-explorer-start.jpg" />
     <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\un-auth.jpg" />
+    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\attach.png" />
+    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\breakpoint.png" />
+    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\build-success.png" />
+    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\debug-mode.png" />
+    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\debug.png" />
+    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\hit.png" />
+    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\newline.png" />
+    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\setup.png" />
     <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied.html" />
     <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted.html" />
     <Content Include="wwwroot\posts\buiding-and-debugging-the-dot-net-new-templating-engine-in-visual-studio.html" />
+    <Content Include="wwwroot\posts\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,7 +76,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted\" />
-    <Folder Include="wwwroot\images\buiding-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\" />
   </ItemGroup>
 
 </Project>
