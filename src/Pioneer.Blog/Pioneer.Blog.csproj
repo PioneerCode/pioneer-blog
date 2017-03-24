@@ -23,6 +23,7 @@
     <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\attach.png" />
     <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\breakpoint.png" />
     <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\build-success.png" />
+    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio-sm.jpg" />
     <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\debug-mode.png" />
     <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\debug.png" />
     <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\hit.png" />
