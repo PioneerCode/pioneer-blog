@@ -31,7 +31,7 @@
     <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\setup.png" />
     <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied.html" />
     <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted.html" />
-    <Content Include="wwwroot\posts\buiding-and-debugging-the-dot-net-new-templating-engine-in-visual-studio.html" />
+    <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-3-json-web-token.html" />
     <Content Include="wwwroot\posts\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio.html" />
   </ItemGroup>
 
@@ -77,6 +77,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted\" />
+    <Folder Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-3-json-web-token\" />
   </ItemGroup>
 
 </Project>
