@@ -47,11 +47,12 @@ namespace Pioneer.Blog.Controllers.Web
         public ActionResult Tag(string id, int page = 1)
         {
             var posts = _postService.GetAllByTag(id, 4, page).ToList();
+            var tag = posts[0].Tags.Where(x => x.Url == id).ToList()[0].Name;
             ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(_postService.GetTotalNumberOfPostByTag(id), page, 4);
 
             ViewBag.Title = _tagService.GetTagNameFromTagUrlInTagCollection(id, posts[0].Tags.ToList());
-            ViewBag.Description = "Pioneer Code Blog Tag Archives - " + ViewBag.Tag;
-            ViewBag.Header = "Tag : " + posts[0].Tags.ElementAt(0).Name;
+            ViewBag.Description = "Pioneer Code Blog Tag Archives - " + tag;
+            ViewBag.Header = "Tag : " + tag;
             ViewBag.Pager = "tag/" + id;
             ViewBag.Selected = "blog";
 
@@ -69,7 +70,7 @@ namespace Pioneer.Blog.Controllers.Web
             var posts = _postService.GetAllByCategory(id, 4, page).ToList();
             ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(_postService.GetTotalNumberOfPostsByCategory(id), page, 4);
 
-            ViewBag.Description = "Pioneer Code Blog Category Archives - " + ViewBag.Tag;
+            ViewBag.Description = "Pioneer Code Blog Category Archives - " + posts[0].Category.Name;
             ViewBag.Header = "Category : " + posts[0].Category.Name;
             ViewBag.Title = posts[0].Category.Name;
             ViewBag.Pager = "category/" + id;
