@@ -9,7 +9,7 @@ namespace Pioneer.Blog.Controllers.Web
         /// </summary>
         public IActionResult Index()
         {
-            ViewBag.Description = "About Pioneer Code and Chad Ramos";
+            ViewBag.Description = "Learn more about Chad Ramos and Pioneer Code, .NET, C#, The Web, Open Source, Programming and more.";
             ViewBag.Selected = "about";
             return View();
         }

@@ -23,7 +23,7 @@ namespace Pioneer.Blog.Controllers.Web
         /// </summary>
         public IActionResult Index()
         {
-            ViewBag.Description = "Contact the folks at Pioneer Code.";
+            ViewBag.Description = "Contact Chad Ramos at Pioneer Code. .NET, C#, The Web, Open Source, Programming and more.";
             ViewBag.IsValid = true;
             ViewBag.Selected = "contact";
             return View();
