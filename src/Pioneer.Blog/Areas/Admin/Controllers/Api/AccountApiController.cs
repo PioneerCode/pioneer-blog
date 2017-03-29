@@ -120,7 +120,9 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         /// <summary>
-        /// Generate Token Claims based on valid User
+        /// Generate additional JWT Token Claims.
+        /// Use to any additional claims you might need.
+        /// https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#rfc.section.4
         /// </summary>
         private static IEnumerable<Claim> GetTokenClaims(UserEntity user)
         {
