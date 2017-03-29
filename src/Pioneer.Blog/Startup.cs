@@ -116,7 +116,6 @@ namespace Pioneer.Blog
                 }
             });
 
-
             ConfigureSecurity(app);
             ConfigureMvc(app);
         }
@@ -169,10 +168,10 @@ namespace Pioneer.Blog
                 TokenValidationParameters = new TokenValidationParameters
                 {
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("AppConfiguration:Key").Value)),
-                    ValidAudience = Configuration.GetSection("Configuration:SiteUrl").Value,
+                    ValidAudience = Configuration.GetSection("AppConfiguration:SiteUrl").Value,
                     ValidateIssuerSigningKey = true,
                     ValidateLifetime = true,
-                    ValidIssuer = Configuration.GetSection("Configuration:SiteUrl").Value
+                    ValidIssuer = Configuration.GetSection("AppConfiguration:SiteUrl").Value
                 }
             });
 
