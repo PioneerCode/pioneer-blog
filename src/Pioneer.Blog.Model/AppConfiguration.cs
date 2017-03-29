@@ -18,5 +18,6 @@ namespace Pioneer.Blog.Model
         public string SiteUrl { get; set; }
         public string GoogleAnalyticsId { get; set; }
         public List<int> PopularPosts { get; set; }
+        public string Key { get; set; }
     }
 }
