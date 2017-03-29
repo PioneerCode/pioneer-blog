@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using Pioneer.Blog.DAL;
 using Pioneer.Blog.DAL.Entites;
@@ -114,8 +116,66 @@ namespace Pioneer.Blog
                 }
             });
 
-            app.UseIdentity();
+            ConfigureSecurity(app);
             ConfigureMvc(app);
+        }
+
+        private static void ConfigureServicesIdentity(IServiceCollection services)
+        {
+            services.AddIdentity<UserEntity, IdentityRole>()
+                .AddEntityFrameworkStores<BlogContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(config =>
+            {
+                config.Cookies.ApplicationCookie.Events =
+                    new CookieAuthenticationEvents
+                    {
+                        OnRedirectToLogin = ctx =>
+                        {
+                            // If we were redirect to login from api..
+                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                            {
+                                ctx.Response.StatusCode = 401;
+                                return Task.FromResult<object>(null);
+                            }
+
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                            return Task.FromResult<object>(null);
+                        },
+                        OnRedirectToAccessDenied = ctx =>
+                        {
+                            // If access is denied from api...
+                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                            {
+                                ctx.Response.StatusCode = 403;
+                                return Task.FromResult<object>(null);
+                            }
+
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                            return Task.FromResult<object>(null);
+                        }
+                    };
+            });
+        }
+
+        private  void ConfigureSecurity(IApplicationBuilder app)
+        {
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("AppConfiguration:Key").Value)),
+                    ValidAudience = Configuration.GetSection("AppConfiguration:SiteUrl").Value,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ValidIssuer = Configuration.GetSection("AppConfiguration:SiteUrl").Value
+                }
+            });
+
+            app.UseIdentity();
         }
 
         private static void ConfigureMvc(IApplicationBuilder app)
@@ -175,45 +235,6 @@ namespace Pioneer.Blog
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
-
-        private static void ConfigureServicesIdentity(IServiceCollection services)
-        {
-            services.AddIdentity<UserEntity, IdentityRole>()
-                .AddEntityFrameworkStores<BlogContext>()
-                .AddDefaultTokenProviders();
-
-            services.Configure<IdentityOptions>(config =>
-            {
-                config.Cookies.ApplicationCookie.Events =
-                    new CookieAuthenticationEvents
-                    {
-                        OnRedirectToLogin = ctx =>
-                        {
-                            // If we were redirect to login from api..
-                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
-                            {
-                                ctx.Response.StatusCode = 401;
-                                return Task.FromResult<object>(null);
-                            }
-
-                            ctx.Response.Redirect(ctx.RedirectUri);
-                            return Task.FromResult<object>(null);
-                        },
-                        OnRedirectToAccessDenied = ctx =>
-                        {
-                            // If access is denied from api...
-                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
-                            {
-                                ctx.Response.StatusCode = 403;
-                                return Task.FromResult<object>(null);
-                            }
-
-                            ctx.Response.Redirect(ctx.RedirectUri);
-                            return Task.FromResult<object>(null);
-                        }
-                    };
             });
         }
     }

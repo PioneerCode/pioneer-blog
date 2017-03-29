@@ -2,7 +2,7 @@
 
 namespace Pioneer.Blog.Model
 {
-    public class AccountRegisterLogin
+    public class UserRegisterAuthenticate
     {
         [Required]
         [EmailAddress]
