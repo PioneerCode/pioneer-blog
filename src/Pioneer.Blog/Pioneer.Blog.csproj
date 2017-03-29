@@ -13,6 +13,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot/images.rar" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\401-identity.jpg" />
     <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied-icon.jpg" />
     <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied-sm.jpg" />
