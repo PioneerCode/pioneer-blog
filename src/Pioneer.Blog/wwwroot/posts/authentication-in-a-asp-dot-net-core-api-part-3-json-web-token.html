@@ -23,7 +23,7 @@
             </li>
           </ol>
         </div>
-        <p>In part 2 (<a href="/post/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted" target="_blank">ASP.NET Core Identity, Accessed Granted.</a>) of this series, I explored how to create a valid user using Identity and grant access to your ASP.NET Core API endpoints with that user.  In this post, I will show you how I provide a JSON Web Token (JWT) to a valid user and use that token to authenticate the user using the <b>JwtBearerAppBuilderExtensions</b> middleware.</p>
+        <p>In part 2 (<a href="/post/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted" target="_blank">ASP.NET Core Identity, Accessed Granted.</a>) of this series, I explored how to create a valid user using Identity and grant access to your ASP.NET Core API endpoints with that user.  In this post, I will show you how I provide a JSON Web Token (JWT) to a valid user and use that token to authenticate the user using the <b>JwtBearerMiddleware </b> middleware.</p>
         <h2>Bearer Middleware: Access Denied</h2>
         <p>To start off, I pulled in the <b>Microsoft.AspNetCore.Authentication.JwtBearer</b> NuGet package into my project.  This package contains the necessary extensions needed to validate a bearer token, consume and decrypt header-payload data associated with a valid token, and have the token authentication pipeline sit nicely aside ASP.NET Core Identity.</p>
         <a href="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/nuget.png" target="blank" title="Bearer Nuget Package">
