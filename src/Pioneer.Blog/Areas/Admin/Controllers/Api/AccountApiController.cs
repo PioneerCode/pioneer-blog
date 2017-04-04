@@ -124,14 +124,14 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         /// Use to any additional claims you might need.
         /// https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#rfc.section.4
         /// </summary>
-        private static IEnumerable<Claim> GetTokenClaims(UserEntity user)
-        {
-            return new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
-            };
-        }
+private static IEnumerable<Claim> GetTokenClaims(UserEntity user)
+{
+    return new List<Claim>
+    {
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
+    };
+}
     }
 }
 #endif

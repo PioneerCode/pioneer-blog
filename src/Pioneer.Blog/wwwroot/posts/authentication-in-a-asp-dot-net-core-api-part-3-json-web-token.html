@@ -36,18 +36,118 @@
     AutomaticChallenge = true,
     TokenValidationParameters = new TokenValidationParameters
     {
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("AppConfiguration:Key").Value)),
-        ValidAudience = Configuration.GetSection("AppConfiguration:SiteUrl").Value,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection(&quot;AppConfiguration:Key&quot;).Value)),
+        ValidAudience = Configuration.GetSection(&quot;AppConfiguration:SiteUrl&quot;).Value,
         ValidateIssuerSigningKey = true,
         ValidateLifetime = true,
-        ValidIssuer = Configuration.GetSection("AppConfiguration:SiteUrl").Value
+        ValidIssuer = Configuration.GetSection(&quot;AppConfiguration:SiteUrl&quot;).Value
     }
 });</pre>
-        <P>Here I am passing a <b>JwtBearerOptions</b> object to my <b>JwtBearerMiddleware</b> middleware, of which is configure to suite my needs.  By adding this to my middleware pipeline, I am effectively creating another means of authentication that sits next to Identity. When a request comes in that needs to be authenticated, both <b>Identity</b> and the <b>JwtBearerMiddleware</b> middleware will check to see if their individual criteria is met to pass validation. </p>
-        <p>Based on order of operation concerns in regards to how you pull in middleware into your pipeline, I made a concious decision to add <b>Identity</b> after the <b>JwtBearerMiddleware</b> middleware.  By doing so, the event handlers we set up in <a href="/post/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied" title="ASP.NET Core Identity Access Denied" target="_blank">Part 1</a> of this series will still have the desired outcome.</p>
-        <p class="note">For more information on configuration options check out <a href="https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.jwtbeareroptions" target="_blank" title="JwtBearerOptions Class">JwtBearerOptions Class</a>.</P>
-        <h2>Creating A JSON Web Token: Access Granted</h2>
+        <p>Here I am passing a <b>JwtBearerOptions</b> object to my <b>JwtBearerMiddleware</b> middleware, of which is configure to suit my needs.  By adding this to my middleware pipeline, I am effectively creating another means of authentication that sits next to Identity. When a request comes in that needs to be authenticated, both <b>Identity</b> and the <b>JwtBearerMiddleware</b> middleware will check to see if their individual criteria are met in order to pass validation. </p>
+        <p>Based on "order of operation" concerns in regards to how you pull in middleware into your pipeline, I made a conscious  decision to add <b>Identity</b> after the <b>JwtBearerMiddleware</b> middleware.  By doing so, the event handlers we set up in <a href="/post/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied" title="ASP.NET Core Identity Access Denied" target="_blank">Part 1</a> of this series will still have the desired outcome.</p>
+        <p class="note">For more information on configuration options check out <a href="https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.jwtbeareroptions" target="_blank" title="JwtBearerOptions Class">JwtBearerOptions Class</a>.</p>
+        <h2>Creating A JSON Web Token</h2>
+        <p>Now that we have a way to check validation using a JSON Web Token, we need to be able to create a token for the client to use.  In my <b>AccountApiController</b> controller, I added the following functions to just that.</p>
+        <pre class="brush: csharp">[HttpPost(&quot;token&quot;)]
+public async Task&lt;IActionResult&gt; Token([FromBody] UserRegisterAuthenticate model)
+{
+    if (!ModelState.IsValid)
+    {
+        return BadRequest();
+    }
 
+    var user = await _userManager.FindByNameAsync(model.Email);
+
+    if (user == null || _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) != PasswordVerificationResult.Success)
+    {
+        return BadRequest();
+    }
+
+    var token = await GetJwtSecurityToken(user);
+
+    return Ok(new
+    {
+        token = new JwtSecurityTokenHandler().WriteToken(token),
+        expiration = token.ValidTo
+    });
+}</pre>
+        <p>First up is the API endpoint, of which is accessed by making a POST request against the <b>api/account/token</b> route. We start by checking if our <b>ModelState</b> is in order.  If it is not, we return a 400 level response. We then make a request to get the user entity from our data-store. We use that entity to see if a hashed version of the incoming model's password matches the hashed version we are storing in our database.  If does not match, we again return a 400 level response.  If it does match, we then know the user's request for a token is valid and we now need to build a token to pass back to that user.</p>
+        <p>We get our token by making a request to following function.</p>
+        <pre class="brush: csharp">private async Task&lt;JwtSecurityToken&gt; GetJwtSecurityToken(UserEntity user)
+{
+    var userClaims =  await _userManager.GetClaimsAsync(user);
+
+    return new JwtSecurityToken(
+        issuer: _appConfiguration.Value.SiteUrl,
+        audience: _appConfiguration.Value.SiteUrl,
+        claims: GetTokenClaims(user).Union(userClaims),
+        expires: DateTime.UtcNow.AddMinutes(10),
+        signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appConfiguration.Value.Key)), SecurityAlgorithms.HmacSha256)
+    );
+}</pre>
+        <p>In this function, we are building up a <b>JwtSecurityToken</b> object to pass back to the caller.</p>
+        <ul>
+          <li>
+            We first grab any <b>Identity</b> based claims we have stored in the database.
+            <ul>
+              <li>
+                We add those claims on top of the necessary JSON Web Token claims that are produced in a function called <b>Startup.GetTokenClaims</b>.
+                <ul>
+                  <li>More on this in a bit.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Any configuration that is unique to a deployment is coming from the <b>IOption&lt;T&gt;</b> configuration object.
+            <ul>
+              <li>Notably, we use a secure and secret key stored in configuration to produce our <b>Symmetric Security Key</b>.</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="note">For more information about the configuration options of this object, you can check the <a href="https://msdn.microsoft.com/en-us/library/system.identitymodel.tokens.jwtsecuritytoken(v=vs.114).aspx" target="_blank" title="JwtSecrityToken Class">official documentation JwtSecrityToken Class documentation</a>.</p>
+        <p>To build the actual claims need for a valid JSON Web Token, I use the following function.</p>
+        <pre class="brush: csharp">private static IEnumerable&lt;Claim&gt; GetTokenClaims(UserEntity user)
+{
+    return new List&lt;Claim&gt;
+    {
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
+    };
+}</pre>
+        <p>What is represented in this function in regards to claims is a bear minimum.  For more information about the long list of claims you can associate with your JSON Web Token, take a look at official <a href="https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#rfc.section.4" title="JSON Web Token (JWT) standards documentation" target="_blank">JSON Web Token (JWT) standards documentation</a>.</p>
+        <h2>Access Granted</h2>
+        <p>Now that we have our middleware configured and setup up, and a means for a client to get a validated token from our API, we should be good to go.  Let's test this by making a request to our new <b>api/account/token</b> endpoint with valid credentials.</p>
+        <a href="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/request-token.png" target="blank" title="Request Token">
+          <img src="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/request-token.png" alt="Request Token" style="max-width: 899px;" />
+        </a>
+        <p>If our credentials are correct, we will be passed back a token and the expiration date of said token.</p>
+        <a href="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/response-token.png" target="blank" title="Response Token">
+          <img src="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/response-token.png" alt="Response Token" style="max-width: 899px;" />
+        </a>
+        <p>We then can use that token and pass it to any request that needs authentication by setting an <b>Authorization</b> header key with the value of <b>bearer</b>, followed by the token.</p>
+        <a href="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/valid.png" target="blank" title="Validated Request">
+          <img src="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/valid.png" alt="Validated Request" style="max-width: 917px;" />
+        </a>
+        <p>And that is that! In this series, I showed how I...</p>
+        <ul>
+          <li>
+            Setup ASP.NET Core Identity.
+            <ul>
+              <li>Blocked access to endpoints using Attributes.</li>
+              <li>Create a valid user record.</li>
+              <li>Grant access by login using a cookie.</li>
+            </ul>
+          </li>
+          <li>
+            Setup the JwtBearerMiddleware middleware.
+            <ul>
+              <li>Produce and return a valid token based on user credentials.</li>
+              <li>Use that token to authenticate a request to a secure endpoint.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>If you missed any of the previous posts in this series, be sure to check out the links at the top of this page.  As always, feel free to leave any comments or concerns in the comments section below.</p>
       </article>
     </div>
   </div>

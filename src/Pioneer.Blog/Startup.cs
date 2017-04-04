@@ -158,7 +158,6 @@ namespace Pioneer.Blog
                     };
             });
         }
-
         private  void ConfigureSecurity(IApplicationBuilder app)
         {
             app.UseJwtBearerAuthentication(new JwtBearerOptions
