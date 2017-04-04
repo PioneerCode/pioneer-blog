@@ -1,25 +1,9 @@
 {
+  "name": "pioneer-code",
+  "version": "1.0.0",
   "author": "Chad Ramos <chad@pioneercode.com>",
   "description": "Pioneer Code Blog",
-  "devDependencies": {
-    "@types/core-js": "^0.9.34",
-    "@types/node": "^6.0.45",
-    "del": "2.2.2",
-    "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-autoprefixer": "^3.1.1", 
-    "gulp-clean-css": "^3.0.3",
-    "gulp-concat": "^2.6.1",
-    "gulp-sass": "^3.1.0",
-    "gulp-typescript": "^3.1.5",
-    "gulp-uglify": "^2.0.1",
-    "gulp-uncss": "^1.0.6",
-    "gulp-util": "^3.0.8",
-    "lite-server": "^2.2.2", 
-    "require-dir": "^0.3.1",
-    "typescript": "^2.0.7"
-  }, 
   "license": "MIT",
-  "name": "pioneer-code",
   "repository": {
     "type": "git",
     "url": "https://github.com/PioneerCode/pioneer-blog"
@@ -27,20 +11,33 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.0",
   "dependencies": {
-    "@angular/common": "~2.1.1",
-    "@angular/compiler": "~2.1.1",
-    "@angular/core": "~2.1.1",
-    "@angular/forms": "~2.1.1",
-    "@angular/http": "~2.1.1",
-    "@angular/platform-browser": "~2.1.1",
-    "@angular/platform-browser-dynamic": "~2.1.1",
+    "@angular/common": "~4.0.0",
+    "@angular/compiler": "~4.0.0",
+    "@angular/core": "~4.0.0",
+    "@angular/forms": "~4.0.0",
+    "@angular/http": "~4.0.0",
+    "@angular/platform-browser": "~4.0.0",
+    "@angular/platform-browser-dynamic": "~4.0.0",
+    "systemjs": "0.19.40",
     "core-js": "^2.4.1",
-    "reflect-metadata": "^0.1.8",
-    "rxjs": "5.0.0-beta.12",
-    "systemjs": "0.19.39",
-    "zone.js": "^0.6.25",
-    "clean-css": "^3.4.20"
+    "rxjs": "5.0.1",
+    "zone.js": "^0.8.4",
+    "clean-css": "^3.4.20",
+    "require-dir": "^0.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.46",
+    "del": "2.2.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^3.1.6",
+    "gulp-uglify": "^2.0.1",
+    "gulp-uncss": "^1.0.6",
+    "gulp-util": "^3.0.8",
+    "typescript": "^2.2.2"
   }
 }
