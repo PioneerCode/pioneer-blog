@@ -23,13 +23,13 @@
             </li>
           </ol>
         </div>
-        <p>In part 2 (<a href="/post/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted" target="_blank">ASP.NET Core Identity, Accessed Granted.</a>) of this series, I explored how to create a valid user using Identity and grant access to your ASP.NET Core API endpoints with that user.  In this post, I will show you how I provide a JSON Web Token (JWT) to a valid user and use the token to authenticate the user using the <b>JwtBearerAppBuilderExtensions</b> middleware.</p>
+        <p>In part 2 (<a href="/post/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted" target="_blank">ASP.NET Core Identity, Accessed Granted.</a>) of this series, I explored how to create a valid user using Identity and grant access to your ASP.NET Core API endpoints with that user.  In this post, I will show you how I provide a JSON Web Token (JWT) to a valid user and use that token to authenticate the user using the <b>JwtBearerAppBuilderExtensions</b> middleware.</p>
         <h2>Bearer Middleware: Access Denied</h2>
-        <p>To start of, I pulled in the <b>Microsoft.AspNetCore.Authentication.JwtBearer</b> NuGet package.  The package contains the necessary extensions needed to validate a bearer token, consume and decrypt header-payload data associated with a valid token, and have the token authentication pipeline sit nicely aside Identity.</p>
+        <p>To start off, I pulled in the <b>Microsoft.AspNetCore.Authentication.JwtBearer</b> NuGet package into my project.  This package contains the necessary extensions needed to validate a bearer token, consume and decrypt header-payload data associated with a valid token, and have the token authentication pipeline sit nicely aside ASP.NET Core Identity.</p>
         <a href="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/nuget.png" target="blank" title="Bearer Nuget Package">
           <img src="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/nuget.png" alt="Bearer Nuget Package" style="max-width: 878px;" />
         </a>
-        <p>Once the package is pulled in, we need to add and configure the bearer middleware in our <b>Startup.cs</b> class. In my <b>Configure</b> function I added the following.</p>
+        <p>Once the package is pulled in, we need to add and configure the <b>JwtBearerMiddleware</b> middleware in our <b>Startup.cs</b> class. In the <b>Startup.Configure</b> function I added the following.</p>
         <pre class="brush: csharp">app.UseJwtBearerAuthentication(new JwtBearerOptions
 {
     AutomaticAuthenticate = true,
@@ -43,7 +43,11 @@
         ValidIssuer = Configuration.GetSection("AppConfiguration:SiteUrl").Value
     }
 });</pre>
-        <P>Here I am passing <b>JwtBearerOptions</b> object to my middleware.  Of which is configure to suite my need.  For more information on configuration options check out <a href="https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.jwtbeareroptions" target="_blank" title="JwtBearerOptions Class">JwtBearerOptions Class</a>.</P>
+        <P>Here I am passing a <b>JwtBearerOptions</b> object to my <b>JwtBearerMiddleware</b> middleware, of which is configure to suite my needs.  By adding this to my middleware pipeline, I am effectively creating another means of authentication that sits next to Identity. When a request comes in that needs to be authenticated, both <b>Identity</b> and the <b>JwtBearerMiddleware</b> middleware will check to see if their individual criteria is met to pass validation. </p>
+        <p>Based on order of operation concerns in regards to how you pull in middleware into your pipeline, I made a concious decision to add <b>Identity</b> after the <b>JwtBearerMiddleware</b> middleware.  By doing so, the event handlers we set up in <a href="/post/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied" title="ASP.NET Core Identity Access Denied" target="_blank">Part 1</a> of this series will still have the desired outcome.</p>
+        <p class="note">For more information on configuration options check out <a href="https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.jwtbeareroptions" target="_blank" title="JwtBearerOptions Class">JwtBearerOptions Class</a>.</P>
+        <h2>Creating A JSON Web Token: Access Granted</h2>
+
       </article>
     </div>
   </div>
