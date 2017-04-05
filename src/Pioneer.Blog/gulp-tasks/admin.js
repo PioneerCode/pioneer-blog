@@ -35,9 +35,9 @@ function componentStyles() {
 function libs() {
   return gulp.src([
     'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.core.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.responsiveToggle.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.util.mediaQuery.js'
+    'bower_components/foundation-sites/dist/js/plugins/foundation.core.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js'
   ])
       .pipe(concat('libs.js'))
       .pipe(uglify())
@@ -68,7 +68,7 @@ function moveLibs() {
 
 function scripts() {
   return gulp.src([
-  'temp/admin/**/*'
+    'temp/admin/**/*'
   ], { base: './temp/admin/' })
       .pipe(gulp.dest('wwwroot/admin/app'));
 }
@@ -94,11 +94,11 @@ function watch() {
 
 gulp.task('admin', gulp.series(
   clean,
-  //moveLibs,
-  //libs,
+  moveLibs,
+  libs,
   typescript,
   scripts,
   templates,
   styles,
   gulp.parallel(watch)
-  ));
+));

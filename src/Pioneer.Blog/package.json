@@ -27,7 +27,6 @@
     "require-dir": "^0.3.1"
   },
   "devDependencies": {
-    "@types/node": "^6.0.46",
     "del": "2.2.2",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^3.1.1",
