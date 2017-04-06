@@ -45,13 +45,21 @@ function libs() {
 }
 
 function moveLibs() {
+  //var libs = {
+  //  "@angular": '@angular/**/*.js',
+  //  "systemjs": 'systemjs/dist/system.src.js',
+  //  "rxjs": 'rxjs/**/*.js',
+  //  "core-js": 'core-js/client/shim.min.js',
+  //  "zone.js": 'zone.js/dist/zone.js',
+  //  "reflect-metadata": 'reflect-metadata/Reflect.js'
+  //};
+
   var libs = {
-    "@angular": '@angular/**/*.js',
+    "@angular": '@angular/**/bundles/*.js',
     "systemjs": 'systemjs/dist/system.src.js',
     "rxjs": 'rxjs/**/*.js',
     "core-js": 'core-js/client/shim.min.js',
-    "zone.js": 'zone.js/dist/zone.js',
-    "reflect-metadata": 'reflect-metadata/Reflect.js'
+    "zone.js": 'zone.js/dist/zone.js'
   };
 
   for (var name in libs) {

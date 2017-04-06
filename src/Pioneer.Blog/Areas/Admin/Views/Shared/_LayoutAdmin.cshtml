@@ -4,14 +4,17 @@
 
 @section headEnd
 {
-  <link href="~/app.css" rel="stylesheet" asp-append-version="true" />
-  <link href="~/admin/app.css" rel="stylesheet" asp-append-version="true">
-  <script src="~/admin/libs/libs.js" asp-append-version="true"></script>
-  <script src="~/admin/libs/core-js/shim.min.js" asp-append-version="true"></script>
-  <script src="~/admin/libs/zone.js/zone.js" asp-append-version="true"></script>
-  <script src="~/admin/libs/reflect-metadata/Reflect.js" asp-append-version="true"></script>
-  <script src="~/admin/libs/systemjs/system.src.js" asp-append-version="true"></script>
-  <script src="~/admin/systemjs.config.js" asp-append-version="true"></script>
+  <link href="/app.css" rel="stylesheet" asp-append-version="true" />
+  <link href="/admin/app.css" rel="stylesheet" asp-append-version="true">
+  <script src="/admin/libs/libs.js" asp-append-version="true"></script>
+  
+  <!-- Polyfill(s) for older browsers -->
+  <script src="/admin/libs/core-js/shim.min.js" asp-append-version="true"></script>
+
+  <script src="/admin/libs/zone.js/zone.js" asp-append-version="true"></script>
+  <script src="/admin/libs/systemjs/system.src.js" asp-append-version="true"></script>
+
+  <script src="/admin/systemjs.config.js" asp-append-version="true"></script>
   <script>
     System.import('@ViewBag.SystemJsImportPath').catch(function (err) { console.error(err); });
   </script>
