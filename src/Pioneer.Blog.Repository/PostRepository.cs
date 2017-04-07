@@ -13,7 +13,8 @@ namespace Pioneer.Blog.Repository
         int GetTotalNumberOfPosts();
         int GetTotalNumberOfPostsByCategory(string category);
         int GetTotalNumberOfPostByTag(string tag);
-        PostEntity GetById(string id, bool includeExceprt);
+        PostEntity GetByUrl(string url, bool includeExceprt);
+        PostEntity GetById(int id, bool includeExceprt);
         IEnumerable<PostEntity> GetTop(int top);
         IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle, bool includeUnpublished);
         IEnumerable<PostEntity> GetAllPaged(int count, int page = 1);
@@ -73,12 +74,12 @@ namespace Pioneer.Blog.Repository
         }
 
         /// <summary>
-        /// Get Post by id
+        /// Get Post by URL
         /// </summary>
-        /// <param name="id">Id of post</param>
+        /// <param name="url">URL of post</param>
         /// <param name="includeExcerpt">Include excerpt</param>
         /// <returns>Post</returns>
-        public PostEntity GetById(string id, bool includeExcerpt)
+        public PostEntity GetByUrl(string url, bool includeExcerpt)
         {
             var query = _blogContext
                 .Posts
@@ -94,7 +95,32 @@ namespace Pioneer.Blog.Repository
                 .Include(x => x.Category)
                 .Include(x => x.PostTags)
                     .ThenInclude(i => i.Tag)
-                .First(x => x.Url == id);
+                .FirstOrDefault(x => x.Url == url);
+        }
+
+        /// <summary>
+        /// Get Post by id
+        /// </summary>
+        /// <param name="id">Id of post</param>
+        /// <param name="includeExcerpt">Include excerpt</param>
+        /// <returns>Post</returns>
+        public PostEntity GetById(int id, bool includeExcerpt)
+        {
+            var query = _blogContext
+                .Posts
+                .Where(x => true);
+
+            if (includeExcerpt)
+            {
+                query = query.Include(x => x.Excerpt);
+            }
+
+            return query
+                .Include(x => x.Article)
+                .Include(x => x.Category)
+                .Include(x => x.PostTags)
+                    .ThenInclude(i => i.Tag)
+                .FirstOrDefault(x => x.PostId == id);
         }
 
         /// <summary>

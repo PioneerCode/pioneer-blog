@@ -1,6 +1,6 @@
-﻿import { Injectable }               from '@angular/core';
-import { Http, Response }  from '@angular/http';
-import { Post }                     from '../../models/post';
+﻿import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Post } from '../../models/post';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -11,7 +11,10 @@ export class PostRepository {
   constructor(private http: Http) { }
 
   get(idUrl: string, includeExcerpt: boolean = false): Promise<Post> {
-    return this.http.get(this.url + '/' + idUrl + '?includeExcerpt=' + includeExcerpt)
+    return this.http.get(this.url + '/' + idUrl + '?includeExcerpt=' + includeExcerpt,
+      {
+        withCredentials: true
+      })
       .toPromise()
       .then((res: Response) => {
         const body: Post = res.json();
@@ -33,7 +36,9 @@ export class PostRepository {
   }
 
   create(): Promise<Post> {
-    return this.http.post(this.url, {} as Post)
+    return this.http.post(this.url, {} as Post, {
+      withCredentials: true
+    })
       .toPromise()
       .then((res: Response) => {
         const body: Post = res.json();

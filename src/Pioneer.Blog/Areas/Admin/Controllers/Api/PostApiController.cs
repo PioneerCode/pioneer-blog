@@ -35,7 +35,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         [HttpGet("{url}", Name = "GetPost")]
         public IActionResult GetById(string url, bool includeExcerpt = false)
         {
-            var item = _postService.GetById(url, includeExcerpt);
+            var item = _postService.GetByUrl(url, includeExcerpt);
             if (item == null)
             {
                 return NotFound();
@@ -59,14 +59,14 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
 
         [HttpPut("{id}")]
         [Authorize(Policy = "isSuperUser")]
-        public IActionResult Update(string url, [FromBody] Post item)
+        public IActionResult Update(int id, [FromBody] Post item)
         {
-            if (item == null || item.Url != url)
+            if (item == null)
             {
                 return BadRequest();
             }
 
-            var todo = _postService.GetById(url);
+            var todo = _postService.GetById(id);
             if (todo == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         [Authorize(Policy = "isSuperUser")]
         public IActionResult Delete(string url)
         {
-            var todo = _postService.GetById(url);
+            var todo = _postService.GetByUrl(url);
             if (todo == null)
             {
                 return NotFound();

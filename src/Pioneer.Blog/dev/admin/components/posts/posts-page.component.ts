@@ -30,7 +30,7 @@ export class PostsPageComponent implements OnInit {
     }
   }
 
-  save(): void {
+  save(pos): void {
     if (confirm(`Are you sure you want to save "${this.postService.getCurrent().title}" changes`)) {
       this.postService.save();
     }

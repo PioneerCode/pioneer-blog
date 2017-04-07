@@ -14,7 +14,8 @@ namespace Pioneer.Blog.Service
         int GetTotalNumberOfPosts();
         int GetTotalNumberOfPostsByCategory(string category);
         int GetTotalNumberOfPostByTag(string tag);
-        Post GetById(string id, bool includeExceprt = false);
+        Post GetById(int id, bool includeExceprt = false);
+        Post GetByUrl(string url, bool includeExceprt = false);
         IEnumerable<Post> GetAll(bool includeExcerpt = true, bool includeArticle = true, bool includeUnpublished = false, int ? top = null);
         IEnumerable<Post> GetAllPaged(int count, int page = 1);
         IEnumerable<Post> GetAllByTag(string tag, int count, int page = 1);
@@ -65,12 +66,23 @@ namespace Pioneer.Blog.Service
         }
 
         /// <summary>
+        /// Get Post by url
+        /// </summary>
+        /// <param name="url">URL of post</param>
+        /// <param name="includeExcerpt">Include excerpt</param>
+        /// <returns>Post</returns>
+        public Post GetByUrl(string url, bool includeExcerpt = false)
+        {
+            return Mapper.Map<PostEntity, Post>(_postRepository.GetByUrl(url, includeExcerpt));
+        }
+
+        /// <summary>
         /// Get Post by id
         /// </summary>
         /// <param name="id">Id of post</param>
         /// <param name="includeExcerpt">Include excerpt</param>
         /// <returns>Post</returns>
-        public Post GetById(string id, bool includeExcerpt = false)
+        public Post GetById(int id, bool includeExcerpt = false)
         {
             return Mapper.Map<PostEntity, Post>(_postRepository.GetById(id, includeExcerpt));
         }
@@ -147,7 +159,7 @@ namespace Pioneer.Blog.Service
         // TODO: Profile and work to reduce trips to the database
         public IEnumerable<Post> GetPreviousCurrentNextPost(string id)
         {
-            var currentPost = _postRepository.GetById(id, false);
+            var currentPost = _postRepository.GetByUrl(id, false);
             var posts = new List<PostEntity>
             {
                 _postRepository.GetPreviousBasedOnId(currentPost.PostId),
