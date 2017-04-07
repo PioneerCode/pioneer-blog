@@ -33,9 +33,10 @@ namespace Pioneer.Blog.Service
         /// <returns>Collection of Categories</returns>
         public IEnumerable<Category> GetAll()
         {
-            return _categoryRepository
-                    .GetAll()
-                    .Select(Mapper.Map<CategoryEntity, Category>).ToList();
+            return _categoryRepository.GetAll()
+                    .Select(Mapper.Map<CategoryEntity, Category>)
+                    .OrderBy(x => x.Name)
+                    .ToList();
         }
 
         /// <summary>

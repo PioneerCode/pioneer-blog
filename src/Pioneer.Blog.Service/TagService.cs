@@ -34,7 +34,10 @@ namespace Pioneer.Blog.Service
         /// <returns>Collection of tags</returns>
         public IEnumerable<Tag> GetAll()
         {
-            return _tagRepository.GetAll().Select(Mapper.Map<TagEntity, Tag>).ToList();
+            return _tagRepository.GetAll()
+                .Select(Mapper.Map<TagEntity, Tag>)
+                .OrderBy(x => x.Name)
+                .ToList();
         }
 
         /// <summary>

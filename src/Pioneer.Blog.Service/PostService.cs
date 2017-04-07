@@ -92,7 +92,7 @@ namespace Pioneer.Blog.Service
         /// </summary>
         /// <param name="includeExcerpt">Include Excerpt</param>
         /// <param name="includeArticle">Include Article</param>
-        /// <param name="includeUnpublished">Includ Unpublished</param>
+        /// <param name="includeUnpublished">Include Unpublished</param>
         /// <param name="top">Take top.  If null returns all posts</param>
         /// <returns>Collection of Post</returns>
         public IEnumerable<Post> GetAll(bool includeExcerpt = true, 
@@ -102,7 +102,9 @@ namespace Pioneer.Blog.Service
         {
             var posts = top != null
                 ? _postRepository.GetTop((int)top).ToList()
-                : _postRepository.GetAll(includeExcerpt, includeArticle, includeUnpublished).ToList();
+                : _postRepository.GetAll(includeExcerpt, includeArticle, includeUnpublished)
+                    .OrderBy(x => x.PostedOn)
+                    .ToList();
 
             return posts.Select(Mapper.Map<PostEntity, Post>);
         }
