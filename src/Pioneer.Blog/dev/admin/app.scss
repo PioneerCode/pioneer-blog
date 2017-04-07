@@ -1,5 +1,5 @@
-﻿@import "../sass/_settings"; 
-@import "../sass/_foundation";
+﻿/// <reference path="../../bower_components/foundation-sites/scss/foundation" />
+@import "../sass/_settings"; 
 
 body {
     background: $black;

@@ -35,9 +35,9 @@ function componentStyles() {
 function libs() {
   return gulp.src([
     'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.core.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.responsiveToggle.js',
-    'bower_components/foundation-sites/dist/plugins/foundation.util.mediaQuery.js'
+    'bower_components/foundation-sites/dist/js/plugins/foundation.core.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
+    'bower_components/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js'
   ])
       .pipe(concat('libs.js'))
       .pipe(uglify())
@@ -45,13 +45,21 @@ function libs() {
 }
 
 function moveLibs() {
+  //var libs = {
+  //  "@angular": '@angular/**/*.js',
+  //  "systemjs": 'systemjs/dist/system.src.js',
+  //  "rxjs": 'rxjs/**/*.js',
+  //  "core-js": 'core-js/client/shim.min.js',
+  //  "zone.js": 'zone.js/dist/zone.js',
+  //  "reflect-metadata": 'reflect-metadata/Reflect.js'
+  //};
+
   var libs = {
-    "@angular": '@angular/**/*.js',
+    "@angular": '@angular/**/bundles/*.js',
     "systemjs": 'systemjs/dist/system.src.js',
     "rxjs": 'rxjs/**/*.js',
     "core-js": 'core-js/client/shim.min.js',
-    "zone.js": 'zone.js/dist/zone.js',
-    "reflect-metadata": 'reflect-metadata/Reflect.js'
+    "zone.js": 'zone.js/dist/zone.js'
   };
 
   for (var name in libs) {
@@ -68,7 +76,7 @@ function moveLibs() {
 
 function scripts() {
   return gulp.src([
-  'temp/admin/**/*'
+    'temp/admin/**/*'
   ], { base: './temp/admin/' })
       .pipe(gulp.dest('wwwroot/admin/app'));
 }
@@ -94,11 +102,11 @@ function watch() {
 
 gulp.task('admin', gulp.series(
   clean,
-  //moveLibs,
-  //libs,
+  moveLibs,
+  libs,
   typescript,
   scripts,
   templates,
   styles,
   gulp.parallel(watch)
-  ));
+));
