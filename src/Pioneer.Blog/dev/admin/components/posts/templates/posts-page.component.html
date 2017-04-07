@@ -95,11 +95,9 @@
           </label>
         </div>
         <div class="large-3 columns">
-          <div class="admin-checkbox-vertial-align">
-            <input id=""
-                   type="checkbox"
-                   [checked]="postService.getCurrent().published"><label for="">Published</label>
-          </div>
+          <input id="test" type="checkbox"
+                 [checked]="postService.getCurrent().published"
+                 (change)="postService.getCurrent().published = !postService.getCurrent().published"><label>Published</label>
         </div>
       </div>
       <label>
