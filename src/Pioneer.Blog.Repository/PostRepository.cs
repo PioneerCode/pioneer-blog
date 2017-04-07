@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Pioneer.Blog.DAL;
 using Pioneer.Blog.DAL.Entites;
 using System.Linq;
@@ -303,9 +304,31 @@ namespace Pioneer.Blog.Repository
         {
             var entity = _blogContext
                 .Posts
-                .FirstOrDefault(x => x.Url == post.Url);
+                .Include(x => x.Category)
+                .Include(x => x.Excerpt)
+                .FirstOrDefault(x => x.PostId == post.PostId);
 
-            // Save logic 
+            // Post
+            entity.Url = post.Url;
+            entity.Title = post.Title;
+            entity.Description = post.Description;
+            entity.IconImage = post.IconImage;
+            entity.SmallImage = post.SmallImage;
+            entity.Image = post.Image;
+            entity.Link = post.Link;
+            entity.ModifiedOn = DateTime.Now;
+            entity.Meta = post.Meta;
+            entity.Published = post.Published;
+
+            // Excerpt
+            entity.Excerpt.Content = post.Excerpt.Content;
+
+            // Article
+            entity.Article.Content = post.Article.Content;
+
+            // Categories
+
+            // Tags
 
             _blogContext.SaveChanges();
         }
