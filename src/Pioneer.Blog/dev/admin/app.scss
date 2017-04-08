@@ -1,63 +1,87 @@
 ﻿/// <reference path="../../bower_components/foundation-sites/scss/foundation" />
-@import "../sass/_settings"; 
+@import "../sass/_settings";
 
 body {
-    background: $black;
+  background: $black;
 }
 
-.nav-admin {
-    background: $black;
-}
+
 
 .body-content-admin {
-    background: #fff;
-    padding: 55px 0 2rem;
+  background: #fff;
+  padding: 3rem 0 2rem;
+  position: relative;
+
+  header {
+    position: fixed;
+    top: 0;
+    height: 3rem;
+    z-index: 999;
+    background: $primary-color;
+    width: 100%;
+  }
+
+  .nav-admin {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background: $black;
+  }
+
+  .admin-canvas {
+    position: relative;
+    margin: 0 0 0 250px;
+    min-height: 700px;
+    .row {
+      max-width: 100%;
+    }
+  }
 }
 
 [type='checkbox'] + label {
-    display: inline-block;
-    margin-left: 0.5rem;
-    margin-right: 1rem;
-    margin-bottom: 0;
-    vertical-align: baseline;
+  display: inline-block;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+  margin-bottom: 0;
+  vertical-align: baseline;
 }
 
 [type='checkbox'] + label[for] {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .admin-checkbox-vertial-align {
-    margin: 1.75rem 0 0;
+  margin: 1.75rem 0 0;
 }
 
 .admin-button-group {
-    margin: 1.5rem 0 0;
+  margin: 1.5rem 0 0;
 }
 
 .admin-collection-list {
-    list-style-type: none;
-    margin: 0;
+  list-style-type: none;
+  margin: 0;
 
-    li {
-        cursor: pointer;
-        padding: 2px 0.5rem;
+  li {
+    cursor: pointer;
+    padding: 2px 0.5rem;
 
-        &:hover {
-            color: $white;
-            background: $primary-color;
-        }
+    &:hover {
+      color: $white;
+      background: $primary-color;
     }
+  }
 
-    li.selected {
-        color: $white;
-        background: $primary-color;
-    }
+  li.selected {
+    color: $white;
+    background: $primary-color;
+  }
 }
 
 .admin-post-description {
-    min-height: 100px;
+  min-height: 100px;
 }
 
 .admin-post-collection-item {
-    float: left;
+  float: left;
 }

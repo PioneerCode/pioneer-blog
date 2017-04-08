@@ -22,7 +22,7 @@
 
 @section nav
 {
-  <nav class="nav-main nav-admin">
+  @*<nav class="nav-main nav-admin">
     <div class="top-bar" id="pioneer-admin-menu">
       <div class="row">
         <div class="large-12 columns">
@@ -60,11 +60,37 @@
         </div>
       </div>
     </div>
-  </nav>
+  </nav>*@
 }
 
 <section class="body-content-admin">
-  @RenderBody()
+  <header>
+    <environment names="Development">
+        @await Html.PartialAsync("_LoginPartial")
+    </environment>
+  </header>
+  <nav class="nav-admin">
+    <ul class="menu vertical">
+      <li class="@(ViewBag.Selected == "posts" ? "selected" : "")">
+        <a href="/admin/posts">
+          POSTS
+        </a>
+      </li>
+      <li class="@(ViewBag.Selected == "categories" ? "selected" : "")">
+        <a href="/admin/categories">
+          CATEGORIES
+        </a>
+      </li>
+      <li class="@(ViewBag.Selected == "tags" ? "selected" : "")">
+        <a href="/admin/tags" class="margin-zero">
+          TAGS
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="admin-canvas">
+    @RenderBody()
+  </div>
 </section>
 
 @section bodyEnd {}
