@@ -5,10 +5,8 @@ body {
   background: $black;
 }
 
-
-
 .body-content-admin {
-  background: #fff;
+  background: $light-gray;
   padding: 3rem 0 2rem;
   position: relative;
 
@@ -30,8 +28,9 @@ body {
 
   .admin-canvas {
     position: relative;
-    margin: 0 0 0 250px;
+    margin: 1rem 0 0 250px;
     min-height: 700px;
+
     .row {
       max-width: 100%;
     }
@@ -55,13 +54,16 @@ body {
 }
 
 .admin-button-group {
-  margin: 1.5rem 0 0;
+  margin: 0;
 }
 
 .admin-collection-list {
   list-style-type: none;
   margin: 0;
-
+  background: $white;
+  padding: 1rem;
+  box-shadow: 8px 8px 16px 0 $medium-gray;
+  min-height: 600px;
   li {
     cursor: pointer;
     padding: 2px 0.5rem;
@@ -76,6 +78,12 @@ body {
     color: $white;
     background: $primary-color;
   }
+}
+
+.admin-canvas-content {
+  padding: 1rem;
+  background: $white;
+  box-shadow: 8px 8px 16px 0 $medium-gray;
 }
 
 .admin-post-description {
