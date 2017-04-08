@@ -1,27 +1,25 @@
 ﻿<div class="row">
   <div class="large-3 columns">
-    <ul class="admin-collection-list">
-      <li *ngFor="let tag of tagService.getAll()"
-          [class.selected]="tag.tagId === tagService.getCurrent().tagId"
-          (click)="tagService.setCurrent(tag.tagId)">
-        <span>{{ tag.name }}</span>
-      </li>
-    </ul>
+    <div class="admin-canvas-content">
+      <button class="button tiny secondary"
+              (click)="tagService.create()">
+        Add
+      </button>
+      <ul class="admin-collection-list">
+        <li *ngFor="let tag of tagService.getAll()"
+            [class.selected]="tag.tagId === tagService.getCurrent().tagId"
+            (click)="tagService.setCurrent(tag.tagId)">
+          <span>{{ tag.name }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="large-9 columns">
     <div class="admin-canvas-content">
-      <div class="clearfix">
-        <div class="button-group float-right admin-button-group">
-          <button class="button"
-                  (click)="save(tagService.getCurrent().tagId)">
-            Save
-          </button>
-          <button class="button admin-add-button"
-                  (click)="tagService.create()">
-            Add
-          </button>
-        </div>
-      </div>
+      <button class="button tiny secondary"
+              (click)="save(tagService.getCurrent().tagId)">
+        Save
+      </button>
       <label>
         Name
         <input type="text"

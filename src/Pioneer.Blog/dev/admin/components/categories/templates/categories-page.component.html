@@ -1,27 +1,25 @@
 ﻿<div class="row">
   <div class="large-3 columns">
-    <ul class="admin-collection-list">
-      <li *ngFor="let category of categoryService.getAll()"
-          [class.selected]="category.categoryId === categoryService.getCurrent().categoryId"
-          (click)="categoryService.setCurrent(category.categoryId)">
-        <span>{{ category.name }}</span>
-      </li>
-    </ul>
+    <div class="admin-canvas-content">
+      <button class="button tiny secondary"
+              (click)="categoryService.create()">
+        Add
+      </button>
+      <ul class="admin-collection-list">
+        <li *ngFor="let category of categoryService.getAll()"
+            [class.selected]="category.categoryId === categoryService.getCurrent().categoryId"
+            (click)="categoryService.setCurrent(category.categoryId)">
+          <span>{{ category.name }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="large-9 columns">
     <div class="admin-canvas-content">
-      <div class="clearfix">
-        <div class="button-group float-right admin-button-group">
-          <button class="button"
-                  (click)="save(categoryService.getCurrent().categoryId)">
-            Save
-          </button>
-          <button class="button admin-add-button"
-                  (click)="categoryService.create()">
-            Add
-          </button>
-        </div>
-      </div>
+      <button class="button tiny secondary"
+              (click)="save(categoryService.getCurrent().categoryId)">
+        Save
+      </button>
       <label>
         Name
         <input type="text"

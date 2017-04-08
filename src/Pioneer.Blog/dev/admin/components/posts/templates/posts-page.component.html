@@ -1,28 +1,26 @@
 ﻿<section class="admin-posts">
   <div class="row">
     <div class="large-3 columns">
-      <ul class="admin-collection-list">
-        <li *ngFor="let post of postService.getAll()"
-            [class.selected]="post.postId === postService.getCurrent().postId"
-            (click)="postService.setCurrent(post.url)">
-          <span>{{ post.title }}</span>
-        </li>
-      </ul>
+      <div class="admin-canvas-content">
+        <button class="button tiny secondary"
+                (click)="postService.create()">
+          Add
+        </button>
+        <ul class="admin-collection-list">
+          <li *ngFor="let post of postService.getAll()"
+              [class.selected]="post.postId === postService.getCurrent().postId"
+              (click)="postService.setCurrent(post.url)">
+            <span>{{ post.title }}</span>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="large-9 columns">
       <div class="admin-canvas-content">
-        <div class="clearfix">
-          <div class="button-group float-right admin-button-group">
-            <button class="button"
-                    (click)="save()">
-              Save
-            </button>
-            <button class="button admin-add-button"
-                    (click)="postService.create()">
-              Add
-            </button>
-          </div>
-        </div>
+        <button class="button tiny secondary"
+                (click)="save()">
+          Save
+        </button>
         <label>
           Title
           <input type="text"
