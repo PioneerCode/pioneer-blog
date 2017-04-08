@@ -17,7 +17,7 @@ namespace Pioneer.Blog.Controllers.Web
         public IActionResult Index(string id)
         {
             var post = _postService.GetPreviousCurrentNextPost(id).ToList();
-            ViewBag.Description = post[(int)PreviousCurrentNextPosition.Current].Description + "By Chad Ramos at Pioneer Code.";
+            ViewBag.Description = post[(int)PreviousCurrentNextPosition.Current].Description + " By Chad Ramos at Pioneer Code.";
             ViewBag.PopularPosts = _postService.GetPopularPosts();
             return View(post);
         }
