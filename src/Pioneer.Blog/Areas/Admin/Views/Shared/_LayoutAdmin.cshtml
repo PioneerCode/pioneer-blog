@@ -7,7 +7,7 @@
   <link href="/app.css" rel="stylesheet" asp-append-version="true" />
   <link href="/admin/app.css" rel="stylesheet" asp-append-version="true">
   <script src="/admin/libs/libs.js" asp-append-version="true"></script>
-  
+
   <!-- Polyfill(s) for older browsers -->
   <script src="/admin/libs/core-js/shim.min.js" asp-append-version="true"></script>
 
@@ -20,69 +20,37 @@
   </script>
 }
 
-@section nav
-{
-  @*<nav class="nav-main nav-admin">
-    <div class="top-bar" id="pioneer-admin-menu">
-      <div class="row">
-        <div class="large-12 columns">
-          <div class="top-bar-left">
-            <ul class="menu">
-              <li class="menu-text">
-                <a href="/" class="title">Pioneer <span>Code</span></a>
-              </li>
-            </ul>
-          </div>
-          <div class="top-bar-right">
-            <ul class="menu">
-              <li class="@(ViewBag.Selected == "posts" ? "selected" : "")">
-                <a href="/admin/posts">
-                  POSTS
-                </a>
-              </li>
-              <li class="@(ViewBag.Selected == "categories" ? "selected" : "")">
-                <a href="/admin/categories">
-                  CATEGORIES
-                </a>
-              </li>
-              <li class="@(ViewBag.Selected == "tags" ? "selected" : "")">
-                <a href="/admin/tags" class="margin-zero">
-                  TAGS
-                </a>
-              </li>
-              <environment names="Development">
-                <li>
-                  @await Html.PartialAsync("_LoginPartial")
-                </li>
-              </environment>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>*@
-}
-
 <section class="body-content-admin">
   <header>
-    <environment names="Development">
+    <div class="clearfix">
+      <div class="home float-left">
+        <a href="/admin/posts">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          Pioneer Code
+        </a>
+      </div>
+      <div class="float-right">
         @await Html.PartialAsync("_LoginPartial")
-    </environment>
+      </div>
+    </div>
   </header>
   <nav class="nav-admin">
     <ul class="menu vertical">
       <li class="@(ViewBag.Selected == "posts" ? "selected" : "")">
         <a href="/admin/posts">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
           POSTS
         </a>
       </li>
       <li class="@(ViewBag.Selected == "categories" ? "selected" : "")">
         <a href="/admin/categories">
+          <i class="fa fa-archive" aria-hidden="true"></i>
           CATEGORIES
         </a>
       </li>
       <li class="@(ViewBag.Selected == "tags" ? "selected" : "")">
         <a href="/admin/tags" class="margin-zero">
+          <i class="fa fa-tags" aria-hidden="true"></i>
           TAGS
         </a>
       </li>

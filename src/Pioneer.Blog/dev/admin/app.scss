@@ -15,15 +15,53 @@ body {
     top: 0;
     height: 3rem;
     z-index: 999;
-    background: $primary-color;
+    background: lighten($black, 15%);
     width: 100%;
+
+    .home {
+      height: 3rem;
+      width: 250px;
+      background: lighten($black, 10%);
+      text-align: center;
+
+      a {
+        padding: 8px 0 0;
+        font-size: 18px;
+        display: block;
+        height: 3rem;
+        width: 100%;
+        color: $white;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    form {
+      button {
+        height: 3rem;
+      }
+    }
   }
 
   .nav-admin {
     position: fixed;
     width: 250px;
     height: 100%;
-    background: $black;
+    background: lighten($black, 5%);
+
+    li.selected {
+      background: $primary-color;
+    }
+
+    a {
+      i {
+        margin-top: -6px;
+      }
+
+      color: $white;
+    }
   }
 
   .admin-canvas {
@@ -61,6 +99,7 @@ body {
   list-style-type: none;
   margin: 0;
   min-height: 600px;
+
   li {
     cursor: pointer;
     padding: 2px 0.5rem;
@@ -82,7 +121,6 @@ body {
 .admin-canvas-content {
   padding: 1rem;
   background: $white;
-  box-shadow: 8px 8px 16px 0 $medium-gray;
 }
 
 .admin-post-description {
