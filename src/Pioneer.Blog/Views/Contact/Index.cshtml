@@ -36,6 +36,9 @@
       <a href="https://trello.com/b/EX3uv8CM/blog-post-ideas" title="Pioneer Code Trello" target="_blank" class="icon">
         <i class="fa fa-trello fa-2x"></i>
       </a>
+      <a href="https://www.facebook.com/ChadMRamos" title="Chad Ramos Facebook" target="_blank" class="icon">
+        <i class="fa fa-facebook fa-2x"></i>
+      </a>
     </div>
     <form asp-controller="Contact" asp-action="Send" method="post">
       <div class="form-content" data-equalizer-watch>
@@ -47,21 +50,21 @@
         </div>
         @if (!ViewBag.IsValid)
         {
-          <div class="callout alert">
-            <div asp-validation-summary="All"></div>
-          </div>
+            <div class="callout alert">
+              <div asp-validation-summary="All"></div>
+            </div>
         }
         @if (ViewBag.MessageSent != null && ViewBag.MessageSent)
         {
-          <div class="callout success">
-            <p>Email Sent! Talk to you soon.</p>
-          </div>
+            <div class="callout success">
+              <p>Email Sent! Talk to you soon.</p>
+            </div>
         }
         <div class="row">
           <div class="large-12  medium-8 medium-push-2  large-push-0 column">
-            <input asp-for="Name" placeholder="Your Name"/>
-            <input asp-for="Email" placeholder="your@email.com"/>
-            <input asp-for="Subject" placeholder="Subject"/>
+            <input asp-for="Name" placeholder="Your Name" />
+            <input asp-for="Email" placeholder="your@email.com" />
+            <input asp-for="Subject" placeholder="Subject" />
             <textarea asp-for="Message" placeholder="Message"></textarea>
             <input type="submit" value="Send" class="float-right">
           </div>
