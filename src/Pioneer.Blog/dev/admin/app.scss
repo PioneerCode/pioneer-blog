@@ -53,6 +53,16 @@ body {
 
     li.selected {
       background: $primary-color;
+
+      &:hover {
+        background: $primary-color;
+      }
+    }
+
+    li {
+      &:hover {
+        background: $black;
+      }
     }
 
     a {
@@ -61,6 +71,10 @@ body {
       }
 
       color: $white;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 
@@ -106,7 +120,7 @@ body {
 
     &:hover {
       color: $white;
-      background: $primary-color;
+      background: lighten($primary-color, 15%);
     }
   }
 
