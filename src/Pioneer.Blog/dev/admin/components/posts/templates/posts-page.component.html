@@ -25,7 +25,7 @@
                  [(ngModel)]="postService.getCurrent().title">
         </label>
         <label>
-          Url
+          URL
           <input type="text"
                  [(ngModel)]="postService.getCurrent().url">
         </label>
@@ -89,9 +89,9 @@
             </label>
           </div>
           <div class="large-3 columns">
-            <input id="test" type="checkbox"
+            <input id="published" type="checkbox"
                    [checked]="postService.getCurrent().published"
-                   (change)="postService.getCurrent().published = !postService.getCurrent().published"><label>Published</label>
+                   (change)="postService.getCurrent().published = !postService.getCurrent().published"><label for="published">Published</label>
           </div>
         </div>
         <label>
