@@ -73,19 +73,19 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
             return new NoContentResult();
         }
 
-        [HttpDelete("{id}")]
-        [Authorize(Policy = "isSuperUser")]
-        public IActionResult Delete(int id)
-        {
-            var todo = _categoryService.GetById(id);
-            if (todo == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //[Authorize(Policy = "isSuperUser")]
+        //public IActionResult Delete(int id)
+        //{
+        //    var todo = _categoryService.GetById(id);
+        //    if (todo == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _categoryService.Remove(id);
-            return new NoContentResult();
-        }
+        //    _categoryService.Remove(id);
+        //    return new NoContentResult();
+        //}
     }
 }
 #endif
