@@ -2,10 +2,12 @@
   <div class="row">
     <div class="large-3 columns">
       <div class="admin-canvas-content">
-        <button class="button tiny secondary"
-                (click)="postService.create()">
-          Add
-        </button>
+        <div class="clearfix">
+          <button class="button tiny secondary float-right"
+                  (click)="postService.create()">
+            Add
+          </button>
+        </div>
         <ul class="admin-collection-list">
           <li *ngFor="let post of postService.getAll()"
               [class.selected]="post.postId === postService.getCurrent().postId"
@@ -17,10 +19,6 @@
     </div>
     <div class="large-9 columns">
       <div class="admin-canvas-content">
-        <button class="button tiny secondary"
-                (click)="save()">
-          Save
-        </button>
         <label>
           Title
           <input type="text"
@@ -122,6 +120,12 @@
                    type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
           </span>
         </fieldset>
+        <div class="clearfix">
+          <button class="button secondary float-right save"
+                  (click)="save()">
+            Save
+          </button>
+        </div>
       </div>
     </div>
   </div>

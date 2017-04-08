@@ -135,6 +135,10 @@ body {
 .admin-canvas-content {
   padding: 1rem;
   background: $white;
+
+  button.save {
+    margin: 0;
+  }
 }
 
 .admin-post-description {

@@ -1,10 +1,12 @@
 ﻿<div class="row">
   <div class="large-3 columns">
     <div class="admin-canvas-content">
-      <button class="button tiny secondary"
-              (click)="categoryService.create()">
-        Add
-      </button>
+      <div class="clearfix">
+        <button class="button tiny secondary float-right"
+                (click)="categoryService.create()">
+          Add
+        </button>
+      </div>
       <ul class="admin-collection-list">
         <li *ngFor="let category of categoryService.getAll()"
             [class.selected]="category.categoryId === categoryService.getCurrent().categoryId"
@@ -16,10 +18,6 @@
   </div>
   <div class="large-9 columns">
     <div class="admin-canvas-content">
-      <button class="button tiny secondary"
-              (click)="save(categoryService.getCurrent().categoryId)">
-        Save
-      </button>
       <label>
         Name
         <input type="text"
@@ -30,6 +28,12 @@
         <input type="text"
                [(ngModel)]="categoryService.getCurrent().url">
       </label>
+      <div class="clearfix">
+        <button class="button secondary float-right save"
+                (click)="save(categoryService.getCurrent().categoryId)">
+          Save
+        </button>
+      </div>
     </div>
   </div>
 </div>
