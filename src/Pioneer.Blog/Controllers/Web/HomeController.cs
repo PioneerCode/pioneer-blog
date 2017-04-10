@@ -28,7 +28,7 @@ namespace Pioneer.Blog.Controllers.Web
                 "Hi, my name is Chad Ramos. I am a Chicago-based software developer with a strong passion for .NET, C#, The Web, Open Source, Programming and more. Brought to you by Pioneer Code.";
 
             ViewBag.PopularPosts = _postService.GetPopularPosts().ToList();
-            ViewBag.LatestPosts = _postService.GetAll(true, false, false, 4).ToList();
+            ViewBag.LatestPosts = _postService.GetAll(true, false, false, 8).ToList();
             return View();
         }
 
@@ -42,7 +42,7 @@ namespace Pioneer.Blog.Controllers.Web
                 "Sign up for How-to's, life hacks and insight into .NET, C#, The Web, Open Source, Programming and more from Chad Ramos. Brought to you by Pioneer Code.";
 
             ViewBag.PopularPosts = _postService.GetPopularPosts().ToList();
-            ViewBag.LatestPosts = _postService.GetAll(true, false, false, 4).ToList();
+            ViewBag.LatestPosts = _postService.GetAll(true, false, false, 8).ToList();
             ViewBag.Anchor = "#home-sign-up";
 
             if (!ModelState.IsValid)
