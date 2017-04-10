@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <link href="/app.css" rel="stylesheet" />
+  <script src="/app.js"></script>
+</head>
+<body>
+  <div class="row">
+    <div class="large-10 large-push-1 columns">
+      <h1>Deploying An ASP.NET Core Site With TeamCity And Octopus Deploy: You're Still Doing It Wrong.</h1>
+      <article>
+        <div class="note">
+          <p>This day and age, predictability and repeatability are two of the most important words when it comes deployment. In this series I am going to talk about how to add predictability and repeatability to your ASP.NET Core deployment pipeline using TeamCity and Octopus Deploy.</p>
+          <ol>
+            <li><a href="deploying-an-asp-net-core-teamcity-and-octopus-deploy-part-1">Setup</a></li>
+            <li>TeamCity</li>
+            <li>Database Deployments</li>
+            <li>Octopus Deploy</li>
+            <li>Deployment Target</li>
+          </ol>
+        </div>
+        <h2>You're Still Doing It Wrong!</h2>
+        <p>In 2010 there where two key resources published that helped identify many of the common mistakes developers where making when dealing with deployments and how you might go about solving them.</p>
+        <ul>
+          <li>Scott Hanselman - <a href="http://www.hanselman.com/blog/WebDeploymentMadeAwesomeIfYoureUsingXCopyYoureDoingItWrong.aspx" title="Web Deployment Made Awesome: If You're Using XCopy, You're Doing It Wrong" target="_blank">Web Deployment Made Awesome: If You're Using XCopy, You're Doing It Wrong</a>.</li>
+          <li>Troy Hunt - <a href="https://www.troyhunt.com/you-deploying-it-wrong-teamcity/" title="You're deploying it wrong! TeamCity, Subversion & Web Deploy" target="_blank">You're deploying it wrong! TeamCity, Subversion & Web Deploy</a></li>
+        </ul>
+        <p>Both Scott and Troy based there work on the fact that at the time, many of the common practices being followed when deploying ASP.NET application were unpredictable due to the human variable. It does not matter which way you slice it, we as humans are error prone.  No matter how many step-by-step instructions sets are put in front of us or how many times we have perform the same task over and over, we will mess it up at some point. That is a guarantee!</p>
+        <p>The key to reducing the problems then are the still the same now, introducing automation into your deployment process and introduce it early. If a human is needed to perform a task, be that configuration or deployment, we should always look to clearly define that individual task and look automate the hell out of it.</p>
+
+        <h2>Up Next</h2>
+      </article>
+    </div>
+  </div>
+</body>
+</html>

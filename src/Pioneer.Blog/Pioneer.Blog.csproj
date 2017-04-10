@@ -14,6 +14,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\posts\deploying-an-asp-net-core-site-teamcity-and-octopus-deploy-revisiting-you-are-doing-it-wrong-part-1.html" />
+    <Content Include="wwwroot\posts\deploying-an-asp-net-core-teamcity-and-octopus-deploy-part-1.html" />
+    <Content Include="wwwroot\posts\deploying-an-asp-net-core-to-teamcity-and-octopus-deploy-part-1.html" />
+    <Content Include="wwwroot\posts\deploying-an-asp-net-core-to-teamcity-and-octopus-deploy.html" />
+    <Content Include="wwwroot\posts\docker-containers-and-asp-net-core.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Service\Pioneer.Blog.Service.csproj" />
