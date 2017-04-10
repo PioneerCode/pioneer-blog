@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F593D50C-BC93-4CB7-86C6-6B295F35D783}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +19,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Service", "src\Pioneer.Blog.Service\Pioneer.Blog.Service.csproj", "{9CD00B57-02E8-4792-B26F-62072CF44B96}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Repository", "src\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj", "{67E97DDC-4716-4D1E-B78F-272A81475DBD}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CD7B3178-133E-4BA3-8E98-88B75B6E9EF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,10 @@ Global
 		{67E97DDC-4716-4D1E-B78F-272A81475DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67E97DDC-4716-4D1E-B78F-272A81475DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67E97DDC-4716-4D1E-B78F-272A81475DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD7B3178-133E-4BA3-8E98-88B75B6E9EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD7B3178-133E-4BA3-8E98-88B75B6E9EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD7B3178-133E-4BA3-8E98-88B75B6E9EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD7B3178-133E-4BA3-8E98-88B75B6E9EF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
