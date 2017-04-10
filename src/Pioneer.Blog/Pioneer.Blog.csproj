@@ -13,42 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot/images.rar" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\401-identity.jpg" />
-    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied-icon.jpg" />
-    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied-sm.jpg" />
-    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied.jpg" />
-    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\failed-redirect.jpg" />
-    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\solution-explorer-start.jpg" />
-    <Content Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied\un-auth.jpg" />
-    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\attach.png" />
-    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\breakpoint.png" />
-    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\build-success.png" />
-    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio-sm.jpg" />
-    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\debug-mode.png" />
-    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\debug.png" />
-    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\hit.png" />
-    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\newline.png" />
-    <Content Include="wwwroot\images\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio\setup.png" />
-    <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied.html" />
-    <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted.html" />
-    <Content Include="wwwroot\posts\authentication-in-a-asp-dot-net-core-api-part-3-json-web-token.html" />
-    <Content Include="wwwroot\posts\building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio.html" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="wwwroot\**\*;Views\**\*.cshtml;logs\**\*;robots.txt">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-    <None Update="Areas\**\*;wwwroot\admin\**\*;wwwroot\posts\**\*;wwwroot\styles.html;Views\Account\**\*.cshtml">
-      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Service\Pioneer.Blog.Service.csproj" />
@@ -78,11 +42,6 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted\" />
-    <Folder Include="wwwroot\images\authentication-in-a-asp-dot-net-core-api-part-3-json-web-token\" />
   </ItemGroup>
 
 </Project>
