@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <link href="/app.css" rel="stylesheet" />
+  <script src="/app.js"></script>
+</head>
+<body>
+  <div class="row">
+    <div class="large-10 large-push-1 columns">
+      <h1>Deploying An ASP.NET Core Site With TeamCity And Octopus Deploy: You're Still Doing It Wrong - TeamCity</h1>
+      <article>
+        <div class="note">
+          <p>This day and age, predictability and repeatability are two of the most important words when it comes deployment. In this series I am going to talk about how to add predictability and repeatability to your ASP.NET Core deployment pipeline using TeamCity and Octopus Deploy.</p>
+          <ol style="margin-bottom: 0;">
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-1">Intro</a></li>
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2">TeamCity</a></li>
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-3">Database Migrations</a></li>
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4">Octopus Deploy</a></li>
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5">Putting It All Together</a></li>
+          </ol>
+        </div>
+        <h2>You're Still Doing It Wrong!</h2>
+        <p>In 2010 there where two key resources published that helped identify many of the common mistakes developers where making when dealing with deployments and how you might go about solving them.</p>
+        <ul>
+          <li>Scott Hanselman - <a href="http://www.hanselman.com/blog/WebDeploymentMadeAwesomeIfYoureUsingXCopyYoureDoingItWrong.aspx" title="Web Deployment Made Awesome: If You're Using XCopy, You're Doing It Wrong" target="_blank">Web Deployment Made Awesome: If You're Using XCopy, You're Doing It Wrong</a>.</li>
+          <li>Troy Hunt - <a href="https://www.troyhunt.com/you-deploying-it-wrong-teamcity/" title="You're deploying it wrong! TeamCity, Subversion & Web Deploy" target="_blank">You're deploying it wrong! TeamCity, Subversion & Web Deploy</a></li>
+        </ul>
+        <p>Both Scott and Troy based there work on the fact that at the time, many of the common practices being followed when deploying a web application were unpredictable due to the human variable. It does not matter which way you slice it, we as humans are error prone.  No matter how many step-by-step instructions sets are put in front of us or how many times we have performed the same task over and over, <b>we will mess it up</b> at some point. That is a guarantee!</p>
+        <p>The key to reducing the problems then are the still the same now, introduce automation into your deployment process and introduce it early. If a human is needed to perform a task, be that configuration or deployment, we should clearly define that individual task and look automate the hell out of it.</p>
+        <h2>With Predictability, Comes Reliability</h2>
+        <p>Though the high-level concepts are the same now as they where then, the landscape in which they exist in has drastically changed. With that in mind, lets define some of the familiar high-level goals that we would like to achieve.</p>
+        <ol>
+          <li><b>Automate</b> builds through version control triggers.</li>
+          <li>
+            <b>Automate</b> deployments.
+            <ul>
+              <li><b>Automate</b> database changes on deployments.</li>
+              <li><b>Automate</b> configuration per specific deployment target.</li>
+              <li>Deploy <b>automated</b> pre-configured build to deployment target.</li>
+            </ul>
+          </li>
+        </ol>
+        <p>In other words, code is pushed to our repository. The "push" triggers an <b>automated</b> build.  The "automated build" triggers an <b>automated</b> deployment.  The <b>automated</b> "deployment" configures the "build", updates our database and pushes the deployment to a target.</p>
+        <p>As you might have notice, I am opting to emphasis the concept of automation here.  When we automate steps in the deployment process, we are removing points in which a human has a chance to screw something up. By doing such, we are introducing the concept of predictability.  If we automate "a", we can predict "x" will happen.  The more we can predict and more importantly prove to be accurate, the more reliability we will have based around our deployment process.</p>
+        <h4>Changing Landscape</h4>
+        <p>Though conceptually some of the concepts have been around for some time, the tooling used to achieve them has changed.  With this in mind, let's define some specifics around our goals.</p>
+        <ol>
+          <li>Use <a href="https://github.com/" title="GitHub" target="_blank">Git</a> as our repository.</li>
+          <li>Trigger <a href="https://www.jetbrains.com/teamcity/" title="TeamCity" target="_blank">TeamCity</a> to build our ASP.NET Core application.</li>
+          <li>Trigger <a href="https://octopus.com/" title="Octopus Deploy" target="_blank">Octopus Deploy</a> to...
+            <ul>
+              <li>Configure our <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration" title="ASP.NET Core configuration" target="_blank">appsettings.json</a> file with deployment target appropriate values.</li>
+              <li>Run database migration scripts utilizing <a href="https://dbup.github.io/" title="DbUp" target="_blank">DbUp</a> against our deployment target database.</li>
+              <li>Deploy our pre-built ASP.NET Core application to our deployment target along with the appropriate configuration.</li>
+            </ul>
+          </li>
+        </ol>
+        <h2>Setup</h2>
+        <p>There will be a few prerequisite that need to be met before we get started. Like with many of my other blog posts, I will be approaching this from the point of view of my actual blog.  Meaning, I will be using the <a href="https://github.com/PioneerCode/pioneer-blog" title="Pioneer Code Blog Source Code" target="_blank">Pioneer Code Blog</a> source in my environment, with the deployment target being <a href="/" target="_blank" title="Pioneer Code">pioneercode.com</a>.  That being said, all the high-level  concepts hold true to most deployments and all the tooling holds accurate to most ASP.NET deployments.</p>
+        <h4>Git</h4>
+        <p>This day and age, the vast majority of the world is using <a href="https://github.com/" title="GitHub" target="_blank">GitHub</a> to service there repository needs and I will be doing the same.  That being said, alternative services such as <a href="https://www.visualstudio.com/team-services/" target="_blank" title="Visual Studio Team Service">Visual Studio Team Services</a> or <a href="https://about.gitlab.com/" title="GitLab" target="_blank">GitLab</a> will suffice.</p>
+        <p class="note">If you do not go with <a href="https://github.com/" title="GitHub" target="_blank">GitHub</a>, concepts such as triggering integrations with <a href="https://www.jetbrains.com/teamcity/" title="TeamCity" target="_blank">TeamCity</a> on a status change will differ.</p>
+        <h4>Database</h4>
+        <p>To keep it short and simple, I currently use SQL Server. I have an on-prem server I use for dev and a production SQL instance being hosted at <a href="http://www.winhost.com/a/chadr" title="WinHost" target="_blank">WinHost</a>.  I will use my on-prem server to host the database for both <a href="https://www.jetbrains.com/teamcity/" title="TeamCity" target="_blank">TeamCity</a> and <a href="https://octopus.com/" title="Octopus Deploy" target="_blank">Octopus Deploy</a>. Any SQL host will suffice, including your local dev-machine if you so choose.  So long as it has the necessary access needed by each of the individual components.</p>
+        <p class="note">If you choose not to use SQL Server, the high-level concepts of running migrations against databases will still hold true but the implementation of <a href="https://dbup.github.io/" title="DbUp" target="_blank">DbUp</a> to accomplish this will vary or might not work.</p>
+        <h4>Tooling Home</h4>
+        <p>I will again be using my on-prem server to host <a href="https://www.jetbrains.com/teamcity/" title="TeamCity" target="_blank">TeamCity</a> and <a href="https://octopus.com/" title="Octopus Deploy" target="_blank">Octopus Deploy</a>.  Just like before, any environment you choose to host with should be fine.  Including your local dev-machine.</p>
+        <h4>Deployment Target</h4>
+        <p><a href="/" target="_blank" title="Pioneer Code">Pioneer Code</a> is hosted at <a href="https://www.digitalocean.com/?refcode=d95b905a1279" title="DigitalOcean" target="_blank">DigitalOcean</a> on a Linux VM. For the most part, be it a Linux target or Windows the concept of file transfer on deployment is the same.  The means on how we achieve this will differ though.  I will address more of this in the following parts to this series.</p>
+        <h2>Up Next</h2>
+        <p>Now that we have some goals defined and our prerequisites out of the way, we can look to setting up and configuring <a href="https://www.jetbrains.com/teamcity/" title="TeamCity" target="_blank">TeamCity</a> to automatically build our application as we push code into our repository. Until then, please feel free to leave an comments below.</p>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
