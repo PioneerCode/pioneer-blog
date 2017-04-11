@@ -19,7 +19,39 @@
             <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5">Putting It All Together</a></li>
           </ol>
         </div>
-        <p>In the previous post to this series, we talked about our desires to become more predictable and reliable through automation. We also touched on some of the prerequisites needed to accomplish this using the methods defined in this series. In this post we will dive into creating the bases of a Continuous Integration pipeline by setting up <a href="https://www.jetbrains.com/teamcity/" title="TeamCity" target="_blank">TeamCity</a> to serve our build server needs.  </p>
+        <p>In the previous post to this series, we talked about our desires to become more predictable and reliable through automation. We also touched on some of the prerequisites needed to accomplish this using the methods defined in this series. In this post we will dive into creating the bases of a Continuous Integration pipeline by setting up <a href="https://www.jetbrains.com/teamcity/" title="TeamCity" target="_blank">TeamCity</a> to serve our build server needs.</p>
+        <h2>Wait, You Build Deployments Locally?</h2>
+        <p>Building deployments out of your local source is for a lack of better words, a <b>terrible</b> idea. It is riddle with problems such as...</p>
+        <ul>
+          <li>
+            Isolation
+            <ul>
+              <li>When building form x-number of environments, you are introducing x-number of variables that may or may not have an effect on the final build that is outputted.</li>
+              <li>By Isolating the environment to a single point of entry (repository) and single point of exit (build server), you are removing the "it works on my machine" from the equation. </li>
+            </ul>
+          </li>
+          <li>
+            Traceable
+            <ul>
+              <li>When a build fails, we need to be able to trace its origination to determine what went wrong.</li>
+              <li>If we are building from x-amount of entry points, we don't have a clear path to that origin.</li>
+              <li>If we do not have a clear path to the origin, we don't have a clear definition of the state of code and by way of cannot say reliably say what caused any given issue.</li>
+            </ul>
+          </li>
+          <li>
+            Developer Alignment
+            <ul>
+              <li>If you are not using a single entry points for your build process, you are introducing the possibility of the state of code to not be aligned with the exceptions of multiple developers.</li>
+              <li>
+                For example, black-box developer A is working on feature B.  Black-box developer C is working on feature D and does not know about feature B.
+                <ul>
+                  <li>If developer C is responsible for producing a build for deployment, feature B will not be in said deployment.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>To be honest, this list can go one for a very long time. A simple Google search will pull up a exhaustive list of reasons why build servers building from a single source of truth is a desired practice. Point being, if you are not doing such then you are definitely <b>still doing it wrong</b>.</p>
         <h2>Up Next</h2>
       </article>
     </div>
