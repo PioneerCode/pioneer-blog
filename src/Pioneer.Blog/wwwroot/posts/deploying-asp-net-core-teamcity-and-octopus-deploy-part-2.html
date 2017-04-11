@@ -52,6 +52,20 @@
           </li>
         </ul>
         <p>To be honest, this list can go one for a very long time. A simple Google search will pull up a exhaustive list of reasons why build servers building from a single source of truth is a desired practice. Point being, if you are not doing such then you are definitely <b>still doing it wrong</b>.</p>
+        <h2>Installation</h2>
+        <p>TeamCity these day is super easy to install.  You have one of two option, install it using the <a href="https://www.jetbrains.com/teamcity/download/#section=windows" title="TeamCity Installer" target="_blank">TeamCity Installer</a> or do it like a modern developer would and use <a href="https://chocolatey.org/" title="Chocolatey" target="_blank">Chocolatey</a>.  I went the Chocolatey route and ran the following command.</p>
+        <pre class="brush: bash">choco install teamcity</pre>
+        <p>Once installed head over to <b>http://localhost:8111</b> and follow the prompts.</p>
+        <p>Set the location where TeamCity will store it's meta data on disk.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-1.jpg" title="TeamCity Directory" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-1.jpg" alt="TeamCity Directory" style="max-width: 805px; border: 1px solid #ccc;"/>
+        </a>
+        <p>Make your connection to the database you want TeamCity to use.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-2.jpg" title="TeamCity Database" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-2.jpg" alt="TeamCity Database" style="max-width: 805px; border: 1px solid #ccc;"/>
+        </a>
+        <p>It will take a minute or two to initialize the rest of TeamCity components but once it is done, you will be asked to accept a licensing agreement and create an administrator account. After you have finish creating an account, you will end up logged into the TeamCity portal.</p>
+        <h2>Create A Project</h2>
         <h2>Up Next</h2>
       </article>
     </div>
