@@ -25,9 +25,36 @@
           <li>Scott Hanselman - <a href="http://www.hanselman.com/blog/WebDeploymentMadeAwesomeIfYoureUsingXCopyYoureDoingItWrong.aspx" title="Web Deployment Made Awesome: If You're Using XCopy, You're Doing It Wrong" target="_blank">Web Deployment Made Awesome: If You're Using XCopy, You're Doing It Wrong</a>.</li>
           <li>Troy Hunt - <a href="https://www.troyhunt.com/you-deploying-it-wrong-teamcity/" title="You're deploying it wrong! TeamCity, Subversion & Web Deploy" target="_blank">You're deploying it wrong! TeamCity, Subversion & Web Deploy</a></li>
         </ul>
-        <p>Both Scott and Troy based there work on the fact that at the time, many of the common practices being followed when deploying ASP.NET application were unpredictable due to the human variable. It does not matter which way you slice it, we as humans are error prone.  No matter how many step-by-step instructions sets are put in front of us or how many times we have perform the same task over and over, we will mess it up at some point. That is a guarantee!</p>
-        <p>The key to reducing the problems then are the still the same now, introducing automation into your deployment process and introduce it early. If a human is needed to perform a task, be that configuration or deployment, we should always look to clearly define that individual task and look automate the hell out of it.</p>
-
+        <p>Both Scott and Troy based there work on the fact that at the time, many of the common practices being followed when deploying a web application were unpredictable due to the human variable. It does not matter which way you slice it, we as humans are error prone.  No matter how many step-by-step instructions sets are put in front of us or how many times we have performed the same task over and over, <b>we will mess it up</b> at some point. That is a guarantee!</p>
+        <p>The key to reducing the problems then are the still the same now, introduce automation into your deployment process and introduce it early. If a human is needed to perform a task, be that configuration or deployment, we should clearly define that individual task and look automate the hell out of it.</p>
+        <h2>With Predictability, Comes Reliability</h2>
+        <p>Though the high-level concepts are the same now as they where then, the landscape in which they exist in has drastically changed. With that in mind, lets define some of the familiar high-level goals that we would like to achieve.</p>
+        <ol>
+          <li><b>Automate</b> builds through version control triggers.</li>
+          <li>
+            <b>Automate</b> deployments.
+            <ul>
+              <li><b>Automate</b> database changes on deployments.</li>
+              <li><b>Automate</b> configuration per specific deployment target.</li>
+              <li>Deploy <b>automated</b> pre-configured build to deployment target.</li>
+            </ul>
+          </li>
+        </ol>
+        <p>In other words, code is pushed to our repository. The "push" triggers an <b>automated</b> build.  The "automated build" triggers an <b>automated</b> deployment.  The <b>automated</b> "deployment" configures the "build", updates our database and pushes the deployment to a target.</p>
+        <p>As you might have notice, I am opting to emphasis the concept of automation here.  When we automate steps in the deployment process, we are removing points in which a human has a chance to screw something up. By doing such, we are introducing the concept of predictability.  If we automate "a", we can predict "x" will happen.  The more we can predict and more importantly prove to be accurate, the more reliability we will have based around our deployment process.</p>
+        <h4>Changing Landscape</h4>
+        <p>Though conceptually some of the concepts have been around for some time, the tooling used to achieve them has hanged.  With this in mind, let's define some specifics around our goals.</p>
+        <ol>
+          <li>Use <a href="https://github.com/" title="GitHub" target="_blank">Git</a> as our repository.</li>
+          <li>Trigger <a href="https://www.jetbrains.com/teamcity/" title="TeamCity" target="_blank">TeamCity</a> to build our ASP.NET Core application.</li>
+          <li>Trigger <a href="https://octopus.com/" title="Octopus Deploy" target="_blank">Octopus Deploy</a> to...
+            <ul>
+              <li>Configure our <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration" title="ASP.NET Core configuration" target="_blank">appsettings.json</a> file with deployment target appropriate values.</li>
+              <li>Run database migrations script utilizing <a href="https://dbup.github.io/" title="DbUp" target="_blank">DbUp</a> against our deployment target database.</li>
+              <li>Deploy our pre-built ASP.NET Core application to our deployment target along with the appropriate configuration.</li>
+            </ul>
+          </li>
+        </ol>
         <h2>Up Next</h2>
       </article>
     </div>
