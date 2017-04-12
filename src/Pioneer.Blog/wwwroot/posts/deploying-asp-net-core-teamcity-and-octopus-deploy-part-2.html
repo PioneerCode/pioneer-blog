@@ -66,7 +66,11 @@
         </a>
         <p>It will take a minute or two to initialize the rest of TeamCity components but once it is done, you will be asked to accept a licensing agreement and create an administrator account. After you have finish creating an account, you will end up logged into the TeamCity portal.</p>
         <h2>Creating A Project</h2>
-        <p>Now that we have are build server installed, it is time to create a project and tie it to our repository. Luckily, since we are tying into  GitHub as an integration, TeamCity actually provides us with an option to create a project of the type "Pointing to a GitHub repository".</p>
+        <p>Now that we have are build server installed, it is time to create a project and tie it to our repository. When dealing with integrating with GitHub, we have one of two options.</p>
+        <h4>Triggering From GitHub</h4>
+        <p>If your install of TeamCity can be reached on the open Internet, you can set up GitHub to initiate a build every time code is pushed to your repository. To do so, you need to grant access to TeamCity inside of GitHub.</p>
+        <h4>Polling GitHub</h4>
+
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-3.jpg" title="TeamCity Create GitHub Project" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-3.jpg" alt="TeamCity Create GitHub Project" style="max-width: 600px; border: 1px solid #ccc;" />
         </a>
