@@ -58,22 +58,70 @@
         <p>Once installed head over to <b>http://localhost:8111</b> and follow the prompts.</p>
         <p>Set the location where TeamCity will store it's meta data on disk.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-1.jpg" title="TeamCity Directory" target="_blank">
-          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-1.jpg" alt="TeamCity Directory" style="max-width: 805px; border: 1px solid #ccc;"/>
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-1.jpg" alt="TeamCity Directory" style="max-width: 805px; border: 1px solid #ccc;" />
         </a>
         <p>Make your connection to the database you want TeamCity to use.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-2.jpg" title="TeamCity Database" target="_blank">
-          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-2.jpg" alt="TeamCity Database" style="max-width: 805px; border: 1px solid #ccc;"/>
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-2.jpg" alt="TeamCity Database" style="max-width: 805px; border: 1px solid #ccc;" />
         </a>
         <p>It will take a minute or two to initialize the rest of TeamCity components but once it is done, you will be asked to accept a licensing agreement and create an administrator account. After you have finish creating an account, you will end up logged into the TeamCity portal.</p>
         <h2>Creating A Project</h2>
-        <p>Now that we have are build server installed, it is time to create a project and tie it to our repository. When dealing with integrating with GitHub, we have one of two options.</p>
-        <h4>Triggering From GitHub</h4>
-        <p>If your install of TeamCity can be reached on the open Internet, you can set up GitHub to initiate a build every time code is pushed to your repository. To do so, you need to grant access to TeamCity inside of GitHub.</p>
-        <h4>Polling GitHub</h4>
-
-        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-3.jpg" title="TeamCity Create GitHub Project" target="_blank">
-          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-3.jpg" alt="TeamCity Create GitHub Project" style="max-width: 600px; border: 1px solid #ccc;" />
+        <p>Now that we have are build server installed, it is time to create a project. A project is a group of one or more Build Configurations.  A Build Configuration is a set of steps that will automate the process of building an asset that we can use to deploy. Let's start with a blank project and configure everything manually. On the "Create Project" screen select "Manually" and fill out the required fields.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-6.png" title="TeamCity Create Project" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-6.png" alt="TeamCity Create Project" style="max-width: 895px; border: 1px solid #ccc;" />
         </a>
+        <h3>Connecting Up With Our Source Code</h3>
+        <p>Our build server needs to know or be told that our source code has change in order to trigger a build. To accomplish this, we will have one of two options on how we want to communicate with Github.</p>
+        <h4>Triggering From GitHub</h4>
+        <p>If your install of TeamCity can be reached on the open Internet, you can set up GitHub to initiate a build every time code is pushed to your repository. To accomplish this you would create what is called a "Connection".  This connection will allow for GitHub to talk directly to TeamCity.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-4.jpg" title="TeamCity Create Connection" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-4.jpg" alt="TeamCity Create Connection" style="max-width: 870px; border: 1px solid #ccc;" />
+        </a>
+        <p>You will be required to register your instance of TeamCity with GitHub. Once register, you will be supplied with a "Client ID" and "Client secret" to finalize the contract between the two apps.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-5.jpg" title="TeamCity Polling" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-5.jpg" alt="TeamCity Polling" style="max-width: 764px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Polling GitHub</h4>
+        <p>If you don't want to open up access to your TeamCity instance from the Internet, you can instead tell TeamCity to poll your repository for changes. To accomplish this we will need to create tow things..</p>
+        <ul>
+          <li>
+            VCS root
+            <ul>
+              <li>Define how the project source code is actually recived. </li>
+            </ul>
+          </li>
+          <li>Trigger</li>
+        </ul>
+        <p>I will talk more about both this topics after we create a Build Configuration.</p>
+        <h3>Build Configuration</h3>
+        <p>Now that our project is created and we have decided how we are going to tie in GitHub, we can start creating our Build Configuration.  Build Configurations are made up of the step by step process we want to automate in order to build our project.  For us, our goals will be as follows.</p>
+        <ul>
+          <li><b>Detect</b> changes to source and pull source to build server.</li>
+          <li><b>Restore</b> all nuget packages.</li>
+          <li><b>Build</b> our project.</li>
+          <li><b>Pack</b> the build and make it available to our automated deployment system, Octopus Deploy.</li>
+        </ul>
+        <p>Head over to your projects "General Settings" page and select "Create Build Configuration".  Let's again select the "Manually" options and fill out the required fields before hitting create.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-8.png" title="TeamCity Create Build Configuration" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-8.png" alt="TeamCity Create Build Configuration" style="max-width: 742px; border: 1px solid #ccc;" />
+        </a>
+        <p></p>
+        <h4>Detect</h4>
+        <p>For our purposes, we am going to create a "VCS root" and "Trigger" to reach out to our repository and <b>detect</b> changes. In your Build Configuration, navigation to the VCS Roots page and hit "Create VCS root."  Fill out all required information including any branch targeting you would like to do. I am leaving mine so it polls the "master" branch.  I do this because I consider my "master" to be deployable at all time.  Important code only reaches my master branch when it has gone through a proper pull-request.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-7.png" title="TeamCity Create VCS" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-7.png" alt="TeamCity Create VCS" style="max-width: 727px; border: 1px solid #ccc;" />
+        </a>
+        <p>Once the "VCS root" has been created, head over to your "Version Control Settings" and attach it to your Build Configuration.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-9.png" title="TeamCity Attach VCS Root" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-9.png" alt="TeamCity Attach VCS Root" style="max-width: 742px; border: 1px solid #ccc;" />
+        </a>
+        <p>In the "Triggers" section, </p>
+        <h4>Restore</h4>
+
+        <h4>Build</h4>
+
+
+        <h4>Pack</h4>
         <h2>Up Next</h2>
       </article>
     </div>
