@@ -105,7 +105,6 @@
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-8.png" title="TeamCity Create Build Configuration" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-8.png" alt="TeamCity Create Build Configuration" style="max-width: 742px; border: 1px solid #ccc;" />
         </a>
-        <p></p>
         <h4>Detect</h4>
         <p>For our purposes, we am going to create a "VCS root" and "Trigger" to reach out to our repository and <b>detect</b> changes. In your Build Configuration, navigation to the VCS Roots page and hit "Create VCS root."  Fill out all required information including any branch targeting you would like to do. I am leaving mine so it polls the "master" branch.  I do this because I consider my "master" to be deployable at all time.  Important code only reaches my master branch when it has gone through a proper pull-request.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-7.png" title="TeamCity Create VCS" target="_blank">
@@ -115,12 +114,15 @@
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-9.png" title="TeamCity Attach VCS Root" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-9.png" alt="TeamCity Attach VCS Root" style="max-width: 742px; border: 1px solid #ccc;" />
         </a>
-        <p>In the "Triggers" section, </p>
+        <p>In the "Triggers" section, "Add New Trigger" and select the "VCS Trigger" type.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-10.png" title="TeamCity Add Trigger" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-10.png" alt="TeamCity Add Trigger" style="max-width: 1308px; border: 1px solid #ccc;" />
+        </a>
+        <p>The new "Trigger" will add a build to the queue when a VCS check-in is detected.</p>
+        <h3>Build Configuration Steps</h3>
+        <p>If you have not noticed yet, three of our four steps in regards to setting up our Build Configuration directly map to commands we run against the <b>dotnet cli</b>: restore, build and pack. Thankfully the team at Jet Brains has created a plugin to facilitate execution of these commands.</p>
         <h4>Restore</h4>
-
         <h4>Build</h4>
-
-
         <h4>Pack</h4>
         <h2>Up Next</h2>
       </article>
