@@ -87,7 +87,7 @@
           <li>
             VCS root
             <ul>
-              <li>Define how the project source code is actually recived. </li>
+              <li>Define how the project source code is actually revived. </li>
             </ul>
           </li>
           <li>Trigger</li>
@@ -112,16 +112,41 @@
         </a>
         <p>Once the "VCS root" has been created, head over to your "Version Control Settings" and attach it to your Build Configuration.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-9.png" title="TeamCity Attach VCS Root" target="_blank">
-          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-9.png" alt="TeamCity Attach VCS Root" style="max-width: 742px; border: 1px solid #ccc;" />
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-9.png" alt="TeamCity Attach VCS Root" style="max-width: 1145px; border: 1px solid #ccc;" />
         </a>
         <p>In the "Triggers" section, "Add New Trigger" and select the "VCS Trigger" type.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-10.png" title="TeamCity Add Trigger" target="_blank">
-          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-10.png" alt="TeamCity Add Trigger" style="max-width: 1308px; border: 1px solid #ccc;" />
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-10.png" alt="TeamCity Add Trigger" style="max-width: 1038px; border: 1px solid #ccc;" />
         </a>
         <p>The new "Trigger" will add a build to the queue when a VCS check-in is detected.</p>
-        <h3>Build Configuration Steps</h3>
         <p>If you have not noticed yet, three of our four steps in regards to setting up our Build Configuration directly map to commands we run against the <b>dotnet cli</b>: restore, build and pack. Thankfully the team at Jet Brains has created a plugin to facilitate execution of these commands.</p>
+        <h3>Installing The Plugin</h3>
+        <ul>
+          <li>On the machine TeamCity is installed on, head over to the <a href="https://plugins.jetbrains.com/plugin/9190--net-core-support">TeamCity plugin gallery</a> and download the plugin.</li>
+          <li>Copy the plugin zip package to your <b>\&lt;team city directory&gt;\plugins</b> directory.</li>
+          <li>Restart your TeamCity service(s)</li>
+          <li>
+            Install the latest .NET Core SDK.  You have one of two options...
+            <ul>
+              <li>Head to <a href="https://www.microsoft.com/net/core#windowsvs2017"> the official download site</a> and get the installer from there.</li>
+              <li>
+                Or, do it like a modern dev and run the following chocolatey command.
+                <pre class="brush: bash">choco install dotnetcore-sdk -y</pre>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h3>Build Configuration Steps</h3>
+        <p>Now that we have the necessary plugin and SDK installed, we can create our individual build steps.</p>
         <h4>Restore</h4>
+        <p>Head to your Build Configuration and under "Build Steps", select "Add Build Step". You will be given a choice "Runner Type(s)".  Select the ".NET Core (dotnet)" runner that we just installed with the plugin.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-11.png" title="TeamCity Add Step" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-11.png" alt="TeamCity Add Step" style="max-width: 869px; border: 1px solid #ccc;" />
+        </a>
+        <p>You will be presented with a list of configuration options.  The values of which will be determined by your goals.  For my setup I added a "Step Name", changed the "Command" to "restore" and targeted my solution file in the "Projects" section.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-12.png" title="TeamCity Config Restore" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-12.png" alt="TeamCity Config Restore" style="max-width: 812px; border: 1px solid #ccc;" />
+        </a>
         <h4>Build</h4>
         <h4>Pack</h4>
         <h2>Up Next</h2>
