@@ -19,6 +19,50 @@
             <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5">Putting It All Together</a></li>
           </ol>
         </div>
+        <p>In the last post of this series.....</p>
+        <h2>Get Your Hands Off That Configuration File</h2>
+        <h2>Installation</h2>
+        <p>We need to start by installing the Octopus Deploy Server.  You can either head over to the <a href="https://octopus.com/downloads">Octopus Deploy Server</a> official download or use Chocolatey by running the following command.</p>
+        <pre class="brush: bash">choco install octopusdeploy</pre>
+        <h4>License</h4>
+        <p>Select the free trial and fill out the necessary information.  After the 45 days is up, you will be able to continue with the Community Edition of Octopus Deploy.  This will get you up to 5 projects and 5 users to use for free.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-1.png" title="Octopus Install License" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-1.png" alt="Octopus Install License" style="max-width: 573px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Home Directory</h4>
+        <p>Select where you want Octopus to story its assets.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-2.png" title="Octopus Install Home Directory" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-2.png" alt="Octopus Install Home Directory" style="max-width: 844px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Service Account</h4>
+        <p>Select what account you want to run the Octopus service under.  In most cases your "Local System Account" will suffice.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-3.png" title="Octopus Install Service Account" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-3.png" alt="Octopus Install Service Account" style="max-width: 854px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Database</h4>
+        <p>Create a new database in your SQL Server instance and connect to it with appropriate credentials.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-4.png" title="Octopus Install Database" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-4.png" alt="Octopus Install Database" style="max-width: 829px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Web Portal</h4>
+        <p>Octopus has its own internal web server, of which default to port 80.  Based on your TeamCity setup and other variables specific to your environment, you most likely will need to change this port to avoid port conflicts.  In my setup I change it to port 8080.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-5.png" title="Octopus Web Portal" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-5.png" alt="Octopus Web Portal" style="max-width: 829px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Authentication</h4>
+        <p>Set up an account to login with.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-6.png" title="Octopus Authentication" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-6.png" alt="Octopus Authentication" style="max-width: 645px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Finish Install</h4>
+        <p>Default options will suffice.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-7.png" title="Octopus Install Start" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-7.png" alt="Octopus Install Start" style="max-width: 852px; border: 1px solid #ccc;" />
+        </a>
+        <p>Once you click "Install", a bunch of scripts will kick of and you will end up at the follow screen after a minute or two.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-8.png" title="Octopus Install End" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-8.png" alt="Octopus Install End" style="max-width: 689px; border: 1px solid #ccc;" />
+        </a>
         <h2>Up Next</h2>
       </article>
     </div>

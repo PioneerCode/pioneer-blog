@@ -9,6 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F593D50C-BC9
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B15762AF-BA5F-4D2A-BB30-D497203F0A77}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog", "src\Pioneer.Blog\Pioneer.Blog.csproj", "{27E97E68-B2C0-4D67-82C1-D3725ACE28B2}"
 EndProject
