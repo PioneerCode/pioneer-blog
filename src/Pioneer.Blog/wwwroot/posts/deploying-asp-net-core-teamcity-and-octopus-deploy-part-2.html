@@ -99,7 +99,7 @@
           <li><b>Detect</b> changes to source and pull source to build server.</li>
           <li><b>Restore</b> all nuget packages.</li>
           <li><b>Build</b> our project.</li>
-          <li><b>Pack</b> the build and make it available to our automated deployment system, Octopus Deploy.</li>
+          <li><b>Publish</b> the build and make it available to our automated deployment system, Octopus Deploy.</li>
         </ul>
         <p>Head over to your projects "General Settings" page and select "Create Build Configuration".  Let's again select the "Manually" options and fill out the required fields before hitting create.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-8.png" title="TeamCity Create Build Configuration" target="_blank">
@@ -124,7 +124,7 @@
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-10.png" alt="TeamCity Add Trigger" style="max-width: 1038px; border: 1px solid #ccc;" />
         </a>
         <p>The new "Trigger" will add a build to the queue when a VCS check-in is detected.</p>
-        <p>If you have not noticed yet, three of our four steps in regards to setting up our Build Configuration directly map to commands we run against the <b>dotnet cli</b>: restore, build and pack. Thankfully the team at Jet Brains has created a plugin to facilitate execution of these commands.</p>
+        <p>If you have not noticed yet, three of our four steps in regards to setting up our Build Configuration directly map to commands we run against the <b>dotnet cli</b>: restore, build and publish. Thankfully the team at Jet Brains has created a plugin to facilitate execution of these commands.</p>
         <h2>Installing "The" Plugin</h2>
         <ul>
           <li>On the machine TeamCity is installed on, head over to the <a href="https://plugins.jetbrains.com/plugin/9190--net-core-support">TeamCity plugin gallery</a> and download the plugin.</li>
@@ -153,7 +153,26 @@
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-12.png" alt="TeamCity Config Restore" style="max-width: 812px; border: 1px solid #ccc;" />
         </a>
         <h3>Build</h3>
-        <h3>Pack</h3>
+        <p>Again, head to the "Build Steps" and select "Add Build Step".  This time will configure it with the same "Runner Type" but switch the command to "build". We will also set the "Configuration" which to build under to "Release".</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-14.png" title="TeamCity Config Build" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-14.png" alt="TeamCity Config Build" style="max-width: 804px; border: 1px solid #ccc;" />
+        </a>
+        <h3>Publish</h3>
+        <p>Last step in the process is to tell the <b>dotnet cli</b> to "pbulish" our build to the file system.  Just like we did previously, we again "Add Build Step" and configure it to the same "Runner Type".  This time we switch the "command" to publish and set the "Configuration" which to build under to "Release".</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-15.png" title="TeamCity Config Publish" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-15.png" alt="TeamCity Config Publish" style="max-width: 804px; border: 1px solid #ccc;" />
+        </a>
+        <h2>Assets</h2>
+        <p>Now that we have setup our build steps and the <b>dotnet cli</b> is in theory publishing assets to the file system, we need a way to tell TeamCity to take the published assets and make them available as an asset inside TeamCity. If we forgo this step, we will not have assets that we can access at the end of our build pipeline.  That being said, let head to the "General Settings" section of our Build Configuration and add <b>publish => your.name.%build.number%</b> to the "Artifact paths" value.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-16.png" title="TeamCity Artifacts" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-16.png" alt="TeamCity Artifacts" style="max-width: 804px; border: 1px solid #ccc;" />
+        </a>
+        <p>By doing this, we should now be able access the assets from our build portal.</p>
+        <h2>Off We Go</h2>
+        <p>Setup of TeamCity and its necessary configuration should be complete at this point.  Go ahead and check some code into your "master branch" on GitHub, watch your TeamCity to see the Build Agent recognize the change and view your assets when your Build completes successfully. If all went well, you should end up with something like this.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-17.png" title="TeamCity Success" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-17.png" alt="TeamCity Success" style="max-width: 640px; border: 1px solid #ccc;" />
+        </a>
         <h2>Up Next</h2>
       </article>
     </div>
