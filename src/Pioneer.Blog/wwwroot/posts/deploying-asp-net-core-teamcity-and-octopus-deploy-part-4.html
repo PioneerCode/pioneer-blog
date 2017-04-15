@@ -65,15 +65,16 @@
         </a>
         <h2>Environment</h2>
         <p>One of the first steps you are going to want to take is creating what is called an "Environment".  Environments are high-level buckets we can use to organize our various Targets.  For example, a typical deployment pipeline might consist of dev, test, stage and production.  Each of these steps in an apps deployment life-cycle would map nicely to an Environment inside of Octopus.</p>
-        <p>Head to the Environments page in your portal and click "Add Environment"</p>
+        <p>Head to the Environments page in your portal and click "Add Environment". Go ahead and add a Name and Description as you see fit.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-env-1.png" title="Octopus Environment" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-env-1.png" alt="Octopus Environment" style="max-width: 734px; border: 1px solid #ccc;" />
         </a>
-        <p>I create two separate environments.  One for production and one for testing.</p>
+        <p>I created two separate environments.  One for production and one for testing.</p>
         <h2>Targets</h2>
-        <p>Thats right, thanks to the power of .NET Core I am about to show you how to setup a target for Linux or Windows. If that does not make you happy, I don't know what will. Go ahead and add a Name and Description if you see fit.</p>
-   
-        <h3>Linux</h3>
+        <p>Guess what, thanks to the power of .NET Core I am about to show you how to setup a target for Linux or Windows. If that does not make you happy, I don't know what will. I will be using my Windows based Target to deploy to an IIS instance in my "test" environment and will use a Linux based target to deploy to production.</p>
+        <h3>Windows: Testing</h3>
+        <p></p>
+        <h3>Linux: Production</h3>
         <div class="note">
           <p>For more information about my deployment process prior to setting up my CI environment, take a look at the following posts.</p>
           <ul style="margin-bottom: 0;">
@@ -85,17 +86,15 @@
             </li>
           </ul>
         </div>
-        <p>As of current, my production ASP.NET Core deployment lives at <a href="https://www.digitalocean.com/?refcode=d95b905a1279" title="DigitalOcean" target="_blank">DigitalOcean</a> on an Ubuntu distribution. Since Octopus Deploy 3.0 was released the sub-system components used by Octopus, mainly "Calamari", can  run on most Linux distribution so long as some basic requirements are met.  The combination of "Calamari" running bash script and communicating via SSH, for the most part creates "Tentacle" parity rich experience.  Long story short, it works and works good.</p>
-        <p>Octopus did a pretty good job documenting the requirements to make this work at <a href="https://octopus.com/docs/deployment-targets/ssh-targets" title="Octopus SSH Target" target="_blank">SSH Targets</a>. At this link you will see a list of distributions "guaranteed" to work and a detalied list of features you need to insure are enabled or installed on your target.</p>
-        <p>Strangly enough, my Ubnuntu target did not have Mono installed.  I SSH'ed into my machine, and ran the following.</p>
+        <p>As of current, my production ASP.NET Core deployment lives at <a href="https://www.digitalocean.com/?refcode=d95b905a1279" title="DigitalOcean" target="_blank">DigitalOcean</a> on an Ubuntu distribution. Since Octopus Deploy 3.0 was released the sub-system components used by Octopus, mainly "Calamari", can run on most Linux distribution so long as some basic requirements are met.  The combination of "Calamari" running bash script and communicating via SSH, for the most part creates a "Tentacle" parity rich experience.  Long story short, it works and works good.</p>
+        <p>Octopus did a pretty good job documenting the requirements to make this work at <a href="https://octopus.com/docs/deployment-targets/ssh-targets" title="Octopus SSH Target" target="_blank">SSH Targets</a>. At this link you will see a list of distributions "guaranteed" to work and a detailed list of features you need to insure are enabled or installed on your target.</p>
+        <p>Strangely enough, my Ubnuntu target did not have Mono installed.  I SSH'ed into my machine, and ran the following.</p>
         <pre class="brush: bash">sudo apt-get install mono-complete</pre>
         <p>If you don't have the proper key Signing Key and Repository available, you might to run the following.</p>
         <pre class="brush: bash">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
 sudo apt-get update
 sudo apt-get install mono-complete</pre>
-        <h3>Windows</h3>
-        <p></p>
         <h2>Up Next</h2>
       </article>
     </div>
