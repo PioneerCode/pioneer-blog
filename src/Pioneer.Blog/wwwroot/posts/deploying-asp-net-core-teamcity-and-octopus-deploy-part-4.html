@@ -5,110 +5,148 @@
   <script src="/app.js"></script>
 </head>
 <body>
-<div class="row">
-  <div class="large-10 large-push-1 columns">
-    <h1>Deploying An ASP.NET Core Site: You're Still Doing It Wrong - Octopus Deploy Targeting Windows Or Linux</h1>
-    <article>
-      <div class="note">
-        <p>This day and age, predictability and reliability are two of the most important words when it comes deployment. In this series, I am going to talk about how to add predictability and reliability to your ASP.NET Core deployment pipeline using TeamCity and Octopus Deploy.</p>
-        <ol style="margin-bottom: 0;">
-          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-1">Intro</a></li>
-          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2">TeamCity</a></li>
-          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-3">Database Migrations</a></li>
-          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4">Octopus Deploy</a></li>
-          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5">Putting It All Together</a></li>
-        </ol>
-      </div>
-      <p>In the last post of this series.....</p>
-      <h2>Get Your Hands Off That Configuration File</h2>
-      <h2>Installation</h2>
-      <p>We need to start by installing the Octopus Deploy Server.  You can either head over to the <a href="https://octopus.com/downloads">Octopus Deploy Server</a> official download or use Chocolatey by running the following command.</p>
-      <pre class="brush: bash">choco install octopusdeploy</pre>
-      <h4>License</h4>
-      <p>Select the free trial and fill out the necessary information.  After the 45 days is up, you will be able to continue with the Community Edition of Octopus Deploy.  This will get you up to 5 projects and 5 users to use for free.</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-1.png" title="Octopus Install License" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-1.png" alt="Octopus Install License" style="max-width: 573px; border: 1px solid #ccc;" />
-      </a>
-      <h4>Home Directory</h4>
-      <p>Select where you want Octopus to story its assets.</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-2.png" title="Octopus Install Home Directory" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-2.png" alt="Octopus Install Home Directory" style="max-width: 844px; border: 1px solid #ccc;" />
-      </a>
-      <h4>Service Account</h4>
-      <p>Select what account you want to run the Octopus service under.  In most cases your "Local System Account" will suffice.</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-3.png" title="Octopus Install Service Account" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-3.png" alt="Octopus Install Service Account" style="max-width: 854px; border: 1px solid #ccc;" />
-      </a>
-      <h4>Database</h4>
-      <p>Create a new database in your SQL Server instance and connect to it with appropriate credentials.</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-4.png" title="Octopus Install Database" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-4.png" alt="Octopus Install Database" style="max-width: 829px; border: 1px solid #ccc;" />
-      </a>
-      <h4>Web Portal</h4>
-      <p>Octopus has its own internal web server, of which default to port 80.  Based on your TeamCity setup and other variables specific to your environment, you most likely will need to change this port to avoid port conflicts.  In my setup I change it to port 8080.</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-5.png" title="Octopus Web Portal" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-5.png" alt="Octopus Web Portal" style="max-width: 829px; border: 1px solid #ccc;" />
-      </a>
-      <h4>Authentication</h4>
-      <p>Set up an account to login with.</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-6.png" title="Octopus Authentication" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-6.png" alt="Octopus Authentication" style="max-width: 645px; border: 1px solid #ccc;" />
-      </a>
-      <h4>Finish Install</h4>
-      <p>Default options will suffice.</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-7.png" title="Octopus Install Start" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-7.png" alt="Octopus Install Start" style="max-width: 852px; border: 1px solid #ccc;" />
-      </a>
-      <p>Once you click "Install", a bunch of scripts will kick of and you will end up at the follow screen after a minute or two.</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-8.png" title="Octopus Install End" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-8.png" alt="Octopus Install End" style="max-width: 689px; border: 1px solid #ccc;" />
-      </a>
-      <h2>Environment</h2>
-      <p>One of the first steps you are going to want to take is creating what is called an "Environment".  Environments are high-level buckets we can use to organize our various Targets.  For example, a typical deployment pipeline might consist of dev, test, stage and production.  Each of these steps in an apps deployment life-cycle would map nicely to an Environment inside of Octopus.</p>
-      <p>Head to the Environments page in your portal and click "Add Environment". Go ahead and add a Name and Description as you see fit.</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-env-1.png" title="Octopus Environment" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-env-1.png" alt="Octopus Environment" style="max-width: 734px; border: 1px solid #ccc;" />
-      </a>
-      <p>I created two separate environments.  One for production and one for testing.</p>
-      <h2>Targets</h2>
-      <p>Guess what, thanks to the power of .NET Core I am about to show you how to setup a target for Linux or Windows. If that does not make you happy, I don't know what will. I will be using my Windows based Target to deploy to an IIS instance in my "test" environment and will use a Linux based target to deploy to production.</p>
-      <h3>Windows: Testing</h3>
-      <p>To start, lets create a new "Account" that will have access to the box IIS lives on. Head to the "Accounts" page located in at Environment > Accounts. For my Windows target, I will create an "Account" of the type "Usernames/Passwords" and assign it to my "Test Environment".</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-account-1.png" title="Octopus Username Password Account" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-account-1.png" alt="Octopus Username Password Account" style="max-width: 535px; border: 1px solid #ccc;" />
-      </a>
-      <h4>Account</h4>
-      <h3>Linux: Production</h3>
-      <div class="note">
-        <p>For more information about my deployment process prior to setting up my CI environment, take a look at the following posts.</p>
-        <ul style="margin-bottom: 0;">
-          <li>
-            <a href="http://pioneercode.com/post/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host" title="Developing A .NET Core Site In Windows and Deploying It To A Budget Linux Ho" target="_blank">Developing A .NET Core Site In Windows and Deploying It To A Budget Linux Ho</a>
-          </li>
-          <li>
-            <a href="http://pioneercode.com/post/asp-net-core-deployment-stack-on-a-budget" title="ASP.NET Core Deployment Stack On A Budget" target="_blank">ASP.NET Core Deployment Stack On A Budget</a>
-          </li>
+  <div class="row">
+    <div class="large-10 large-push-1 columns">
+      <h1>Deploying An ASP.NET Core Site: You're Still Doing It Wrong - Octopus Deploy Target Linux</h1>
+      <article>
+        <div class="note">
+          <p>This day and age, predictability and reliability are two of the most important words when it comes deployment. In this series, I am going to talk about how to add predictability and reliability to your ASP.NET Core deployment pipeline using TeamCity and Octopus Deploy.</p>
+          <ol style="margin-bottom: 0;">
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-1">Intro</a></li>
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2">TeamCity</a></li>
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-3">Octopus Deploy: Target Windows</a></li>
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4">Octopus Deploy: Target Linux</a></li>
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5">Database Migrations</a></li>
+          </ol>
+        </div>
+        <p>In the last post of this series.....</p>
+        <p>This is going to be a long post, </p>
+        <ul>
+          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4#installation">Installation</a></li>
+          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4#environment">Environment</a></li>
+          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4#target">Target(s)</a></li>
+          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4#teamcity">Moving Packages From TeamCity</a></li>
+          <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4#project">Project</a></li>
         </ul>
-      </div>
-      <p>As of current, my production ASP.NET Core deployment lives at <a href="https://www.digitalocean.com/?refcode=d95b905a1279" title="DigitalOcean" target="_blank">DigitalOcean</a> on an Ubuntu distribution. Since Octopus Deploy 3.0 was released the sub-system components used by Octopus, mainly "Calamari", can run on most Linux distribution so long as some basic requirements are met.  The combination of "Calamari" running bash scripts and communicating via SSH, for the most part creates a "Tentacle" parity rich experience.  Long story short, it works and works good.</p>
-      <p>Octopus did a pretty good job documenting the requirements to make this work at <a href="https://octopus.com/docs/deployment-targets/ssh-targets" title="Octopus SSH Target" target="_blank">SSH Targets</a>. At this link you will see a list of distributions "guaranteed" to work and a detailed list of features you need to insure are enabled or installed on your target.</p>
-      <p>Strangely enough, my Ubnuntu target did not have Mono installed.  I SSH'ed into my machine, and ran the following.</p>
-      <pre class="brush: bash">sudo apt-get install mono-complete</pre>
-      <p>If you don't have the proper key Signing Key and Repository available, you might to run the following.</p>
-      <pre class="brush: bash">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+        <h2>Get Your Hands Off That Configuration File</h2>
+        <h2 id="installation">Installation</h2>
+        <p>We need to start by installing the Octopus Deploy Server.  You can either head over to the <a href="https://octopus.com/downloads">Octopus Deploy Server</a> official download or use Chocolatey by running the following command.</p>
+        <pre class="brush: bash">choco install octopusdeploy</pre>
+        <h4>License</h4>
+        <p>Select the free trial and fill out the necessary information.  After the 45 days is up, you will be able to continue with the Community Edition of Octopus Deploy.  This will get you up to 5 projects and 5 users to use for free.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-1.png" title="Octopus Install License" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-1.png" alt="Octopus Install License" style="max-width: 573px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Home Directory</h4>
+        <p>Select where you want Octopus to story its assets.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-2.png" title="Octopus Install Home Directory" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-2.png" alt="Octopus Install Home Directory" style="max-width: 844px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Service Account</h4>
+        <p>Select what account you want to run the Octopus service under.  In most cases your "Local System Account" will suffice.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-3.png" title="Octopus Install Service Account" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-3.png" alt="Octopus Install Service Account" style="max-width: 854px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Database</h4>
+        <p>Create a new database in your SQL Server instance and connect to it with appropriate credentials.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-4.png" title="Octopus Install Database" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-4.png" alt="Octopus Install Database" style="max-width: 829px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Web Portal</h4>
+        <p>Octopus has its own internal web server, of which default to port 80.  Based on your TeamCity setup and other variables specific to your environment, you most likely will need to change this port to avoid port conflicts.  In my setup I change it to port 8080.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-5.png" title="Octopus Web Portal" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-5.png" alt="Octopus Web Portal" style="max-width: 829px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Authentication</h4>
+        <p>Set up an account to login with.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-6.png" title="Octopus Authentication" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-6.png" alt="Octopus Authentication" style="max-width: 645px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Finish Install</h4>
+        <p>Default options will suffice.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-7.png" title="Octopus Install Start" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-7.png" alt="Octopus Install Start" style="max-width: 852px; border: 1px solid #ccc;" />
+        </a>
+        <p>Once you click "Install", a bunch of scripts will kick of and you will end up at the follow screen after a minute or two.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-8.png" title="Octopus Install End" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-8.png" alt="Octopus Install End" style="max-width: 689px; border: 1px solid #ccc;" />
+        </a>
+        <h2 id="environment">Environment</h2>
+        <p>One of the first steps you are going to want to take is creating what is called an "Environment".  Environments are high-level buckets we can use to organize our various Targets.  For example, a typical deployment pipeline might consist of dev, test, stage and production.  Each of these steps in an apps deployment life-cycle would map nicely to an Environment inside of Octopus.</p>
+        <p>Head to the Environments page in your portal and click "Add Environment". Go ahead and add a Name and Description as you see fit.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-env-1.png" title="Octopus Environment" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-env-1.png" alt="Octopus Environment" style="max-width: 734px; border: 1px solid #ccc;" />
+        </a>
+        <p>I created two separate environments.  One for production and one for testing.</p>
+        <h2 id="target">Targets</h2>
+        <p>Guess what, thanks to the power of .NET Core I am about to show you how to setup a target for Linux or Windows. If that does not make you happy, I don't know what will. I will be using my Windows based Target to deploy to an IIS instance in my "test" environment and will use a Linux based target to deploy to production.</p>
+        <h3>Windows: Testing</h3>
+        <p>To start, lets create a new "Account" that will have access to the box IIS lives on. Head to the "Accounts" page located in at Environment > Accounts. For my Windows target, I will create an "Account" of the type "Usernames/Passwords" and assign it to my "Test Environment".</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-account-1.png" title="Octopus Username Password Account" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-account-1.png" alt="Octopus Username Password Account" style="max-width: 535px; border: 1px solid #ccc;" />
+        </a>
+        <p>After you have an account setup with the proper access, head back to the Environments page and under your environment of choice, select "Add Target".  You will be prompted with a number of Target types to choose from. For my IIS (Windows) Target that exists inside the same network as my TeamCity instance, I am able to use the type "Listening Tentacle".  If your TeamCity account does not have access to an open port on the Octopus instance, you will have to pool for changes instead of listen.</p>
+        <p>You will also notified that you need to insure a "Tentacle" is installed on your Target machine. Of which, we will take care of next.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-target-win-1.png" title="Octopus Window Target" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-target-win-1.png" alt="Octopus Window Target" style="max-width: 762px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Tentacle</h4>
+        <p>On your Target machine, either head to the official <a href="https://octopus.com/downloads" title="Octopus Deploy Tentacle" target="_blank">Octopus Deploy Tentacle download site</a> or do it like a modern developer and use Chocolatey.</p>
+        <pre class="brush: bash">choco install octopusdeploy.tentacle</pre>
+        <p>Once installed, open up your Tentacle Manager and follow the prompts to configure it. Start by identifying where you want your Tentacle to store its data.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-ten-1.png" title="Octopus Tentacle" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-ten-1.png" alt="Octopus Tentacle" style="max-width: 847px; border: 1px solid #ccc;" />
+        </a>
+        <p>Next, choose your Communication Style.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-ten-2.png" title="Octopus Tentacle" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-ten-2.png" alt="Octopus Tentacle" style="max-width: 890px; border: 1px solid #ccc;" />
+        </a>
+        <p>Next, you need to set the port in which the Tentacle with handle its communications on.  You will also need to add the "Octopus Thumbprint" that is supplied when adding your Target.  This validates the connection between the two nodes.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-ten-3.png" title="Octopus Tentacle" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-ten-3.png" alt="Octopus Tentacle" style="max-width: 687px; border: 1px solid #ccc;" />
+        </a>
+        <p>Finally, click the "Install" button and after a minute or so you will end up a screen that looks like the following.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-ten-4.png" title="Octopus Tentacle" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-ten-4.png" alt="Octopus Tentacle" style="max-width: 479px; border: 1px solid #ccc;" />
+        </a>
+        <p>Once the basic install is complete, open up the Tentacle Manager. </p>
+        <h4>Finalizing Target</h4>
+        <p>Once you have your Tentacle installed, head back to the "Add Target" screen in your Octopus Deploy portal and select "Discover". If everything went okay, you will be prompted to name your new Target and supply it a role to operate under.  Click "Save" to commit your changes and your new Target should show up under your Environment on the environment page of your portal.</p>
+        <h3>Linux: Production</h3>
+        <div class="note">
+          <p>For more information about my deployment process prior to setting up my CI environment, take a look at the following posts.</p>
+          <ul style="margin-bottom: 0;">
+            <li>
+              <a href="http://pioneercode.com/post/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host" title="Developing A .NET Core Site In Windows and Deploying It To A Budget Linux Ho" target="_blank">Developing A .NET Core Site In Windows and Deploying It To A Budget Linux Ho</a>
+            </li>
+            <li>
+              <a href="http://pioneercode.com/post/asp-net-core-deployment-stack-on-a-budget" title="ASP.NET Core Deployment Stack On A Budget" target="_blank">ASP.NET Core Deployment Stack On A Budget</a>
+            </li>
+          </ul>
+        </div>
+        <p>As of current, my production ASP.NET Core deployment lives at <a href="https://www.digitalocean.com/?refcode=d95b905a1279" title="DigitalOcean" target="_blank">DigitalOcean</a> on an Ubuntu distribution. Since Octopus Deploy 3.0 was released the sub-system components used by Octopus, mainly "Calamari", can run on most Linux distribution so long as some basic requirements are met.  The combination of "Calamari" running bash scripts and communicating via SSH, for the most part creates a "Tentacle" parity rich experience.  Long story short, it works and works good.</p>
+        <p>Octopus did a pretty good job documenting the requirements to make this work at <a href="https://octopus.com/docs/deployment-targets/ssh-targets" title="Octopus SSH Target" target="_blank">SSH Targets</a>. At this link you will see a list of distributions "guaranteed" to work and a detailed list of features you need to insure are enabled or installed on your target.</p>
+        <p>Strangely enough, my Ubnuntu target did not have Mono installed.  I SSH'ed into my machine, and ran the following.</p>
+        <pre class="brush: bash">sudo apt-get install mono-complete</pre>
+        <p>If you don't have the proper key Signing Key and Repository available, you might to run the following.</p>
+        <pre class="brush: bash">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
 sudo apt-get update
 sudo apt-get install mono-complete</pre>
-      <h3>Target Health</h3>
-      <p>Once you have your Targets created, Octopus offers up a great diagnostics tool call "Check health".  When activated, this will initiate a series of diagnostic request made from your Octopus Deploy server to your target(s).</p>
-      <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-target-1.png" title="Octopus Target Health Check" target="_blank">
-        <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-target-1.png" alt="Octopus Target Health Check" style="max-width: 535px; border: 1px solid #ccc;" />
-      </a>
-      <p>If all checks out, you will  end up at a screen similar to below.</p>
-      <p>If there are issues, you will be provided feedback on that particular issue or Octopus will attempt to fix itself.  For example, when i was setting up my production Linux target, this is how I found out I was missing "mono".  After I went on the server and installed it manually, I went back to this page and ran the "Check health" step again.  At this time Octopus informed me my target was missing "Calamari" but trigger an auto-install without me having to do anything.  On last "Check health" and everything passed.</p>
-      <h2>Up Next</h2>
-    </article>
+        <h3>Target Health</h3>
+        <p>Once you have your Targets created, Octopus offers up a great diagnostics tool called "Check health".  When activated, this will initiate a series of diagnostic request made from your Octopus Deploy server to your target(s).</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-target-1.png" title="Octopus Target Health Check" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-target-1.png" alt="Octopus Target Health Check" style="max-width: 535px; border: 1px solid #ccc;" />
+        </a>
+        <p>If there are issues, you will be provided feedback on that particular issue or Octopus will attempt to fix itself.  For example, when i was setting up my production Linux target, this is how I found out I was missing "mono".  After I went on the server and installed it manually, I went back to this page and ran the "Check health" step again.  At this time Octopus informed me my target was missing "Calamari" but trigger an auto-install without me having to do anything.  On last "Check health" and everything passed.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-check-1.png" title="Octopus Target Health Check" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-check-1.png" alt="Octopus Target Health Check" style="max-width: 225px; border: 1px solid #ccc;" />
+        </a>
+        <h2>TeamCity</h2>
+        <h2>Projects</h2>
+        <h2>Up Next</h2>
+      </article>
+    </div>
   </div>
-</div>
 </body>
 </html>
