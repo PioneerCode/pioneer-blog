@@ -12,17 +12,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="wwwroot\posts\deploying-asp-net-core-teamcity-and-octopus-deploy-part-2.html">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="wwwroot\posts\deploying-asp-net-core-teamcity-and-octopus-deploy-part-1.html" />
-    <Content Include="wwwroot\posts\deploying-asp-net-core-teamcity-and-octopus-deploy-part-3.html" />
-    <Content Include="wwwroot\posts\deploying-asp-net-core-teamcity-and-octopus-deploy-part-4.html" />
-    <Content Include="wwwroot\posts\deploying-asp-net-core-teamcity-and-octopus-deploy-part-5.html" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj" />
@@ -53,10 +43,6 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\deploying-asp-net-core-teamcity-and-octopus-deploy\" />
   </ItemGroup>
 
 </Project>
