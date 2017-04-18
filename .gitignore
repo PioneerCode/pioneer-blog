@@ -250,7 +250,6 @@ ModelManifest.xml
 /src/Pioneer.Blog/typescript/models
 /src/Pioneer.Blog/typescript/repositories
 /src/Pioneer.Blog/typescript/services
-/src/Pioneer.Blog/wwwroot/images/*
 /src/Pioneer.Blog/wwwroot/fonts/*
 /src/Pioneer.Blog.DAL/Scripts
 /src/Pioneer.Blog/appsettings.Development.json
