@@ -116,12 +116,29 @@
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-var-1.png" title="TeamCity Variables" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-var-1.png" alt="TeamCity Variables" style="max-width: 1445px; border: 1px solid #ccc;" />
         </a>
-        <p class="note">In order to scope to a nested value in a JSON file, we have to use the <b>:</b> delimiter like so, <b>ConnectionStrings:DefaultConnection</b>.</p>
+        <p class="note">In order to scope to a nested value in a JSON file, we have to use the <b>:</b> delimiter like so, <b>ConnectionStrings:DefaultConnection</b>. If you are dealing with <b>.config</b> based configuration files, you would not have to "scope" to nested variables like this.  For more information you can had to the official documentation at <a href="https://octopus.com/docs/deploying-applications/configuration-files" target="_blank" title="Configuration Files">Configuration Files</a>.</p>
         <p>Hear you can see we targeted a variable in our <b>appsettings.json</b> file, set a value for it and set the Scope to our Production Target.  This means when we run a deployment against our Production Target, the <b>appsettings.json</b> file will get update with this value.  If we wanted to set a value on a different deployment Target, we would have to add a new variable and set its Scope appropriately.</p>
         <h2>Deployment</h2>
-         
-
-
+        <blockquote>
+          Each project defines the actions you want Octopus to perform on your behalf. In Octopus terms this is called the deployment process. The deployment process is like a recipe. It defines the set of instructions that will be run repeatably each time the project is deployed.
+          <cite>Octopus Deploy</cite>
+        </blockquote>
+        <p>Now that we have setup "one source of truth" in regards to our configuration variables, we can start putting together a Deployment Process. Head to the Project you are working on go to the Process tab and click "Add Step". You should be presented with a list of Process template to choose from.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-1.png" title="Octopus Deploy Process Step Templates" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-1.png" alt="Octopus Deploy Process Step Templates" style="max-width: 1209px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Linux</h4>
+        <p>For my Linux Target, I picked the template title "Deploy a package".  Once selected, you are presented with a list of configuration options. Hear you are going to want to define things such as what package you want to deploy, what Target you want to deploy to, where you want to deploy on your Target, and what files to target for Configuration updates.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-2.png" title="Octopus Deploy Process Step Configuration" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-2.png" alt="Octopus Deploy Process Step Configuration" style="max-width: 881px; border: 1px solid #ccc;" />
+        </a>
+        <p class="note">
+          If you click the "Configure features" link on the configuration page of a Process Step, you will be presented with more configuration options to add to your step.  This is where I enabled the "JSON Configuration Variables" option.  This options is responsible for telling our step to reach into our "single source of truth" and make updates to the <b>appsettings.json</b> file accordingly.
+        </p>
+        <h4>Windows</h4>
+        <p>When deploying to Windows under a typical IIS Web Server, you will want to pick the "Deploy an IIS Web Site" template for you Deployment Step.  Of which has a very robust set of configuration values centered around the idea of a website inside of IIS.  This includes items such as IIS Application Pools, IIS Bindings, IIS Authentication and Configuration. If you are familiar with IIS, configuring this type of Step should feel familiar.</p>
+        <p>Topics such as setting up IIS to work with .NET Core are out of the scope of this post.  For more information on how to accomplish, you can reference the offical documentation at - <a href="https://docs.microsoft.com/en-us/aspnet/core/publishing/iis" title="Set up a hosting environment for ASP.NET Core on Windows with IIS" target="_blank">Set up a hosting environment for ASP.NET Core on Windows with IIS</a>.</p>
+        <p class="note">The amount of options in the "Deploy an IIS Web Site" type is much larger the "Deploy a package" type because a lot of the Web Server configuration was setup ahead of time on the Linux Deployment. How you approach this is entirely dependent on what suites your goals.  Meaning, there is nothing stopping from controlling NgNix on Linux from your automated deployment just like you would with IIS on Windows.</p>
         <h2>Up Next</h2>
       </article>
     </div>
