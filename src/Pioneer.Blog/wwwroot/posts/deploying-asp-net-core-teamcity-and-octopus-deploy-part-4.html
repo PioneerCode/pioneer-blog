@@ -16,19 +16,19 @@
             <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2">TeamCity</a></li>
             <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-3">Octopus Deploy: Installation And Targets</a></li>
             <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4">Octopus Deploy: Configuration And Deployments</a></li>
-            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5">Database Migrations</a></li>
+            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5">Why Stop Now</a></li>
           </ol>
         </div>
-        <p>In the last post of this series we discussed some of the reason why you want to remove the human element from the configuration and deployment of an application and how we can go about accomplishing this through automation with the help of Octopus Deploy.  We then went over the details of actually installing Octopus Deploy and setting up Environments, Accounts, and Targets inside our installation. In this post we tie it all together by creating a Project inside Octopus Deploy, setting up a Deployment Process and automating configuration using a single source of truth.</p>
+        <p>In the last post of this series, we discussed some of the reason why you want to remove the human element from the configuration and deployment of an application and how we can go about accomplishing this through automation with the help of Octopus Deploy.  We then went over the details of actually installing Octopus Deploy and setting up Environments, Accounts, and Targets inside our installation. In this post we tie it all together by creating a Project inside Octopus Deploy, setting up a Deployment Process and automating configuration using a single source of truth.</p>
         <h2>Revisiting TeamCity: Pushing To Octopus</h2>
         <p class="note">Depending on  how many and what type of deployment Targets you have, you might have to revisit your build configuration(s) and re-configure them to produce assets for x-number of platforms.  For example, if you planned on deploying your ASP.NET Core application to a Windows and Linux environment, you would need to configure your TeamCity Build(s) in a way that produces the <b>publish</b> assets for both of these platforms.</p>
-        <p>When we originally setup our "Build Configuration" inside TeamCity, we got to the point where TeamCity was restoring, building and publish our .NET Core application.  This process produced an artifact that was "scoped" to the TeamCity environment. We now need to take the process one step further and push those artifacts over to Octopus Deploy so that our Octopus Deploy Project can utilize them as it sees fit.</p>
+        <p>When we originally set up our "Build Configuration" inside TeamCity, we got to the point where TeamCity was restoring, building and publishing our .NET Core application.  This process produced an artifact that was "scoped" to the TeamCity environment. We now need to take the process one step further and push those artifacts over to Octopus Deploy so that our Octopus Deploy Project can utilize them as it sees fit.</p>
         <p>The team at Octopus has made available a plugin that will help us with this build step. Head over to the <a href="https://octopus.com/downloads" target="_blank" title="Octopus Download">Octopus Download</a> page and deploy the plugin to your TeamCity server.  If you don't recall how to deploy plugins to TeamCity, you can reference the "<a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2">Installing 'The' Plugin & .NET Core SDK</a>" section in <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2">Part 2</a> of this series.</p>
         <p>Once installed, head back to your Project's Build Configuration and add a Build Step of the type "OctopusDeploy: Push Packages" as the last step in your build process.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-1.png" title="TeamCity Octopus Push" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-1.png" alt="TeamCity Octopus Push" style="max-width: 1325px; border: 1px solid #ccc;" />
         </a>
-        <p>A basic configuration would look encompass the following.</p>
+        <p>A basic configuration would encompass the following.</p>
         <ul>
           <li>
             Octopus Connection.
@@ -62,7 +62,7 @@
             </ul>
           </li>
         </ul>
-        <p>Once you have this step configured, in TeamCity, manually tell your Project to "Run". If your new build step was setup correctly, you can view that Octopus Deploy received the artifact from TeamCity by heading the Configuration > Audit screen in the Octopus Deploy portal and looking for a "pushed" log in your feed.</p>
+        <p>Once you have this step configured, in TeamCity, manually tell your Project to "Run". If your new build step was setup correctly, you can view that Octopus Deploy received the artifact from TeamCity by heading the <b>configuration > audit</b> screen in the Octopus Deploy portal and looking for a "pushed" log in your feed.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-3.png" title="TeamCity Octopus Log" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-3.png" alt="TeamCity Octopus Log" style="max-width: 417px; border: 1px solid #ccc;" />
         </a>
@@ -71,37 +71,18 @@
           A project is a collection of deployment steps and configuration variables that you want Octopus to run during deployment. It's like a recipe - you define how the application is deployed, and then you create many releases to deploy different versions.
           <cite>OctousDeploy</cite>
         </blockquote>
-        <p>Now that we have an "Environment" containing a "Target", we need to create a "Project" to that utilizes that "Target" for deployments. Head to the Projects page in your portal and click "Add Project". Assign it a Name and add a Description if you see fit. Click "Save" and you should end up at your newly created Project's portal page.</p>
-        <p class="note">In the rest of this post, I will be focusing on deploying to a  Linux environment while calling out sections where things might look a bit different for Windows. For example when creating a Project, typically you use that Project to promote a single app through your CI pipeline.  Development to test, test to stage and stage to production.  In a multi platform deployment, you might have to abstract each deployment out to its own Project.</p>
+        <p>Now that we have an "Environment" containing a "Target", we need to create a "Project" to that utilizes that "Target" for deployments. Head to the <b>projects</b> page in your portal and click "Add Project". Assign it a name and add a description if you see fit. Click "Save" and you should end up at your newly created Project's portal page.</p>
+        <p class="note">When creating a Project, typically you use that Project to promote a single app through your CI pipeline.  Development to test, test to stage and stage to production.  In a multi-platform deployment, you might have to abstract each deployment out to its own Project.</p>
         <h3>Variables: One Source Of Truth</h3>
         <blockquote>
           Variables contain the configuration values for an application that change as it's promoted from one environment to another.
           <cite>Octopus Deploy</cite>
         </blockquote>
         <p>A standard ASP.NET Core application is configured at runtime by way of the <b>appsettings.json</b> file. Depending on our deployment environment, the values in the file will need to be updated.  In order to automate this process, we need to head over to our Project's <b>variables</b> page and add key-value pairs that coordinate to our deployment needs and scope them to our desired Target.</p>
-        <p>Lets start by looking at an example of our <b>appsettings.json</b> file.</p>
+        <p>A basic <b>appsettings.json</b> file might look like this.</p>
         <pre class="brush: json">{
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=pioneercode;Trusted_Connection=True;MultipleActiveResultSets=true"
-  },
-  "AppConfiguration": {
-    "EmailUsername": "",
-    "EmailHost": "",
-    "EmailPort": "",
-    "EmailPassword": "",
-    "SiteTitle": "Pioneer Code",
-    "SiteUrl": "http://pioneercode.local",
-    "DisqusShortname": "",
-    "GoogleAnalyticsId": "UA-xxxxxxxx-x",
-    "Key": "I-Am-A-Key5244512e79775268374231315e41507e3f6e72734c40397a7b2851674b",
-    "PopularPosts": [
-      15,
-      1,
-      12,
-      38,
-      41,
-      34
-    ]
   },
   "Logging": {
     "IncludeScopes": false,
@@ -116,11 +97,11 @@
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-var-1.png" title="TeamCity Variables" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-var-1.png" alt="TeamCity Variables" style="max-width: 1445px; border: 1px solid #ccc;" />
         </a>
-        <p class="note">In order to scope to a nested value in a JSON file, we have to use the <b>:</b> delimiter like so, <b>ConnectionStrings:DefaultConnection</b>. If you are dealing with <b>.config</b> based configuration files, you would not have to "scope" to nested variables like this.  For more information you can had to the official documentation at <a href="https://octopus.com/docs/deploying-applications/configuration-files" target="_blank" title="Configuration Files">Configuration Files</a>.</p>
-        <p>Hear you can see we targeted a variable in our <b>appsettings.json</b> file, set a value for it and set the Scope to our Production Target.  This means when we run a deployment against our Production Target, the <b>appsettings.json</b> file will get update with this value.  If we wanted to set a value on a different deployment Target, we would have to add a new variable and set its Scope appropriately.</p>
+        <p class="note">In order to scope to a nested value in a JSON file, we have to use the <b>:</b> delimiter like so, <b>ConnectionStrings:DefaultConnection</b>. If you are dealing with <b>.config</b> based configuration files, you would not have to "scope" to nested variables like this.  For more information, you can head to the official documentation at <a href="https://octopus.com/docs/deploying-applications/configuration-files" target="_blank" title="Configuration Files">Configuration Files</a>.</p>
+        <p>Here you can see we targeted a variable in our <b>appsettings.json</b> file, set a value for it and set the Scope to our Production Target.  This means when we run a deployment against our Production Target, the <b>appsettings.json</b> file will get updated with this value before being deployed.  If we wanted to set a value on a different deployment Target, we would have to add a new variable and set its Scope appropriately.</p>
         <h2>Deployment</h2>
         <blockquote>
-          Each project defines the actions you want Octopus to perform on your behalf. In Octopus terms this is called the deployment process. The deployment process is like a recipe. It defines the set of instructions that will be run repeatably each time the project is deployed.
+          Each project defines the actions you want Octopus to perform on your behalf. In Octopus terms, this is called the deployment process. The deployment process is like a recipe. It defines the set of instructions that will be run repeatably each time the project is deployed.
           <cite>Octopus Deploy</cite>
         </blockquote>
         <p>Now that we have setup "one source of truth" in regards to our configuration variables, we can start putting together a Deployment Process. Head to the Project you are working on go to the Process tab and click "Add Step". You should be presented with a list of Process template to choose from.</p>
@@ -128,18 +109,34 @@
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-1.png" alt="Octopus Deploy Process Step Templates" style="max-width: 1209px; border: 1px solid #ccc;" />
         </a>
         <h4>Linux</h4>
-        <p>For my Linux Target, I picked the template title "Deploy a package".  Once selected, you are presented with a list of configuration options. Hear you are going to want to define things such as what package you want to deploy, what Target you want to deploy to, where you want to deploy on your Target, and what files to target for Configuration updates.</p>
+        <p>For my Linux Target, I picked the template title "Deploy a package".  Once selected, you are presented with a list of configuration options. Here you are going to want to define things such as what package you want to deploy, what Target you want to deploy to, where you want to deploy on your Target, and what files to target for Configuration updates.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-2.png" title="Octopus Deploy Process Step Configuration" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-2.png" alt="Octopus Deploy Process Step Configuration" style="max-width: 881px; border: 1px solid #ccc;" />
         </a>
         <p class="note">
-          If you click the "Configure features" link on the configuration page of a Process Step, you will be presented with more configuration options to add to your step.  This is where I enabled the "JSON Configuration Variables" option.  This options is responsible for telling our step to reach into our "single source of truth" and make updates to the <b>appsettings.json</b> file accordingly.
+          If you click the "Configure features" link on the configuration page of a Deployment Process Step, you will be presented with more configuration options to add to that step.  This is where I enabled the "JSON Configuration Variables" option.  This option is responsible for telling our step to reach into our "single source of truth" and make updates to the <b>appsettings.json</b> file accordingly.
         </p>
         <h4>Windows</h4>
         <p>When deploying to Windows under a typical IIS Web Server, you will want to pick the "Deploy an IIS Web Site" template for you Deployment Step.  Of which has a very robust set of configuration values centered around the idea of a website inside of IIS.  This includes items such as IIS Application Pools, IIS Bindings, IIS Authentication and Configuration. If you are familiar with IIS, configuring this type of Step should feel familiar.</p>
-        <p>Topics such as setting up IIS to work with .NET Core are out of the scope of this post.  For more information on how to accomplish, you can reference the offical documentation at - <a href="https://docs.microsoft.com/en-us/aspnet/core/publishing/iis" title="Set up a hosting environment for ASP.NET Core on Windows with IIS" target="_blank">Set up a hosting environment for ASP.NET Core on Windows with IIS</a>.</p>
-        <p class="note">The amount of options in the "Deploy an IIS Web Site" type is much larger the "Deploy a package" type because a lot of the Web Server configuration was setup ahead of time on the Linux Deployment. How you approach this is entirely dependent on what suites your goals.  Meaning, there is nothing stopping from controlling NgNix on Linux from your automated deployment just like you would with IIS on Windows.</p>
+        <p>Topics such as setting up IIS to work with .NET Core is out of the scope of this post.  For more information on how to accomplish, you can reference the official documentation at - <a href="https://docs.microsoft.com/en-us/aspnet/core/publishing/iis" title="Set up a hosting environment for ASP.NET Core on Windows with IIS" target="_blank">Set up a hosting environment for ASP.NET Core on Windows with IIS</a>.</p>
+        <p class="note">The amount of options in the "Deploy an IIS Web Site" type is much larger the "Deploy a package" type because a lot of the Web Server configuration was setup ahead of time on the Linux Deployment. How you approach this is entirely dependent on what suits your goals.  Meaning, there is nothing stopping from controlling NgNix on Linux from your automated deployment just like you would with IIS on Windows.</p>
+        <h2>Is This Actually Going To Work?</h2>
+        <p>Yes, yes it will. Eariler in this post, we already verified Octopus Deploy was receiving packages from TeamCity by looking at the <b>configuration > audit</b> logs. Now, head back to your Project page and on the top left click "Create release".</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-1.png" title="Octopus Deploy Create Release" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-1.png" alt="Octopus Deploy Create Release" style="max-width: 197px; border: 1px solid #ccc;" />
+        </a>
+        <p>After you click "Create release", you will end up at configuration screen for you release where you can specify a version number that is relative to Octopus Deploy, a package version coming from TeamCity and release notes if you desire.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-2.png" title="Octopus Deploy Configure Release" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-2.png" alt="Octopus Deploy Configure Release" style="max-width: 835px; border: 1px solid #ccc;" />
+        </a>
+        <p>Once you sit "Save", if all is setup correctly your Project will start its Deployment Process. Upon successful completion, you will end up with something similar on your Octopus Deploy portal homepage. If something went wrong, you will get a red "X" instead of a green check, along with an opportunity to view the associated logs.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-3.png" title="Octopus Deploy Successful Release" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-3.png" alt="Octopus Deploy Successful Release" style="max-width: 423px; border: 1px solid #ccc;" />
+        </a>
+        <h4>Congratulations!</h4>
+        <p>If all is in order, you now have an automated CI pipeline from the point of code check-in to the actual deployment. We have removed the human variable from the equation and introduced predictability and reliability into our deployments. At this point, I think we can say that we are now "doing it right".</p>
         <h2>Up Next</h2>
+        <p>Int the next post of this series, I will talk about additional steps you can take to make your CI pipeline even more reliab. Until the, feel free to leave any comments, questions or concerns in the comment section below.</p>
       </article>
     </div>
   </div>
