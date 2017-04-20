@@ -103,7 +103,7 @@ namespace Pioneer.Blog.Service
             var posts = top != null
                 ? _postRepository.GetTop((int)top).ToList()
                 : _postRepository.GetAll(includeExcerpt, includeArticle, includeUnpublished)
-                    .OrderBy(x => x.PostedOn)
+                    .OrderByDescending(x => x.PostedOn)
                     .ToList();
 
             return posts.Select(Mapper.Map<PostEntity, Post>);

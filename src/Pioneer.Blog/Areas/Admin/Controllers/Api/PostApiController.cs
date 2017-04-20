@@ -19,7 +19,8 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpGet]
-        public IEnumerable<Post> GetAll(int? count, int? page, 
+        public IEnumerable<Post> GetAll(int? count, 
+            int? page, 
             bool includeExceprt = true, 
             bool includeArticle = true, 
             bool includeUnpublished = false)
