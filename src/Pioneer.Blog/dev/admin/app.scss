@@ -111,10 +111,11 @@ body {
   list-style-type: none;
   margin: 0;
   min-height: 600px;
+  font-size: 14px;
 
   li {
     cursor: pointer;
-    padding: 2px 0.5rem;
+    padding: 0.25rem 0.5rem;
 
     &:hover {
       color: $white;
@@ -133,6 +134,7 @@ body {
 .admin-canvas-content {
   padding: 1rem;
   background: $white;
+
 
   button.save {
     margin: 0;
