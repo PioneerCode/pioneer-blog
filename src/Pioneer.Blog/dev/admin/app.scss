@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../bower_components/foundation-sites/scss/foundation" />
 @import "../sass/_settings";
+@import "styles/loader.component";
 
 body {
   background: $black;
@@ -134,7 +135,7 @@ body {
 .admin-canvas-content {
   padding: 1rem;
   background: $white;
-
+  position: relative;
 
   button.save {
     margin: 0;
