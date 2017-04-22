@@ -1,20 +1,22 @@
-﻿import { NgModule }       from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { HttpModule }     from '@angular/http';
-import { FormsModule }    from '@angular/forms';
+﻿import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
-import { PostRepository }       from './post.repository';
-import { CategoryRepository }   from '../categories/category.repository';
-import { TagRepository }        from '../tags/tag.repository';
+import { AppComponent } from './app.component';
 
-import { PostService }      from './post.service';
-import { CategoryService }  from '../categories/category.service';
-import { TagService }       from '../tags/tag.service';
+import { PostsPageComponent } from './posts-page.component';
+import { PostRepository } from './post.repository';
+import { PostService } from './post.service';
 
-import { AppComponent }         from './app.component';
-import { PostsPageComponent }   from './posts-page.component';
+import { CategoryRepository } from '../categories/category.repository';
+import { CategoryService } from '../categories/category.service';
 
-import { TruncatePipe }   from '../../pipes/truncate.pipe';
+import { TagRepository } from '../tags/tag.repository';
+import { TagService } from '../tags/tag.service';
+
+import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { LoaderComponent } from '../loader/loader.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { TruncatePipe }   from '../../pipes/truncate.pipe';
   declarations: [
     AppComponent,
     PostsPageComponent,
-    TruncatePipe
+    TruncatePipe,
+    LoaderComponent
   ],
   providers: [
     PostRepository,
