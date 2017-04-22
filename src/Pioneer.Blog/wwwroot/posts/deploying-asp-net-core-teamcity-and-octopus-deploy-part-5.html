@@ -22,8 +22,24 @@
         <h2>Database Migrations</h2>
         <h2>Front-end builds</h2>
         <h2>Testing</h2>
-        <h2>Build Status</h2>
-        <p>If you have partaken in code reviews by way of pull-request, you might have seen </p>
+        <h2>Build Status On GitHub</h2>
+        <p>TeamCity now ships with a Build Feature called Commit Status Publisher. This Build Feature allows TeamCity to automatically attach builds statues to a  external system such as GitHub. To get start, head to the Build Features section of your project and select the Select the "Add Build Feature" option.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-1.png" title="TeamCity Build Status" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-1.png" alt="TeamCity Build Status" style="max-width: 191px; border: 1px solid #ccc;" />
+        </a>
+        <p>Here you will be given an option of to select the external system you want to tie into.  Obviously we will be selecting GitHub for our integration. Leave the GitHub URL as is, unless you are hooking up to an on-premise deployment of GitHub Enterprise.</p>
+        <p>You can authenticate with GitHub with your username and password, or by creating a personal access token. I opted to use a token so I don't have to worry about remember to update my password in TeamCity every time I change it. </p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-2.png" title="TeamCity Build Status Setup" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-2.png" alt="TeamCity Build Status Setup" style="max-width: 787px; border: 1px solid #ccc;" />
+        </a>
+        <p>Once you have your Build Feature configured and you have tested your connection, hit save and your Build Feature will be displayed as follows.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-3.png" title="TeamCity Build Status Success" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-3.png" alt="TeamCity Build Status Success" style="max-width: 1323px; border: 1px solid #ccc;" />
+        </a>
+        <p>That's it.  The next time you fire off a build by committing a pull-request to your repository, you will see build status indications inside of GitHub like the following.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-4.png" title="TeamCity Build Status Indicator" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-4.png" alt="TeamCity Build Status Indicator" style="max-width: 950px; border: 1px solid #ccc;" />
+        </a>
         <h2>Up Next</h2>
       </article>
     </div>
