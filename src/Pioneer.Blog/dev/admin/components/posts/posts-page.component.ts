@@ -9,6 +9,8 @@ import { TagService }           from '../tags/tag.service';
 })
 
 export class PostsPageComponent implements OnInit {
+  loading = true;
+
   constructor(public postService: PostService,
     public categoryService: CategoryService,
     public tagService: TagService) {

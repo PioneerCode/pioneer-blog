@@ -1,14 +1,18 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'pc-loader',
-  templateUrl: './app/components/loader/loader.component.html'
+  template: `
+  <section class="pc-loader" *ngIf="loading">
+    <div class="pc-loader-overlay"></div>
+    <div class="pc-loader-wrapper">
+      <i class="fa fa-spinner fa-pulse fa-fw"></i>
+    </div>
+  </section>
+  `
 })
 
-export class LoaderComponent implements OnInit {
-  loading = true;
 
-  ngOnInit(): void {
-
-  }
+export class LoaderComponent {
+  @Input() loading: boolean = false;
 }
