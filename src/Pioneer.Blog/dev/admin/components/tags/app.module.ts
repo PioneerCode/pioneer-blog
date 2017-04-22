@@ -1,16 +1,16 @@
-﻿import { NgModule }       from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { HttpModule }     from '@angular/http';
-import { FormsModule }    from '@angular/forms';
+﻿import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
-import { TagRepository }    from './tag.repository';
+import { AppComponent } from './app.component';
 
-import { TagService }       from './tag.service';
+import { TagRepository } from './tag.repository';
+import { TagService } from './tag.service';
+import { TagsPageComponent } from './tags-page.component';
 
-import { AppComponent }       from './app.component';
-import { TagsPageComponent }  from './tags-page.component';
-
-import { TruncatePipe }     from '../../pipes/truncate.pipe';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { LoaderComponent } from '../loader/loader.component';
 
 @NgModule({
   imports: [
@@ -21,7 +21,8 @@ import { TruncatePipe }     from '../../pipes/truncate.pipe';
   declarations: [
     AppComponent,
     TagsPageComponent,
-    TruncatePipe
+    TruncatePipe,
+    LoaderComponent
   ],
   providers: [
     TagRepository,

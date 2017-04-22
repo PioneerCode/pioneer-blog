@@ -6,22 +6,36 @@ import { CategoryService }          from './category.service';
   templateUrl: './app/components/categories/templates/categories-page.component.html'
 })
 export class CategoriesPageComponent implements OnInit {
+  loading = false;
+
   constructor(private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
-    this.categoryService.init();
+    this.loading = true;
+    this.categoryService.init()
+      .then(() => {
+        this.loading = false;
+      });
   }
 
   deleteRecord(id: number): void {
     if (confirm(`Are you sure you want to delete "${this.categoryService.getCurrent().name}" from the categories list?`)) {
-      this.categoryService.remove(id);
+      this.loading = true;
+      this.categoryService.remove(id)
+        .then(() => {
+          this.loading = false;
+        });
     }
   }
 
   save(): void {
     if (confirm(`Are you sure you want to save "${this.categoryService.getCurrent().name}" changes`)) {
-      this.categoryService.save();
+      this.loading = true;
+      this.categoryService.save()
+        .then(() => {
+          this.loading = false;
+        });
     }
   }
 }

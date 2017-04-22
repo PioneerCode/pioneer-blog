@@ -1,5 +1,5 @@
-﻿import { Component, OnInit }    from '@angular/core';
-import { TagService }           from './tag.service';
+﻿import { Component, OnInit } from '@angular/core';
+import { TagService } from './tag.service';
 
 @Component({
   selector: 'pc-tags-page',
@@ -7,22 +7,36 @@ import { TagService }           from './tag.service';
 })
 
 export class TagsPageComponent implements OnInit {
+  loading = false;
+
   constructor(private tagService: TagService) {
   }
 
   ngOnInit(): void {
-    this.tagService.init();
+    this.loading = true;
+    this.tagService.init()
+      .then(() => {
+        this.loading = false;
+      });
   }
 
   remove(id: number): void {
     if (confirm(`Are you sure you want to delete "${this.tagService.getCurrent().name}" from the tags list?`)) {
-      this.tagService.remove(id);
+      this.loading = true;
+      this.tagService.remove(id)
+        .then(() => {
+          this.loading = false;
+        });
     }
   }
 
   save(): void {
     if (confirm(`Are you sure you want to save "${this.tagService.getCurrent().name}" changes`)) {
-      this.tagService.save();
+      this.loading = true;
+      this.tagService.save()
+        .then(() => {
+          this.loading = false;
+        });
     }
   }
 }

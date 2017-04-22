@@ -1,16 +1,15 @@
-﻿import { NgModule }       from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { HttpModule }     from '@angular/http';
-import { FormsModule }    from '@angular/forms';
+﻿import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
 
-import { CategoryService}                   from './category.service';
+import { CategoriesPageComponent } from './categories-page.component';
+import { CategoryService } from './category.service';
+import { CategoryRepository } from './category.repository';
 
-import { CategoryRepository }               from './category.repository';
-
-import { AppComponent }                     from './app.component';
-import { CategoriesPageComponent }          from './categories-page.component';
-
-import { TruncatePipe }   from '../../pipes/truncate.pipe';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
+import { LoaderComponent } from '../loader/loader.component';
 
 @NgModule({
   imports: [
@@ -21,7 +20,8 @@ import { TruncatePipe }   from '../../pipes/truncate.pipe';
   declarations: [
     AppComponent,
     CategoriesPageComponent,
-    TruncatePipe
+    TruncatePipe,
+    LoaderComponent
   ],
   providers: [
     CategoryRepository,

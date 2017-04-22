@@ -9,30 +9,44 @@ import { TagService }           from '../tags/tag.service';
 })
 
 export class PostsPageComponent implements OnInit {
+  loading = false;
+
   constructor(public postService: PostService,
     public categoryService: CategoryService,
     public tagService: TagService) {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.tagService.init()
       .then(() => {
         return this.categoryService.init();
       })
       .then(() => {
         return this.postService.init();
+      })
+      .then(() => {
+        this.loading = false;
       });
   }
 
   deleteRecord(idUrl: string): void {
     if (confirm(`Are you sure you want to delete "${this.postService.getCurrent().title}" from the posts list?`)) {
-      this.postService.remove(idUrl);
+      this.loading = true;
+      this.postService.remove(idUrl)
+        .then(() => {
+          this.loading = false;
+        });
     }
   }
 
   save(pos): void {
     if (confirm(`Are you sure you want to save "${this.postService.getCurrent().title}" changes`)) {
-      this.postService.save();
+      this.loading = true;
+      this.postService.save()
+        .then(() => {
+          this.loading = false;
+        });
     }
   }
 }
