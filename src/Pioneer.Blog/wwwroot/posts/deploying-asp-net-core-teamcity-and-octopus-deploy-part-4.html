@@ -7,7 +7,7 @@
 <body>
   <div class="row">
     <div class="large-10 large-push-1 columns">
-      <h1>Deploying An ASP.NET Core Site: You're Still Doing It Wrong - Octopus Deploy: Configuration And Deployments</h1>
+      <h1>DeploDeploying An ASP.NET Core Site, You're Still Doing It Wrong : Part 4 - Octopus Deploy: Configuration And Deployments</h1>
       <article>
         <div class="note">
           <p>This day and age, predictability and reliability are two of the most important words when it comes deployments. In this series, I am going to talk about how to add both predictability and reliability to your ASP.NET Core Continuous Integration pipeline using TeamCity and Octopus Deploy.</p>
@@ -16,7 +16,7 @@
             <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2">TeamCity</a></li>
             <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-3">Octopus Deploy: Installation And Targets</a></li>
             <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4">Octopus Deploy: Configuration And Deployments</a></li>
-            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5">Why Stop Now</a></li>
+            <li><a href="">Why Stop Now (Coming Soon)</a></li>
           </ol>
         </div>
         <p>In the last post of this series, we discussed some of the reason why you want to remove the human element from the configuration and deployment of an application and how we can go about accomplishing this through automation with the help of Octopus Deploy.  We then went over the details of actually installing Octopus Deploy and setting up Environments, Accounts, and Targets inside our installation. In this post we tie it all together by creating a Project inside Octopus Deploy, setting up a Deployment Process and automating configuration using a single source of truth.</p>
@@ -117,9 +117,9 @@
           If you click the "Configure features" link on the configuration page of a Deployment Process Step, you will be presented with more configuration options to add to that step.  This is where I enabled the "JSON Configuration Variables" option.  This option is responsible for telling our step to reach into our "single source of truth" and make updates to the <b>appsettings.json</b> file accordingly.
         </p>
         <h4>Windows</h4>
-        <p>When deploying to Windows under a typical IIS Web Server, you will want to pick the "Deploy an IIS Web Site" template for you Deployment Step.  Of which has a very robust set of configuration values centered around the idea of a website inside of IIS.  This includes items such as IIS Application Pools, IIS Bindings, IIS Authentication and Configuration. If you are familiar with IIS, configuring this type of Step should feel familiar.</p>
+        <p>When deploying to Windows under a typical IIS Web Server, you will want to pick the "Deploy an IIS Web Site" template for you Deployment Step.  Of which has a very robust set of configuration values centered around the idea of a website inside of IIS.  This includes items such as IIS Application Pools, IIS Bindings, and IIS Authentication and Configuration. If you are familiar with IIS, configuring this type of Step should feel familiar.</p>
         <p>Topics such as setting up IIS to work with .NET Core is out of the scope of this post.  For more information on how to accomplish, you can reference the official documentation at - <a href="https://docs.microsoft.com/en-us/aspnet/core/publishing/iis" title="Set up a hosting environment for ASP.NET Core on Windows with IIS" target="_blank">Set up a hosting environment for ASP.NET Core on Windows with IIS</a>.</p>
-        <p class="note">The amount of options in the "Deploy an IIS Web Site" type is much larger the "Deploy a package" type because a lot of the Web Server configuration was setup ahead of time on the Linux Deployment. How you approach this is entirely dependent on what suits your goals.  Meaning, there is nothing stopping from controlling NgNix on Linux from your automated deployment just like you would with IIS on Windows.</p>
+        <p class="note">The amount of options in the "Deploy an IIS Web Site" type is much larger then "Deploy a package" type because a lot of the Web Server configuration was setup ahead of time on the Linux Deployment. How you approach this is entirely dependent on what suits your goals.  Meaning, there is nothing stopping you from controlling NgNix on Linux from your automated deployment just like you would with IIS on Windows.</p>
         <h2>Is This Actually Going To Work?</h2>
         <p>Yes, yes it will. Eariler in this post, we already verified Octopus Deploy was receiving packages from TeamCity by looking at the <b>configuration > audit</b> logs. Now, head back to your Project page and on the top left click "Create release".</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-1.png" title="Octopus Deploy Create Release" target="_blank">
@@ -129,14 +129,17 @@
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-2.png" title="Octopus Deploy Configure Release" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-2.png" alt="Octopus Deploy Configure Release" style="max-width: 835px; border: 1px solid #ccc;" />
         </a>
-        <p>Once you sit "Save", if all is setup correctly your Project will start its Deployment Process. Upon successful completion, you will end up with something similar on your Octopus Deploy portal homepage. If something went wrong, you will get a red "X" instead of a green check, along with an opportunity to view the associated logs.</p>
+        <p>Once you hit "Save", if all is setup correctly your Project will start its Deployment Process. Upon successful completion, you will end up with something similar on your Octopus Deploy portal homepage. If something went wrong, you will get a red "X" instead of a green check, along with an opportunity to view the associated logs.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-3.png" title="Octopus Deploy Successful Release" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-3.png" alt="Octopus Deploy Successful Release" style="max-width: 423px; border: 1px solid #ccc;" />
         </a>
         <h4>Congratulations!</h4>
         <p>If all is in order, you now have an automated CI pipeline from the point of code check-in to the actual deployment. We have removed the human variable from the equation and introduced predictability and reliability into our deployments. At this point, I think we can say that we are now "doing it right".</p>
         <h2>Up Next</h2>
-        <p>Int the next post of this series, I will talk about additional steps you can take to make your CI pipeline even more reliable. Until the, feel free to leave any comments, questions or concerns in the comment section below.</p>
+        <p>Int the next post of this series, I will talk about additional steps you can take to make your CI pipeline even more reliable and useful. Until the, feel free to leave any comments, questions or concerns in the comment section below.</p>
+        <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5">Deploying An ASP.NET Core Site: You're Still Doing It Wrong - Part 5 - Why Stop Now (Coming Soon)</a>
+        <br />
+        <br />
       </article>
     </div>
   </div>
