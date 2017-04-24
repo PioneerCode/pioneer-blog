@@ -53,6 +53,13 @@ function typescript() {
     .pipe(gulp.dest('temp'));
 }
 
+function move() {
+  return gulp.src([
+      'bower_components/font-awesome/fonts/**/*'
+    ])
+    .pipe(gulp.dest('wwwroot/fonts'));
+}
+
 function libs() {
   return gulp.src([
     'bower_components/jquery/dist/jquery.min.js',
@@ -91,6 +98,6 @@ function watch() {
   gulp.watch('./dev/public/**/*.scss', styles);
 }
 
-gulp.task('public-dev', gulp.series(clean, typescript, libs, scripts, styles, gulp.parallel(watch)));
+gulp.task('public-dev', gulp.series(clean, typescript, libs, scripts, styles, move, gulp.parallel(watch)));
 
-gulp.task('public', gulp.series(clean, typescript, libs, scripts, styles));
+gulp.task('public', gulp.series(clean, typescript, libs, scripts, styles, move));
