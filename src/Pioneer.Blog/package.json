@@ -9,7 +9,8 @@
     "url": "https://github.com/PioneerCode/pioneer-blog"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp-public": "gulp public",
+    "gulp-admin": "gulp admin"
   },
   "dependencies": {
     "@angular/common": "~4.0.0",
