@@ -100,7 +100,7 @@ function watch() {
   gulp.watch('./dev/admin/**/*.ts', gulp.series(typescript, scripts));
 }
 
-gulp.task('admin', gulp.series(
+gulp.task('admin-dev', gulp.series(
   clean,
   moveLibs,
   libs,
@@ -109,4 +109,14 @@ gulp.task('admin', gulp.series(
   templates,
   styles,
   gulp.parallel(watch)
+));
+
+gulp.task('admin', gulp.series(
+  clean,
+  moveLibs,
+  libs,
+  typescript,
+  scripts,
+  templates,
+  styles
 ));

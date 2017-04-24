@@ -91,4 +91,6 @@ function watch() {
   gulp.watch('./dev/public/**/*.scss', styles);
 }
 
-gulp.task('public', gulp.series(clean, typescript, libs, scripts, styles, gulp.parallel(watch)));
+gulp.task('public-dev', gulp.series(clean, typescript, libs, scripts, styles, gulp.parallel(watch)));
+
+gulp.task('public', gulp.series(clean, typescript, libs, scripts, styles));
