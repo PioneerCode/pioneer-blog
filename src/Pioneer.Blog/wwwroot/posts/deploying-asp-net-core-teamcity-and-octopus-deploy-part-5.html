@@ -19,8 +19,25 @@
             <li><a href="">Why Stop Now (Coming Soon)</a></li>
           </ol>
         </div>
+        <p>We sure came a long way since <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-1">part 1</a> of this series. Since we started we mnage to accomplish...</p>
+        <ul>
+          <li>
+            
+          </li>
+        </ul>
         <h2>Database Migrations</h2>
-        <h2>Front-end builds</h2>
+        <h2>Front-end Builds</h2>
+        <p>In this series, we focused on building and publishing our ASP.NET Core application inside TeamCity.  But that story is incomplete when talking about most modern web applications. In most cases, there are steps needed to get your front-end assets in a deployable state.  For example, with <a href="/">Pioneer Code</a> I have to transpile my TypeScript, build my Sass and bundle and minify it all together in a nice small package. </p>
+        <p>Modern tooling for front-end builds, regardless of the steps you take, are more often then not command line driven. That being said, we can utilize the Command Line Runner Type inside of TeamCity and the necessary steps needed to our Build Steps.</p>
+        <p>Depending on your needs you will have series a steps that look like this.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/why-2.png" title="TeamCity Front-end Build Step Error" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/why-2.png" alt="TeamCity Front-end Build Step Error" style="max-width: 814px; border: 1px solid #ccc;" />
+        </a>
+        <p>As you can see, there is really nothing going on special here.  I am running native commands against a cli to step through my build process.  Currently my front-end builds steps are made up of the following.</p>
+        <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/why-1.png" title="TeamCity Front-end Build Step" target="_blank">
+          <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/why-1.png" alt="TeamCity Front-end Build Step" style="max-width: 806px; border: 1px solid #ccc;" />
+        </a>
+      
         <h2>Testing</h2>
         <h2>Build Status On GitHub</h2>
         <p>TeamCity now ships with a Build Feature called Commit Status Publisher. This Build Feature allows TeamCity to automatically attach builds statues to a  external system such as GitHub. To get start, head to the Build Features section of your project and select the Select the "Add Build Feature" option.</p>
@@ -36,7 +53,7 @@
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-3.png" title="TeamCity Build Status Success" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-3.png" alt="TeamCity Build Status Success" style="max-width: 1323px; border: 1px solid #ccc;" />
         </a>
-        <p>That's it.  The next time you fire off a build by committing a pull-request to your repository, you will see build status indications inside of GitHub like the following.</p>
+        <p>That's it.  The next time you fire off a build from TeamCity, you will see build status indications inside of GitHub like the following.</p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-4.png" title="TeamCity Build Status Indicator" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-build-4.png" alt="TeamCity Build Status Indicator" style="max-width: 950px; border: 1px solid #ccc;" />
         </a>
