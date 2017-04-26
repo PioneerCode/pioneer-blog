@@ -1,8 +1,10 @@
-﻿import { Injectable }   from '@angular/core';
-import { PostRepository }       from './post.repository';
-import { Post }                 from '../../models/post';
+﻿import { Injectable } from '@angular/core';
+import { PostRepository } from './post.repository';
 
 import 'rxjs/add/operator/toPromise';
+
+import { Post } from '../../models/post';
+
 
 @Injectable()
 export class PostService {
@@ -60,7 +62,7 @@ export class PostService {
   }
 
   private getPosts(): Promise<Post[]> {
-    return this.postRepository.getAll(false, false, true)
+    return this.postRepository.getAll(10, 1, false, false, true)
       .then((posts: Post[]) => {
         this.posts = posts;
         return this.postRepository.get(this.posts[0].url, true);

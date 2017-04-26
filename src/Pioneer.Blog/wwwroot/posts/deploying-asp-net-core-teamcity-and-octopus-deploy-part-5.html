@@ -12,11 +12,21 @@
         <div class="note">
           <p>This day and age, predictability and reliability are two of the most important words when it comes deployments. In this series, I am going to talk about how to add both predictability and reliability to your ASP.NET Core Continuous Integration pipeline using TeamCity and Octopus Deploy.</p>
           <ol style="margin-bottom: 0;">
-            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-1">Intro</a></li>
-            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2">TeamCity</a></li>
-            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-3">Octopus Deploy: Installation And Targets</a></li>
-            <li><a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4">Octopus Deploy: Configuration And Deployments</a></li>
-            <li><a href="">Why Stop Now (Coming Soon)</a></li>
+            <li>
+              <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-1" title="Deploying An ASP.NET Core Site With TeamCity And Octopus Deploy: You're Still Doing It Wrong">Intro</a>
+            </li>
+            <li>
+              <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2" title="Deploying An ASP.NET Core Site, You're Still Doing It Wrong : Part 2 - TeamCity">TeamCity</a>
+            </li>
+            <li>
+              <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-3" title="Deploying An ASP.NET Core Site, You're Still Doing It Wrong : Part 3 - Octopus Deploy: Installation And Targets">Octopus Deploy: Installation And Targets</a>
+            </li>
+            <li>
+              <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-4" title="Deploying An ASP.NET Core Site, You're Still Doing It Wrong : Part 4 - Octopus Deploy: Configuration And Deployments">Octopus Deploy: Configuration And Deployments</a>
+            </li>
+            <li>
+              <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-5" title="Deploying An ASP.NET Core Site: You're Still Doing It Wrong - Part 5 - Why Stop Now">Why Stop Now</a>
+            </li>
           </ol>
         </div>
         <p>We sure came a long way since <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-1">part 1</a> of this series. Since we started we manged to accomplish...</p>
@@ -54,13 +64,14 @@
         <h4>ORM: Migrations & Entity Framework</h4>
         <p>Code first migrations are a great tool for developers to utilize.  They allow us to stand-up a database and make changes at a really quick clip.  That being said, my approach to using them is mainly for development.  Once my database is in a state that is steady enough to consider deployable, I tend to switch to scripting. That being said, there is no reason why you would not be able to run migrations from a command-line step in your Deployment Process.</p>
         <h2>Testing</h2>
-        <p>Let me say this and say it loud, running automated tests during your build process is something that we all should strive for. Doing so culminates in a build that is, by a large factor, more <b>reliable</b> then a build that does not have tests ran against it.  This will have a positive impact that will trickle down through your entire development process.</p> 
+        <p>Let me say this and say it loud, running automated tests during your build process is something that we all should strive for. Doing so culminates in a build that is, by a large factor, more <b>reliable</b> then a build that does not have tests ran against it.  This will have a positive impact that will trickle down through your entire development process.</p>
         <h4>xUnit.net</h4>
         <blockquote>
           xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework.
           <cite><a href="https://xunit.github.io/" target="_blank" title="XUnite.net">xUnit.net</a></cite>
         </blockquote>
-        <p>xUnit.net is a widely used testing tool and my primary framework when it comes to testing in .NET.  To get up and running in TeamCity, you first need to install the <a href="https://github.com/carlpett/xUnit-TeamCity" title="xUnit.net plugin" target="_blank">xUnit.net plugin</a>. After the plugin is installed, you can add a build step to your Project and set it to the Runner Type xUnit. From there you have a few configuration options to setup. 
+        <p>
+          xUnit.net is a widely used testing tool and my primary framework when it comes to testing in .NET.  To get up and running in TeamCity, you first need to install the <a href="https://github.com/carlpett/xUnit-TeamCity" title="xUnit.net plugin" target="_blank">xUnit.net plugin</a>. After the plugin is installed, you can add a build step to your Project and set it to the Runner Type xUnit. From there you have a few configuration options to setup.
         </p>
         <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/why-4.png" title="TeamCity xUnit.net" target="_blank">
           <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/why-4.png" alt="TeamCity xUnit.net" style="max-width: 796px; border: 1px solid #ccc;" />

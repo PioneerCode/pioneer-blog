@@ -1,8 +1,9 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Post } from '../../models/post';
 
 import 'rxjs/add/operator/toPromise';
+
+import { Post } from '../../models/post';
 
 @Injectable()
 export class PostRepository {
@@ -23,10 +24,12 @@ export class PostRepository {
       .catch(this.handleError);
   }
 
-  getAll(includeExcerpt: boolean = true,
+  getAll(count: number = null,
+    page: number = null,
+    includeExcerpt: boolean = true,
     includeArticle: boolean = true,
     includeUnpublished: boolean = true): Promise<Post[]> {
-    return this.http.get(this.url + '?includeExceprt=' + includeExcerpt + '&includeArticle=' + includeArticle + '&includeUnpublished=' + includeUnpublished)
+    return this.http.get(this.url + '?count=' + count + '&page=' + page + '&ncludeExceprt=' + includeExcerpt + '&includeArticle=' + includeArticle + '&includeUnpublished=' + includeUnpublished)
       .toPromise()
       .then((res: Response) => {
         const body: Post[] = res.json();
