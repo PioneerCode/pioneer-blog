@@ -23,6 +23,10 @@ export class PostService {
       })
       .then((resp: Post) => {
         this.selectedPost = resp;
+        return this.postRepository.getTotalNumberOfPosts();
+      })
+      .then((resp: number) => {
+        this.totalItemsInCollection = resp;
         return this.posts;
       });
   }
@@ -72,6 +76,7 @@ export class PostService {
   }
 
   resetPosts(): Promise<Post[]> {
+    // TODO: Abstract out - shared with init
     return this.postRepository.getAll(this.countPerPage, this.currentPageIndex, false, false, true)
       .then((posts: Post[]) => {
         this.posts = posts;
@@ -79,6 +84,10 @@ export class PostService {
       })
       .then((resp: Post) => {
         this.selectedPost = resp;
+        return this.postRepository.getTotalNumberOfPosts();
+      })
+      .then((resp: number) => {
+        this.totalItemsInCollection = resp;
         return this.posts;
       });
   }
