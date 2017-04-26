@@ -17,13 +17,6 @@ export class PostsPageComponent implements OnInit {
     public tagService: TagService) {
   }
 
-  /**
-   * Subscribe to pc-page event
-   */
-  onPageClicked(pager: Pager.IPager) {
-    console.log(pager);
-  }
-
   ngOnInit(): void {
     this.loading = true;
     this.tagService.init()
@@ -33,6 +26,18 @@ export class PostsPageComponent implements OnInit {
       .then(() => {
         return this.postService.init();
       })
+      .then(() => {
+        this.loading = false;
+      });
+  }
+
+  /**
+   * Subscribe to pc-page event
+   */
+  onPageClicked(selectedPage: number) {
+    this.loading = true;
+    this.postService.currentPageIndex = selectedPage;
+    this.postService.resetPosts()
       .then(() => {
         this.loading = false;
       });

@@ -9,13 +9,22 @@ import { Post } from '../../models/post';
 export class PostService {
   posts = [] as Post[];
   selectedPost = {} as Post;
-  count = 2;
-  page = 1;
+  countPerPage = 2;
+  currentPageIndex = 1;
+  totalItemsInCollection = 10;
 
   constructor(private postRepository: PostRepository) { }
 
   init(): Promise<Post[]> {
-    return this.getPosts();
+    return this.postRepository.getAll(this.countPerPage, this.currentPageIndex, false, false, true)
+      .then((posts: Post[]) => {
+        this.posts = posts;
+        return this.postRepository.get(this.posts[0].url, true);
+      })
+      .then((resp: Post) => {
+        this.selectedPost = resp;
+        return this.posts;
+      });
   }
 
   getAll(): Post[] {
@@ -62,8 +71,8 @@ export class PostService {
       });
   }
 
-  private getPosts(): Promise<Post[]> {
-    return this.postRepository.getAll(this.count, this.page, false, false, true)
+  resetPosts(): Promise<Post[]> {
+    return this.postRepository.getAll(this.countPerPage, this.currentPageIndex, false, false, true)
       .then((posts: Post[]) => {
         this.posts = posts;
         return this.postRepository.get(this.posts[0].url, true);

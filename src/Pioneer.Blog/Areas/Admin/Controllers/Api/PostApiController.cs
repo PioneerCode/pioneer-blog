@@ -18,6 +18,15 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
             _postService = postService;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="count">Total nodes in page</param>
+        /// <param name="page">What page are we on</param>
+        /// <param name="includeExceprt"></param>
+        /// <param name="includeArticle"></param>
+        /// <param name="includeUnpublished"></param>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<Post> GetAll(int? count, 
             int? page, 

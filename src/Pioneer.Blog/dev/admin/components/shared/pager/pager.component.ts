@@ -1,4 +1,4 @@
-﻿import { Component, EventEmitter, Input, Output } from '@angular/core';
+﻿import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 export interface IPager {
   totalItems: number;
@@ -27,24 +27,25 @@ export interface IPager {
   `
 })
 
-export class PagerComponent {
-  @Input() page = 1;
-  @Input() count = 1;
+export class PagerComponent implements OnInit{
+  @Input() currentPageIndex = 1;
+  @Input() countPerPage = 1;
+  @Input() totalItemsInCollection = 1;
 
-  @Output() onPageClicked = new EventEmitter<IPager>();
+  @Output() onPageClicked = new EventEmitter<number>();
 
   pager = {} as IPager;
 
   ngOnInit(): void {
-    this.setPager(this.page, this.count);
+    this.setPager(this.currentPageIndex, this.totalItemsInCollection);
   }
 
   /**
    * Omit an event when a page is clicked
    */
-  onClick(page: IPager) {
-    this.onPageClicked.emit(page);
-    this.setPager(page.currentPage, this.count);
+  onClick(selectedPage: number) {
+    this.onPageClicked.emit(selectedPage);
+    this.setPager(selectedPage, this.totalItemsInCollection);
   }
 
   getPager() {
@@ -63,11 +64,8 @@ export class PagerComponent {
     // default to first page
     currentPage = currentPage || 1;
 
-    // default page size is 4
-    const pageSize = 4;
-
     // calculate total pages
-    const totalPages = Math.ceil(totalItems / this.count);
+    const totalPages = Math.ceil(totalItems / this.countPerPage);
 
     let startPage: number;
     let endPage: number;
@@ -91,8 +89,8 @@ export class PagerComponent {
     }
 
     // calculate start and end item indexes
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+    const startIndex = (currentPage - 1) * this.countPerPage;
+    const endIndex = Math.min(startIndex + this.countPerPage - 1, totalItems - 1);
 
     // create an array of pages *ngFor
     const pages = this.range(startPage, endPage + 1);
@@ -100,7 +98,7 @@ export class PagerComponent {
     return {
       totalItems: totalItems,
       currentPage: currentPage,
-      pageSize: pageSize,
+      pageSize: this.countPerPage,
       totalPages: totalPages,
       startPage: startPage,
       endPage: endPage,

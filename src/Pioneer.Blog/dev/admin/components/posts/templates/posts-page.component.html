@@ -16,7 +16,10 @@
             <span>{{ post.title }}</span>
           </li>
         </ul>
-        <pc-pager (onPageClicked)="onPageClicked($event)" [count]="postService.count" [page]="postService.page"></pc-pager>
+        <pc-pager (onPageClicked)="onPageClicked($event)" 
+                  [countPerPage]="postService.countPerPage" 
+                  [currentPageIndex]="postService.currentPageIndex" 
+                  [totalItemsInCollection]="postService.totalItemsInCollection"></pc-pager>
       </div>
     </div>
     <div class="large-9 columns">
