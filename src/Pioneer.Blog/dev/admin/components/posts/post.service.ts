@@ -9,7 +9,7 @@ import { Post } from '../../models/post';
 export class PostService {
   posts = [] as Post[];
   selectedPost = {} as Post;
-  countPerPage = 2;
+  countPerPage = 10;
   currentPageIndex = 1;
   totalItemsInCollection = 10;
 
