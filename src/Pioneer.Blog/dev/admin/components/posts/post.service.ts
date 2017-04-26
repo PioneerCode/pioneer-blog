@@ -11,7 +11,8 @@ export class PostService {
   selectedPost = {} as Post;
   countPerPage = 10;
   currentPageIndex = 1;
-  totalItemsInCollection = 10;
+  // TODO: This is an issue.  The initial state of the pager will represent this, not what comes from the repo.
+  totalItemsInCollection = 1000;
 
   constructor(private postRepository: PostRepository) { }
 
