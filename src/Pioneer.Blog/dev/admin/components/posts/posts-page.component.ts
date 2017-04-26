@@ -1,7 +1,8 @@
-﻿import { Component, OnInit }    from '@angular/core';
-import { PostService }          from './post.service';
-import { CategoryService }      from '../categories/category.service';
-import { TagService }           from '../tags/tag.service';
+﻿import { Component, OnInit } from '@angular/core';
+import { PostService } from './post.service';
+import { CategoryService } from '../categories/category.service';
+import { TagService } from '../tags/tag.service';
+import Pager = require('../shared/pager/pager.component');
 
 @Component({
   selector: 'pc-posts-page',
@@ -25,6 +26,18 @@ export class PostsPageComponent implements OnInit {
       .then(() => {
         return this.postService.init();
       })
+      .then(() => {
+        this.loading = false;
+      });
+  }
+
+  /**
+   * Subscribe to pc-page event
+   */
+  onPageClicked(selectedPage: number) {
+    this.loading = true;
+    this.postService.currentPageIndex = selectedPage;
+    this.postService.resetPosts()
       .then(() => {
         this.loading = false;
       });

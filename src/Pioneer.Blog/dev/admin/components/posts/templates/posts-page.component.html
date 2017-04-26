@@ -16,6 +16,10 @@
             <span>{{ post.title }}</span>
           </li>
         </ul>
+        <pc-pager (onPageClicked)="onPageClicked($event)" 
+                  [countPerPage]="postService.countPerPage" 
+                  [currentPageIndex]="postService.currentPageIndex" 
+                  [totalItemsInCollection]="postService.totalItemsInCollection"></pc-pager>
       </div>
     </div>
     <div class="large-9 columns">
@@ -27,7 +31,7 @@
                  [(ngModel)]="postService.getCurrent().title">
         </label>
         <label>
-          URL
+          URL 
           <input type="text"
                  [(ngModel)]="postService.getCurrent().url">
         </label>

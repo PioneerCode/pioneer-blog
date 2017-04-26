@@ -16,7 +16,8 @@ import { TagRepository } from '../tags/tag.repository';
 import { TagService } from '../tags/tag.service';
 
 import { TruncatePipe } from '../../pipes/truncate.pipe';
-import { LoaderComponent } from '../loader/loader.component';
+import { LoaderComponent } from '../shared/loader/loader.component';
+import { PagerComponent } from '../shared/pager/pager.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { LoaderComponent } from '../loader/loader.component';
     AppComponent,
     PostsPageComponent,
     TruncatePipe,
-    LoaderComponent
+    LoaderComponent,
+    PagerComponent
   ],
   providers: [
     PostRepository,

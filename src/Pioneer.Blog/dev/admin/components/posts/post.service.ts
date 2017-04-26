@@ -1,18 +1,35 @@
-﻿import { Injectable }   from '@angular/core';
-import { PostRepository }       from './post.repository';
-import { Post }                 from '../../models/post';
+﻿import { Injectable } from '@angular/core';
+import { PostRepository } from './post.repository';
 
 import 'rxjs/add/operator/toPromise';
+
+import { Post } from '../../models/post';
 
 @Injectable()
 export class PostService {
   posts = [] as Post[];
   selectedPost = {} as Post;
+  countPerPage = 10;
+  currentPageIndex = 1;
+  // TODO: This is an issue.  The initial state of the pager will represent this, not what comes from the repo.
+  totalItemsInCollection = 1000;
 
   constructor(private postRepository: PostRepository) { }
 
   init(): Promise<Post[]> {
-    return this.getPosts();
+    return this.postRepository.getAll(this.countPerPage, this.currentPageIndex, false, false, true)
+      .then((posts: Post[]) => {
+        this.posts = posts;
+        return this.postRepository.get(this.posts[0].url, true);
+      })
+      .then((resp: Post) => {
+        this.selectedPost = resp;
+        return this.postRepository.getTotalNumberOfPosts();
+      })
+      .then((resp: number) => {
+        this.totalItemsInCollection = resp;
+        return this.posts;
+      });
   }
 
   getAll(): Post[] {
@@ -59,14 +76,19 @@ export class PostService {
       });
   }
 
-  private getPosts(): Promise<Post[]> {
-    return this.postRepository.getAll(false, false, true)
+  resetPosts(): Promise<Post[]> {
+    // TODO: Abstract out - shared with init
+    return this.postRepository.getAll(this.countPerPage, this.currentPageIndex, false, false, true)
       .then((posts: Post[]) => {
         this.posts = posts;
         return this.postRepository.get(this.posts[0].url, true);
       })
       .then((resp: Post) => {
         this.selectedPost = resp;
+        return this.postRepository.getTotalNumberOfPosts();
+      })
+      .then((resp: number) => {
+        this.totalItemsInCollection = resp;
         return this.posts;
       });
   }

@@ -18,19 +18,20 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
             _postService = postService;
         }
 
+ 
         [HttpGet]
-        public IEnumerable<Post> GetAll(int? count, 
-            int? page, 
+        public IEnumerable<Post> GetAll(int? countPerPage, 
+            int? currentPageIndex, 
             bool includeExceprt = true, 
             bool includeArticle = true, 
             bool includeUnpublished = false)
         {
-            if (count == null || page == null)
+            if (countPerPage == null || currentPageIndex == null)
             {
                 return _postService.GetAll(includeExceprt, includeArticle, includeUnpublished);
             }
 
-            return _postService.GetAllPaged((int)count, (int)page);
+            return _postService.GetAllPaged((int)countPerPage, (int)currentPageIndex);
         }
 
         [HttpGet("{url}", Name = "GetPost")]
@@ -43,6 +44,12 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
             }
 
             return new ObjectResult(item);
+        }
+
+        [Route("count/total")]
+        public IActionResult GetTotalNumberOfPosts()
+        {
+            return new ObjectResult(_postService.GetTotalNumberOfPosts());
         }
 
         [HttpPost]
