@@ -5,11 +5,12 @@ import 'rxjs/add/operator/toPromise';
 
 import { Post } from '../../models/post';
 
-
 @Injectable()
 export class PostService {
   posts = [] as Post[];
   selectedPost = {} as Post;
+  count = 2;
+  page = 1;
 
   constructor(private postRepository: PostRepository) { }
 
@@ -62,7 +63,7 @@ export class PostService {
   }
 
   private getPosts(): Promise<Post[]> {
-    return this.postRepository.getAll(10, 1, false, false, true)
+    return this.postRepository.getAll(this.count, this.page, false, false, true)
       .then((posts: Post[]) => {
         this.posts = posts;
         return this.postRepository.get(this.posts[0].url, true);

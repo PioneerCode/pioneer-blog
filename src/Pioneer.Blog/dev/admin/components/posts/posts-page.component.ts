@@ -2,6 +2,7 @@
 import { PostService } from './post.service';
 import { CategoryService } from '../categories/category.service';
 import { TagService } from '../tags/tag.service';
+import Pager = require('../shared/pager/pager.component');
 
 @Component({
   selector: 'pc-posts-page',
@@ -14,6 +15,13 @@ export class PostsPageComponent implements OnInit {
   constructor(public postService: PostService,
     public categoryService: CategoryService,
     public tagService: TagService) {
+  }
+
+  /**
+   * Subscribe to pc-page event
+   */
+  onPageClicked(pager: Pager.IPager) {
+    console.log(pager);
   }
 
   ngOnInit(): void {

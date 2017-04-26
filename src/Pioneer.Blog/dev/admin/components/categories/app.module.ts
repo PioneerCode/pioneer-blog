@@ -9,7 +9,7 @@ import { CategoryService } from './category.service';
 import { CategoryRepository } from './category.repository';
 
 import { TruncatePipe } from '../../pipes/truncate.pipe';
-import { LoaderComponent } from '../loader/loader.component';
+import { LoaderComponent } from '../shared/loader/loader.component';
 
 @NgModule({
   imports: [

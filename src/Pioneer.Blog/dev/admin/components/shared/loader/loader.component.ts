@@ -14,5 +14,5 @@
 
 
 export class LoaderComponent {
-  @Input() loading: boolean = false;
+  @Input() loading = false;
 }

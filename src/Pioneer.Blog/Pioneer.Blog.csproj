@@ -46,7 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="dev\admin\components\loader\" />
+    <Folder Include="dev\admin\components\shared\loader\" />
   </ItemGroup>
 
 </Project>

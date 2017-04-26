@@ -10,7 +10,7 @@ import { TagService } from './tag.service';
 import { TagsPageComponent } from './tags-page.component';
 
 import { TruncatePipe } from '../../pipes/truncate.pipe';
-import { LoaderComponent } from '../loader/loader.component';
+import { LoaderComponent } from '../shared/loader/loader.component';
 
 @NgModule({
   imports: [
