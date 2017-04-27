@@ -23,6 +23,6 @@ export class Post {
   modifedOn: string;
   tags: Tag.Tag[];
   article: Article.Article;
-  cateogry: Category.Category;
+  category: Category.Category;
   excerpt: Excerpt.Exceprt;
 }

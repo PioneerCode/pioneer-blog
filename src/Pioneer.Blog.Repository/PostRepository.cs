@@ -326,7 +326,8 @@ namespace Pioneer.Blog.Repository
             // Article
             entity.Article.Content = post.Article.Content;
 
-            // Categories
+            // Category
+            entity.CategoryId = post.Category.CategoryId;
 
             // Tags
 
