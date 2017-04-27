@@ -18,14 +18,15 @@ export interface IPager {
   <section class="pc-pager">
     <ul class="pagination" role="navigation" aria-label="Pagination">
       <li class="pagination-previous" 
-          (click)="onClick(page - 1)">
+          (click)="onClick(currentPageIndex - 1)">
         <a href="#" aria-label="Previous page page"></a>
       </li>
       <li *ngFor="let page of getPager().pages"
           [ngClass]="{current: currentPageIndex === page}">
         <a (click)="onClick(page)">{{page}}</a>
       </li>
-      <li class="pagination-next">
+      <li class="pagination-next"
+          (click)="onClick(currentPageIndex + 1)">
         <a href="#" aria-label="Next page"></a>
       </li>
     </ul>
