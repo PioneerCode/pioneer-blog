@@ -4,6 +4,7 @@ import { PostRepository } from './post.repository';
 import 'rxjs/add/operator/toPromise';
 
 import { Post } from '../../models/post';
+import { Category } from '../../models/category';
 
 @Injectable()
 export class PostService {
@@ -91,5 +92,10 @@ export class PostService {
         this.totalItemsInCollection = resp;
         return this.posts;
       });
+  }
+
+  replaceCategory(category: Category): Promise<void> {
+    this.getCurrent().category = category;
+    return this.save();
   }
 }

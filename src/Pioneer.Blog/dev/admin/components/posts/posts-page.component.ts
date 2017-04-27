@@ -2,7 +2,7 @@
 import { PostService } from './post.service';
 import { CategoryService } from '../categories/category.service';
 import { TagService } from '../tags/tag.service';
-import Pager = require('../shared/pager/pager.component');
+import { Category } from '../../models/category';
 
 @Component({
   selector: 'pc-posts-page',
@@ -61,5 +61,13 @@ export class PostsPageComponent implements OnInit {
           this.loading = false;
         });
     }
+  }
+
+  onCategoryClick(category: Category): void {
+    this.loading = true;
+    this.postService.replaceCategory(category)
+      .then(() => {
+        this.loading = false;
+      });
   }
 }
