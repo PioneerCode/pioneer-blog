@@ -208,7 +208,7 @@ namespace Pioneer.Blog.Service
         /// <summary>
         /// Delete Post record
         /// </summary>
-        /// <param name="url">Post url</param>
+        /// <param name="url">Post URL</param>
         public void Remove(string url)
         {
             _postRepository.Remove(url);
