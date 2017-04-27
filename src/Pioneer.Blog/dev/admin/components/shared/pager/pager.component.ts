@@ -17,12 +17,17 @@ export interface IPager {
   template: `
   <section class="pc-pager">
     <ul class="pagination" role="navigation" aria-label="Pagination">
-      <li class="pagination-previous disabled"></li>
+      <li class="pagination-previous" 
+          (click)="onClick(page - 1)">
+        <a href="#" aria-label="Previous page page"></a>
+      </li>
       <li *ngFor="let page of getPager().pages"
           [ngClass]="{current: currentPageIndex === page}">
         <a (click)="onClick(page)">{{page}}</a>
       </li>
-      <li class="pagination-next"><a href="#" aria-label="Next page"></a></li>
+      <li class="pagination-next">
+        <a href="#" aria-label="Next page"></a>
+      </li>
     </ul>
   </section>
   `
