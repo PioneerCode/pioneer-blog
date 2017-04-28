@@ -72,14 +72,7 @@ export class PostRepository {
       .catch(this.handleError);
   }
 
-  addTag(tagId: number, postId: number): Promise<Tag> {
-    throw new Error("Not implemented");
-  }
 
-  removeTag(tagId: number, postId: number): Promise<void> {
-    throw new Error("Not implemented");
-
-  }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
