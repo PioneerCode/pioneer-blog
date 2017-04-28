@@ -20,6 +20,11 @@ namespace Pioneer.Blog.Service
             _postTagRepository = postTagRepository;
         }
 
+        /// <summary>
+        /// Add a new PostTag record
+        /// </summary>
+        /// <param name="postTag">Compound Key</param>
+        /// <returns>Qualified PostTag</returns>
         public PostTag Add(PostTag postTag)
         {
             var entity = _postTagRepository.Add(Mapper.Map<PostTag, PostTagEntity>(postTag));
@@ -27,6 +32,10 @@ namespace Pioneer.Blog.Service
             return postTag;
         }
 
+        /// <summary>
+        /// Delete a PostTag by compound key
+        /// </summary>
+        /// <param name="postTag">Compound Key</param>
         public void Delete(PostTag postTag)
         {
             _postTagRepository.RemoveByCompound(Mapper.Map<PostTag, PostTagEntity>(postTag));

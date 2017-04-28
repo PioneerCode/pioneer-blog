@@ -19,6 +19,11 @@ namespace Pioneer.Blog.Repository
             _blogContext = blogContext;
         }
 
+        /// <summary>
+        /// Add a new PostTagEntity record
+        /// </summary>
+        /// <param name="postTag">Compound Key</param>
+        /// <returns>Qualified PostTagEntity</returns>
         public PostTagEntity Add(PostTagEntity postTag)
         {
             _blogContext
@@ -30,6 +35,10 @@ namespace Pioneer.Blog.Repository
             return postTag;
         }
 
+        /// <summary>
+        /// Delete a PostTagEntity by compound key
+        /// </summary>
+        /// <param name="postTag">Compound Key</param>
         public void RemoveByCompound(PostTagEntity postTag)
         {
             var entity = _blogContext
