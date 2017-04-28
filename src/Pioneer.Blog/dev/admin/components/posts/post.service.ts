@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Post } from '../../models/post';
 import { Category } from '../../models/category';
-
+import { Tag } from '../../models/tag';
 @Injectable()
 export class PostService {
   posts = [] as Post[];
@@ -97,5 +97,30 @@ export class PostService {
   replaceCategory(category: Category): Promise<void> {
     this.getCurrent().category = category;
     return this.save();
+  }
+
+  addTag(tag: Tag): Promise<void> {
+    return this.postRepository.addTag(tag.tagId, this.selectedPost.postId)
+      .then(() => {
+      });
+  }
+
+  removeTag(tag: Tag): Promise<void> {
+    return this.postRepository.removeTag(tag.tagId, this.selectedPost.postId)
+      .then(() => {
+      });
+  }
+
+  isTagSet(tag: Tag): boolean {
+    if (!this.selectedPost.tags) {
+      return false;
+    }
+
+    for (let i = 0; i < this.selectedPost.tags.length; i++) {
+      if (tag.tagId === this.selectedPost.tags[i].tagId) {
+        return true;
+      }
+    }
+    return false;
   }
 }
