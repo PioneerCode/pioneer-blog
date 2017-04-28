@@ -72,9 +72,10 @@ export class PostsPageComponent implements OnInit {
       });
   }
 
-  onTagClick(tag: Tag, selected: boolean): void {
+  onTagClick(tag: Tag): void {
     this.loading = true;
-    if (selected) {
+
+    if (!this.postService.isTagSet(tag)) {
       this.postService.addTag(tag)
       .then(() => {
         this.loading = false;

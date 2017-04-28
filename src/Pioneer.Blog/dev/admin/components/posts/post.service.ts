@@ -110,6 +110,12 @@ export class PostService {
   removeTag(tag: Tag): Promise<void> {
     return this.postTagRepository.removeByCompound(tag.tagId, this.selectedPost.postId)
       .then(() => {
+        for (let i = 0; i < this.selectedPost.tags.length; i++) {
+          if (tag.tagId === this.selectedPost.tags[i].tagId) {
+            this.selectedPost.tags.splice(i, 1);
+            return;
+          }
+        }
       });
   }
 

@@ -116,7 +116,7 @@
             <input type="checkbox"
                    [checked]="postService.getCurrent().category && postService.getCurrent().category.categoryId === category.categoryId"
                    (click)="onCategoryClick(category)">
-            <label for="">{{ category.name | truncate : 20 }}</label>
+            <label>{{ category.name | truncate : 20 }}</label>
           </span>
         </fieldset>
         <fieldset class="fieldset">

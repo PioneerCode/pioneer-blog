@@ -7,12 +7,12 @@ import { Tag } from '../models/tag';
 
 @Injectable()
 export class PostTagRepository {
-  private url = '/api/posts';
+  private url = '/api/post-tags';
 
   constructor(private http: Http) { }
   
   add(tagId: number, postId: number): Promise<Tag> {
-    return this.http.post(this.url + '\\add-compound', { tagId: tagId, postId: postId })
+    return this.http.post(this.url, { tagId: tagId, postId: postId })
       .toPromise()
       .then((res: Response) => {
         return res.json() as Tag;
@@ -21,7 +21,7 @@ export class PostTagRepository {
   }
 
   removeByCompound(tagId: number, postId: number): Promise<Response> {
-    return this.http.post(this.url + '\\delete-compound', { tagId: tagId, postId: postId })
+    return this.http.post(this.url + '/remove/compound', { tagId: tagId, postId: postId })
       .toPromise()
       .catch(this.handleError);
   }

@@ -24,6 +24,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPost]
+        [Route("remove/compound")]
         public IActionResult DeletePostTag([FromBody]PostTag postTag)
         {
             _postTagService.Delete(postTag);
