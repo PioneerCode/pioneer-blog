@@ -4,10 +4,11 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-
-import { TagRepository } from './tag.repository';
-import { TagService } from './tag.service';
 import { TagsPageComponent } from './tags-page.component';
+
+import { TagRepository } from '../../repositories/tag.repository';
+
+import { TagService } from './tag.service';
 
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { LoaderComponent } from '../shared/loader/loader.component';

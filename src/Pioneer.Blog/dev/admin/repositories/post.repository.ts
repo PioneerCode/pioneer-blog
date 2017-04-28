@@ -3,8 +3,8 @@ import { Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Post } from '../../models/post';
-import { Tag } from '../../models/tag';
+import { Post } from '../models/post';
+import { Tag } from '../models/tag';
 
 @Injectable()
 export class PostRepository {

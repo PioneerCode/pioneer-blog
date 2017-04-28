@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Tag } from '../../models/tag';
+import { Tag } from '../models/tag';
 
 @Injectable()
 export class PostTagRepository {
@@ -11,7 +11,7 @@ export class PostTagRepository {
 
   constructor(private http: Http) { }
   
-  addTag(tagId: number, postId: number): Promise<Tag> {
+  add(tagId: number, postId: number): Promise<Tag> {
     return this.http.post(this.url + '\\add-compound', { tagId: tagId, postId: postId })
       .toPromise()
       .then((res: Response) => {
@@ -20,7 +20,7 @@ export class PostTagRepository {
       .catch(this.handleError);
   }
 
-  removeTag(tagId: number, postId: number): Promise<Response> {
+  removeByCompound(tagId: number, postId: number): Promise<Response> {
     return this.http.post(this.url + '\\delete-compound', { tagId: tagId, postId: postId })
       .toPromise()
       .catch(this.handleError);

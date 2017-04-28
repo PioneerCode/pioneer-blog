@@ -4,16 +4,16 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-
 import { PostsPageComponent } from './posts-page.component';
-import { PostRepository } from './post.repository';
+
+import { PostRepository } from '../../repositories/post.repository';
+import { CategoryRepository } from '../../repositories/category.repository';
+import { TagRepository } from '../../repositories/tag.repository';
+import { PostTagRepository } from '../../repositories/post-tag.repository';
+
 import { PostService } from './post.service';
-
-import { CategoryRepository } from '../categories/category.repository';
-import { CategoryService } from '../categories/category.service';
-
-import { TagRepository } from '../tags/tag.repository';
 import { TagService } from '../tags/tag.service';
+import { CategoryService } from '../categories/category.service';
 
 import { TruncatePipe } from '../../pipes/truncate.pipe';
 import { LoaderComponent } from '../shared/loader/loader.component';
@@ -34,6 +34,7 @@ import { PagerComponent } from '../shared/pager/pager.component';
   ],
   providers: [
     PostRepository,
+    PostTagRepository,
     CategoryRepository,
     TagRepository,
     PostService,

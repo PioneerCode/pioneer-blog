@@ -1,12 +1,13 @@
 ﻿import { Injectable } from '@angular/core';
-import { PostRepository } from './post.repository';
-import { PostTagRepository } from './post-tag.repository';
+import { PostRepository } from '../../repositories/post.repository';
+import { PostTagRepository } from '../../repositories/post-tag.repository';
 
 import 'rxjs/add/operator/toPromise';
 
 import { Post } from '../../models/post';
 import { Category } from '../../models/category';
 import { Tag } from '../../models/tag';
+
 @Injectable()
 export class PostService {
   posts = [] as Post[];
@@ -16,7 +17,7 @@ export class PostService {
   // TODO: This is an issue.  The initial state of the pager will represent this, not what comes from the repo.
   totalItemsInCollection = 1000;
 
-  constructor(private postRepository: PostRepository) { }
+  constructor(private postRepository: PostRepository, private postTagRepository: PostTagRepository) { }
 
   init(): Promise<Post[]> {
     return this.postRepository.getAll(this.countPerPage, this.currentPageIndex, false, false, true)
@@ -101,13 +102,13 @@ export class PostService {
   }
 
   addTag(tag: Tag): Promise<void> {
-    return this.postRepository.addTag(tag.tagId, this.selectedPost.postId)
+    return this.postTagRepository.add(tag.tagId, this.selectedPost.postId)
       .then(() => {
       });
   }
 
   removeTag(tag: Tag): Promise<void> {
-    return this.postRepository.removeTag(tag.tagId, this.selectedPost.postId)
+    return this.postTagRepository.removeByCompound(tag.tagId, this.selectedPost.postId)
       .then(() => {
       });
   }
