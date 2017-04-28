@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { TagRepository } from './tag.repository';
+import { TagRepository } from '../../repositories/tag.repository';
 import { Tag } from '../../models/tag';
 
 import 'rxjs/add/operator/toPromise';

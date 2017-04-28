@@ -15,6 +15,7 @@ namespace Pioneer.Blog.Service
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();
                 cfg.CreateMap<Contact, ContactEntity>().ReverseMap();
                 cfg.CreateMap<Excerpt, ExcerptEntity>().ReverseMap();
+                cfg.CreateMap<PostTag, PostTagEntity>().ReverseMap();
                 cfg.CreateMap<Tag, TagEntity>().ReverseMap();
                 cfg.CreateMap<PostEntity, Post>()
                  .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag))).ReverseMap();

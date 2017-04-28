@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { CategoryRepository } from './category.repository';
+import { CategoryRepository } from '../../repositories/category.repository';
 import { Category } from '../../models/category';
 
 import 'rxjs/add/operator/toPromise';

@@ -3,7 +3,8 @@ import { Http, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Post } from '../../models/post';
+import { Post } from '../models/post';
+import { Tag } from '../models/tag';
 
 @Injectable()
 export class PostRepository {
@@ -70,6 +71,8 @@ export class PostRepository {
       })
       .catch(this.handleError);
   }
+
+
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);

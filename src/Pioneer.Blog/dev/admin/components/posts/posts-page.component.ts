@@ -3,6 +3,7 @@ import { PostService } from './post.service';
 import { CategoryService } from '../categories/category.service';
 import { TagService } from '../tags/tag.service';
 import { Category } from '../../models/category';
+import { Tag } from '../../models/tag';
 
 @Component({
   selector: 'pc-posts-page',
@@ -66,6 +67,23 @@ export class PostsPageComponent implements OnInit {
   onCategoryClick(category: Category): void {
     this.loading = true;
     this.postService.replaceCategory(category)
+      .then(() => {
+        this.loading = false;
+      });
+  }
+
+  onTagClick(tag: Tag): void {
+    this.loading = true;
+
+    if (!this.postService.isTagSet(tag)) {
+      this.postService.addTag(tag)
+      .then(() => {
+        this.loading = false;
+      });
+      return;
+    }
+
+    this.postService.removeTag(tag)
       .then(() => {
         this.loading = false;
       });

@@ -16,9 +16,9 @@
             <span>{{ post.title }}</span>
           </li>
         </ul>
-        <pc-pager (onPageClicked)="onPageClicked($event)" 
-                  [countPerPage]="postService.countPerPage" 
-                  [currentPageIndex]="postService.currentPageIndex" 
+        <pc-pager (onPageClicked)="onPageClicked($event)"
+                  [countPerPage]="postService.countPerPage"
+                  [currentPageIndex]="postService.currentPageIndex"
                   [totalItemsInCollection]="postService.totalItemsInCollection"></pc-pager>
       </div>
     </div>
@@ -31,7 +31,7 @@
                  [(ngModel)]="postService.getCurrent().title">
         </label>
         <label>
-          URL 
+          URL
           <input type="text"
                  [(ngModel)]="postService.getCurrent().url">
         </label>
@@ -113,18 +113,18 @@
         <fieldset class="fieldset">
           <legend>Categories</legend>
           <span *ngFor="let category of categoryService.getAll()" class="admin-post-collection-item">
-            <input id=""
-                   type="checkbox"
+            <input type="checkbox"
                    [checked]="postService.getCurrent().category && postService.getCurrent().category.categoryId === category.categoryId"
                    (click)="onCategoryClick(category)">
-            <label for="">{{ category.name | truncate : 20 }}</label>
+            <label>{{ category.name | truncate : 20 }}</label>
           </span>
         </fieldset>
         <fieldset class="fieldset">
           <legend>Tags</legend>
           <span *ngFor="let tag of tagService.getAll()" class="admin-post-collection-item">
-            <input id=""
-                   type="checkbox"><label for="">{{ tag.name | truncate : 20 }}</label>
+            <input type="checkbox"
+                   [checked]="postService.isTagSet(tag)"
+                   (click)="onTagClick(tag)"><label>{{ tag.name | truncate : 20 }}</label>
           </span>
         </fieldset>
         <div class="clearfix">

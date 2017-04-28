@@ -4,7 +4,6 @@ using Pioneer.Blog.DAL;
 using Pioneer.Blog.DAL.Entites;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using Pioneer.Blog.Model;
 
 namespace Pioneer.Blog.Repository
