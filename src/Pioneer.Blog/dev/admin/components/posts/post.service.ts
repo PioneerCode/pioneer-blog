@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { PostRepository } from './post.repository';
+import { PostTagRepository } from './post-tag.repository';
 
 import 'rxjs/add/operator/toPromise';
 
