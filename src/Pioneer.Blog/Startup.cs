@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using Pioneer.Blog.DAL;
@@ -80,6 +81,7 @@ namespace Pioneer.Blog
             services.AddTransient<ICommunicationService, CommunicationService>();
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<ISiteMapService, SiteMapService>();
+            services.AddTransient<ApplicationEnvironment>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
