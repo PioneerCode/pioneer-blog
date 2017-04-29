@@ -1,4 +1,5 @@
-﻿<footer class="main">
+﻿@using System.Reflection
+<footer class="main">
   <div class="content">
     <div class="row">
       <div class="large-6 columns">
@@ -9,7 +10,7 @@
         <p class="chad">
           Designed and Developed by <a href="mailto:chad@pioneercode.com" title="Chad Ramos">CHAD RAMOS</a>.
         </p>
-        <p class="copy">&copy; Copyright @DateTime.Now.Year - All Rights Reserved </p>
+        <p class="copy">&copy; Copyright @DateTime.Now.Year - All Rights Reserved - @(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion)</p>
       </div>
       <div class="large-3 columns">
         <p class="heading">FOLLOW ME @@</p>
