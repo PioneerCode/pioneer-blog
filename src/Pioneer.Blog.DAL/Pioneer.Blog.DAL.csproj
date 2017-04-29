@@ -5,6 +5,7 @@
     <AssemblyName>Pioneer.Blog.DAL</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>Pioneer.Blog.DAL</PackageId>
+    <Version>0.0.0</Version>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
