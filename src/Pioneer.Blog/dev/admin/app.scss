@@ -135,7 +135,6 @@ body {
 .admin-canvas-content {
   padding: 1rem;
   background: $white;
-  position: relative;
 
   button.save {
     margin: 0;
@@ -143,7 +142,7 @@ body {
 }
 
 .admin-post-description {
-  min-height: 100px;
+  min-height: 199px;
 }
 
 .admin-post-collection-item {
