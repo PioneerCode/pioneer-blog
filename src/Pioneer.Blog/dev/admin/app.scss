@@ -84,10 +84,6 @@ body {
     position: relative;
     margin: 1rem 0 0 250px;
     min-height: 700px;
-
-    .row {
-      max-width: 100%;
-    }
   }
 }
 
@@ -130,10 +126,13 @@ body {
   }
 }
 
-
+.record-id {
+  color: $medium-gray;
+  font-size: 14px;
+}
 
 .admin-canvas-content {
-  padding: 1rem;
+  padding: 1rem 0 0 0;
   background: $white;
 
   button.save {
