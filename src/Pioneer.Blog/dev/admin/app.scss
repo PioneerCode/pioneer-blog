@@ -84,10 +84,6 @@ body {
     position: relative;
     margin: 1rem 0 0 250px;
     min-height: 700px;
-
-    .row {
-      max-width: 100%;
-    }
   }
 }
 
@@ -130,12 +126,14 @@ body {
   }
 }
 
-
+.record-id {
+  color: $medium-gray;
+  font-size: 14px;
+}
 
 .admin-canvas-content {
-  padding: 1rem;
+  padding: 1rem 0 0 0;
   background: $white;
-  position: relative;
 
   button.save {
     margin: 0;
@@ -143,7 +141,7 @@ body {
 }
 
 .admin-post-description {
-  min-height: 100px;
+  min-height: 199px;
 }
 
 .admin-post-collection-item {
