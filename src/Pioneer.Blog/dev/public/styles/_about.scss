@@ -5,6 +5,15 @@
     font-weight: bold;
   }
 
+
+  .image-container {
+    text-align: center;
+
+    img {
+      max-width: 250px;
+    }
+  }
+
   .who-is {
     background: $black;
     text-align: center;
@@ -16,31 +25,50 @@
     }
 
     .image-container {
-      text-align: center;
-
       img {
         border: 3px solid $white;
         box-shadow: 5px 5px 10px 0px rgba($black,0.3);
-        max-width: 250px;
+        margin: 2rem 0 0;
       }
     }
   }
 
   .about-pioneer {
-    padding: 8rem 0;
-    background-color: $dark-gray;
+    padding: 4rem 0;
+    text-align: center;
+
+    .nitty-gritty {
+      margin: 0 0 1rem;
+      text-align: center;
+
+      span {
+        font-weight: bold;
+        font-size: 20px;
+        color: $dark-gray;
+        margin: 0 0 0.5rem;
+      }
+    }
+
+    b {
+      color: $dark-gray;
+    }
+
+    .warning {
+      font-size: 14px;
+      color: $dark-gray;
+    }
   }
 
 
   @include breakpoint(large up) {
     .who-is {
-      text-align: left;
-
       .image-container {
         img {
           margin: 2rem 0 0;
         }
       }
+
+      text-align: left;
     }
   }
 }

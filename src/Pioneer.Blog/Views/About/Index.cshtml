@@ -1,4 +1,9 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment Enviroment
+@inject Microsoft.Extensions.PlatformAbstractions.ApplicationEnvironment Application
+
+@using System.Runtime.InteropServices
+
+@{
     Layout = "~/Views/About/_Template.cshtml";
     ViewBag.Title = "About Chad Ramos";
 }
@@ -52,7 +57,20 @@
   </section>
   <section class="about-pioneer">
     <div class="row">
-      <div class="large-8 large-push-2 columns"></div>
+      <div class="row">
+        <div class="large-4 columns">
+          <div class="image-container">
+            <img src="~/images/logo-large.png" alt="Pioneer Code Logo" />
+          </div>
+        </div>
+        <div class="large-8 columns end">
+          <h2>Tell Me More About Pioneer Code</h2>
+          <p>Pioneer Code is developed in the open at <a href="https://github.com/PioneerCode/pioneer-blog" alt="Pioneer Code Repository" target="_blank">GitHub</a>, deployed at <a href="http://www.digitalocean.com/?refcode=d95b905a1279" title="Digital Ocean" target="_blank">DigitalOcean</a> and backed by a SQL Server instance hosted at <a href="http://www.winhost.com/a/chadr" title="WinHost" target="_blank">WinHost</a>.</p> 
+          <h4 class="sub-heading">The Nitty Gritty</h4>
+          <p>Currently version "<b>@Application.ApplicationVersion</b>" of "<b>@Enviroment.ApplicationName</b>" is running on top of runtime framework "<b>@Application.RuntimeFramework</b>" in "<b>@RuntimeInformation.OSDescription</b>" and is being powered by a <b>@RuntimeInformation.ProcessArchitecture</b> process architecture.</p>
+          <p class="warning">* This stats are produced at runtime</p>
+        </div>
+      </div>
     </div>
   </section>
 </section> 
