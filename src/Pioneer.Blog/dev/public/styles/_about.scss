@@ -45,8 +45,12 @@
         font-weight: bold;
         font-size: 20px;
         color: $dark-gray;
-        margin: 0 0 0.5rem;
+        margin: 2rem 0 0.5rem;
       }
+    }
+
+    img {
+      margin: 0 0 2rem;
     }
 
     b {
@@ -69,6 +73,12 @@
       }
 
       text-align: left;
+    }
+
+    .about-pioneer {
+      img {
+        margin: 2rem 0 0;
+      }
     }
   }
 }
