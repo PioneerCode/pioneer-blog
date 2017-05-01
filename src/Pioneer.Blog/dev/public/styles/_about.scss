@@ -1,44 +1,46 @@
 /// <reference path="../../../bower_components/foundation-sites/scss/foundation" />
 
 .about {
+  a {
+    font-weight: bold;
+  }
+
+  .who-is {
+    background: $black;
+    text-align: center;
+    padding: 8rem 0;
+    color: $white;
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .image-container {
+      text-align: center;
+
+      img {
+        border: 3px solid $white;
+        box-shadow: 5px 5px 10px 0px rgba($black,0.3);
+        max-width: 250px;
+      }
+    }
+  }
+
+  .about-pioneer {
+    padding: 8rem 0;
+    background-color: $dark-gray;
+  }
+
+
+  @include breakpoint(large up) {
     .who-is {
-        padding: 4rem 0 2rem;
-        text-align: center;
+      text-align: left;
 
-        h1 {
-            font-size: 3rem;
+      .image-container {
+        img {
+          margin: 2rem 0 0;
         }
-
-        .image-container {
-            text-align: center;
-
-            img {
-                max-width: 75%;
-            }
-        }
+      }
     }
-
-    @include breakpoint(medium up) {
-        .who-is {
-            .image-container {
-                img {
-                    max-width: 50%;
-                }
-            }
-        }
-    }
-
-    @include breakpoint(large up) {
-        .who-is {
-            text-align: left;
-            padding: 4rem 0;
-
-            .image-container {
-                img {
-                    margin: 5% 0 0;
-                    max-width: 75%;
-                }
-            }
-        }
-    }
+  }
 }
