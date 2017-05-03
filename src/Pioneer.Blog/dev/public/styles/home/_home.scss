@@ -1,4 +1,4 @@
-/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
+f/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 @import "home-greatest-posts";
 @import "home-sign-up";
 
@@ -14,6 +14,7 @@
 .home-hero-content {
     max-width: 800px;
     margin: 0 auto;
+    display: table;
 
     ul.menu.simple li {
         margin-right: 0;
