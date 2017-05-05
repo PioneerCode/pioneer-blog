@@ -10,7 +10,8 @@
   },
   "scripts": {
     "gulp-public": "gulp public",
-    "gulp-admin": "gulp admin"
+    "gulp-admin": "gulp admin",
+    "bower-install": "bower install"
   },
   "dependencies": {
     "@angular/common": "~4.0.0",
