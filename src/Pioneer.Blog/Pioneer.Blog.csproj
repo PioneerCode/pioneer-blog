@@ -14,9 +14,6 @@
     <UserSecretsId>pioneer-test-ce345b64-19cf-4972-b34f-d16f2e7976ed</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="wwwroot\posts\deploying-front-end-dot-net-team-city-octopus-deplopy.html">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="wwwroot\posts\deploying-front-end-dot-net-team-city-octopus-deploy.html" />
   </ItemGroup>
   

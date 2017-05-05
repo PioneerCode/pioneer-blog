@@ -33,12 +33,42 @@
         <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/npm-build.png" title="Npm Build" target="_blank">
           <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/npm-build.png" alt="Npm Build" style="max-width: 805px; border: 1px solid #ccc;" />
         </a>
-        <p>Add a new step </p>
+        <h3>bower</h3>
+        <p>One would think that all we need to do to execute this step would be to add a new command line build step and add the following command.</p>
+        <pre class="brush: bash">bower install</pre>
+        <p>Unfortunately that is not the case.  If we do such, we will end up with an error like so.</p>
         <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-error.png" title="Bower Error" target="_blank">
           <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-error.png" alt="Bower Error" style="max-width: 598px; border: 1px solid #ccc;" />
         </a>
+        <p>In most cases, TeamCity is installed with a Service Account running its services.  This means you have a few options on how you want to handle TeamCity not being able to recognize the <b>bower</b> command.</p>
+        <ol>
+          <li>Apply a user account that has access to a global (-g) install of <b>bower</b> to the TeamCity services.</li>
+          <li>Add a global path environment variable.</li>
+          <li>Dynamically set the path after installing bower inside TeamCity.</li>
+          <li>Target the bower executable with an absolute path.</li>
+        </ol>
+        <p>I chose option 4.</p>
+        <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-build.png" title="Bower build" target="_blank">
+          <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-build.png" alt="Bower build" style="max-width: 1013px; border: 1px solid #ccc;" />
+        </a>
         <h3>gulp</h3>
+        <p>Again, create a new build step with a command line runner.  Just like last time, the expectation would be to run the following command.</p>
+        <pre class="brush: bash">gulp</pre>
+        <p>Much like last time, we again end up with an error.</p>
+        <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-error.png" title="Bower build" target="_blank">
+          <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-error.png" alt="Bower build" style="max-width: 601px; border: 1px solid #ccc;" />
+        </a>
+        <p>This time around though, I am going to access my gulp build by proxy through npm.  Inside my <b>package.json</b> file, I added the following script command,</p>
+        <pre class="brush: json">"scripts": {
+  "gulp-public": "gulp public",
+  "gulp-admin": "gulp admin"
+},</pre>
+        <p>This will allow you to create a command line build step like the following.</p>
+        <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-build.png" title="Bower build" target="_blank">
+          <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-build.png" alt="Bower build" style="max-width: 807px; border: 1px solid #ccc;" />
+        </a>
         <h2>Packing Before Deployment</h2>
+        <p>Now that we have TeamCity building and producing our assets, for those of us who use Octopus</p>
         <h3>.NET</h3>
         <h3>.NET Core</h3>
         <h2>Oh No, We Have An Error</h2>
