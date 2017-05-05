@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <link href="/app.css" rel="stylesheet" />
+  <script src="/app.js"></script>
+</head>
+<body>
+  <div class="row">
+    <div class="large-10 large-push-1 columns">
+      <h1>Building And Deploying Front End Assets In .NET With TeamCity And Octopus Deploy</h1>
+      <h2>deploying-front-end-dot-net-team-city-octopus-deploy</h2>
+      <article>
+        <p>
+          Recently I wrote a 5 part series entitled "<a href="http://pioneercode.com/post/deploying-asp-net-core-teamcity-and-octopus-deploy-part-1" title="Deploying An ASP.NET Core Site: You're Still Doing It Wrong" target="_blank">Deploying An ASP.NET Core Site: You're Still Doing It Wrong</a>".  In this series we defined why we want to strive for automation that surrounds are deployment process, how automation helps bring predictability and reliability to our deployments, and how we might go about setting up a Continuous Integration environment to achieve automation. In the fifth part of the series, I loosely touched on the idea of adding your front-end build to the process but did not go into many details.  In this post we will dive deeper into building your front-end assets inside both ASP.NET and ASP.NET Core projects using TeamCity and how we will appropriately pack those assets with Octopus Deploy, making them ready for your deployment.
+        </p>
+        <h2>One Build Not To Rule Them All</h2>
+        <p>Like most things "front-end" these day, there are many options for us to use in regards to front-end tooling. Personally and professionally, I have gravitated towards a combination of npm, bower and gulp.  A typical example of my front-end build steps might look like this.</p>
+        <ol>
+          <li>Install <b>npm</b> modules</li>
+          <li>Install <b>bower</b> modules</li>
+          <li>Run build steps by way of <b>gulp</b></li>
+        </ol>
+        <p>That being said, I will example in this post will be based around this build process.  If you happen to use other tooling, the follow will still be of value to you as it will highlight steps you will need to take regardless and some issues you might come across during your setup.</p>
+        <h2>Command Line For The Win</h2>
+        <p>The vast majority of front-end tooling happens directly on the command-line or is abstracted on top of a command-line. Though there are <b>Runner type</b> plug-ins for TeamCity that attempt to make the process of building your front-end assets easier, in my experience they are nothing more then interfaces that bring a familiar lexicon to TeamCity. Instead of installing these plug-ins, I recommend interacting with your tooling using the TeamCity command line Runner in order to gain parity between your development process and build steps.</p>
+        <h3>npm</h3>
+        <div class="note">
+          <p>On the box that TeamCity lives on, you will need to insure Node and by way of, npm, are installed.  I would recommend running the following <a href="http://chocolatey.org" title="Chocolatey" target="_blank">Chocolatey</a> command to do so. </p>
+          <pre class="brush: bash">choco install nodejs.install</pre>
+        </div>
+        <p>Head over to your Build Step(s) in TeamCity, add a new step and select the type <b>Command Line</b>.  The command line runner will allow you to execute command line commands against a directory of you choice, just like you would do during your development process. In this step, I am simply telling TeamCity to execute the following command.</p>
+        <pre class="brush: bash">npm install</pre>
+        <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/npm-build.png" title="Npm Build" target="_blank">
+          <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/npm-build.png" alt="Npm Build" style="max-width: 805px; border: 1px solid #ccc;" />
+        </a>
+        <p>Add a new step </p>
+        <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-error.png" title="Bower Error" target="_blank">
+          <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-error.png" alt="Bower Error" style="max-width: 598px; border: 1px solid #ccc;" />
+        </a>
+        <h3>gulp</h3>
+        <h2>Packing Before Deployment</h2>
+        <h3>.NET</h3>
+        <h3>.NET Core</h3>
+        <h2>Oh No, We Have An Error</h2>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
