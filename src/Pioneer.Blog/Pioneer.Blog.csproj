@@ -13,6 +13,11 @@
     <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
     <UserSecretsId>pioneer-test-ce345b64-19cf-4972-b34f-d16f2e7976ed</UserSecretsId>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\posts\deploying-front-end-dot-net-team-city-octopus-deplopy.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
@@ -50,6 +55,7 @@
 
   <ItemGroup>
     <Folder Include="dev\admin\components\shared\loader\" />
+    <Folder Include="wwwroot\images\deploying-front-end-dot-net-team-city-octopus-deplopy\" />
   </ItemGroup>
 
 </Project>
