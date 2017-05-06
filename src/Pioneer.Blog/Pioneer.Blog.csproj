@@ -14,7 +14,19 @@
     <UserSecretsId>pioneer-test-ce345b64-19cf-4972-b34f-d16f2e7976ed</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="wwwroot\posts\deploying-front-end-dot-net-team-city-octopus-deploy.html" />
+    <Compile Remove="wwwroot\admin\app\**" />
+    <Compile Remove="wwwroot\admin\libs\**" />
+    <Content Remove="wwwroot\admin\app\**" />
+    <Content Remove="wwwroot\admin\libs\**" />
+    <EmbeddedResource Remove="wwwroot\admin\app\**" />
+    <EmbeddedResource Remove="wwwroot\admin\libs\**" />
+    <None Remove="wwwroot\admin\app\**" />
+    <None Remove="wwwroot\admin\libs\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot/admin\app.css" />
+    <Content Remove="wwwroot/app.css" />
+    <Content Remove="wwwroot/app.js" />
   </ItemGroup>
   
   <ItemGroup>
@@ -49,11 +61,6 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="dev\admin\components\shared\loader\" />
-    <Folder Include="wwwroot\images\deploying-front-end-dot-net-team-city-octopus-deploy\" />
   </ItemGroup>
 
 </Project>
