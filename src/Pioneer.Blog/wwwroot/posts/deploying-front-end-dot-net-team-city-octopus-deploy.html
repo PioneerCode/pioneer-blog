@@ -85,9 +85,14 @@
           </div>
         </div>
         <h2>Packing Before Deployment</h2>
-        <p>Now that we have TeamCity building and producing our assets, for those of us who use Octopus Deploy, we will need to "octo pack" our assets before making them available to our Octopus Deploy instance.</p>
-        <p>In short "octo pack" packs everything that is defined in our <b>.csproj</b> file and passes it along to Octopus Deploy to work its magic. </p>
-        <p>When TeamCity detects a change on you repository and pulls down the latest commit, it is important to understand that all front-end build assets are not included.  Hence Octo pack packages your build up by using the meta information inside your <b>.csproj</b> file. </p>
+        <p>Now that we have TeamCity building and producing our assets, for those of us who use Octopus Deploy, we will need to "octo pack" our assets before making them available to our Octopus Deploy instance. Octo-pack packs everything that is defined in our <b>.csproj</b> file and passes it along to Octopus Deploy to work its magic. If you recall from above, we explicitly removed our front-end build from our project.  Meaning, when octo-pack is executed, even though we have TeamCity building our front-end asssets, it will not include them in its final package.</p>
+        <p>To fix this, we need to introduce the concept of a <b>.nuspec</b> file.</p>
+        <blockquote>A .nuspec file is an XML manifest that contains package metadata. This is used both to build the package and to provide information to consumers. The manifest is always included in a package.
+          <cite>
+            <a href="https://docs.microsoft.com/en-us/nuget/schema/nuspec" title=".nuspec reference" target="_blank">.nuspec reference</a>
+          </cite>
+        </blockquote>
+        <p></p>
         <h2>Oh No, We Have An Error</h2>
       </article>
     </div>
