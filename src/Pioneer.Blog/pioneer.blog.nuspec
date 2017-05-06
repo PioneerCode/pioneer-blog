@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>0.00</version>
+    <authors>Chad Ramos (chad@pioneercode.com)</authors>
+    <id>Pioneer.Blog</id>
+    <title>Pioneer Code Blog</title>
+    <description>Build for pioneercode.com deployments.</description>
+  </metadata>
+<files>
+  <file src="wwwroot\app.css" target="wwwroot\" /> 
+  <file src="wwwroot\app.js" target="wwwroot\" /> 
+</files>
+</package>
