@@ -7,8 +7,4 @@
     <title>Pioneer Code Blog</title>
     <description>Build for pioneercode.com deployments.</description>
   </metadata>
-<files>
-  <file src="wwwroot\app.css" target="wwwroot\" /> 
-  <file src="wwwroot\app.js" target="wwwroot\" /> 
-</files>
 </package>
