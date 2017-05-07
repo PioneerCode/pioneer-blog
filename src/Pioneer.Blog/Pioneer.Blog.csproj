@@ -28,6 +28,9 @@
     <Content Remove="wwwroot/app.css" />
     <Content Remove="wwwroot/app.js" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\images\deploying-front-end-dot-net-team-city-octopus-deploy\octo-pack-line.PNG" />
+  </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />

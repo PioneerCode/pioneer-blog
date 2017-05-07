@@ -69,7 +69,7 @@
           <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-build.png" alt="Bower build" style="max-width: 807px; border: 1px solid #ccc;" />
         </a>
         <h2>Get These Assets Out Of My Project</h2>
-        <p>In regards to producing our front-end build assets, during development we are rapidly iterating over this process.  We remove files and add files to the final output at rapid pace. Because of this, we do not want to include any of these assets in our project.  More importantly, we don't want to have to member to include new files and instead rely on TeamCity to supply them in its final build package. Instead we want to make sure we explicitly exclude these files from our project.</p>
+        <p>In regards to producing our front-end build assets, during development we are rapidly iterating over this process.  We remove files and add files to the final output at rapid pace. Because of this, we do not want to include any of these assets in our project.  More importantly, we don't want to have to remember to include new files and instead rely on TeamCity to supply them in its final build package. That being said, we want to make sure we explicitly exclude these files from our project.  This holds true be it an ASP.NET or ASP.NET Core project.</p>
         <div class="row">
           <div class="large-6 columns">
             <h4>csproj</h4>
@@ -85,15 +85,41 @@
           </div>
         </div>
         <h2>Packing Before Deployment</h2>
-        <p>Now that we have TeamCity building and producing our assets, for those of us who use Octopus Deploy, we will need to "octo pack" our assets before making them available to our Octopus Deploy instance. Octo-pack packs everything that is defined in our <b>.csproj</b> file and passes it along to Octopus Deploy to work its magic. If you recall from above, we explicitly removed our front-end build from our project.  Meaning, when octo-pack is executed, even though we have TeamCity building our front-end asssets, it will not include them in its final package.</p>
+        <p>Now that we have TeamCity building and producing our assets, we need a way to get those assets over to Octopus Deploy.  This process will differ depending on if you project is of the type of ASP.NET or ASP.NET Core. </p>
+        <h4>ASP.NET</h4>
+        <p>In my ASP.NET projects, I use octo-pack to pack up everything that is defined in my project file before passing it along to Octopus Deploy. If you recall from above, we explicitly removed our front-end build from our project.  Meaning, when octo-pack is executed, even though we have TeamCity building our front-end asssets, it will not include them in its final package.</p>
         <p>To fix this, we need to introduce the concept of a <b>.nuspec</b> file.</p>
-        <blockquote>A .nuspec file is an XML manifest that contains package metadata. This is used both to build the package and to provide information to consumers. The manifest is always included in a package.
+        <blockquote>
+          A .nuspec file is an XML manifest that contains package metadata. This is used both to build the package and to provide information to consumers. The manifest is always included in a package.
           <cite>
             <a href="https://docs.microsoft.com/en-us/nuget/schema/nuspec" title=".nuspec reference" target="_blank">.nuspec reference</a>
           </cite>
         </blockquote>
-        <p></p>
-        <h2>Oh No, We Have An Error</h2>
+        <p>Inside your .nuspec file, you want to explicitly include files and folders you want to octo-pack to pack up.</p>
+        <pre class="brush: xml">&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;package xmlns=&quot;http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd&quot;&gt;
+  &lt;metadata&gt;
+    &lt;version&gt;0.00&lt;/version&gt;
+    &lt;authors&gt;Xerox&lt;/authors&gt;
+    &lt;id&gt;Your.Project&lt;/id&gt;
+    &lt;title&gt;Your.Project&lt;/title&gt;
+    &lt;description&gt;Your.Project Build&lt;/description&gt;
+  &lt;/metadata&gt;
+&lt;files&gt;
+  &lt;file src=&quot;wwwroot\app.css*&quot; target=&quot;wwwroot&quot; /&gt; 
+&lt;/files&gt;
+&lt;/package&gt;</pre>
+        <p>If you don't explicitly define includes in your .nuspec file, octo-pack will look to your project file for information on what to pack into its final outputted packaged.  If you do add explicit definitions on what to include, octo-pack will override you project file definition and only include what is in your .nuspec file. In our case, we want to include everything that is in the project file in addition to the file and folders we have added to our .nuspec file (front-end assets). To accomplish this, we will need to add a command line flag to our octo-pack operation in TeamCity.</p>
+        <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/octo-pack-line.PNG" title="Octo Pack" target="_blank">
+          <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/octo-pack-line.PNG" alt="Octo Pack" style="max-width: 790px; border: 1px solid #ccc;" />
+        </a>
+        <h4>ASP.NET Core</h4>
+        <p>The process when dealing with .NET Core, for me, is reversed.  Instead of including files and folder using a .nuspec file, or for that matter including a .nuspec file at all, I pack the entire <b>dotnet publish</b> build and exclude what I don't want packed.</p>
+        <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/octopus-push.PNG" title="Octo Pack" target="_blank">
+          <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/octopus-push.PNG" alt="Octo Pack" style="max-width: 1118px; border: 1px solid #ccc;" />
+        </a>
+        <h2>Conclusion</h2>
+        <p>For more information on how to setup a contentious integration pipeline using TeamCity and Octopus deploy, please be sure to visit my five part series title <a href="http://pioneercode.com/post/deploying-asp-net-core-teamcity-and-octopus-deploy-part-1" title="Deploying An ASP.NET Core Site: You're Still Doing It Wrong" target="_blank">Deploying An ASP.NET Core Site: You're Still Doing It Wrong</a>. Specifically, you can look at <a href="http://pioneercode.com/post/deploying-asp-net-core-teamcity-and-octopus-deploy-part-5" title="Deploying An ASP.NET Core Site: You're Still Doing It Wrong" target="_blank">Part 5</a> for some supplemental information about building front-end assets. As always, if you have any comments or questions, please feel free to leave a comment below. </p>
       </article>
     </div>
   </div>
