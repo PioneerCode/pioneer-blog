@@ -10,9 +10,7 @@
       <h1>Building And Deploying Front End Assets In .NET With TeamCity And Octopus Deploy</h1>
       <h2>deploying-front-end-dot-net-team-city-octopus-deploy</h2>
       <article>
-        <p>
-          In the  "<a href="http://pioneercode.com/post/deploying-asp-net-core-teamcity-and-octopus-deploy-part-1" title="Deploying An ASP.NET Core Site: You're Still Doing It Wrong" target="_blank">Deploying An ASP.NET Core Site: You're Still Doing It Wrong</a>" series I defined why we want to strive for automation that surrounds our deployment process, how automation helps bring predictability and reliability to our deployments, and how we might go about setting up a Continuous Integration environment to achieve automation. In the fifth part of the series, I loosely touched on the idea of adding your front-end build to the process but did not go into many details.  In this post I will dive deeper into building your front-end assets inside both ASP.NET and ASP.NET Core projects using TeamCity and how to appropriately pack those assets with Octopus Deploy, making them ready for your deployment.
-        </p>
+        <p>In the  "<a href="http://pioneercode.com/post/deploying-asp-net-core-teamcity-and-octopus-deploy-part-1" title="Deploying An ASP.NET Core Site: You're Still Doing It Wrong" target="_blank">Deploying An ASP.NET Core Site: You're Still Doing It Wrong</a>" series I defined why we want to strive for automation that surrounds our deployment process, how automation helps bring predictability and reliability to our deployments, and how we might go about setting up a Continuous Integration environment to achieve automation. In the fifth part of the series, I loosely touched on the idea of adding your front-end build to the process but did not go into many details.  In this post, I will dive a bit deeper into how to build your front-end assets for both ASP.NET and ASP.NET Core projects using TeamCity and how to appropriately pack those assets and publish them to Octopus Deploy, making them ready for your deployment.</p>
         <h2>One Build Not To Rule Them All</h2>
         <p class="note">Typically, we would not want to push our built asset to our git repositories. It adds both bloat and confusing to your change history, and it should be left to your build server to produce everything that is needed to deploy your application.  With that in mind, you generally would want to add all you front-end tooling assets (typings, gulpfile.js, bower.json, package.json, temp files, etc...) and your front-end final build assets, of which are continuously regenerated during your development phase, to your .gitignore file.</p>
         <p>There are a ton of options for us to use in regards to front-end tooling. Personally and professionally, I have gravitated towards a combination of npm, bower, and gulp.  A typical example of my front-end build steps might look like this.</p>
@@ -127,4 +125,3 @@
     </div>
   </div>
 </body>
-</html>
