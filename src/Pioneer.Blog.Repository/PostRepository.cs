@@ -17,7 +17,7 @@ namespace Pioneer.Blog.Repository
         PostEntity GetById(int id, bool includeExceprt);
         IEnumerable<PostEntity> GetTop(int top);
         IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle, bool includeUnpublished);
-        IEnumerable<PostEntity> GetAllPaged(int count, int page = 1);
+        IEnumerable<PostEntity> GetAllPaged(int count, int page = 1, bool includeUnpublished = false);
         IEnumerable<PostEntity> GetAllByTagPaged(string tag, int count, int page = 1);
         IEnumerable<PostEntity> GetAllByCategoryPaged(string category, int count, int page = 1);
         IEnumerable<PostEntity> GetPostsBasedOnIdCollection(List<int> postIds);
@@ -182,12 +182,25 @@ namespace Pioneer.Blog.Repository
         /// </summary>
         /// <param name="count">The total number of posts you want to Take</param>
         /// <param name="page">The denomination of posts you want to skip. (page - 1) * count </param>
+        /// <param name="includeUnpublished"></param>
         /// <returns>Collections of posts</returns>
-        public IEnumerable<PostEntity> GetAllPaged(int count, int page = 1)
+        public IEnumerable<PostEntity> GetAllPaged(int count, int page = 1, bool includeUnpublished = false)
         {
-            return _blogContext
+            IQueryable<PostEntity> query;
+
+            if (!includeUnpublished)
+            {
+                query = _blogContext
                     .Posts
-                    .Where(x => x.Published)
+                    .Where(x => x.Published);
+            }
+            else
+            {
+                query = _blogContext
+                    .Posts;
+            }
+                
+            return query
                     .Include(x => x.Excerpt)
                     .Include(x => x.Category)
                     .Include(x => x.PostTags)
@@ -329,7 +342,6 @@ namespace Pioneer.Blog.Repository
             entity.CategoryId = post.Category.CategoryId;
 
             // Tags
-
             _blogContext.SaveChanges();
         }
 

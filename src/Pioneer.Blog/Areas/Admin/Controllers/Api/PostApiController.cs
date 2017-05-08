@@ -31,7 +31,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
                 return _postService.GetAll(includeExceprt, includeArticle, includeUnpublished);
             }
 
-            return _postService.GetAllPaged((int)countPerPage, (int)currentPageIndex);
+            return _postService.GetAllPaged((int)countPerPage, (int)currentPageIndex, includeUnpublished);
         }
 
         [HttpGet("{url}", Name = "GetPost")]
