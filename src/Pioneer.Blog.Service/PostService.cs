@@ -17,7 +17,7 @@ namespace Pioneer.Blog.Service
         Post GetById(int id, bool includeExceprt = false);
         Post GetByUrl(string url, bool includeExceprt = false);
         IEnumerable<Post> GetAll(bool includeExcerpt = true, bool includeArticle = true, bool includeUnpublished = false, int ? top = null);
-        IEnumerable<Post> GetAllPaged(int count, int page = 1);
+        IEnumerable<Post> GetAllPaged(int count, int page = 1, bool includeUnpublished = false);
         IEnumerable<Post> GetAllByTag(string tag, int count, int page = 1);
         IEnumerable<Post> GetAllByCategory(string category, int count, int page = 1);
         IEnumerable<Post>GetPopularPosts();
@@ -114,10 +114,11 @@ namespace Pioneer.Blog.Service
         /// </summary>
         /// <param name="count">Number of posts in page</param>
         /// <param name="page">Page of posts</param>
+        /// <param name="includeUnpublished"></param>
         /// <returns>Count of posts starting at page</returns>
-        public IEnumerable<Post> GetAllPaged(int count, int page = 1)
+        public IEnumerable<Post> GetAllPaged(int count, int page = 1, bool includeUnpublished = false)
         {
-            return _postRepository.GetAllPaged(count, page).Select(Mapper.Map<PostEntity, Post>);
+            return _postRepository.GetAllPaged(count, page, includeUnpublished).Select(Mapper.Map<PostEntity, Post>);
         }
 
         /// <summary>
