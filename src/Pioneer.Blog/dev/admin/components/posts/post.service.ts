@@ -51,12 +51,13 @@ export class PostService {
       });
   }
 
-  create(): Promise<Post> {
+  create(): Promise<Post[]> {
     return this.postRepository.create()
-      .then((resp: Post) => {
-        this.selectedPost = resp;
-        this.posts.push(this.selectedPost);
-        return this.selectedPost;
+      .then(() => {
+        return this.init();
+      })
+      .then((resp: Post[]) => {
+        return resp;
       });
   }
 
