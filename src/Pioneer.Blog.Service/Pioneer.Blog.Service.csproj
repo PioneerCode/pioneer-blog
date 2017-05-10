@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
-    <PackageReference Include="MailKit" Version="1.16.0" />
+    <PackageReference Include="MailKit" Version="1.16.1" />
   </ItemGroup>
 
 </Project>
