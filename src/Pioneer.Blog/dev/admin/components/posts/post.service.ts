@@ -43,6 +43,10 @@ export class PostService {
     return this.selectedPost;
   }
 
+  getDescriptionLength(): number {
+    return this.selectedPost.description ? this.selectedPost.description.length : 0;
+  }
+
   setCurrent(idUrl: string): Promise<Post> {
     return this.postRepository.get(idUrl, true)
       .then((resp: Post) => {

@@ -62,9 +62,9 @@
         <div class="row">
           <div class="large-6 columns">
             <label>
-              Description
+              Description <span>({{postService.getDescriptionLength()}})</span>
               <textarea [(ngModel)]="postService.getCurrent().description"
-                    class="admin-post-description"></textarea>
+                        class="admin-post-description"></textarea>
             </label>
           </div>
           <div class="large-6 columns">
@@ -137,14 +137,14 @@
             <label>
               Excerpt
               <textarea [(ngModel)]="postService.getCurrent().excerpt.content"
-                    *ngIf="postService.getCurrent().excerpt"></textarea>
+                        *ngIf="postService.getCurrent().excerpt"></textarea>
             </label>
           </div>
           <div class="large-6 columns">
             <label>
               Article
               <textarea [(ngModel)]="postService.getCurrent().article.content"
-                    *ngIf="postService.getCurrent().article"></textarea>
+                        *ngIf="postService.getCurrent().article"></textarea>
             </label>
           </div>
         </div>
