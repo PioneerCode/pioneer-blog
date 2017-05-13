@@ -30,6 +30,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="wwwroot\images\deploying-front-end-dot-net-team-city-octopus-deploy\octo-pack-line.PNG" />
+    <Content Include="wwwroot\posts\deploy-dot-net-core-on-iis.html" />
+    <Content Include="wwwroot\posts\deploying-asp-dot-net-core-on-iis.html" />
   </ItemGroup>
   
   <ItemGroup>
@@ -64,6 +66,10 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\deploying-asp-dot-net-core-on-iis\" />
   </ItemGroup>
 
 </Project>
