@@ -50,6 +50,30 @@
       <p>In some cases, this package actually lags behind the official .NET Core SDK.  Depending on the version of .NET Core your application is running on, you might have to manually update the SDK from <a href="https://www.microsoft.com/net/core#windowsvs2017"> the official download site</a> or run the following Chocolatey command.</p>
       <pre class="brush: bash">choco install dotnetcore-sdk -y</pre>
       <p>After your installs complete, we should be ready to deploy your site to IIS.</p>
+      <h2>Deploying to IIS</h2>
+      <h4>Confirmation</h4>
+      <p>Open up your instance of IIS, head to the <b>Modules</b> section and confirm the <b>AspNetCoreModule</b> is available.  If you do not see it, you might have to restart IIS before it is properly loaded.</p>
+      <a href="/images/deploying-asp-dot-net-core-on-iis/iis-module.png" title="IIS Module" target="_blank">
+        <img src="/images/deploying-asp-dot-net-core-on-iis/iis-module.png" alt="IIS Module" style="max-width: 734px; border: 1px solid #ccc;" />
+      </a>
+      <h3>Deploying</h3>
+      <p>Regardless of how you deploy your application, be it manually, through continuous integration, or by Web Deploy, the following will need to happen.</p>
+      <h4>Creating A Site</h4>
+      <ol>
+        <li>Right-Click the <b>Sites</b> node in IIS and select <b>Add Website</b>.</li>
+        <li>Configure your site accordingly.</li>
+      </ol>
+      <a href="/images/deploying-asp-dot-net-core-on-iis/create-site.png" title="IIS Create Site" target="_blank">
+        <img src="/images/deploying-asp-dot-net-core-on-iis/create-site.png" alt="IIS Create Site" style="max-width: 599px; border: 1px solid #ccc;" />
+      </a>
+      <h4>Configuring You Application Pool</h4>
+      <p>When you create a site, it automatically creates an Application Pool to run it under. Head to the Application Pool section of your IIS portal, find the newly created Application Pool and ensure it matches the following configuration.</p>
+      <a href="/images/deploying-asp-dot-net-core-on-iis/app-pool.png" title="IIS Create Site" target="_blank">
+        <img src="/images/deploying-asp-dot-net-core-on-iis/app-pool.png" alt="IIS Create Site" style="max-width: 316px; border: 1px solid #ccc;" />
+      </a>
+      <h2>Conclusion</h2>
+      <p>That is it! Your .NET Core application will now be fronted by IIS affording you the opportunity to surround it with any features that are available inside of IIS. Pretty simple, right!</p>
+      <p>As always, any comments or questions, feel free to leave them below.</p>
     </article>
   </div>
 </div>
