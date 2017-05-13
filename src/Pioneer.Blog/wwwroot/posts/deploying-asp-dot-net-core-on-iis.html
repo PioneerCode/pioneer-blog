@@ -7,9 +7,38 @@
 <body>
 <div class="row">
   <div class="large-10 large-push-1 columns">
-    <h1></h1>
-    <h4></h4>
-    <article></article>
+    <h1>Deploying ASP.NET Core applications to IIS</h1>
+    <h4>deploying-asp-dot-net-core-on-iis</h4>
+    <article>
+      <p>Unlike its predecessor ASP.NET, ASP.NET Core is not "hosted" inside of IIS or for that matter any incarnation of a third-party web server.  Instead, ASP.NET Core runs as a standalone process backed by Kestrel.</p>
+      <blockquote>
+        Kestrel is a cross-platform HTTP server based on libuv, a cross-platform asynchronous I/O library.
+        <cite>
+          <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/" title="Web server implementations in ASP.NET Core" target="_blank">Web server implementations in ASP.NET Core</a>
+        </cite>
+      </blockquote>
+      <p>When an HTTP request is made to your ASP.NET Core application, it first hits Kestrel.  Kestrel then manages that request and passes it your application code. Your application code processes that request and sends a response back up the pipeline. </p>
+      <div class="callout success">
+        <p class="text-center">
+          <b>Network</b> <= <span style="font-size: 14px;">HTTP</span> => <b>Kestrel</b> <= <span style="font-size: 14px;">HttpContext</span> => <b>Application Code</b>
+        </p>
+      </div>
+      <p>Kestrel's primary focus is performance and it is not intended to be a feature rich option when it comes to exposing your application to the public. Because of this, we need to introduce a new layer to the pipeline that will act as a reverse proxy server. We introduce this layer because with it, typically comes a server that can handle all the additional features needed to safely and efficiently expose our applications to the public. </p>
+      <div class="callout success">
+        <p class="text-center">
+          <b>Network</b> <= <span style="font-size: 14px;">HTTP</span> => <b>Reverse Proxy Server</b> <= <span style="font-size: 14px;">HTTP</span> => <b>Kestrel</b> <= <span style="font-size: 14px;">HttpContext</span> => <b>Application Code</b>
+        </p>
+      </div>
+      <p>Because ASP.NET Core is cross-platform, we have a number of servers we can choose from such as IIS, Apache, and Nginx. The primary focus of this post will be to show how to setup IIS to proxy accordingly.  If you are interested in Nginx, the following posts will be of value.</p>
+      <ul>
+        <li>
+          <a href="http://pioneercode.com/post/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host" title="Developing A .NET Core Site In Windows and Deploying It To A Budget Linux Host" target="_blank">Developing A .NET Core Site In Windows and Deploying It To A Budget Linux Host</a>
+        </li>
+        <li>
+          <a href="http://pioneercode.com/post/deploying-asp-net-core-teamcity-and-octopus-deploy-part-1" title="Deploying An ASP.NET Core Site, You're Still Doing It Wrong : Part 1" target="_blank">Deploying An ASP.NET Core Site, You're Still Doing It Wrong: Part 1</a>
+        </li>
+      </ul>
+    </article>
   </div>
 </div>
 </body>
