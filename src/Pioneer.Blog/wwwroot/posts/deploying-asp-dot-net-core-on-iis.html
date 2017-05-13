@@ -38,6 +38,18 @@
           <a href="http://pioneercode.com/post/deploying-asp-net-core-teamcity-and-octopus-deploy-part-1" title="Deploying An ASP.NET Core Site, You're Still Doing It Wrong : Part 1" target="_blank">Deploying An ASP.NET Core Site, You're Still Doing It Wrong: Part 1</a>
         </li>
       </ul>
+      <h2>Setup</h2>
+      <p>In order to get IIS and the server it lives on in a state that it will face your ASP.NET Core application to the public, we need to install three things.</p>
+      <ol>
+        <li>.NET Core Runtime</li>
+        <li>.NET Core Library</li>
+        <li>ASP.NET Core Module</li>
+      </ol>
+      <p>The ASP.NET team has bundled these three items up into package named <a href="https://go.microsoft.com/fwlink/?linkid=844461" target="_blank" title=".NET Core Windows Server Hosting">.NET Core Windows Server Hosting</a>.  You can install the package using that executable but like anything else I do, I like to use Chocolatey whenever possible. To do so, run the following command.</p>
+      <pre class="brush: bash">choco install dotnetcore-windowshosting -y</pre>
+      <p>In some cases, this package actually lags behind the official .NET Core SDK.  Depending on the version of .NET Core your application is running on, you might have to manually update the SDK from <a href="https://www.microsoft.com/net/core#windowsvs2017"> the official download site</a> or run the following Chocolatey command.</p>
+      <pre class="brush: bash">choco install dotnetcore-sdk -y</pre>
+      <p>After your installs complete, we should be ready to deploy your site to IIS.</p>
     </article>
   </div>
 </div>
