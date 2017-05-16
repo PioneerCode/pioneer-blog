@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Pioneer.Blog.DAL;
 using Pioneer.Blog.DAL.Entites;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using Microsoft.EntityFrameworkCore;
 using Pioneer.Blog.Model;
 
@@ -49,7 +50,7 @@ namespace Pioneer.Blog.Repository
         /// <summary>
         /// Get total number of posts by category
         /// </summary>
-        /// <param name="category">category url</param>
+        /// <param name="category">category URL</param>
         /// <returns>Collection of Posts</returns>
         public int GetTotalNumberOfPostsByCategory(string category)
         {
@@ -63,7 +64,7 @@ namespace Pioneer.Blog.Repository
         /// <summary>
         /// Get total number of posts by tag
         /// </summary>
-        /// <param name="tag">tag url</param>
+        /// <param name="tag">tag URL</param>
         /// <returns>Collection of Posts</returns>
         public int GetTotalNumberOfPostByTag(string tag)
         {
@@ -280,7 +281,7 @@ namespace Pioneer.Blog.Repository
         /// <returns>Post Entity</returns>
         public PostEntity GetPreviousBasedOnId(int id)
         {
-            return (from x in _blogContext.Posts where x.PostId < id orderby x.PostId descending select x).FirstOrDefault();
+            return (from x in _blogContext.Posts where x.PostId < id && x.Published orderby x.PostId descending select x).FirstOrDefault();
         }
 
         /// <summary>
@@ -290,7 +291,7 @@ namespace Pioneer.Blog.Repository
         /// <returns>Collection of Post Entities</returns>
         public PostEntity GetNextBasedOnId(int id)
         {
-            return (from x in _blogContext.Posts where x.PostId > id orderby x.PostId ascending select x).FirstOrDefault();
+            return (from x in _blogContext.Posts where x.PostId > id && x.Published orderby x.PostId select x).FirstOrDefault();
         }
 
         /// <summary>
