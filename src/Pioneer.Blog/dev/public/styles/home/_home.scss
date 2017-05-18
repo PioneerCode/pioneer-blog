@@ -12,46 +12,43 @@
 }
 
 .home-hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    display: table;
+  max-width: 800px;
+  margin: 0 auto;
+  display: table;
 
-    ul.menu.simple li {
-        margin-right: 0;
+  ul.menu.simple li {
+    margin-right: 0;
 
-        @include breakpoint(medium up) {
-            margin-right: 1rem;
-        }
+    @include breakpoint(medium up) {
+      margin-right: 1rem;
     }
+  }
 
-    .me {
-        display: table-cell;
-        vertical-align: top;
-        min-width: 120px;
-        display: block;
+  .me {
+    display: block;
+    vertical-align: top;
+    min-width: 120px;
+    display: block;
 
-        @include breakpoint(medium up) {
-            display: table-cell;
-        }
+    @include breakpoint(medium up) {
+      display: table-cell;
     }
+  }
 
-    .bio {
-        font-size: 20px;
-        display: table-cell;
-        vertical-align: middle;
-        padding: 0;
-        width: 100%;
-        text-align: center;
+  .bio {
+    font-size: 20px;
+    display: block;
+    vertical-align: middle;
+    padding: 0;
+    width: 100%;
+    text-align: center;
 
-        p {
-            margin: 0;
-        }
-
-        @include breakpoint(medium up) {
-            text-align: left;
-            padding: 0 0 0 24px;
-        }
+    @include breakpoint(medium up) {
+      text-align: left;
+      padding: 0 0 0 24px;
+      display: table-cell;
     }
+  }
 }
 
 .hg-large.home-hero {
