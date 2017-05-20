@@ -20,6 +20,7 @@ namespace Pioneer.Blog.Repository
         IEnumerable<PostEntity> GetAll(bool includeExcerpt, bool includeArticle, bool includeUnpublished);
         IEnumerable<PostEntity> GetAllPaged(int count, int page = 1, bool includeUnpublished = false);
         IEnumerable<PostEntity> GetQueryPaged(string query, int count, int page = 1);
+        int GetQueryPagedCount(string query);
         IEnumerable<PostEntity> GetAllByTagPaged(string tag, int count, int page = 1);
         IEnumerable<PostEntity> GetAllByCategoryPaged(string category, int count, int page = 1);
         IEnumerable<PostEntity> GetPostsBasedOnIdCollection(List<int> postIds);
@@ -219,7 +220,6 @@ namespace Pioneer.Blog.Repository
         /// <param name="query">Query term to search on</param>
         /// <param name="count">The total number of posts you want to Take</param>
         /// <param name="page">The denomination of posts you want to skip. (page - 1) * count </param>
-        /// <returns></returns>
         public IEnumerable<PostEntity> GetQueryPaged(string query, int count, int page = 1)
         {
             return _blogContext
@@ -233,6 +233,16 @@ namespace Pioneer.Blog.Repository
                     .Skip((page - 1) * count)
                     .Take(count)
                     .ToList();
+        }
+
+        /// <summary>
+        /// Get count base on query term
+        /// </summary>
+        /// <param name="query">Query term to search on</param>
+        public int GetQueryPagedCount(string query)
+        {
+            return _blogContext.Posts
+                    .Count(x => x.Published && (x.Title.Contains(query) || x.Article.Content.Contains(query)));
         }
 
         /// <summary>

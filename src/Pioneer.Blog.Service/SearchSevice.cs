@@ -9,7 +9,7 @@ namespace Pioneer.Blog.Service
 {
     public interface ISearchService
     {
-        IEnumerable<Post> SearchPosts(string query, int count, int page = 1, bool includeUnpublished = false);
+        SearchResults SearchPosts(string query, int count, int page = 1, bool includeUnpublished = false);
     }
 
     public class SearchSevice : ISearchService
@@ -21,9 +21,13 @@ namespace Pioneer.Blog.Service
             _postRepository = postRepository;
         }
 
-        public IEnumerable<Post> SearchPosts(string query, int count, int page = 1, bool includeUnpublished = false)
+        public SearchResults SearchPosts(string query, int count, int page = 1, bool includeUnpublished = false)
         {
-            return _postRepository.GetAllPaged(count, page, includeUnpublished).Select(Mapper.Map<PostEntity, Post>);
+            return new SearchResults
+            {
+                Posts = _postRepository.GetQueryPaged(query, count, page).Select(Mapper.Map<PostEntity, Post>),
+                TotalMatchingPosts = _postRepository.GetQueryPagedCount(query)
+            };
         }
     }
 }
