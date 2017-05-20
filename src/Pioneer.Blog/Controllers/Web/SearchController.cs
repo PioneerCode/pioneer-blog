@@ -29,8 +29,8 @@ namespace Pioneer.Blog.Controllers.Web
         // GET: Search
         public ActionResult Index(string query, int page = 1)
         {
-            var post = _searchService.SearchPosts(query, 10, page).ToList();
-            ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(_postService.GetTotalNumberOfPosts(), page, 4);
+            var searchResults = _searchService.SearchPosts(query, 10, page);
+            ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(searchResults.TotalMatchingPosts, page, 4);
 
             ViewBag.Description = "Pioneer Code blog archives page " + page + ". " +
                                   "Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
@@ -45,7 +45,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.PopularPosts = _postService.GetPopularPosts();
             ViewBag.NewPosts = _postService.GetAll(true, false, false, 4).ToList();
 
-            return View("../ArchivePost/Index", post);
+            return View("../ArchivePost/Index", searchResults.Posts);
         }
     }
 }

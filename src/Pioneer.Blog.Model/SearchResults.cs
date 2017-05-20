@@ -10,7 +10,7 @@ namespace Pioneer.Blog.Model
             TotalMatchingPosts = 0;
         }
 
-        public IEnumerable<Post> Posts { get; set; }
+        public List<Post> Posts { get; set; }
         public int TotalMatchingPosts { get; set; }
     }
 }
