@@ -42,14 +42,11 @@
               <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
                 <a href="/blog" title="Blog">BLOG</a>
               </li>
-              @*<li>
-                <a href="#">ARTICLES</a>
-                <ul class="menu vertical @(ViewBag.Selected == "visual-studio-shortcuts" ? "selected" : "")">
-                  <li><a href="/article/visual-studio-shortcuts" title="Visual Studio Shortcuts">VISUAL STUDIO SHORTCUTS</a></li>
-                </ul>
-              </li>*@
               <li class="@(ViewBag.Selected == "about" ? "selected" : "")">
                 <a href="/about" title="About">ABOUT</a>
+              </li>
+              <li class="@(ViewBag.Selected == "search" ? "selected" : "")">
+                <a href="/search" title="Search">SEARCH</a>
               </li>
               <li class="@(ViewBag.Selected == "contact" ? "selected" : "")">
                 <a href="/contact" class="margin-zero" title="Contact">CONTACT</a>

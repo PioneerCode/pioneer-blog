@@ -9,23 +9,23 @@ namespace Pioneer.Blog.Service
 {
     public interface ISearchService
     {
-        SearchResults SearchPosts(string query, int count, int page = 1, bool includeUnpublished = false);
+        SearchResults SearchPosts(string query, int count, int page = 1);
     }
 
-    public class SearchSevice : ISearchService
+    public class SearchService : ISearchService
     {
         private readonly IPostRepository _postRepository;
 
-        public SearchSevice(IPostRepository postRepository)
+        public SearchService(IPostRepository postRepository)
         {
             _postRepository = postRepository;
         }
 
-        public SearchResults SearchPosts(string query, int count, int page = 1, bool includeUnpublished = false)
+        public SearchResults SearchPosts(string query, int count, int page = 1)
         {
             return new SearchResults
             {
-                Posts = _postRepository.GetQueryPaged(query, count, page).Select(Mapper.Map<PostEntity, Post>),
+                Posts = _postRepository.GetQueryPaged(query, count, page).Select(Mapper.Map<PostEntity, Post>).ToList(),
                 TotalMatchingPosts = _postRepository.GetQueryPagedCount(query)
             };
         }

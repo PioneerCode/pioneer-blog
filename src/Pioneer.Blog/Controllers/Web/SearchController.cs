@@ -27,12 +27,13 @@ namespace Pioneer.Blog.Controllers.Web
         }
 
         // GET: Search
-        public ActionResult Index(string query, int page = 1)
+        [HttpGet("search/{query?}/{id?}")]
+        public ActionResult Index(string query = "", int page = 1)
         {
             var searchResults = _searchService.SearchPosts(query, 10, page);
-            ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(searchResults.TotalMatchingPosts, page, 4);
+            ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(searchResults.TotalMatchingPosts, page, 10);
 
-            ViewBag.Description = "Pioneer Code blog archives page " + page + ". " +
+            ViewBag.Description = "Pioneer Code search results for \"" + query + "\", page " + page + ". " +
                                   "Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
 
             ViewBag.Header = "Search";
@@ -45,7 +46,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.PopularPosts = _postService.GetPopularPosts();
             ViewBag.NewPosts = _postService.GetAll(true, false, false, 4).ToList();
 
-            return View("../ArchivePost/Index", searchResults.Posts);
+            return View("../Search/Index", searchResults.Posts);
         }
     }
 }
