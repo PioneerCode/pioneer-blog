@@ -49,7 +49,7 @@ namespace Pioneer.Blog.Controllers.Web
         }
 
         [HttpPost]
-        public ActionResult Query(SearchRequest request)
+        public ActionResult Index(SearchRequest request)
         {
             var searchResults = _searchService.SearchPosts(request.Query, 5, request.Page);
             ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(searchResults.TotalMatchingPosts, request.Page, 5);
