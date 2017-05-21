@@ -7,7 +7,8 @@ namespace Pioneer.Blog.Model
         public SearchResults()
         {
             Posts = new List<Post>();
-            TotalMatchingPosts = 0;
+            // TODO: This should be set to 0 by default.  There currently is a bug in the Pioneer.Pagination service. 
+            TotalMatchingPosts = 1;
         }
 
         public List<Post> Posts { get; set; }

@@ -23,11 +23,14 @@ namespace Pioneer.Blog.Service
 
         public SearchResults SearchPosts(string query, int count, int page = 1)
         {
-            return new SearchResults
-            {
-                Posts = _postRepository.GetQueryPaged(query, count, page).Select(Mapper.Map<PostEntity, Post>).ToList(),
-                TotalMatchingPosts = _postRepository.GetQueryPagedCount(query)
-            };
+            var searchResults = new SearchResults();
+
+            if (query == "") return searchResults;
+
+            searchResults.Posts = _postRepository.GetQueryPaged(query, count, page).Select(Mapper.Map<PostEntity, Post>).ToList();
+            searchResults.TotalMatchingPosts = _postRepository.GetQueryPagedCount(query);
+
+            return searchResults;
         }
     }
 }

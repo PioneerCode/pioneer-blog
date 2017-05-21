@@ -1,0 +1,23 @@
+﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
+.search {
+  margin: 4rem 0;
+}
+
+.search-empty-state {
+  text-align: center;
+  padding: 3rem 0 0;
+
+  i {
+    font-size: 10rem;
+    color: $medium-gray;
+  }
+
+  p {
+    color: $medium-gray;
+  }
+
+  p.heading {
+    padding: 1rem 0 0;
+    font-size: 3rem;
+  }
+}
