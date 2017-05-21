@@ -70,7 +70,6 @@ namespace Pioneer.Blog.Controllers.Web
             return View("../Search/Index", searchResults.Posts);
         }
 
-
         [HttpGet("search/{query}/{page:int?}")]
         public ActionResult GetQuery(string query, int page = 1)
         {
