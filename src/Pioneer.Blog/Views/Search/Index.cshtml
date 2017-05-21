@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "~/Views/Shared/ArchivePost/_Template.cshtml";
+}
+@model List<Post>
+<div class="hero-gradient hg-small" style="background-image: url(/images/hero-archive-post.jpg)">
+  <div class="row hero-gradient-content">
+    <div class="large-12 columns">
+      <h1>@ViewBag.Header</h1>
+      <div class="bar"></div>
+    </div>
+  </div>
+</div>
+<section class="search">
+  <div class="row">
+    <div class="large-8 columns">
+      @if (Model.Count == 0)
+      {
+          <div class="search-empty-state">
+            <i class="fa fa-eye"></i>
+            <p class="heading">Nothing to see here!</p>
+            <p class="sub-heading">Try another search...</p>
+          </div>
+          <div class="row">
+            <div class="large-8 large-push-2">
+              <form asp-controller="Search" asp-action="Query" method="post">
+                <div class="input-group">
+                  <input type="text" name="Query" class="input-group-field" />
+                  <div class="input-group-button">
+                    <button type="submit" class="button">
+                      <i class="fa fa-search"></i>&nbsp;SEARCH
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+      }
+      else
+      {
+          @Html.Partial("ArchivePost/_ArchivePost", Model)
+          <pioneer-pagination info="@ViewBag.PaginatedMeta" route="/search/@Uri.EscapeUriString(ViewBag.Query)"></pioneer-pagination>
+      }
+    </div>
+    <aside class="large-4 columns">
+      <div class="hide-for-small-only">
+        @Html.Partial("ArchivePost/_SidebarTitle", "Popular Posts")
+        @Html.Partial("ArchivePost/_SidebarPopularPosts", (List<Post>)ViewBag.PopularPosts)
+      </div>
+      <div class="follow-us-on hide-for-small-only">
+        @Html.Partial("ArchivePost/_SidebarTitle", "New Posts")
+        @Html.Partial("ArchivePost/_SidebarNewPosts", (List<Post>)ViewBag.NewPosts)
+      </div>
+      <div class="follow-us-on hide-for-small-only">
+        @Html.Partial("ArchivePost/_SidebarTitle", "Follow Me @!")
+        @Html.Partial("ArchivePost/_SidebarFollowUs")
+      </div>
+      <div class="hide-for-small-only">
+        @Html.Partial("ArchivePost/_SidebarTitle", "Tags")
+        @Html.Partial("ArchivePost/_SidebarTags", (List<Tag>)ViewBag.Tags)
+      </div>
+      <div class="hide-for-small-only">
+        @Html.Partial("ArchivePost/_SidebarTitle", "Categories")
+        @Html.Partial("ArchivePost/_SidebarCategories", (List<Category>)ViewBag.Categories)
+      </div>
+    </aside>
+  </div>
+</section>
