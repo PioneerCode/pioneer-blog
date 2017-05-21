@@ -25,7 +25,7 @@ namespace Pioneer.Blog.Service
         {
             var searchResults = new SearchResults();
 
-            if (query == "") return searchResults;
+            if (string.IsNullOrEmpty(query)) return searchResults;
 
             searchResults.Posts = _postRepository.GetQueryPaged(query, count, page).Select(Mapper.Map<PostEntity, Post>).ToList();
             searchResults.TotalMatchingPosts = _postRepository.GetQueryPagedCount(query);
