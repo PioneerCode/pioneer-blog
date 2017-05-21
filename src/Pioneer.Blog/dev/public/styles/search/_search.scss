@@ -3,7 +3,7 @@
   margin: 4rem 0;
 }
 
-.search-empty-state {
+.search-empty-state .copy {
   text-align: center;
   padding: 3rem 0 0;
 
@@ -20,4 +20,10 @@
     padding: 1rem 0 0;
     font-size: 3rem;
   }
+}
+
+.search-meta {
+  font-size: 14px;
+  color: $dark-gray;
+  margin: 0 0 22px;
 }
