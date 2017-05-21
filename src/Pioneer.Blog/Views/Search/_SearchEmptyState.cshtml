@@ -1,0 +1,21 @@
+﻿<div class="search-empty-state">
+  <div class="copy">
+  <i class="fa fa-eye"></i>
+  <p class="heading">Nothing to see here!</p>
+    <p class="sub-heading">Try another search...</p>
+  </div>
+  <div class="row">
+    <div class="large-8 large-push-2">
+      <form asp-controller="search" method="post">
+        <div class="input-group">
+          <input type="text" name="Query" class="input-group-field"/>
+          <div class="input-group-button">
+            <button type="submit" class="button">
+              <i class="fa fa-search"></i>&nbsp;SEARCH
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
