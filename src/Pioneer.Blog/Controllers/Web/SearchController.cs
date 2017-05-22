@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model;
@@ -61,6 +60,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.Title = "Search";
             ViewBag.Selected = "search";
             ViewBag.Query = request.Query;
+            ViewBag.TotalQueryMatches = searchResults.TotalMatchingPosts;
 
             ViewBag.Categories = _categoryService.GetAll();
             ViewBag.Tags = _tagService.GetAll();
@@ -83,6 +83,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.Title = "Search";
             ViewBag.Selected = "search";
             ViewBag.Query = query;
+            ViewBag.TotalQueryMatches = searchResults.TotalMatchingPosts;
 
             ViewBag.Categories = _categoryService.GetAll();
             ViewBag.Tags = _tagService.GetAll();

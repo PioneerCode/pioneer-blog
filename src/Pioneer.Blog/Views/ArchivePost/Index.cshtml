@@ -21,9 +21,15 @@
         @Html.Partial("ArchivePost/_SidebarTitle", "Popular Posts")
         @Html.Partial("ArchivePost/_SidebarPopularPosts", (List<Post>)ViewBag.PopularPosts)
       </div>
-      <div class="follow-us-on hide-for-small-only">
+      <div class="hide-for-small-only">
         @Html.Partial("ArchivePost/_SidebarTitle", "New Posts")
         @Html.Partial("ArchivePost/_SidebarNewPosts", (List<Post>)ViewBag.NewPosts)
+      </div>
+      <div class="hide-for-small-only">
+        @Html.Partial("ArchivePost/_SidebarTitle", "Search!")
+        <section class="sidebar">
+          @Html.Partial("_SearchBar")
+        </section>
       </div>
       <div class="follow-us-on hide-for-small-only">
         @Html.Partial("ArchivePost/_SidebarTitle", "Follow Me @!")

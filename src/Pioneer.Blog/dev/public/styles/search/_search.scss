@@ -5,10 +5,10 @@
 
 .search-empty-state .copy {
   text-align: center;
-  padding: 3rem 0 0;
+  padding: 0;
 
   i {
-    font-size: 10rem;
+    font-size: 5rem;
     color: $medium-gray;
   }
 
@@ -17,8 +17,21 @@
   }
 
   p.heading {
-    padding: 1rem 0 0;
-    font-size: 3rem;
+    padding: 0.5rem 0 0;
+    font-size: 1.5rem;
+  }
+
+  @include breakpoint(large up) {
+    padding: 3rem 0 0;
+
+    i {
+      font-size: 10rem;
+    }
+
+    p.heading {
+      padding: 1rem 0 0;
+      font-size: 3rem;
+    }
   }
 }
 
