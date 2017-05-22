@@ -1,8 +1,14 @@
 ﻿<div class="search-empty-state">
   <div class="copy">
-  <i class="fa fa-eye"></i>
-  <p class="heading">Nothing to see here!</p>
+    <i class="fa fa-eye"></i>
+    <p class="heading">Nothing to see here!</p>
     <p class="sub-heading">Try another search...</p>
   </div>
-  @Html.Partial("ArchivePost/_SearchBar")
+  <section>
+    <div class="row">
+      <div class="large-8 large-push-2">
+        @Html.Partial("ArchivePost/_SearchBar")
+      </div>
+    </div>
+  </section>
 </div>
