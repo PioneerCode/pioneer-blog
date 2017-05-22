@@ -15,7 +15,7 @@
     <div class="large-8 columns">
       @if (Model.Count == 0)
       {
-        @Html.Partial("_SearchEmptyState")
+          @Html.Partial("_SearchEmptyState")
       }
       else
       {
@@ -29,10 +29,19 @@
         @Html.Partial("ArchivePost/_SidebarTitle", "Popular Posts")
         @Html.Partial("ArchivePost/_SidebarPopularPosts", (List<Post>)ViewBag.PopularPosts)
       </div>
-      <div class="follow-us-on hide-for-small-only">
+      <div class="hide-for-small-only">
         @Html.Partial("ArchivePost/_SidebarTitle", "New Posts")
         @Html.Partial("ArchivePost/_SidebarNewPosts", (List<Post>)ViewBag.NewPosts)
       </div>
+      @if (Model.Count != 0)
+      {
+          <div class="hide-for-small-only">
+            @Html.Partial("ArchivePost/_SidebarTitle", "Search!")
+            <section class="sidebar">
+              @Html.Partial("_SearchBar")
+            </section>
+          </div>
+      }
       <div class="follow-us-on hide-for-small-only">
         @Html.Partial("ArchivePost/_SidebarTitle", "Follow Me @!")
         @Html.Partial("ArchivePost/_SidebarFollowUs")
