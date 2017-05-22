@@ -19,7 +19,7 @@
       }
       else
       {
-        @Html.Partial("_SearchMeta", Model.Count)
+          @Html.Partial("_SearchMeta", (int)ViewBag.TotalQueryMatches)
           @Html.Partial("ArchivePost/_ArchivePost", Model)
           <pioneer-pagination info="@ViewBag.PaginatedMeta" route="/search/@Uri.EscapeUriString(ViewBag.Query)"></pioneer-pagination>
       }
