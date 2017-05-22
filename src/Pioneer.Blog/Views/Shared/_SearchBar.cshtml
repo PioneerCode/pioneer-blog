@@ -1,10 +1,12 @@
-﻿<form asp-controller="search" method="post">
-  <div class="input-group">
-    <input type="text" name="Query" class="input-group-field" />
-    <div class="input-group-button">
-      <button type="submit" class="button">
-        <i class="fa fa-search"></i>&nbsp;SEARCH
-      </button>
+﻿<section class="search-bar">
+  <form asp-controller="search" method="post">
+    <div class="input-group">
+      <input type="text" name="Query" class="input-group-field" />
+      <div class="input-group-button">
+        <button type="submit" class="button">
+          <i class="fa fa-search"></i><span class="hide-for-small-only">&nbsp;SEARCH</span>
+        </button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</section>
