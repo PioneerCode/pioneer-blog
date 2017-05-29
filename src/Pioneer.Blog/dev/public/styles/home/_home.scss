@@ -16,6 +16,11 @@
   margin: 0 auto;
   display: table;
 
+  svg {
+    path {
+      fill: $white;
+    }
+  }
   ul.menu.simple li {
     margin-right: 0;
 

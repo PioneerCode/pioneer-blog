@@ -8,57 +8,70 @@
 }
 
 .contact {
-    input[type="submit"] {
-        border: none;
-        background: none;
-        font-size: 40px;
-        font-weight: bold;
-        letter-spacing: -2.5px;
-        color: #999;
-
-        &:hover {
-            color: map-get($foundation-palette, pioneer);
-            transition: color 0.5s ease;
-        }
+  svg {
+    path {
+      fill: $white;
     }
 
-    header {
-        text-align: center;
-        margin: 5rem 0;
+    &:hover {
+      path {
+        transition: fill 0.5s ease;
+        fill: $primary-color;
+      }
+    }
+  }
+
+  input[type="submit"] {
+    border: none;
+    background: none;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: -2.5px;
+    color: #999;
+
+    &:hover {
+      color: map-get($foundation-palette, pioneer);
+      transition: color 0.5s ease;
+    }
+  }
+
+  header {
+    text-align: center;
+    margin: 5rem 0;
+  }
+
+  .validation-summary-errors {
+    ul {
+      margin: 0 0 0 20px;
+    }
+  }
+
+  .hello-bar {
+    padding: 2rem 0;
+    text-align: center;
+    background: map-get($foundation-palette, pioneer);
+    color: $white;
+
+    h4 {
+      font-weight: 100;
+      margin: 0;
+      letter-spacing: 0px;
     }
 
-    .validation-summary-errors {
-        ul {
-            margin: 0 0 0 20px;
-        }
+    input, .button {
+      margin: 0;
     }
 
+    .button {
+      width: 100%;
+    }
+  }
+
+  @include breakpoint(large up) {
     .hello-bar {
-        padding: 2rem 0;
-        text-align: center;
-        background: map-get($foundation-palette, pioneer);
-        color: $white;
-
-        h4 {
-            font-weight: 100;
-            margin: 0;
-            letter-spacing: 0px;
-        }
-
-        input, .button {
-            margin: 0;
-        }
-
-        .button {
-            width: 100%;
-        }
+      padding: 2rem 0;
     }
-
-    @include breakpoint(large up) {
-        .hello-bar {
-            padding: 2rem 0;
-        }
-    }
+  }
 }
 
 .form-container {
