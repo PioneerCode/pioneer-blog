@@ -33,7 +33,7 @@ All configuration is derived from `appsettings.json`. That being said, it is rec
 dotnet ef database update
 ```
 
-At this, a database and all corresponding table should have been created in your database instance. 
+At this point, a database and all corresponding tables should have been created in your database instance. 
 
 ### Front-end
 
@@ -55,7 +55,7 @@ typings
 npm install typings -g
 ```
 
-Navigate to the `Pioneer.Blog` from your command prompt and run....
+Navigate to the `Pioneer.Blog` directory from your command prompt and run....
 - `npm install`
 - `bower install`
 - `npm rebuild node-sass --force`
