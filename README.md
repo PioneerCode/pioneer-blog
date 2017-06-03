@@ -11,3 +11,63 @@ Current deployment...
 - SQL Database hosted at WinHost
 - Site hosted at DigitalOcean
   - Under Ubuntu and faced by NGINX
+
+## Setup
+
+### Repository
+Clone the repository to your local environment.
+
+```bash
+git clone https://github.com/PioneerCode/pioneer-blog.git
+```
+
+### Configuration
+All configuration is derived from `appsettings.json`. That being said, it is recommended you create an `appsettings.development.json`  and `appsettings.production.json` file to override these settings.
+
+### Database
+
+- Update the connection string inside of `Pioneer.Blog\appsettings.json` & `Pioneer.DAL\appsettings.json`.
+- Open a command prompt at `Pioneer.DAL` and run the following
+
+```bash
+dotnet ef database update
+```
+
+At this, a database and all corresponding table should have been created in your database instance. 
+
+### Front-end
+
+Install [node](https://nodejs.org/en/) on your local environment and run the following.
+
+gulp
+```bash
+npm rm --global gulp
+npm install gulp-cli -g
+```
+
+bower
+```bash
+npm install bower -g
+```
+
+typings
+```bash
+npm install typings -g
+```
+
+Navigate to the `Pioneer.Blog` from your command prompt and run....
+- `npm install`
+- `bower install`
+- `npm rebuild node-sass --force`
+- `typings install`
+- `gulp pubilc`
+- `gulp admin`
+
+### Run
+
+That is it! You now should be able to build and launch the project from your IDE of choosing.  
+
+## What Is Next
+
+- If your curious what is coming down the pipe, I track features as [isuses](https://github.com/PioneerCode/pioneer-blog/issues).
+- If there is interest, I am willing to entertain the idea of abstracting the vast majority of code away from the Pioneer Blog domain so that it can't be reused without to much refactoring.  
