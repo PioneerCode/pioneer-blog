@@ -8,8 +8,8 @@ Current stack...
 - Angular 2/4
 
 Current deployment...
-- SQL Database hosted at WinHost
-- Site hosted at DigitalOcean
+- SQL Database hosted at [WinHost](http://www.winhost.com/a/chadr)
+- Site hosted at [DigitalOcean](http://www.digitalocean.com/?refcode=d95b905a1279)
   - Under Ubuntu and faced by NGINX
 
 ## Setup
