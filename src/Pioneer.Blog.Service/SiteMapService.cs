@@ -65,8 +65,6 @@ namespace Pioneer.Blog.Service
                 root.Add(GetGenericElement(xmlns, string.Format(url, "category/" + category.Url)));
             }
 
-            root.Add(GetGenericElement(xmlns, string.Format(url, "article/visual-studio-shortcuts")));
-
             return root.ToString();
         }
 
