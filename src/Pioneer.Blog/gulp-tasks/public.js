@@ -11,8 +11,8 @@ var autoprefixer = require('gulp-autoprefixer');
 var tsProject = ts.createProject('tsconfig.json');
 
 var sassPaths = [
-  'bower_components/normalize.scss/sass',
-  'bower_components/foundation-sites/scss'
+  'node_modules/normalize.scss/sass',
+  'node_modules/foundation-sites/scss'
 ];
 
 function clean() {
@@ -54,27 +54,26 @@ function typescript() {
 
 function move() {
   return gulp.src([
-      'bower_components/font-awesome/fonts/**/*'
+      'node_modules/font-awesome/fonts/**/*'
     ])
     .pipe(gulp.dest('wwwroot/fonts'));
 }
 
 function libs() {
   return gulp.src([
-    'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.core.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.tabs.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.equalizer.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.abide.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.util.keyboard.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.util.box.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.util.motion.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.util.nest.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader.js',
-    'bower_components/smooth-scroll.js/dist/js/smooth-scroll.min.js',
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.core.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.tabs.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.equalizer.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.abide.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.util.keyboard.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.util.box.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.util.motion.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.util.nest.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader.js',
     'scripts/syntaxhighlighter.js'
   ])
       .pipe(concat('libs.js'))
