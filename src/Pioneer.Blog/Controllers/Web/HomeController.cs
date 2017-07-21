@@ -15,7 +15,8 @@ namespace Pioneer.Blog.Controllers.Web
         private readonly ICommunicationService _communicationService;
 
         public HomeController(IPostService postService,
-            ISiteMapService siteMapService, ICommunicationService communicationService)
+            ISiteMapService siteMapService, 
+            ICommunicationService communicationService)
         {
             _postService = postService;
             _siteMapService = siteMapService;
