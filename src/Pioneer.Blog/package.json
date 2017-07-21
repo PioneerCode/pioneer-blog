@@ -25,8 +25,9 @@
     "core-js": "^2.4.1",
     "rxjs": "5.0.1",
     "zone.js": "^0.8.4",
-    "clean-css": "^3.4.20",
-    "require-dir": "^0.3.1"
+    "font-awesome": "4.7.0",
+    "foundation-sites": "6.3.1"
+
   },
   "devDependencies": {
     "del": "2.2.2",
@@ -39,6 +40,8 @@
     "gulp-uglify": "^2.0.1",
     "gulp-uncss": "^1.0.6",
     "gulp-util": "^3.0.8",
-    "typescript": "^2.2.2"
+    "typescript": "^2.2.2",
+    "clean-css": "^3.4.20",
+    "require-dir": "^0.3.1"
   }
 }

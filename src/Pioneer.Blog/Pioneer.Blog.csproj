@@ -16,12 +16,16 @@
   <ItemGroup>
     <Compile Remove="wwwroot\admin\app\**" />
     <Compile Remove="wwwroot\admin\libs\**" />
+    <Compile Remove="wwwroot\posts\**" />
     <Content Remove="wwwroot\admin\app\**" />
     <Content Remove="wwwroot\admin\libs\**" />
+    <Content Remove="wwwroot\posts\**" />
     <EmbeddedResource Remove="wwwroot\admin\app\**" />
     <EmbeddedResource Remove="wwwroot\admin\libs\**" />
+    <EmbeddedResource Remove="wwwroot\posts\**" />
     <None Remove="wwwroot\admin\app\**" />
     <None Remove="wwwroot\admin\libs\**" />
+    <None Remove="wwwroot\posts\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot/admin\app.css" />
@@ -30,7 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="wwwroot\images\deploying-front-end-dot-net-team-city-octopus-deploy\octo-pack-line.PNG" />
-    <Content Include="wwwroot\posts\deploying-asp-dot-net-core-on-iis.html" />
   </ItemGroup>
   
   <ItemGroup>
