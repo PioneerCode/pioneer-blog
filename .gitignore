@@ -264,3 +264,4 @@ ModelManifest.xml
 /src/Pioneer.Blog/dev/admin/**/*.js
 /src/Pioneer.Blog/typings/**/*
 /src/Pioneer.Blog/package-lock.json
+/src/Pioneer.Blog/wwwroot/admin/*.css
