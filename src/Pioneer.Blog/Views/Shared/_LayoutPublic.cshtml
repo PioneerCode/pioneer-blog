@@ -71,14 +71,6 @@
 @section bodyEnd {
   @* TODO: Make this aysnc.  Issue currently is jQuery load. *@
   <script src="/app.js" asp-append-version="true"></script>
-  <script>
-    @if (!string.IsNullOrEmpty(ViewBag.Anchor))
-    {
-        <text>smoothScroll.init({ speed: 0 });</text>
-        <text>var anchor = document.querySelector('@Html.Raw(ViewBag.Anchor)');</text>
-        <text>smoothScroll.animateScroll(anchor);</text>
-    }
-  </script>
   <environment names="Production">
     <script>
       (function (i, s, o, g, r, a, m) {

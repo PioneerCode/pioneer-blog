@@ -34,10 +34,10 @@ function componentStyles() {
 
 function libs() {
   return gulp.src([
-    'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.core.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
-    'bower_components/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js'
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.core.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js',
+    'node_modules/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js'
   ])
       .pipe(concat('libs.js'))
       .pipe(uglify())

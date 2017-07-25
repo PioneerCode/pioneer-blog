@@ -44,7 +44,6 @@ namespace Pioneer.Blog.Controllers.Web
 
             ViewBag.PopularPosts = _postService.GetPopularPosts().ToList();
             ViewBag.LatestPosts = _postService.GetAll(true, false, false, 8).ToList();
-            ViewBag.Anchor = "#home-sign-up";
 
             if (!ModelState.IsValid)
             {
