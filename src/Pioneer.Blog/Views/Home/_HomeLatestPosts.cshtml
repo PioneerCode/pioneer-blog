@@ -1,0 +1,20 @@
+﻿@model List<Post>
+<section class="home-latest-posts">
+  <h3 class="header-surround-bar"><span>Latest Posts</span></h3>
+  <div class="row width-100">
+    @foreach (var post in Model.Take(4))
+    {
+      <div class="large-3 medium-6 columns end">
+        @Html.Partial("_HomePostCard", post)
+      </div>
+    }
+  </div>
+  <div class="row width-100">
+    @foreach (var post in Model.Skip(4))
+    {
+        <div class="large-3 medium-6 columns end">
+          @Html.Partial("_HomePostCard", post)
+        </div>
+    }
+  </div>
+</section>

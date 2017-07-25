@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+
+@section metaPage
+{
+    <meta property="og:type" content="profile">
+    <meta property="og:image" content="@(AppConfiguration.Value.SiteUrl + "/content/images/logo-og.jpg")">
+}
+
+@RenderBody()

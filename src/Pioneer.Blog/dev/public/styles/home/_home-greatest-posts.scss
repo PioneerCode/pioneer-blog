@@ -1,0 +1,76 @@
+﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
+
+.home-greatest-posts {
+    padding: 4rem 0 2rem;
+    background: $black;
+    background-image: url('images/popular.jpg');
+    background-attachment: fixed;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+
+    h3 {
+        position: relative;
+        margin: 0 0 4rem;
+        color: $white;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+        height: 100%;
+        background-image: linear-gradient(to right, transparent, $black,$black);
+    }
+
+    p, a {
+        font-size: 18px;
+        color: $white;
+        position: relative;
+    }
+
+    a.home-greatest-posts-more {
+        text-align: center;
+        display: block;
+        margin: 2rem 0;
+    }
+
+    @include breakpoint(medium up) {
+        padding: 6rem 0;
+
+        a.home-greatest-posts-more {
+            text-align: right;
+            margin: 0;
+        }
+    }
+}
+
+
+a.home-greatest-posts-card {
+    display: block;
+    color: $white;
+    border-bottom: 1px solid darken(desaturate( $primary-color, 10% ), 20%);
+    margin: 0 0 1rem;
+    padding: 0 0 1rem;
+    position: relative;
+
+    h4 {
+        font-weight: 300;
+    }
+}
+
+.home-greatest-posts-card-image {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-size: 14px;
+    border: 2px solid $white;
+    margin: 0 1rem 0 0;
+}

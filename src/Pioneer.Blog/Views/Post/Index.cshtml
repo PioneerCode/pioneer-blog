@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Post/_Template.cshtml";
+    ViewBag.Title = Model[(int)PreviousCurrentNextPosition.Current].Title;
+}
+@model List<Post>
+<article class="post">
+  <section class="hero-gradient hg-large" style="background-image: url(@Model[(int)PreviousCurrentNextPosition.Current].Image)">
+      <div class="row hero-gradient-content">
+        <div class="large-12 columns">
+          <h1 class="hero-gradient-title">
+            @Model[(int)PreviousCurrentNextPosition.Current].Title
+          </h1>
+          <div class="image-box">
+
+            <a href="https://twitter.com/chad_ramos" title="Chad Ramos Twitter" target="_blank" class="name">
+              By:
+              Chad Ramos
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    @Html.Partial("_MetaData", Model[(int)PreviousCurrentNextPosition.Current])
+    <div class="row">
+      <div class="large-10 large-push-1 columns">
+        @Html.Raw(Model[(int)PreviousCurrentNextPosition.Current].Article.Content)
+        @Html.Partial("_SocialShareIcons", Model[(int)PreviousCurrentNextPosition.Current])
+      </div>
+    </div>
+    @Html.Partial("_PreviousNext")
+    <footer>
+      <div class="row">
+        <div class="large-12 columns">
+          @Html.Partial("_FooterSectionTitle", "Author")
+          @Html.Partial("_FooterAuthor")
+          @Html.Partial("_FooterSectionTitle", "Popular Posts")
+          @Html.Partial("_FooterPopularPosts")
+          @Html.Partial("_FooterComments", Model[(int)PreviousCurrentNextPosition.Current])
+        </div>
+      </div>
+    </footer>
+</article>
+<script id="dsq-count-scr" src="@Url.Content("//" + AppConfiguration.Value.DisqusShortname + ".disqus.com/count.js")" async></script>

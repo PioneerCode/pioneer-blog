@@ -1,0 +1,27 @@
+{
+  "authors": [
+    "Chad Ramos <chad@pioneercode.com>"
+  ],
+  "dependencies": {
+    "font-awesome": "4.7.0",
+    "foundation-sites": "6.3.1",
+    "smooth-scroll.js": "10.2.1"
+  },
+  "description": "Pioneer Code",
+  "homepage": "http://www.pioneercode.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "wwwroot/lib",
+    "test",
+    "tests"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "es6"
+  ],
+  "name": "pioneer-code-blog",
+  "private": true,
+  "version": "1.0.0"
+}

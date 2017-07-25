@@ -1,0 +1,7 @@
+﻿@model List<Category>
+<section class="sidebar sidebar-button-collection">
+  @foreach (var category in Model)
+  {
+      <a class="button small" href="/category/@category.Url">@category.Name</a>
+  }
+</section>

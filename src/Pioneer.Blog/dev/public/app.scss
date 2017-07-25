@@ -1,0 +1,190 @@
+﻿/// <reference path="../../bower_components/foundation-sites/scss/foundation" />
+@charset 'utf-8';
+
+@import '../sass/settings';
+@import 'foundation';
+
+@include foundation-global-styles;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-forms;
+// @include foundation-range-input;
+// @include foundation-accordion;
+// @include foundation-accordion-menu;
+// @include foundation-badge;
+// @include foundation-breadcrumbs;
+@include foundation-button-group;
+@include foundation-callout;
+// @include foundation-close-button;
+@include foundation-menu;
+@include foundation-menu-icon;
+@include foundation-drilldown-menu;
+@include foundation-dropdown;
+@include foundation-dropdown-menu;
+// @include foundation-flex-video;
+// @include foundation-label;
+// @include foundation-media-object;
+// @include foundation-off-canvas;
+// @include foundation-orbit;
+@include foundation-pagination;
+// @include foundation-progress-bar;
+// @include foundation-progress-element;
+// @include foundation-meter-element;
+// @include foundation-slider;
+// @include foundation-sticky;
+// @include foundation-reveal;
+// @include foundation-switch;
+@include foundation-table;
+@include foundation-tabs;
+// @include foundation-thumbnail;
+@include foundation-title-bar;
+// @include foundation-tooltip;
+@include foundation-top-bar;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+
+@import "../../bower_components/font-awesome/scss/font-awesome";
+
+@import "styles/paged-list";
+@import "styles/nav";
+@import "styles/home/home";
+@import "styles/post/article";
+@import "styles/about";
+@import "styles/contact";
+@import "styles/hero/hero";
+@import "styles/footer";
+@import "styles/archive-post/archive";
+@import "styles/syntax";
+@import "styles/social";
+@import "styles/card";
+@import "styles/search/search";
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.width-100 {
+    max-width: 100%;
+    width: 100%;
+}
+
+body {
+    transition: all .3s;
+}
+
+h2.sub-heading {
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: -2.5px;
+}
+
+h1, h2, h3, h4, h5 {
+    letter-spacing: -2px;
+}
+
+.callout.filter {
+    border-color: $light-gray;
+    border-left: 6px solid map-get($foundation-palette, pioneer);
+}
+
+pre {
+    background: $black;
+    color: $white;
+    padding: 5px 10px;
+    margin: 0 0 15px 0;
+}
+
+.text-danger {
+    ul {
+        margin: 0;
+    }
+}
+
+.body-content {
+    background: transparent;
+}
+
+em.question {
+    margin: 0 0 1rem 0;
+    font-weight: bold;
+}
+
+ul.meta {
+    margin-bottom: 2rem;
+}
+
+p.note, div.note {
+    background: $light-gray;
+    font-size: 14px;
+    border-left: 3px solid $primary-color;
+    padding: 1rem;
+}
+
+div.note {
+    margin: 0 0 1rem;
+}
+
+a.button.empty {
+    background: none;
+    border: 2px solid $white;
+
+    &:hover {
+        color: map-get($foundation-palette, pioneer);
+        background: $white;
+        text-decoration: none;
+    }
+}
+
+a.button.empty-reverse {
+    background: none;
+    border: 2px solid $black;
+    color: $black;
+
+    &:hover {
+        border: 2px solid map-get($foundation-palette, pioneer);
+        color: $white;
+        background: map-get($foundation-palette, pioneer);
+        text-decoration: none;
+    }
+}
+
+.category {
+    margin: 30px 0 0;
+}
+
+
+.login {
+    input[type="checkbox"] {
+        margin: 6px 5px 0 0;
+    }
+}
+
+li ul, li ol {
+    margin-bottom: 0;
+}
+
+.header-surround-bar {
+    text-align: center;
+    margin: 0 0 2rem;
+    font-weight: 300;
+
+    span {
+        margin: 0 1rem;
+    }
+
+    &:before, &:after {
+        display: inline-block;
+        content: "";
+        width: 70px;
+        margin-top: -2px;
+        vertical-align: middle;
+        background: $primary-color;
+        height: 1px !important;
+    }
+}

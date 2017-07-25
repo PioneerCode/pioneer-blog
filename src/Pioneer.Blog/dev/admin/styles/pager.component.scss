@@ -1,0 +1,13 @@
+﻿/// <reference path="../../../bower_components/foundation-sites/scss/foundation" />
+.pc-pager {
+  margin: 1rem 0;
+
+  ul.pagination .current {
+    padding: 0;
+    margin: 0;
+
+    a {
+      color: $white;
+    }
+  }
+}

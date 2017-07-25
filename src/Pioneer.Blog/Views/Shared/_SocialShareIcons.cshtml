@@ -1,0 +1,37 @@
+﻿@model Post
+<ul class="menu simple social-icons">
+  <li>
+    <a href="@string.Format("https://twitter.com/share?url=http://pioneercode.com/post/{0}/&text={1}", Model.Url, Uri.EscapeDataString(Model.Title))"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;"
+       class="twitter">
+      <i class="fa fa-twitter"></i>
+    </a>
+  </li>
+  <li>
+    <a href="@string.Format("https://www.linkedin.com/shareArticle?mini=true&url=http://pioneercode.com/post/{0}", Model.Url)"
+       onclick="window.open(this.href, 'linkedin-share', 'width=580,height=296');return false;"
+       class="linkedin">
+      <i class="fa fa-linkedin"></i>
+    </a>
+  </li>
+  <li>
+    <a href="@string.Format("https://www.facebook.com/sharer/sharer.php?u=http://pioneercode.com/post/{0}", Model.Url)" onclick="window.open(this.href, 'facebook-share', 'width=580,height=296');return false;"
+       class="facebook">
+      <i class="fa fa-facebook"></i>
+    </a>
+  </li>
+  <li>
+    <a href="@string.Format("https://plus.google.com/share?url=http://pioneercode.com/post/{0}", Model.Url)"
+       onclick="window.open(this.href, 'google-share', 'width=580,height=296');return false;"
+       class="google-plus">
+      <i class="fa fa-google-plus"></i>
+    </a>
+  </li>
+  <li>
+    <a href="@string.Format("https://reddit.com/submit?url=http://pioneercode.com/post/{0}&title={1}", Model.Url, Uri.EscapeDataString(Model.Title))"
+       onclick="window.open(this.href, 'reddit-share', 'width=580,height=550'); return false;"
+       class="reddit">
+      <i class="fa fa-reddit-alien"></i>
+    </a>
+  </li>
+</ul>

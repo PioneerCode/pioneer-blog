@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "~/Views/Contact/_Template.cshtml";
+    ViewBag.Title = "Contact Chad Ramos";
+}
+@model Pioneer.Blog.Model.Views.ContactViewModel
+<input type="hidden" value="d9197f1e-e49b-4d41-9851-440cfa63abb7">
+<section class="contact">
+  <div class="hero-gradient hg-large" style="background-image: url(/images/hero-contact.jpg)">
+    <div class="row hero-gradient-content">
+      <div class="large-12 column">
+        <h1>Have A Question?</h1>
+        <div class="bar"></div>
+        <div class="row">
+          <div class="large-6 large-push-3 columns end">
+            <p>Send me a message using the form on the right or contact me using an alternative method located on the left. I'll try to get back to you as soon as I can.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="form-container clearfix" data-equalizer>
+    <div class="text-content" data-equalizer-watch>
+      <h2>
+        <span>|</span> Pioneer Code
+      </h2>
+      <p>Chicago, IL</p>
+      <p>
+        <a her="mail:hello@pioneercode.com">hello@pioneercode.com</a>
+      </p>
+      <a href="https://github.com/PioneerCode" title="Pioneer Code Github" target="_blank" class="icon">
+        <i class="fa fa-github fa-2x"></i>
+      </a>
+      <a href="https://www.npmjs.com/~chad-ramos" title="Chad Ramos npm" target="_blank" class="icon">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 -8 32 32">
+          <path d="M0.32 15.406v5.248h8.736v1.76h6.976v-1.76h15.649v-10.495h-31.36v5.248zM9.055 15.406v3.488h-1.76v-5.216h-1.697v5.216h-3.582v-6.976h7.039v3.488zM17.779 15.412l-0.019 3.488-3.425-0.012v1.766h-3.582v-8.736h7.039l-0.012 3.494zM29.983 15.406v3.488h-1.76v-5.216h-1.76v5.248l-1.76-0.038v-5.21h-1.697v5.216h-3.519v-6.976h10.495v3.488zM14.335 15.406v1.728h1.634v-3.457h-1.634v1.728z"></path>
+        </svg>
+      </a>
+      <a href="https://twitter.com/chad_ramos" title="Pioneer Code Twitter" target="_blank" class="icon">
+        <i class="fa fa-twitter fa-2x"></i>
+      </a>
+      <a href="https://trello.com/b/EX3uv8CM/blog-post-ideas" title="Pioneer Code Trello" target="_blank" class="icon">
+        <i class="fa fa-trello fa-2x"></i>
+      </a>
+      <a href="https://www.facebook.com/ChadMRamos" title="Chad Ramos Facebook" target="_blank" class="icon">
+        <i class="fa fa-facebook fa-2x"></i>
+      </a>
+    </div>
+    <form asp-controller="Contact" asp-action="Send" method="post">
+      <div class="form-content" data-equalizer-watch>
+        <div class="row">
+          <div class="large-12 column">
+            <h3>Get In Touch</h3>
+            <div class="bar"></div>
+          </div>
+        </div>
+        @if (!ViewBag.IsValid)
+        {
+            <div class="callout alert">
+              <div asp-validation-summary="All"></div>
+            </div>
+        }
+        @if (ViewBag.MessageSent != null && ViewBag.MessageSent)
+        {
+            <div class="callout success">
+              <p>Email Sent! Talk to you soon.</p>
+            </div>
+        }
+        <div class="row">
+          <div class="large-12  medium-8 medium-push-2  large-push-0 column">
+            <input asp-for="Name" placeholder="Your Name" />
+            <input asp-for="Email" placeholder="your@email.com" />
+            <input asp-for="Subject" placeholder="Subject" />
+            <textarea asp-for="Message" placeholder="Message"></textarea>
+            <input type="submit" value="Send" class="float-right">
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+  <div class="hello-bar">
+    <h4>TALK TO YOU SOON!</h4>
+  </div>
+</section>
