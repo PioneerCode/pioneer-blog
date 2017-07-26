@@ -10,6 +10,9 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RepositoryUrl>https://github.com/PioneerCode/pioneer-blog</RepositoryUrl>
+    <Description>Pioneer Code Website - Built on ASP.Net Core</Description>
+    <Authors>Chad Ramos</Authors>
   </PropertyGroup>
 
 </Project>

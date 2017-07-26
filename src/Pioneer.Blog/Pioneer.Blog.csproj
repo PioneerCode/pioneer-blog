@@ -12,6 +12,11 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
     <UserSecretsId>pioneer-test-ce345b64-19cf-4972-b34f-d16f2e7976ed</UserSecretsId>
+    <RepositoryUrl>https://github.com/PioneerCode/pioneer-blog</RepositoryUrl>
+    <Company>Pioneer Code</Company>
+    <Authors>Chad Ramos</Authors>
+    <Product>Pioneer Code Blog</Product>
+    <Description>Pioneer Code Website - Built on ASP.Net Core</Description>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="wwwroot\admin\app\**" />
