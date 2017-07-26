@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using AutoMapper;
 using Pioneer.Blog.DAL.Entites;
 using Pioneer.Blog.Model;

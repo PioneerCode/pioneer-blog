@@ -13,11 +13,11 @@
 
     public class OperationResult<T> where T : class
     {
-        public T Entity { get; private set; }
+        public T Entity { get; }
 
-        public OperationStatus Status { get; private set; }
+        public OperationStatus Status { get; }
 
-        public string Message { get; private set; }
+        public string Message { get; }
 
         public OperationResult(T entity, OperationStatus status)
         {
