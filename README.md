@@ -45,11 +45,6 @@ npm rm --global gulp
 npm install gulp-cli -g
 ```
 
-bower
-```bash
-npm install bower -g
-```
-
 typings
 ```bash
 npm install typings -g
@@ -57,7 +52,6 @@ npm install typings -g
 
 Navigate to the `Pioneer.Blog` directory from your command prompt and run....
 - `npm install`
-- `bower install`
 - `npm rebuild node-sass --force`
 - `typings install`
 - `gulp pubilc`
