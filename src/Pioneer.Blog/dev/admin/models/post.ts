@@ -20,9 +20,9 @@ export class Post {
   url: string;
   link: string;
   postedOn: string;
-  modifedOn: string;
+  modifiedOn: string;
   tags: Tag.Tag[];
   article: Article.Article;
   category: Category.Category;
-  excerpt: Excerpt.Exceprt;
+  excerpt: Excerpt.Excerpt;
 }

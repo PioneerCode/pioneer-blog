@@ -11,7 +11,7 @@ export class PostRepository {
 
   constructor(private http: Http) { }
 
-  get(idUrl: string, includeExcerpt: boolean = false): Promise<Post> {
+  get(idUrl: string, includeExcerpt = false): Promise<Post> {
     return this.http.get(this.url + '/' + idUrl + '?includeExcerpt=' + includeExcerpt,
       {
         withCredentials: true
@@ -26,9 +26,9 @@ export class PostRepository {
 
   getAll(count: number = null,
     page: number = null,
-    includeExcerpt: boolean = true,
-    includeArticle: boolean = true,
-    includeUnpublished: boolean = true): Promise<Post[]> {
+    includeExcerpt = true,
+    includeArticle = true,
+    includeUnpublished = true): Promise<Post[]> {
     return this.http.get(this.url + '?countPerPage=' + count + '&currentPageIndex=' + page + '&ncludeExceprt=' + includeExcerpt + '&includeArticle=' + includeArticle + '&includeUnpublished=' + includeUnpublished)
       .toPromise()
       .then((res: Response) => {

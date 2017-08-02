@@ -10,7 +10,7 @@ export class CategoryRepository {
 
   constructor(private http: Http) { }
 
-  get(id: number, includeExcerpt: boolean = false): Promise<Category> {
+  get(id: number, includeExcerpt = false): Promise<Category> {
     return this.http.get(this.url + '/' + id)
       .toPromise()
       .then((res: Response) => {

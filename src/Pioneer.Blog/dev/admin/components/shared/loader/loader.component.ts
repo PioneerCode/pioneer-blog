@@ -12,7 +12,6 @@
   `
 })
 
-
 export class LoaderComponent {
   @Input() loading = false;
 }

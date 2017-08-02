@@ -11,13 +11,13 @@ $(() => {
 /**
  * Cache navigation
  */
-var header = $('.nav-main');
+const header = $('.nav-main');
 
 /**
  * Manage transparent/un-transparent navigation
  */
 $(window).on('scroll', () => {
-  var top = header.offset().top;
+  const top = header.offset().top;
   if (top >= 100) {
     header.addClass('nav-main-show');
   } else {
