@@ -1,4 +1,4 @@
-﻿export class Exceprt {
-  exceprtId: number;
+﻿export class Excerpt {
+  excerptId: number;
   content: string;
 }

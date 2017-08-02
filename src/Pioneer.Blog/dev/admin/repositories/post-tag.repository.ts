@@ -10,7 +10,7 @@ export class PostTagRepository {
   private url = '/api/post-tags';
 
   constructor(private http: Http) { }
-  
+
   add(tagId: number, postId: number): Promise<Tag> {
     return this.http.post(this.url, { tagId: tagId, postId: postId })
       .toPromise()

@@ -10,7 +10,7 @@ export class TagRepository {
 
   constructor(private http: Http) { }
 
-  get(id: number, includeExcerpt: boolean = false): Promise<Tag> {
+  get(id: number, includeExcerpt = false): Promise<Tag> {
     return this.http.get(this.url + '/' + id)
       .toPromise()
       .then((res: Response) => {
