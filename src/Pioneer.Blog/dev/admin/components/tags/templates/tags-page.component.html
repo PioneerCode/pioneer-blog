@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="large-9 columns">
-    <div class="admin-canvas-content">
+    <div class="admin-canvas-content" *ngIf="tagService.getCurrent()">
       <pc-loader [loading]="loading"></pc-loader>
       <div class="row">
         <div class="large-12 columns">
@@ -45,6 +45,10 @@
           </label>
         </div>
       </div>
+    </div>
+    <div class="empty-state" *ngIf="!tagService.getCurrent()">
+      <i class="fa fa-tags"></i>
+      <h2>Add A Tag To Get Started</h2>
     </div>
   </div>
 </div>
