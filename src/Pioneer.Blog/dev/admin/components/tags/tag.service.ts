@@ -64,7 +64,10 @@ export class TagService {
       .getAll()
       .then((tags: Tag[]) => {
         this.tags = tags;
-        return this.tagRepository.get(this.tags[0].tagId, true);
+        if (tags.length > 0) {
+          return this.tagRepository.get(this.tags[0].tagId, true);
+        }
+        return null;
       })
       .then((resp: Tag) => {
         this.selectedTag = resp;
