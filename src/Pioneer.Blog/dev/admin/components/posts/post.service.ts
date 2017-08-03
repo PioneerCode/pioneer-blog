@@ -23,7 +23,10 @@ export class PostService {
     return this.postRepository.getAll(this.countPerPage, this.currentPageIndex, false, false, true)
       .then((posts: Post[]) => {
         this.posts = posts;
-        return this.postRepository.get(this.posts[0].url, true);
+        if (this.posts.length > 0) {
+          return this.postRepository.get(this.posts[0].url, true);
+        }
+        return null;
       })
       .then((resp: Post) => {
         this.selectedPost = resp;

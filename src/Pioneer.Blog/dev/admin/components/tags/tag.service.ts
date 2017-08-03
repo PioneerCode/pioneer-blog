@@ -64,7 +64,7 @@ export class TagService {
       .getAll()
       .then((tags: Tag[]) => {
         this.tags = tags;
-        if (tags.length > 0) {
+        if (this.tags.length > 0) {
           return this.tagRepository.get(this.tags[0].tagId, true);
         }
         return null;

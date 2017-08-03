@@ -147,3 +147,13 @@ body {
 .admin-post-collection-item {
   float: left;
 }
+
+.empty-state {
+  margin: 8rem;
+  text-align: center;
+
+  i {
+    font-size: 6rem;
+    margin: 0 0 2rem;
+  }
+}

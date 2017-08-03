@@ -5,7 +5,6 @@
         <pc-loader [loading]="loading"></pc-loader>
         <div class="row">
           <div class="large-12 columns">
-
             <div class="clearfix">
               <button class="button tiny secondary float-right"
                       (click)="postService.create()">
@@ -22,13 +21,14 @@
             <pc-pager (onPageClicked)="onPageClicked($event)"
                       [countPerPage]="postService.countPerPage"
                       [currentPageIndex]="postService.currentPageIndex"
-                      [totalItemsInCollection]="postService.totalItemsInCollection"></pc-pager>
+                      [totalItemsInCollection]="postService.totalItemsInCollection"
+                      *ngIf="postService.getCurrent()"></pc-pager>
           </div>
         </div>
       </div>
     </div>
     <div class="large-9 columns">
-      <div class="admin-canvas-content">
+      <div class="admin-canvas-content" *ngIf="postService.getCurrent()">
         <pc-loader [loading]="loading"></pc-loader>
         <div class="row">
           <div class="large-12 columns">
@@ -173,6 +173,10 @@
             </fieldset>
           </div>
         </div>
+      </div>
+      <div class="empty-state" *ngIf="!postService.getCurrent()">
+        <i class="fa fa-file-o"></i>
+        <h2>Add A Post To Get Started</h2>
       </div>
     </div>
   </div>

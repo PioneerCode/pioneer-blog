@@ -63,7 +63,10 @@ export class CategoryService {
     return this.categoryRepository.getAll()
       .then((categories: Category[]) => {
         this.categories = categories;
-        return this.categoryRepository.get(this.categories[0].categoryId, true);
+        if (this.categories.length > 0) {
+          return this.categoryRepository.get(this.categories[0].categoryId, true);
+        }
+        return null;
       })
       .then((resp: Category) => {
         this.selectedCategory = resp;
