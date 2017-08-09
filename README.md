@@ -42,6 +42,7 @@ Install [node](https://nodejs.org/en/) on your local environment and run the fol
 gulp
 ```bash
 npm rm --global gulp
+npm rm --global gulp-cli
 npm install gulp-cli -g
 ```
 
@@ -52,7 +53,6 @@ npm install typings -g
 
 Navigate to the `Pioneer.Blog` directory from your command prompt and run....
 - `npm install`
-- `npm rebuild node-sass --force`
 - `typings install`
 - `gulp pubilc`
 - `gulp admin`
