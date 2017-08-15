@@ -1,8 +1,5 @@
 # Pioneer Blog
 
-> ## Announcement 
-> I have begun work on migrating to .NET Core 2.0. Version 1 of this blog with be stashed at the [version-1 branch](https://github.com/PioneerCode/pioneer-blog/tree/version-1). Migration dev will be done on the [version-2 branch](https://github.com/PioneerCode/pioneer-blog/tree/version-2) and when done will be merged into master. 
-
 Active code based used for [Pioneer Code](http://pioneercode).
 
 Current stack...
@@ -45,7 +42,6 @@ Install [node](https://nodejs.org/en/) on your local environment and run the fol
 gulp
 ```bash
 npm rm --global gulp
-npm rm --global gulp-cli
 npm install gulp-cli -g
 ```
 
@@ -56,6 +52,7 @@ npm install typings -g
 
 Navigate to the `Pioneer.Blog` directory from your command prompt and run....
 - `npm install`
+- `npm rebuild node-sass --force`
 - `typings install`
 - `gulp pubilc`
 - `gulp admin`
