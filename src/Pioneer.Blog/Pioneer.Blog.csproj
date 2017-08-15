@@ -37,11 +37,6 @@
     <Content Remove="wwwroot/app.css" />
     <Content Remove="wwwroot/app.js" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="wwwroot\images\icons\favicon.ico">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
