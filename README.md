@@ -1,5 +1,8 @@
 # Pioneer Blog
 
+> ## Announcement 
+> I have begun work on migrating to .NET Core 2.0. Version 1 of this blog with be stashed at the [version-1 branch](https://github.com/PioneerCode/pioneer-blog/tree/version-1). Migration dev will be done on the [version-2 branch](https://github.com/PioneerCode/pioneer-blog/tree/enhancement/version-2) and when done will be merged into master. 
+
 Active code based used for [Pioneer Code](http://pioneercode).
 
 Current stack...
