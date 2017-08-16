@@ -1,14 +1,14 @@
 # Pioneer Blog
 
 > ## Announcement 
-> I have begun work on migrating to .NET Core 2.0. Version 1 of this blog with be stashed at the [version-1 branch](https://github.com/PioneerCode/pioneer-blog/tree/version-1). Migration dev will be done on the [version-2 branch](https://github.com/PioneerCode/pioneer-blog/tree/enhancement/version-2) and when done will be merged into master. 
+> Migrations to .NET Core 2.x has been completed and merged into the master branch.  Version 1 of this blog, which runs on .NET Core 1.x, will be stashed at the [version-1 branch](https://github.com/PioneerCode/pioneer-blog/tree/version-1). 
 
 Active code based used for [Pioneer Code](http://pioneercode).
 
 Current stack...
-- ASP.NET Core
-- Entity Framework Core
-- Angular 2/4
+- ASP.NET Core 2.x
+- Entity Framework Core 2.x
+- Angular 4.x
 
 Current deployment...
 - SQL Database hosted at [WinHost](http://www.winhost.com/a/chadr)
@@ -30,7 +30,7 @@ All configuration is derived from `appsettings.json`. That being said, it is rec
 ### Database
 
 - Update the connection string inside of `Pioneer.Blog\appsettings.json` & `Pioneer.DAL\appsettings.json`.
-- Open a command prompt at `Pioneer.DAL` and run the following
+- Open a command prompt at `Pioneer.Blog` and run the following
 
 ```bash
 dotnet ef database update
@@ -45,7 +45,6 @@ Install [node](https://nodejs.org/en/) on your local environment and run the fol
 gulp
 ```bash
 npm rm --global gulp
-npm rm --global gulp-cli
 npm install gulp-cli -g
 ```
 
@@ -56,6 +55,7 @@ npm install typings -g
 
 Navigate to the `Pioneer.Blog` directory from your command prompt and run....
 - `npm install`
+- `npm rebuild node-sass --force`
 - `typings install`
 - `gulp pubilc`
 - `gulp admin`

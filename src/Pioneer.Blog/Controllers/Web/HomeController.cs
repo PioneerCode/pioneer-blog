@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Pioneer.Blog.DAL;
+using Pioneer.Blog.Model;
 using Pioneer.Blog.Model.Views;
 using Pioneer.Blog.Service;
+
 
 namespace Pioneer.Blog.Controllers.Web
 {
@@ -15,7 +17,7 @@ namespace Pioneer.Blog.Controllers.Web
         private readonly ICommunicationService _communicationService;
 
         public HomeController(IPostService postService,
-            ISiteMapService siteMapService, 
+            ISiteMapService siteMapService,
             ICommunicationService communicationService)
         {
             _postService = postService;
@@ -30,6 +32,7 @@ namespace Pioneer.Blog.Controllers.Web
 
             ViewBag.PopularPosts = _postService.GetPopularPosts().ToList();
             ViewBag.LatestPosts = _postService.GetAll(true, false, false, 8).ToList();
+
             return View();
         }
 
@@ -51,14 +54,14 @@ namespace Pioneer.Blog.Controllers.Web
                 return View("Index", model);
             }
 
-            var response = _communicationService.SignUpToMailingList(model);
+            //var response = _communicationService.SignUpToMailingList(model);
 
-            if (response.Status != OperationStatus.Created)
-            {
-                ViewBag.IsValid = false;
-                ViewBag.IsValidMessage = response.Message;
-                return View("Index", model);
-            }
+            //if (response.Status != OperationStatus.Created)
+            //{
+            //    ViewBag.IsValid = false;
+            //    ViewBag.IsValidMessage = response.Message;
+            //    return View("Index", model);
+            //}
 
             ViewBag.IsValid = true;
 

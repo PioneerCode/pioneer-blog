@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Pioneer.Blog.DAL;
-using Pioneer.Blog.DAL.Entites;
 using System.Linq;
+using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
 
 namespace Pioneer.Blog.Repository
@@ -18,9 +17,9 @@ namespace Pioneer.Blog.Repository
 
     public class CategoryRepository : ICategoryRepository
     {
-        private readonly BlogContext _blogContext;
+        private readonly BlogDbContext _blogContext;
 
-        public CategoryRepository(BlogContext blogContext)
+        public CategoryRepository(BlogDbContext blogContext)
         {
             _blogContext = blogContext;
         }

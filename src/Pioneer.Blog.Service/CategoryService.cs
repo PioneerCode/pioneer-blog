@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutoMapper;
-using Pioneer.Blog.DAL.Entites;
-using Pioneer.Blog.Model;
 using System.Linq;
+using AutoMapper;
+using Pioneer.Blog.Entity;
+using Pioneer.Blog.Model;
 using Pioneer.Blog.Repository;
 
 namespace Pioneer.Blog.Service

@@ -1,9 +1,10 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
-using Pioneer.Blog.DAL;
-using Pioneer.Blog.DAL.Entites;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
 
 namespace Pioneer.Blog.Repository
@@ -32,9 +33,9 @@ namespace Pioneer.Blog.Repository
 
     public class PostRepository : IPostRepository
     {
-        private readonly BlogContext _blogContext;
+        private readonly BlogDbContext _blogContext;
 
-        public PostRepository(BlogContext blogContext)
+        public PostRepository(BlogDbContext blogContext)
         {
             _blogContext = blogContext;
         }

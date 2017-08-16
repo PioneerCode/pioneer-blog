@@ -1,6 +1,5 @@
 ﻿using System.Linq;
-using Pioneer.Blog.DAL;
-using Pioneer.Blog.DAL.Entites;
+using Pioneer.Blog.Entity;
 
 namespace Pioneer.Blog.Repository
 {
@@ -12,9 +11,9 @@ namespace Pioneer.Blog.Repository
 
     public class PostTagRepository : IPostTagRepository
     {
-        private readonly BlogContext _blogContext;
+        private readonly BlogDbContext _blogContext;
 
-        public PostTagRepository(BlogContext blogContext)
+        public PostTagRepository(BlogDbContext blogContext)
         {
             _blogContext = blogContext;
         }

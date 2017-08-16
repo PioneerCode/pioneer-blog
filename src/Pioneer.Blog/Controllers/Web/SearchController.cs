@@ -15,10 +15,10 @@ namespace Pioneer.Blog.Controllers.Web
         private readonly ITagService _tagService;
         private readonly IPostService _postService;
 
-        public SearchController(ISearchService searchService, 
-            IPaginatedMetaService paginatedMetaService, 
-            ICategoryService categoryService, 
-            ITagService tagService, 
+        public SearchController(ISearchService searchService,
+            IPaginatedMetaService paginatedMetaService,
+            ICategoryService categoryService,
+            ITagService tagService,
             IPostService postService)
         {
             _searchService = searchService;
@@ -31,7 +31,7 @@ namespace Pioneer.Blog.Controllers.Web
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Description = "Pioneer Code search page. "  +
+            ViewBag.Description = "Pioneer Code search page. " +
                                   "Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
 
             ViewBag.Header = "Search";

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Pioneer.Blog.DAL.Entites;
+using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model.Views;
 
 namespace Pioneer.Blog.Controllers.Web

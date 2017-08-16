@@ -1,6 +1,5 @@
-﻿using Pioneer.Blog.DAL;
-using Pioneer.Blog.DAL.Entites;
-using System.Linq;
+﻿using System.Linq;
+using Pioneer.Blog.Entity;
 
 namespace Pioneer.Blog.Repository
 {
@@ -12,9 +11,9 @@ namespace Pioneer.Blog.Repository
 
 	public class ContactRepository : IContactRepository
     {
-        private readonly BlogContext _blogContext;
+        private readonly BlogDbContext _blogContext;
 
-        public ContactRepository(BlogContext blogContext)
+        public ContactRepository(BlogDbContext blogContext)
         {
             _blogContext = blogContext;
         }

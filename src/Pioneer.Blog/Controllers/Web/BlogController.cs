@@ -72,7 +72,7 @@ namespace Pioneer.Blog.Controllers.Web
             var posts = _postService.GetAllByCategory(id, 4, page).ToList();
             ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(_postService.GetTotalNumberOfPostsByCategory(id), page, 4);
 
-            ViewBag.Description = "Pioneer Code blog category archives page " + page + ", for category \""+ posts[0].Category.Name + "\". " +
+            ViewBag.Description = "Pioneer Code blog category archives page " + page + ", for category \"" + posts[0].Category.Name + "\". " +
                                   "Chad Ramos talks about .NET, C#, the web, open source, programming and more.";
             ViewBag.Header = "Category : " + posts[0].Category.Name;
             ViewBag.Title = posts[0].Category.Name;

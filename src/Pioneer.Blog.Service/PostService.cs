@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
-using Pioneer.Blog.DAL.Entites;
 using Pioneer.Blog.Model;
 using System.Linq;
 using Pioneer.Blog.Repository;
 using Microsoft.Extensions.Options;
+using Pioneer.Blog.Entity;
 
 namespace Pioneer.Blog.Service
 {

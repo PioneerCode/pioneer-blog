@@ -1,72 +1,42 @@
-﻿using System;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Internal;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
-using Pioneer.Blog.DAL;
-using Pioneer.Blog.DAL.Entites;
+using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Repository;
 using Pioneer.Blog.Service;
+using Pioneer.Blog.Services;
 using Pioneer.Pagination;
 
 namespace Pioneer.Blog
 {
     public class Startup
     {
-        public IConfigurationRoot Configuration { get; }
-
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets<Startup>();
-            }
-
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
+        public IConfiguration Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-
-            services.AddDbContext<BlogContext>(options =>
+            services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             ConfigureServicesIdentity(services);
 
-            services.AddAuthorization(cfg =>
-            {
-                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
-            });
-
-            services.AddMvc();
-
-            // Add application services.
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
-            services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
 
-            services.AddTransient<IdentitySetup>();
+            services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
+            services.AddTransient<IEmailSender, EmailSender>();
+
+            //services.AddTransient<IdentitySetup>();
 
             // Repositories
             services.AddTransient<IContactRepository, ContactRepository>();
@@ -84,104 +54,43 @@ namespace Pioneer.Blog
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<ISiteMapService, SiteMapService>();
             services.AddTransient<ApplicationEnvironment>();
-            services.AddTransient<HostingEnvironment>();
+            //services.AddTransient<HostingEnvironment>();
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,
-            IHostingEnvironment env,
-            ILoggerFactory loggerFactory,
-            IdentitySetup identitySetup)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             ServiceMapperConfig.Config();
 
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
-                app.UseMiddleware<StackifyMiddleware.RequestTracerMiddleware>();
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
-                identitySetup.Setup().Wait();
+                app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                OnPrepareResponse = context =>
-                {
-                    var headers = context.Context.Response.GetTypedHeaders();
-                    headers.CacheControl = new CacheControlHeaderValue
-                    {
-                        MaxAge = TimeSpan.FromSeconds(31536000)
-                    };
-                }
-            });
+            app.UseStaticFiles();
 
-            ConfigureSecurity(app);
+            app.UseAuthentication();
+
+            // Configure Bearer token
             ConfigureMvc(app);
         }
 
         private static void ConfigureServicesIdentity(IServiceCollection services)
         {
             services.AddIdentity<UserEntity, IdentityRole>()
-                .AddEntityFrameworkStores<BlogContext>()
+                .AddEntityFrameworkStores<BlogDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.Configure<IdentityOptions>(config =>
-            {
-                config.Cookies.ApplicationCookie.Events =
-                    new CookieAuthenticationEvents
-                    {
-                        OnRedirectToLogin = ctx =>
-                        {
-                            // If we were redirect to login from api..
-                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
-                            {
-                                ctx.Response.StatusCode = 401;
-                                return Task.FromResult<object>(null);
-                            }
-
-                            ctx.Response.Redirect(ctx.RedirectUri);
-                            return Task.FromResult<object>(null);
-                        },
-                        OnRedirectToAccessDenied = ctx =>
-                        {
-                            // If access is denied from api...
-                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
-                            {
-                                ctx.Response.StatusCode = 403;
-                                return Task.FromResult<object>(null);
-                            }
-
-                            ctx.Response.Redirect(ctx.RedirectUri);
-                            return Task.FromResult<object>(null);
-                        }
-                    };
-            });
-        }
-        private  void ConfigureSecurity(IApplicationBuilder app)
-        {
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                TokenValidationParameters = new TokenValidationParameters
-                {
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection("AppConfiguration:Key").Value)),
-                    ValidAudience = Configuration.GetSection("AppConfiguration:SiteUrl").Value,
-                    ValidateIssuerSigningKey = true,
-                    ValidateLifetime = true,
-                    ValidIssuer = Configuration.GetSection("AppConfiguration:SiteUrl").Value
-                }
-            });
-
-            app.UseIdentity();
+            // Cookies for redirect to login from api
+            // Cookies for access is denied from api
         }
 
         private static void ConfigureMvc(IApplicationBuilder app)
