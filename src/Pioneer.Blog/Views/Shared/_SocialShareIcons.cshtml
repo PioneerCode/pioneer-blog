@@ -1,4 +1,5 @@
-﻿@model Post
+﻿@using System
+@model Post
 <ul class="menu simple social-icons">
   <li>
     <a href="@string.Format("https://twitter.com/share?url=http://pioneercode.com/post/{0}/&text={1}", Model.Url, Uri.EscapeDataString(Model.Title))"

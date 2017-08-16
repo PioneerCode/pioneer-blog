@@ -2,6 +2,8 @@
     Layout = "~/Views/Post/_Template.cshtml";
     ViewBag.Title = Model[(int)PreviousCurrentNextPosition.Current].Title;
 }
+@using System.Collections.Generic
+@using Microsoft.AspNetCore.Mvc.Rendering
 @model List<Post>
 <article class="post">
   <section class="hero-gradient hg-large" style="background-image: url(@Model[(int)PreviousCurrentNextPosition.Current].Image)">

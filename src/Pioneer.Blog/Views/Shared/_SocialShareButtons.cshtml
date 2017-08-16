@@ -1,4 +1,5 @@
-﻿@model Post
+﻿@using System
+@model Post
 <div class="button-group expanded social-buttons">
   <a href="@string.Format("https://twitter.com/share?url=http://pioneercode.com/post/{0}/&text={1}", Model.Url, Uri.EscapeDataString(Model.Title))"
      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"

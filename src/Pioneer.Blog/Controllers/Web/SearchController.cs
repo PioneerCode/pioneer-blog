@@ -44,7 +44,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.PopularPosts = _postService.GetPopularPosts();
             ViewBag.NewPosts = _postService.GetAll(true, false, false, 4).ToList();
 
-            return View("../Search/Index", new List<Post>());
+            return View("~/Views/Search/Index.cshtml", new List<Post>());
         }
 
         [HttpPost]
@@ -67,7 +67,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.PopularPosts = _postService.GetPopularPosts();
             ViewBag.NewPosts = _postService.GetAll(true, false, false, 4).ToList();
 
-            return View("../Search/Index", searchResults.Posts);
+            return View("~/Views/Search/Index.cshtml", searchResults.Posts);
         }
 
         [HttpGet("search/{query}/{page:int?}")]
@@ -90,7 +90,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.PopularPosts = _postService.GetPopularPosts();
             ViewBag.NewPosts = _postService.GetAll(true, false, false, 4).ToList();
 
-            return View("../Search/Index", searchResults.Posts);
+            return View("~/Views/Search/Index.cshtml", searchResults.Posts);
         }
     }
 }

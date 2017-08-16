@@ -41,7 +41,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.PopularPosts = _postService.GetPopularPosts();
             ViewBag.NewPosts = _postService.GetAll(true, false, false, 4).ToList();
 
-            return View("../ArchivePost/Index", post);
+            return View("~/Views/ArchivePost/Index.cshtml", post);
         }
 
         // GET: Tag
@@ -63,7 +63,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.PopularPosts = _postService.GetPopularPosts();
             ViewBag.NewPosts = _postService.GetAll(true, false, false, 4).ToList();
 
-            return View("../ArchivePost/Index", posts);
+            return View("~/Views/ArchivePost/Index.cshtml", posts);
         }
 
         // GET: Category
@@ -83,8 +83,7 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.Tags = _tagService.GetAll();
             ViewBag.PopularPosts = _postService.GetPopularPosts();
             ViewBag.NewPosts = _postService.GetAll(true, false, false, 4).ToList();
-
-            return View("../ArchivePost/Index", posts);
+            return View("~/Views/ArchivePost/Index.cshtml", posts);
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
@@ -60,9 +61,14 @@ namespace Pioneer.Blog
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+            IHostingEnvironment env,
+            ILoggerFactory loggerFactory)
         {
             ServiceMapperConfig.Config();
+
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
             {
@@ -103,11 +109,6 @@ namespace Pioneer.Blog
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                 routes.MapRoute(
-                    name: "ArticleVisualStudioShortcuts",
-                    template: "article/visual-studio-shortcuts",
-                    defaults: new { controller = "Article", action = "VisualStudioShortcuts" });
-
-                routes.MapRoute(
                     name: "Post",
                     template: "post/{id}",
                     defaults: new { controller = "Post", action = "Index" });
@@ -136,6 +137,11 @@ namespace Pioneer.Blog
                     name: "Tag",
                     template: "tag/{id}/{page?}",
                     defaults: new { controller = "blog", action = "Tag" });
+
+                routes.MapRoute(
+                    name: "BlogFlat",
+                    template: "blog",
+                    defaults: new { controller = "blog", action = "Index" });
 
                 routes.MapRoute(
                     name: "Blog",
