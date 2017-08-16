@@ -1,7 +1,7 @@
 # Pioneer Blog
 
 > ## Announcement 
-> Migrations to .NET Core 2.x has been completed and merged into the master branch.  Version 1 of this blog, which runs on .NET Core 1.x, will be stashed at the [version-1 branch](https://github.com/PioneerCode/pioneer-blog/tree/version-1). 
+> Migration to .NET Core 2.x has been completed and merged into the master branch.  Version 1 of this blog, which runs on .NET Core 1.x, will be stashed at the [version-1 branch](https://github.com/PioneerCode/pioneer-blog/tree/version-1). 
 
 Active code based used for [Pioneer Code](http://pioneercode).
 
