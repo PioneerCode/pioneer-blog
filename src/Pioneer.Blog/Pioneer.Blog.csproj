@@ -4,6 +4,15 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-Pioneer.Blog-DD208353-7503-40F8-90E0-FF0A30FC57C0</UserSecretsId>
+    <Version>2.0.0</Version>
+    <Authors>Chad Ramos &lt;hello@pioneercode.com&gt;</Authors>
+    <PackageProjectUrl>https://github.com/PioneerCode/pioneer-blog</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PioneerCode/pioneer-blog.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <Company>Pioneer Code</Company>
+    <PackageIconUrl>https://pioneercode.com/images/icons/android-chrome-512x512.png</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/PioneerCode/pioneer-blog/blob/master/LICENSE</PackageLicenseUrl>
+    <Description>pioneercode.com</Description>
   </PropertyGroup>
 
 
