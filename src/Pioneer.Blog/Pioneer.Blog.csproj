@@ -10,7 +10,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" PrivateAssets="All" />
+    <PackageReference Include="Pioneer.Pagination" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Pioneer.Blog.Entity\Pioneer.Blog.Entity.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
+    <ProjectReference Include="..\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj" />
+    <ProjectReference Include="..\Pioneer.Blog.Service\Pioneer.Blog.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
