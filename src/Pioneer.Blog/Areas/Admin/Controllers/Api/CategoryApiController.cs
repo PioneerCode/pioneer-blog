@@ -42,7 +42,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPost]
-        //[Authorize(Policy = "isSuperUser")]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Create([FromBody]Category tag)
         {
             if (tag == null)
@@ -55,7 +55,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPut("{id}")]
-        //[Authorize(Policy = "isSuperUser")]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Update(int id, [FromBody] Category item)
         {
             if (item == null || item.CategoryId != id)

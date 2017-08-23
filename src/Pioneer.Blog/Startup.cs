@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +34,7 @@ namespace Pioneer.Blog
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             ConfigureServicesIdentity(services);
+            ConfigureCookies(services);
 
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
 
@@ -61,7 +65,7 @@ namespace Pioneer.Blog
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, 
+        public void Configure(IApplicationBuilder app,
             IHostingEnvironment env,
             ILoggerFactory loggerFactory)
         {
@@ -95,8 +99,48 @@ namespace Pioneer.Blog
                 .AddEntityFrameworkStores<BlogDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Cookies for redirect to login from api
-            // Cookies for access is denied from api
+            // Configure Identity
+            services.Configure<IdentityOptions>(options => { });
+
+            services.AddAuthorization(cfg =>
+            {
+                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
+            });
+        }
+
+        private static void ConfigureCookies(IServiceCollection services)
+        {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Events =
+                    new CookieAuthenticationEvents
+                    {
+                        OnRedirectToLogin = ctx =>
+                        {
+                            // If we were redirect to login from api..
+                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                            {
+                                ctx.Response.StatusCode = 401;
+                                return Task.FromResult<object>(null);
+                            }
+
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                            return Task.FromResult<object>(null);
+                        },
+                        OnRedirectToAccessDenied = ctx =>
+                        {
+                            // If access is denied from api...
+                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                            {
+                                ctx.Response.StatusCode = 403;
+                                return Task.FromResult<object>(null);
+                            }
+
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                            return Task.FromResult<object>(null);
+                        }
+                    };
+            });
         }
 
         private static void ConfigureMvc(IApplicationBuilder app)
