@@ -52,7 +52,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPost]
-        //[Authorize(Policy = "isSuperUser")]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Create([FromBody]Post post)
         {
             if (post == null)
@@ -65,7 +65,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
 
         [HttpPut("{id}")]
-        //[Authorize(Policy = "isSuperUser")]
+        [Authorize(Policy = "isSuperUser")]
         public IActionResult Update(int id, [FromBody] Post item)
         {
             if (item == null)
