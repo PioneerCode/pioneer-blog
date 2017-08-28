@@ -30,6 +30,7 @@
     "foundation-sites": "6.3.1"
   },
   "devDependencies": {
+    "clean-css": "^4.1.7",
     "del": "3.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^4.0.0",
@@ -40,9 +41,9 @@
     "gulp-uglify": "^3.0.0",
     "gulp-uncss": "^1.0.6",
     "gulp-util": "^3.0.8",
-    "typescript": "^2.2.2",
-    "clean-css": "^4.1.7",
     "require-dir": "^0.3.1",
-    "tslint": "5.5.0"
+    "tslint": "5.5.0",
+    "typescript": "^2.2.2",
+    "webpack": "^3.5.5"
   }
 }
