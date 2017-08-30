@@ -62,8 +62,7 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
                 return BadRequest();
             }
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false,
-                lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
 
             if (!result.Succeeded)
             {

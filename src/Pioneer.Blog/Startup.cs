@@ -100,7 +100,11 @@ namespace Pioneer.Blog
                 .AddDefaultTokenProviders();
 
             // Configure Identity
-            services.Configure<IdentityOptions>(options => { });
+            services.Configure<IdentityOptions>(options =>
+            {
+                /* Add Options Here */
+                /* https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration */
+            });
 
             services.AddAuthorization(cfg =>
             {
