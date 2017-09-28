@@ -58,7 +58,6 @@ npm install typings -g
 Navigate to the `Pioneer.Blog` directory from your command prompt and run....
 - `npm install`
 - `npm rebuild node-sass --force`
-- `typings install`
 - `gulp pubilc`
 - `gulp admin`
 
