@@ -1,5 +1,6 @@
 $(() => {
-  $(document).foundation();
+  const doc = $(document) as any;
+  doc.foundation();
 
   /**
    * FOUT fighter
