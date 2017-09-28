@@ -41,7 +41,7 @@
     "gulp-uglify": "^3.0.0",
     "gulp-uncss": "^1.0.6",
     "gulp-util": "^3.0.8",
-    "require-dir": "^0.3.1",
+    "require-dir": "^0.3.2" ,
     "tslint": "5.5.0",
     "typescript": "^2.2.2",
     "webpack": "^3.5.5"
