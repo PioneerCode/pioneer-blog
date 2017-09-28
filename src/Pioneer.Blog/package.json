@@ -22,8 +22,8 @@
     "@angular/platform-browser": "~4.3.1",
     "@angular/platform-browser-dynamic": "~4.3.1",
     "systemjs": "~0.20.19",
-    "core-js": "~2.5.1" ,
-    "rxjs": "`5.4.3",
+    "core-js": "~2.5.1",
+    "rxjs": "5.4.3",
     "zone.js": "~0.8.4",
     "font-awesome": "~4.7.0",
     "foundation-sites": "6.3.1"
