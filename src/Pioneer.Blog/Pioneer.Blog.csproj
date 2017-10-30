@@ -13,6 +13,7 @@
     <PackageIconUrl>https://pioneercode.com/images/icons/android-chrome-512x512.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/PioneerCode/pioneer-blog/blob/master/LICENSE</PackageLicenseUrl>
     <Description>pioneercode.com</Description>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
