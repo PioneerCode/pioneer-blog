@@ -21,7 +21,7 @@ function styles() {
         .pipe(sass({ outputStyle: 'compressed' })
             .on('error', sass.logError))
         .pipe(cleanCss({ keepSpecialComments: 0 }))
-        .pipe(gulp.dest('areas/admin/admin-app/src/admin'))
+        .pipe(gulp.dest('areas/admin/admin-app/src'))
         .pipe(gulp.dest('wwwroot/admin/'));
 }
 

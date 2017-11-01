@@ -43,7 +43,6 @@ function styles() {
     .pipe(autoprefixer({
       browsers: ['last 2 versions', 'ie >= 9']
     }))
-    .pipe(gulp.dest('areas/admin/admin-app/src'))
     .pipe(gulp.dest('wwwroot/'));
 }
 
