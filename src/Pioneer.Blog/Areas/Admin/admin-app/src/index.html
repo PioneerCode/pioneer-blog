@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>AdminApp</title>
@@ -9,7 +10,48 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="app.css" rel="stylesheet" />
 </head>
+
 <body>
-  <app-root></app-root>
+  <section class="body-content-admin">
+    <header>
+      <div class="clearfix">
+        <div class="home float-left">
+          <a href="/">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            Pioneer Code
+          </a>
+        </div>
+        <div class="float-right">
+          <!-- @await Html.PartialAsync("_LoginPartial") -->
+        </div>
+      </div>
+    </header>
+    <nav class="nav-admin">
+      <ul class="menu vertical">
+        <li class="">
+          <a href="/admin/posts">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            POSTS
+          </a>
+        </li>
+        <li class="">
+          <a href="/admin/categories">
+            <i class="fa fa-archive" aria-hidden="true"></i>
+            CATEGORIES
+          </a>
+        </li>
+        <li class="">
+          <a href="/admin/tags" class="margin-zero">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            TAGS
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="admin-canvas">
+      <app-root></app-root>
+    </div>
+  </section>
 </body>
+
 </html>
