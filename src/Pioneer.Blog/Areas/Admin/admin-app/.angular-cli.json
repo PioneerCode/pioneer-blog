@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "admin-app"
+    "name": "admin-app",
+    "ejected": true
   },
   "apps": [
     {
@@ -58,6 +59,7 @@
     "class": {
       "spec": false
     },
-    "component": {}
+    "component": {
+    }
   }
 }
