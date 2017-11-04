@@ -1,8 +1,9 @@
 {
-  "name": "angular-io-example",
+  "name": "pioneer-blog-admin-app",
   "version": "1.0.0",
+  "author": "Chad Ramos <dev@pioneercode.com>",
   "private": true,
-  "description": "Example project from an angular.io guide.",
+  "description": "Pioneer Code Blog admin app.",
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
@@ -93,5 +94,8 @@
     "rollup-plugin-uglify": "^1.0.1",
     "source-map-explorer": "^1.3.2"
   },
-  "repository": {}
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PioneerCode/pioneer-blog/tree/master/src/Pioneer.Blog/Areas/Admin/app"
+  }
 }
