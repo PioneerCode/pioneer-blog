@@ -14,7 +14,9 @@
         "jasminewd",
         "ngfactory",
         "nguniversal",
+        "pioneercode",
         "prestart",
+        "sourcemap",
         "systemjs"
     ]
 }
