@@ -9,5 +9,12 @@
         "src/vendor.js": true,
         "node_modules": true,
         "app": true
-    }
+    },
+    "cSpell.words": [
+        "jasminewd",
+        "ngfactory",
+        "nguniversal",
+        "prestart",
+        "systemjs"
+    ]
 }
