@@ -51,4 +51,9 @@
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
 
+@import "app/components/pager/pager.component";
+@import "app/components/loader/loader.component";
+@import "app/components/pages/categories/categories-page.component";
+@import "app/components/pages/tags/tags-page.component";
+@import "app/components/pages/posts/posts-page.component";
 @import "app/app.component";
