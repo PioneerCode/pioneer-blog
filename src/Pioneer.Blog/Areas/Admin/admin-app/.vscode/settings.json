@@ -11,12 +11,15 @@
         "app": true
     },
     "cSpell.words": [
+        "devtool",
         "jasminewd",
         "ngfactory",
         "nguniversal",
         "pioneercode",
+        "polyfills",
         "prestart",
         "sourcemap",
-        "systemjs"
+        "systemjs",
+        "woff"
     ]
 }
