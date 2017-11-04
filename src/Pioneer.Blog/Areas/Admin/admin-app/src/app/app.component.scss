@@ -1,3 +1,68 @@
-body {
-  background: $primary-color;
+header {
+  position: fixed;
+  top: 0;
+  height: 3rem;
+  z-index: 999;
+  background: lighten($black, 15%);
+  width: 100%;
+
+  .home {
+    height: 3rem;
+    width: 250px;
+    background: lighten($black, 10%);
+    text-align: center;
+
+    a {
+      padding: 8px 0 0;
+      font-size: 18px;
+      display: block;
+      height: 3rem;
+      width: 100%;
+      color: $white;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  form {
+    button {
+      height: 3rem;
+    }
+  }
+}
+
+.nav-admin {
+  padding: 3rem 0 2rem;
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  background: lighten($black, 5%);
+
+  li.selected {
+    background: $primary-color;
+
+    &:hover {
+      background: $primary-color;
+    }
+  }
+
+  li {
+    &:hover {
+      background: $black;
+    }
+  }
+
+  a {
+    i {
+      margin-top: -6px;
+    }
+
+    color: $white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
