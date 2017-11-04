@@ -13,10 +13,10 @@ export class CategoriesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.categoryService.init()
-      .then(() => {
-        this.loading = false;
-      });
+    // this.categoryService.init()
+    //   .then(() => {
+    //     this.loading = false;
+    //   });
   }
 
   deleteRecord(id: number): void {

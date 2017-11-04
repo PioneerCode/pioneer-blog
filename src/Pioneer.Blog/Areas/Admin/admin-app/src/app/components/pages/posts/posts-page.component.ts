@@ -20,16 +20,16 @@ export class PostsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.tagService.init()
-      .then(() => {
-        return this.categoryService.init();
-      })
-      .then(() => {
-        return this.postService.init();
-      })
-      .then(() => {
-        this.loading = false;
-      });
+    // this.tagService.init()
+    //   .then(() => {
+    //     return this.categoryService.init();
+    //   })
+    //   .then(() => {
+    //     return this.postService.init();
+    //   })
+    //   .then(() => {
+    //     this.loading = false;
+    //   });
   }
 
   /**

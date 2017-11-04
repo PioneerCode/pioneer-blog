@@ -14,10 +14,10 @@ export class TagsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.tagService.init()
-      .then(() => {
-        this.loading = false;
-      });
+    // this.tagService.init()
+    //   .then(() => {
+    //     this.loading = false;
+    //   });
   }
 
   remove(id: number): void {
