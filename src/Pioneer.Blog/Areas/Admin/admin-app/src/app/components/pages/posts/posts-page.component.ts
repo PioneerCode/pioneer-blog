@@ -19,7 +19,7 @@ export class PostsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    // this.loading = true;
     // this.tagService.init()
     //   .then(() => {
     //     return this.categoryService.init();

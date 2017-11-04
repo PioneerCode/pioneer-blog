@@ -13,7 +13,7 @@ export class TagsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    // this.loading = true;
     // this.tagService.init()
     //   .then(() => {
     //     this.loading = false;
