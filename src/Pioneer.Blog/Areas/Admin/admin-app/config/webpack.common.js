@@ -7,7 +7,8 @@ module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    'app': './src/main.ts'
+    'app': './src/main.ts',
+    'styles': './src/styles.scss'
   },
 
   resolve: {
@@ -22,7 +23,7 @@ module.exports = {
           {
             loader: 'awesome-typescript-loader',
             options: { configFileName: helpers.root('src', 'tsconfig.json') }
-          } , 'angular2-template-loader'
+          }, 'angular2-template-loader'
         ]
       },
       {
@@ -42,6 +43,20 @@ module.exports = {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
         loader: 'raw-loader'
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract([
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: true
+            }
+          },
+          {
+            loader: "sass-loader"
+          }
+        ])
       }
     ]
   },
