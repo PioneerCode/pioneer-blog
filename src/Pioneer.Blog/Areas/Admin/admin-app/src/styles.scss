@@ -51,6 +51,8 @@
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
 
+@import "../node_modules/font-awesome/scss/font-awesome";
+
 @import "app/components/pager/pager.component";
 @import "app/components/loader/loader.component";
 @import "app/components/pages/categories/categories-page.component";
