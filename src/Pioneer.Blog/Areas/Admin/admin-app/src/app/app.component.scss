@@ -103,6 +103,12 @@ header {
   font-size: 14px;
 }
 
+.admin-canvas {
+  position: relative;
+  margin: 1rem 0 0 250px;
+  min-height: 700px;
+}
+
 .admin-canvas-content {
   padding: 1rem 0 0 0;
   background: $white;
