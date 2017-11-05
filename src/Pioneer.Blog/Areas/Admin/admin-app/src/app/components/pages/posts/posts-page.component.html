@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="large-9 columns">
-      <div class="admin-canvas-content" *ngIf="postService.getCurrent()">
+      <div class="admin-canvas-content" *ngIf="postService.getCurrent().postId">
         <pc-loader [loading]="loading"></pc-loader>
         <div class="row">
           <div class="large-12 columns">
@@ -174,7 +174,7 @@
           </div>
         </div>
       </div>
-      <div class="empty-state" *ngIf="!postService.getCurrent()">
+      <div class="empty-state" *ngIf="!postService.getCurrent().postId">
         <i class="fa fa-file-o"></i>
         <h2>Add A Post To Get Started</h2>
       </div>

@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="large-9 columns">
-    <div class="admin-canvas-content" *ngIf="categoryService.getCurrent()">
+    <div class="admin-canvas-content" *ngIf="categoryService.getCurrent().categoryId">
       <pc-loader [loading]="loading"></pc-loader>
       <div class="row">
         <div class="large-12 columns">
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="empty-state" *ngIf="!categoryService.getCurrent()">
+    <div class="empty-state" *ngIf="!categoryService.getCurrent().categoryId">
       <i class="fa fa-list"></i>
       <h2>Add A Category To Get Started</h2>
     </div>
