@@ -18,7 +18,8 @@
                 <span>{{ post.title }}</span>
               </li>
             </ul>
-            <pc-pager (onPageClicked)="onPageClicked($event)"
+            <pc-pager [show]="postService.getCurrent().postId"
+                      (onPageClicked)="onPageClicked($event)"
                       [countPerPage]="postService.countPerPage"
                       [currentPageIndex]="postService.currentPageIndex"
                       [totalItemsInCollection]="postService.totalItemsInCollection"

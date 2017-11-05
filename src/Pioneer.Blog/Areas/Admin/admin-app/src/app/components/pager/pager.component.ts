@@ -15,7 +15,7 @@ export interface IPager {
 @Component({
   selector: 'pc-pager',
   template: `
-  <section class="pc-pager">
+  <section class="pc-pager" *ngIf="show">
     <ul class="pagination" role="navigation" aria-label="Pagination">
       <li class="pagination-previous"
           [ngClass]="{disabled : currentPageIndex === 1}"
@@ -40,6 +40,7 @@ export class PagerComponent implements OnInit {
   @Input() currentPageIndex = 1;
   @Input() countPerPage = 1;
   @Input() totalItemsInCollection = 1;
+  @Input() show = false;
 
   @Output() onPageClicked = new EventEmitter<number>();
 
