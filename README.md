@@ -2,11 +2,6 @@
 
 Active code based used for [Pioneer Code](https://pioneercode).
 
-> ## Announcement 
-> - Migration to .NET Core 2.x has been completed and merged into the master branch.  
->   - Work on JWT and cookie auth is pending. 
-> - Version 1 of this blog, which runs on .NET Core 1.x, will be stashed at the [version-1 branch](https://github.com/PioneerCode/pioneer-blog/tree/version-1). 
-
 Current stack...
 - ASP.NET Core 2.x
 - Entity Framework Core 2.x
@@ -63,7 +58,20 @@ Navigate to the `Pioneer.Blog` directory from your command prompt and run....
 
 ### Run
 
-That is it! You now should be able to build and launch the project from your IDE of choosing.  
+That is it! You now should be able to build and launch the project from your IDE of choosing. 
+
+### Registering A Super Account
+
+- Launch your application in debug mode.
+- Navigate to /account/register.
+	- Register a new account.
+- Open up your AspNetUserClaims and AspNetUsers table.
+- Add a new claim of the type **isSuperUser**
+	- Supply your newly registered UserId as the FK.
+
+![alt text](assets/claims.png)
+
+You can now use this account to perform all administrative tasks. 
 
 ## What Is Next
 
