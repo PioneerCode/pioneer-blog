@@ -266,4 +266,4 @@ ModelManifest.xml
 /src/Pioneer.Blog/package-lock.json
 /src/Pioneer.Blog/wwwroot/admin/*.css
 /src/Pioneer.Blog/wwwroot/*.html
-/stc/Pioneer.Blog/Areas/Admin/admin-app
+/src/Pioneer.Blog/Areas/Admin/admin-app/dist
