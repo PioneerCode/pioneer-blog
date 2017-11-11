@@ -2,22 +2,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section headEnd
-{
-  <link href="/app.css" rel="stylesheet" asp-append-version="true" />
-  <link href="/admin/app.css" rel="stylesheet" asp-append-version="true">
-  <script src="/admin/libs/libs.js" asp-append-version="true"></script>
-
-  <!-- Polyfill(s) for older browsers -->
-  <script src="/admin/libs/core-js/shim.min.js" asp-append-version="true"></script>
-
-  <script src="/admin/libs/zone.js/zone.js" asp-append-version="true"></script>
-  <script src="/admin/libs/systemjs/system.src.js" asp-append-version="true"></script>
-
-  <script src="/admin/systemjs.config.js" asp-append-version="true"></script>
-  <script>
-    System.import('@ViewBag.SystemJsImportPath').catch(function (err) { console.error(err); });
-  </script>
+@section headEnd {
+  <base href="/admin/portal">
+  <link href="~/admin/styles.css" rel="stylesheet" />
 }
 
 <section class="body-content-admin">
@@ -34,31 +21,14 @@
       </div>
     </div>
   </header>
-  <nav class="nav-admin">
-    <ul class="menu vertical">
-      <li class="@(ViewBag.Selected == "posts" ? "selected" : "")">
-        <a href="/admin/posts">
-          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-          POSTS
-        </a>
-      </li>
-      <li class="@(ViewBag.Selected == "categories" ? "selected" : "")">
-        <a href="/admin/categories">
-          <i class="fa fa-archive" aria-hidden="true"></i>
-          CATEGORIES
-        </a>
-      </li>
-      <li class="@(ViewBag.Selected == "tags" ? "selected" : "")">
-        <a href="/admin/tags" class="margin-zero">
-          <i class="fa fa-tags" aria-hidden="true"></i>
-          TAGS
-        </a>
-      </li>
-    </ul>
-  </nav>
   <div class="admin-canvas">
     @RenderBody()
   </div>
 </section>
 
-@section bodyEnd {}
+@section bodyEnd {
+  <script type="text/javascript" src="~/admin/polyfills.js"></script>
+  <script type="text/javascript" src="~/admin/vendor.js"></script>
+  <script type="text/javascript" src="~/admin/app.js"></script>
+  <script type="text/javascript" src="~/admin/styles.js"></script>
+}
