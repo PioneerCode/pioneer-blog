@@ -6,30 +6,24 @@
         <div class="row">
           <div class="large-12 columns">
             <div class="clearfix">
-              <button class="button tiny secondary float-right"
-                      (click)="postService.create()">
+              <button class="button tiny secondary float-right" (click)="postService.create()">
                 Add
               </button>
             </div>
             <ul class="admin-collection-list">
-              <li *ngFor="let post of postService.getAll()"
-                  [class.selected]="post.postId === postService.getCurrent().postId"
-                  (click)="postService.setCurrent(post.url)">
+              <li *ngFor="let post of postService.getAll()" [class.selected]="post.postId === postService.getCurrent().postId" (click)="postService.setCurrent(post.url)">
                 <span>{{ post.title }}</span>
               </li>
             </ul>
-            <pc-pager [show]="postService.getCurrent().postId"
-                      (onPageClicked)="onPageClicked($event)"
-                      [countPerPage]="postService.countPerPage"
-                      [currentPageIndex]="postService.currentPageIndex"
-                      [totalItemsInCollection]="postService.totalItemsInCollection"
-                      *ngIf="postService.getCurrent()"></pc-pager>
+            <pc-pager [show]="postService.getCurrent().postId" (onPageClicked)="onPageClicked($event)" [countPerPage]="postService.countPerPage"
+              [currentPageIndex]="postService.currentPageIndex" [totalItemsInCollection]="postService.totalItemsInCollection"
+              *ngIf="postService.getCurrent()"></pc-pager>
           </div>
         </div>
       </div>
     </div>
     <div class="large-9 columns">
-      <div class="admin-canvas-content" *ngIf="postService.getCurrent().postId">
+      <div class="admin-canvas-content" *ngIf="postService.getCurrent()?.postId">
         <pc-loader [loading]="loading"></pc-loader>
         <div class="row">
           <div class="large-12 columns">
@@ -37,8 +31,7 @@
               <span class="record-id">
                 Id: {{postService.getCurrent().postId}}
               </span>
-              <button class="button tiny secondary float-right save"
-                      (click)="save()">
+              <button class="button tiny secondary float-right save" (click)="save()">
                 Save
               </button>
             </div>
@@ -48,41 +41,36 @@
           <div class="large-6 columns">
             <label>
               Title
-              <input type="text"
-                     [(ngModel)]="postService.getCurrent().title">
+              <input type="text" [(ngModel)]="postService.getCurrent().title">
             </label>
           </div>
           <div class="large-6 columns">
             <label>
               URL
-              <input type="text"
-                     [(ngModel)]="postService.getCurrent().url">
+              <input type="text" [(ngModel)]="postService.getCurrent().url">
             </label>
           </div>
         </div>
         <div class="row">
           <div class="large-6 columns">
             <label>
-              Description <span>({{postService.getDescriptionLength()}})</span>
-              <textarea [(ngModel)]="postService.getCurrent().description"
-                        class="admin-post-description"></textarea>
+              Description
+              <span>({{postService.getDescriptionLength()}})</span>
+              <textarea [(ngModel)]="postService.getCurrent().description" class="admin-post-description"></textarea>
             </label>
           </div>
           <div class="large-6 columns">
             <label>
               Large Image
-              <input type="text"
-                     [(ngModel)]="postService.getCurrent().image">
+              <input type="text" [(ngModel)]="postService.getCurrent().image">
             </label>
             <label>
               Small Image
-              <input type="text"
-                     [(ngModel)]="postService.getCurrent().smallImage">
+              <input type="text" [(ngModel)]="postService.getCurrent().smallImage">
             </label>
             <label>
               Icon Image
-              <input type="text"
-                     [(ngModel)]="postService.getCurrent().iconImage">
+              <input type="text" [(ngModel)]="postService.getCurrent().iconImage">
             </label>
           </div>
         </div>
@@ -90,15 +78,13 @@
           <div class="large-6 columns">
             <label>
               Code Link
-              <input type="text"
-                     [(ngModel)]="postService.getCurrent().link">
+              <input type="text" [(ngModel)]="postService.getCurrent().link">
             </label>
           </div>
           <div class="large-6 columns">
             <label>
               Meta
-              <input type="text"
-                     [(ngModel)]="postService.getCurrent().meta">
+              <input type="text" [(ngModel)]="postService.getCurrent().meta">
             </label>
           </div>
         </div>
@@ -106,46 +92,37 @@
           <div class="large-3 columns">
             <label>
               Created On
-              <input type="text"
-                     [ngModel]="postService.getCurrent().createdOn | date:'MM-dd-yyyy'"
-                     disabled>
+              <input type="text" [ngModel]="postService.getCurrent().createdOn | date:'MM-dd-yyyy'" disabled>
             </label>
           </div>
           <div class="large-3 columns">
             <label>
               Posted On
-              <input type="text"
-                     [ngModel]="postService.getCurrent().postedOn | date:'MM-dd-yyyy'"
-                     disabled>
+              <input type="text" [ngModel]="postService.getCurrent().postedOn | date:'MM-dd-yyyy'" disabled>
             </label>
           </div>
           <div class="large-3 columns">
             <label>
               Modified On
-              <input type="text"
-                     [ngModel]="postService.getCurrent().modifiedOn | date:'MM-dd-yyyy'"
-                     disabled>
+              <input type="text" [ngModel]="postService.getCurrent().modifiedOn | date:'MM-dd-yyyy'" disabled>
             </label>
           </div>
           <div class="large-3 columns">
-            <input id="published" type="checkbox"
-                   [checked]="postService.getCurrent().published"
-                   (change)="postService.getCurrent().published = !postService.getCurrent().published"><label for="published">Published</label>
+            <input id="published" type="checkbox" [checked]="postService.getCurrent().published" (change)="postService.getCurrent().published = !postService.getCurrent().published">
+            <label for="published">Published</label>
           </div>
         </div>
         <div class="row">
           <div class="large-6 columns">
             <label>
               Excerpt
-              <textarea [(ngModel)]="postService.getCurrent().excerpt.content"
-                        *ngIf="postService.getCurrent().excerpt"></textarea>
+              <textarea [(ngModel)]="postService.getCurrent().excerpt.content" *ngIf="postService.getCurrent().excerpt"></textarea>
             </label>
           </div>
           <div class="large-6 columns">
             <label>
               Article
-              <textarea [(ngModel)]="postService.getCurrent().article.content"
-                        *ngIf="postService.getCurrent().article"></textarea>
+              <textarea [(ngModel)]="postService.getCurrent().article.content" *ngIf="postService.getCurrent().article"></textarea>
             </label>
           </div>
         </div>
@@ -154,9 +131,8 @@
             <fieldset class="fieldset">
               <legend>Categories</legend>
               <span *ngFor="let category of categoryService.getAll()" class="admin-post-collection-item">
-                <input type="checkbox"
-                       [checked]="postService.getCurrent().category && postService.getCurrent().category.categoryId === category.categoryId"
-                       (click)="onCategoryClick(category)">
+                <input type="checkbox" [checked]="postService.getCurrent().category && postService.getCurrent().category.categoryId === category.categoryId"
+                  (click)="onCategoryClick(category)">
                 <label>{{ category.name | truncate : 20 }}</label>
               </span>
             </fieldset>
@@ -167,15 +143,14 @@
             <fieldset class="fieldset">
               <legend>Tags</legend>
               <span *ngFor="let tag of tagService.getAll()" class="admin-post-collection-item">
-                <input type="checkbox"
-                       [checked]="postService.isTagSet(tag)"
-                       (click)="onTagClick(tag)"><label>{{ tag.name | truncate : 20 }}</label>
+                <input type="checkbox" [checked]="postService.isTagSet(tag)" (click)="onTagClick(tag)">
+                <label>{{ tag.name | truncate : 20 }}</label>
               </span>
             </fieldset>
           </div>
         </div>
       </div>
-      <div class="empty-state" *ngIf="!postService.getCurrent().postId">
+      <div class="empty-state" *ngIf="!postService.getCurrent()?.postId">
         <i class="fa fa-file-o"></i>
         <h2>Add A Post To Get Started</h2>
       </div>
