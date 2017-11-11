@@ -7,7 +7,9 @@ using Pioneer.Blog.Service;
 
 namespace Pioneer.Blog.Areas.Admin.Controllers.Api
 {
+#if (!DEBUG)
     [Authorize]
+#endif
     [Route("api/categories")]
     public class CategoryApiController : Controller
     {

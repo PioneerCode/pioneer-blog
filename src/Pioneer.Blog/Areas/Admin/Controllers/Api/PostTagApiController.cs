@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿#if (DEBUG)
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Service;
 
 namespace Pioneer.Blog.Areas.Admin.Controllers.Api
 {
+#if (!DEBUG)
     [Authorize]
+#endif
     [Route("api/post-tags")]
     public class PostTagApiController : Controller
     {
@@ -32,3 +34,4 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         }
     }
 }
+#endif
