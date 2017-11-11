@@ -21,6 +21,7 @@
         "prestart",
         "sourcemap",
         "systemjs",
-        "woff"
+        "woff",
+        "wwwroot"
     ]
 }

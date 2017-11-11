@@ -259,8 +259,7 @@ ModelManifest.xml
 /src/Pioneer.Blog/typescript/typings
 /src/Pioneer.Blog/wwwroot/app.js
 /src/Pioneer.Blog/wwwroot/app.css
-/src/Pioneer.Blog/wwwroot/admin/app
-/src/Pioneer.Blog/wwwroot/admin/libs
+/src/Pioneer.Blog/wwwroot/admin
 /src/Pioneer.Blog/dev/admin/**/*.js
 /src/Pioneer.Blog/typings/**/*
 /src/Pioneer.Blog/package-lock.json
