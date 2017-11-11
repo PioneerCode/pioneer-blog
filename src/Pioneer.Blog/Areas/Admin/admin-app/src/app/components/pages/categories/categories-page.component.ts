@@ -12,11 +12,14 @@ export class CategoriesPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loading = true;
-    // this.categoryService.init()
-    //   .then(() => {
-    //     this.loading = false;
-    //   });
+    this.loading = true;
+    this.categoryService.init()
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(() => {
+        this.loading = false;
+      });
   }
 
   deleteRecord(id: number): void {

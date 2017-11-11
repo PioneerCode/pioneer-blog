@@ -7,7 +7,7 @@ using Pioneer.Blog.Service;
 
 namespace Pioneer.Blog.Areas.Admin.Controllers.Api
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/tags")]
     public class TagApiController : Controller
     {
