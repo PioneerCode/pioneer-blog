@@ -9,6 +9,10 @@
         "node_modules": true,
         "app": true
     },
+    "beautify.tabSize": 2,
+    "beautify.options": {
+      "preserve_newlines": true
+    },
     "cSpell.words": [
         "Injectable",
         "devtool",
