@@ -77,3 +77,5 @@ You can now use this account to perform all administrative tasks.
 
 - If your curious what is coming down the pipe, I track features as [isuses](https://github.com/PioneerCode/pioneer-blog/issues).
 - If there is interest, I am willing to entertain the idea of abstracting the vast majority of code away from the Pioneer Blog domain so that it can't be reused without to much refactoring.  
+
+## [CHANGELOG](CHANGELOG.md)

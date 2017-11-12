@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog", "src\Pioneer.Blog\Pioneer.Blog.csproj", "{FC503820-515C-48B2-9F64-EC209AF50727}"
 EndProject
@@ -11,12 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Entity", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Repository", "src\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj", "{B86BBFF7-05FE-4244-AFC2-DCEA7277EF7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pioneer.Blog.Service", "src\Pioneer.Blog.Service\Pioneer.Blog.Service.csproj", "{50C3CE4B-055B-429E-A075-404F9FF3B9FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Service", "src\Pioneer.Blog.Service\Pioneer.Blog.Service.csproj", "{50C3CE4B-055B-429E-A075-404F9FF3B9FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F187B46-5EFD-458F-A2AD-7139315A2726}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
 		README.md = README.md
 	EndProjectSection
 EndProject
