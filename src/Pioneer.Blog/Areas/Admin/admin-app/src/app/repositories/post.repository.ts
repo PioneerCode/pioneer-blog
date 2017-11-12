@@ -1,9 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-
-import 'rxjs/add/operator/toPromise';
-
 import { Post } from '../models/post';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PostRepository {
@@ -12,10 +10,7 @@ export class PostRepository {
   constructor(private http: Http) { }
 
   get(idUrl: string, includeExcerpt = false): Promise<Post> {
-    return this.http.get(this.url + '/' + idUrl + '?includeExcerpt=' + includeExcerpt,
-      {
-        withCredentials: true
-      })
+    return this.http.get(this.url + '/' + idUrl + '?includeExcerpt=' + includeExcerpt, { withCredentials: true })
       .toPromise()
       .then((res: Response) => {
         const body: Post = res.json();
@@ -29,7 +24,14 @@ export class PostRepository {
     includeExcerpt = true,
     includeArticle = true,
     includeUnpublished = true): Promise<Post[]> {
-    return this.http.get(this.url + '?countPerPage=' + count + '&currentPageIndex=' + page + '&ncludeExceprt=' + includeExcerpt + '&includeArticle=' + includeArticle + '&includeUnpublished=' + includeUnpublished)
+
+    const query = `?countPerPage=${count}` +
+      `&currentPageIndex=${page}` +
+      `&includeExcerpt=${includeExcerpt}` +
+      `&includeArticle=${includeArticle}` +
+      `&includeUnpublished=${includeUnpublished}`;
+
+    return this.http.get(this.url + query)
       .toPromise()
       .then((res: Response) => {
         const body: Post[] = res.json();
@@ -70,8 +72,6 @@ export class PostRepository {
       })
       .catch(this.handleError);
   }
-
-
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
