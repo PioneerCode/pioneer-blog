@@ -23,13 +23,13 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         [HttpGet]
         public IEnumerable<Post> GetAll(int? countPerPage, 
             int? currentPageIndex, 
-            bool includeExceprt = true, 
+            bool includeExcerpt = true, 
             bool includeArticle = true, 
             bool includeUnpublished = false)
         {
             if (countPerPage == null || currentPageIndex == null)
             {
-                return _postService.GetAll(includeExceprt, includeArticle, includeUnpublished);
+                return _postService.GetAll(includeExcerpt, includeArticle, includeUnpublished);
             }
 
             return _postService.GetAllPaged((int)countPerPage, (int)currentPageIndex, includeUnpublished);

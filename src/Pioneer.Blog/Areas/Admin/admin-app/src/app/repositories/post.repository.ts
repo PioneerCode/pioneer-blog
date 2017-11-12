@@ -27,7 +27,7 @@ export class PostRepository {
 
     const query = `?countPerPage=${count}` +
       `&currentPageIndex=${page}` +
-      `&includeExceprt=${includeExcerpt}` +
+      `&includeExcerpt=${includeExcerpt}` +
       `&includeArticle=${includeArticle}` +
       `&includeUnpublished=${includeUnpublished}`;
 
