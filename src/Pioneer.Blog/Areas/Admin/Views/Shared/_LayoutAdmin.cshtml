@@ -4,7 +4,7 @@
 
 @section headEnd {
   <base href="/admin/portal">
-  <link href="~/admin/styles.css" rel="stylesheet" />
+  <link href="~/admin/styles.css" rel="stylesheet" asp-append-version="true" />
 }
 
 <section class="body-content-admin">
@@ -25,8 +25,8 @@
 </section>
 
 @section bodyEnd {
-  <script type="text/javascript" src="~/admin/polyfills.js"></script>
-  <script type="text/javascript" src="~/admin/vendor.js"></script>
-  <script type="text/javascript" src="~/admin/app.js"></script>
-  <script type="text/javascript" src="~/admin/styles.js"></script>
+  <script type="text/javascript" src="~/admin/polyfills.js" asp-append-version="true" ></script>
+  <script type="text/javascript" src="~/admin/vendor.js" asp-append-version="true" ></script>
+  <script type="text/javascript" src="~/admin/app.js" asp-append-version="true" ></script>
+  <script type="text/javascript" src="~/admin/styles.js" asp-append-version="true" ></script>
 }
