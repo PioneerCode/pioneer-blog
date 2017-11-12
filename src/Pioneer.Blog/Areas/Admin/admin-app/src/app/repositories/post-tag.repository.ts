@@ -1,9 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-
-import 'rxjs/add/operator/toPromise';
-
 import { Tag } from '../models/tag';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PostTagRepository {
