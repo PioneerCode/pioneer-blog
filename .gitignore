@@ -266,3 +266,4 @@ ModelManifest.xml
 /src/Pioneer.Blog/wwwroot/admin/*.css
 /src/Pioneer.Blog/wwwroot/*.html
 /src/Pioneer.Blog/Areas/Admin/admin-app/dist
+/src/Pioneer.Blog/Areas/Admin/admin-app/assets
