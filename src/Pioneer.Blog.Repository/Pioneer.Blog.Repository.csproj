@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pioneer.Blog.Entity\Pioneer.Blog.Entity.csproj" />
+    <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
+  </ItemGroup>
+
+</Project>
