@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Pioneer.Blog.Data;
+using Pioneer.Blog.Extensions;
 
 namespace Pioneer.Blog.Pages.Account
 {
