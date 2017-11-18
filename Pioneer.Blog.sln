@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog", "src\Pioneer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Model", "src\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj", "{C7B75754-0AAC-4E49-88CF-21F1AE0208EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pioneer.Blog.Entity", "src\Pioneer.Blog.Entity\Pioneer.Blog.Entity.csproj", "{38AF588B-C7AF-47FB-825E-5E3F9FCAB8C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C7B75754-0AAC-4E49-88CF-21F1AE0208EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7B75754-0AAC-4E49-88CF-21F1AE0208EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7B75754-0AAC-4E49-88CF-21F1AE0208EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38AF588B-C7AF-47FB-825E-5E3F9FCAB8C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38AF588B-C7AF-47FB-825E-5E3F9FCAB8C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38AF588B-C7AF-47FB-825E-5E3F9FCAB8C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38AF588B-C7AF-47FB-825E-5E3F9FCAB8C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
