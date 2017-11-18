@@ -1,8 +1,0 @@
-﻿@using System.Collections.Generic
-@model List<Post>
-<ul class="sidebar-new-posts">
-  @foreach (var post in Model)
-  {
-      <li><a href="/post/@post.Url" title="@post.Title">@post.Title</a></li>
-  }
-</ul>
