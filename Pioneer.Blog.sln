@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog", "src\Pioneer.Blog\Pioneer.Blog.csproj", "{13F53D9B-9756-47AC-9EA4-D65262FF414B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pioneer.Blog.Model", "src\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj", "{C7B75754-0AAC-4E49-88CF-21F1AE0208EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{13F53D9B-9756-47AC-9EA4-D65262FF414B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13F53D9B-9756-47AC-9EA4-D65262FF414B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13F53D9B-9756-47AC-9EA4-D65262FF414B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B75754-0AAC-4E49-88CF-21F1AE0208EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B75754-0AAC-4E49-88CF-21F1AE0208EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B75754-0AAC-4E49-88CF-21F1AE0208EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B75754-0AAC-4E49-88CF-21F1AE0208EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
