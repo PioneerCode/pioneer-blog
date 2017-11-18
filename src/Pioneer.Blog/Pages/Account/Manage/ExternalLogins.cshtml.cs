@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Pioneer.Blog.Data;
+using Pioneer.Blog.Entity;
 
 namespace Pioneer.Blog.Pages.Account.Manage
 {

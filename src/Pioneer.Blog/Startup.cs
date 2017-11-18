@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Pioneer.Blog.Data;
+using Pioneer.Blog.Entity;
+using Pioneer.Blog.Repository;
 using Pioneer.Blog.Services;
 
 namespace Pioneer.Blog
@@ -21,11 +22,11 @@ namespace Pioneer.Blog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<BlogDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc()
