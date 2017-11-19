@@ -1,0 +1,54 @@
+﻿<div class="row expanded">
+  <div class="large-3 columns">
+    <div class="admin-canvas-content">
+      <pc-loader [loading]="loading"></pc-loader>
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="clearfix">
+            <button class="button tiny secondary float-right"
+                    (click)="categoryService.create()">
+              Add
+            </button>
+          </div>
+          <ul class="admin-collection-list">
+            <li *ngFor="let category of categoryService.getAll()"
+                [class.selected]="category.categoryId === categoryService.getCurrent().categoryId"
+                (click)="categoryService.setCurrent(category.categoryId)">
+              <span>{{ category.name }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="large-9 columns">
+    <div class="admin-canvas-content" *ngIf="categoryService.getCurrent()">
+      <pc-loader [loading]="loading"></pc-loader>
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="clearfix">
+            <span class="record-id">Id: {{categoryService.getCurrent().categoryId}}</span>
+            <button class="button secondary float-right save"
+                    (click)="save(categoryService.getCurrent().categoryId)">
+              Save
+            </button>
+          </div>
+          <label>
+            Name
+            <input type="text"
+                   [(ngModel)]="categoryService.getCurrent().name">
+          </label>
+          <label>
+            Url
+            <input type="text"
+                   [(ngModel)]="categoryService.getCurrent().url">
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="empty-state" *ngIf="!categoryService.getCurrent()">
+      <i class="fa fa-list"></i>
+      <h2>Add A Category To Get Started</h2>
+    </div>
+  </div>
+</div>

@@ -33,6 +33,11 @@ namespace Pioneer.Blog
                 .AddEntityFrameworkStores<BlogDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthorization(cfg =>
+            {
+                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
+            });
+
             RegisterDependencies(services);
 
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
@@ -83,8 +88,6 @@ namespace Pioneer.Blog
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<ISiteMapService, SiteMapService>();
             services.AddTransient<ApplicationEnvironment>();
-            //services.AddTransient<HostingEnvironment>();
-
 
             // Register no-op EmailSender used by account confirmation and password reset during development
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
@@ -95,10 +98,6 @@ namespace Pioneer.Blog
         {
             app.UseMvc(routes =>
             {
-                //routes.MapRoute(
-                //    name: "default",
-                //    template: "{controller}/{action=Index}/{id?}");
-
                 // Areas support
                 routes.MapRoute(
                     name: "areaRoute",

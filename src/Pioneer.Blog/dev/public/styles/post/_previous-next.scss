@@ -1,0 +1,55 @@
+﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
+
+.previous-next {
+    i {
+        position: absolute;
+        top: 50%;
+        margin-top: -10px;
+    }
+
+    p {
+        font-weight: bold;
+    }
+
+    a {
+        display: block;
+
+        &:hover {
+            text-decoration: none;
+            background: $primary-color;
+            border: 1px solid $primary-color;
+            color: $white;
+            transition: ease-out 0.25s;
+        }
+    }
+
+    margin: 2rem 0 2rem;
+}
+
+.previous-next-nothing {
+    position: absolute;
+    top: 50%;
+    margin-top: -14px !important;
+    color: $medium-gray;
+}
+
+.previous-next-date {
+    color: $medium-gray;
+}
+
+.previous-next-content-left {
+    p {
+        margin: 0 0 0 2rem;
+    }
+}
+
+.previous-next-content-right {
+    p {
+        margin: 0 2rem 0 0;
+        text-align: right;
+    }
+
+    i {
+        right: 1rem;
+    }
+}

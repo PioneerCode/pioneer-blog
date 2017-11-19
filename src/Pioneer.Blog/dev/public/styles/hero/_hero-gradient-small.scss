@@ -1,0 +1,19 @@
+﻿/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
+
+.hg-small {
+    height: 200px;
+
+    &:before {
+        height: 200px;
+        background-image: linear-gradient(to top, transparent, $black);
+    }
+
+    &:after {
+        height: 200px;
+        background-image: linear-gradient(to bottom, transparent, $black);
+    }
+
+    .hero-gradient-content {
+        padding: 5rem 0 0;
+    }
+}
