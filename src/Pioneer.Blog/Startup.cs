@@ -10,6 +10,7 @@ using Pioneer.Blog.Model;
 using Pioneer.Blog.Repository;
 using Pioneer.Blog.Service;
 using Pioneer.Blog.Services;
+using Pioneer.Pagination;
 
 namespace Pioneer.Blog
 {
@@ -32,16 +33,18 @@ namespace Pioneer.Blog
                 .AddEntityFrameworkStores<BlogDbContext>()
                 .AddDefaultTokenProviders();
 
-            RegisterDependices(services);
+            RegisterDependencies(services);
 
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
 
-            ConfigureMvc(services);
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            ServiceMapperConfig.Config();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -54,20 +57,15 @@ namespace Pioneer.Blog
             }
 
             app.UseStaticFiles();
-
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
+            ConfigureMvc(app);
         }
 
-        private static void RegisterDependices(IServiceCollection services)
+        private static void RegisterDependencies(IServiceCollection services)
         {
-            //services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
+            // Third-party
+            services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
 
             // Repositories
             services.AddTransient<IContactRepository, ContactRepository>();
@@ -93,14 +91,68 @@ namespace Pioneer.Blog
             services.AddSingleton<IEmailSender, EmailSender>();
         }
 
-        private static void ConfigureMvc(IServiceCollection services)
+        private static void ConfigureMvc(IApplicationBuilder app)
         {
-            services.AddMvc()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizeFolder("/Account/Manage");
-                    options.Conventions.AuthorizePage("/Account/Logout");
-                });
+            app.UseMvc(routes =>
+            {
+                //routes.MapRoute(
+                //    name: "default",
+                //    template: "{controller}/{action=Index}/{id?}");
+
+                // Areas support
+                routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "Post",
+                    template: "post/{id}",
+                    defaults: new { controller = "Post", action = "Index" });
+
+                routes.MapRoute(
+                    name: "BlogPost",
+                    template: "post",
+                    defaults: new { controller = "blog", action = "Index" });
+
+                routes.MapRoute(
+                    name: "BlogTag",
+                    template: "tag",
+                    defaults: new { controller = "blog", action = "Index" });
+
+                routes.MapRoute(
+                    name: "BlogCategory",
+                    template: "category",
+                    defaults: new { controller = "blog", action = "Index" });
+
+                routes.MapRoute(
+                    name: "Category",
+                    template: "category/{id}/{page?}",
+                    defaults: new { controller = "blog", action = "Category" });
+
+                routes.MapRoute(
+                    name: "Tag",
+                    template: "tag/{id}/{page?}",
+                    defaults: new { controller = "blog", action = "Tag" });
+
+                routes.MapRoute(
+                    name: "BlogFlat",
+                    template: "blog",
+                    defaults: new { controller = "blog", action = "Index" });
+
+                routes.MapRoute(
+                    name: "Blog",
+                    template: "blog/{page?}",
+                    defaults: new { controller = "blog", action = "Index" });
+
+                routes.MapRoute(
+                    name: "SiteMap",
+                    template: "sitemap.xml",
+                    defaults: new { controller = "home", action = "SiteMap" });
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
