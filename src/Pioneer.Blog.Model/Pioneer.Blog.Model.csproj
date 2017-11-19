@@ -1,16 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Version>2.0.0</Version>
-    <PackageProjectUrl>https://github.com/PioneerCode/pioneer-blog</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/PioneerCode/pioneer-blog.git</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <Company>Pioneer Code</Company>
-    <PackageIconUrl>https://pioneercode.com/images/icons/android-chrome-512x512.png</PackageIconUrl>
-    <Authors>Chad Ramos &lt;hello@pioneercode.com&gt;</Authors>
-    <PackageLicenseUrl>https://github.com/PioneerCode/pioneer-blog/blob/master/LICENSE</PackageLicenseUrl>
-    <Description>pioneercode.com</Description>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
+  </ItemGroup>
 
 </Project>

@@ -70,13 +70,13 @@ namespace Pioneer.Blog.Controllers.Web
             return View("~/Views/Search/Index.cshtml", searchResults.Posts);
         }
 
-        [HttpGet("search/{query}/{page:int?}")]
-        public ActionResult GetQuery(string query, int page = 1)
+        [HttpGet("search/{query}/{selectedPage:int?}")]
+        public ActionResult GetQuery(string query, int selectedPage = 1)
         {
-            var searchResults = _searchService.SearchPosts(query, 5, page);
-            ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(searchResults.TotalMatchingPosts, page, 5);
+            var searchResults = _searchService.SearchPosts(query, 5, selectedPage);
+            ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(searchResults.TotalMatchingPosts, selectedPage, 5);
 
-            ViewBag.Description = "Pioneer Code search results for \"" + query + "\", page " + page + ". " +
+            ViewBag.Description = "Pioneer Code search results for \"" + query + "\", page " + selectedPage + ". " +
                                   "Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
 
             ViewBag.Header = "Search";

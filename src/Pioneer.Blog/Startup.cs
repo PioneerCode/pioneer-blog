@@ -1,12 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
@@ -32,15 +29,48 @@ namespace Pioneer.Blog
             services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            ConfigureServicesIdentity(services);
-            ConfigureCookies(services);
+            services.AddIdentity<UserEntity, IdentityRole>()
+                .AddEntityFrameworkStores<BlogDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddAuthorization(cfg =>
+            {
+                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
+            });
+
+            RegisterDependencies(services);
 
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
 
-            services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
-            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddMvc();
+        }
 
-            //services.AddTransient<IdentitySetup>();
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            ServiceMapperConfig.Config();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+            }
+
+            app.UseStaticFiles();
+            app.UseAuthentication();
+
+            ConfigureMvc(app);
+        }
+
+        private static void RegisterDependencies(IServiceCollection services)
+        {
+            // Third-party
+            services.AddTransient<IPaginatedMetaService, PaginatedMetaService>();
 
             // Repositories
             services.AddTransient<IContactRepository, ContactRepository>();
@@ -58,92 +88,10 @@ namespace Pioneer.Blog
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<ISiteMapService, SiteMapService>();
             services.AddTransient<ApplicationEnvironment>();
-            //services.AddTransient<HostingEnvironment>();
 
-            services.AddMvc();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,
-            IHostingEnvironment env,
-            ILoggerFactory loggerFactory)
-        {
-            ServiceMapperConfig.Config();
-
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-
-            app.UseStaticFiles();
-
-            app.UseAuthentication();
-
-            // Configure Bearer token
-            ConfigureMvc(app);
-        }
-
-        private static void ConfigureServicesIdentity(IServiceCollection services)
-        {
-            services.AddIdentity<UserEntity, IdentityRole>()
-                .AddEntityFrameworkStores<BlogDbContext>()
-                .AddDefaultTokenProviders();
-
-            // Configure Identity
-            services.Configure<IdentityOptions>(options =>
-            {
-                /* Add Options Here */
-                /* https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-configuration */
-            });
-
-            services.AddAuthorization(cfg =>
-            {
-                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
-            });
-        }
-
-        private static void ConfigureCookies(IServiceCollection services)
-        {
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.Events =
-                    new CookieAuthenticationEvents
-                    {
-                        OnRedirectToLogin = ctx =>
-                        {
-                            // If we were redirect to login from api..
-                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
-                            {
-                                ctx.Response.StatusCode = 401;
-                                return Task.FromResult<object>(null);
-                            }
-
-                            ctx.Response.Redirect(ctx.RedirectUri);
-                            return Task.FromResult<object>(null);
-                        },
-                        OnRedirectToAccessDenied = ctx =>
-                        {
-                            // If access is denied from api...
-                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
-                            {
-                                ctx.Response.StatusCode = 403;
-                                return Task.FromResult<object>(null);
-                            }
-
-                            ctx.Response.Redirect(ctx.RedirectUri);
-                            return Task.FromResult<object>(null);
-                        }
-                    };
-            });
+            // Register no-op EmailSender used by account confirmation and password reset during development
+            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
+            services.AddSingleton<IEmailSender, EmailSender>();
         }
 
         private static void ConfigureMvc(IApplicationBuilder app)

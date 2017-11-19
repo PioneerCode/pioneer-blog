@@ -13,7 +13,7 @@
       "../node_modules/@types/"
     ]
   },
-  "compileOnSave": true,
+  "compileOnSave": false,
   "exclude": [
     "node_modules/*",
     "**/*-aot.ts",

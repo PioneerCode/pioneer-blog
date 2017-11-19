@@ -59,17 +59,11 @@ namespace Pioneer.Blog.Entity
         public DateTime? ModifiedOn { get; set; }
 
         public int? ExcerptId { get; set; }
-
         public int? ArticleId { get; set; }
-
         public int? CategoryId { get; set; }
-
         public ExcerptEntity Excerpt { get; set; }
-
         public ArticleEntity Article { get; set; }
-
         public CategoryEntity Category { get; set; }
-
         public ICollection<PostTagEntity> PostTags { get; set; }
     }
 }
