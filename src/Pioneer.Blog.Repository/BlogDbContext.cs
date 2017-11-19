@@ -4,7 +4,7 @@ using Pioneer.Blog.Entity;
 
 namespace Pioneer.Blog.Repository
 {
-    public class BlogDbContext : IdentityDbContext<ApplicationUser>
+    public class BlogDbContext : IdentityDbContext<UserEntity>
     {
         public BlogDbContext(DbContextOptions<BlogDbContext> options)
             : base(options)

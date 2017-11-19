@@ -10,9 +10,9 @@ namespace Pioneer.Blog.Pages.Account
 {
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<UserEntity> _userManager;
 
-        public ResetPasswordModel(UserManager<ApplicationUser> userManager)
+        public ResetPasswordModel(UserManager<UserEntity> userManager)
         {
             _userManager = userManager;
         }

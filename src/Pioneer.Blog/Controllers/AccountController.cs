@@ -9,10 +9,10 @@ namespace Pioneer.Blog.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly SignInManager<UserEntity> _signInManager;
         private readonly ILogger _logger;
 
-        public AccountController(SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger)
+        public AccountController(SignInManager<UserEntity> signInManager, ILogger<AccountController> logger)
         {
             _signInManager = signInManager;
             _logger = logger;

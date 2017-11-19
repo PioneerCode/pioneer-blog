@@ -2,7 +2,7 @@
 
 namespace Pioneer.Blog.Entity
 {
-    public class ApplicationUser : IdentityUser
+    public class UserEntity : IdentityUser
     {
     }
 }

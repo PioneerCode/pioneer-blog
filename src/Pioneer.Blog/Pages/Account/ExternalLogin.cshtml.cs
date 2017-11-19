@@ -13,13 +13,13 @@ namespace Pioneer.Blog.Pages.Account
 {
     public class ExternalLoginModel : PageModel
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<UserEntity> _signInManager;
+        private readonly UserManager<UserEntity> _userManager;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
-            SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager,
+            SignInManager<UserEntity> signInManager,
+            UserManager<UserEntity> userManager,
             ILogger<ExternalLoginModel> logger)
         {
             _signInManager = signInManager;
@@ -107,7 +107,7 @@ namespace Pioneer.Blog.Pages.Account
                 {
                     throw new ApplicationException("Error loading external login information during confirmation.");
                 }
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new UserEntity { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

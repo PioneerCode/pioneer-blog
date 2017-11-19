@@ -25,7 +25,7 @@ namespace Pioneer.Blog
             services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<UserEntity, IdentityRole>()
                 .AddEntityFrameworkStores<BlogDbContext>()
                 .AddDefaultTokenProviders();
 

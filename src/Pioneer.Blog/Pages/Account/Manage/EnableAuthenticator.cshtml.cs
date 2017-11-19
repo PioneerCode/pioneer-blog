@@ -14,14 +14,14 @@ namespace Pioneer.Blog.Pages.Account.Manage
 {
     public class EnableAuthenticatorModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<UserEntity> _userManager;
         private readonly ILogger<EnableAuthenticatorModel> _logger;
         private readonly UrlEncoder _urlEncoder;
 
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
         public EnableAuthenticatorModel(
-            UserManager<ApplicationUser> userManager,
+            UserManager<UserEntity> userManager,
             ILogger<EnableAuthenticatorModel> logger,
             UrlEncoder urlEncoder)
         {
@@ -51,7 +51,7 @@ namespace Pioneer.Blog.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Unable to load userEntity with ID '{_userManager.GetUserId(User)}'.");
             }
 
             await LoadSharedKeyAndQrCodeUriAsync(user);
@@ -69,7 +69,7 @@ namespace Pioneer.Blog.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                throw new ApplicationException($"Unable to load userEntity with ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -96,14 +96,14 @@ namespace Pioneer.Blog.Pages.Account.Manage
             return RedirectToPage("./GenerateRecoveryCodes");
         }
 
-        private async Task LoadSharedKeyAndQrCodeUriAsync(ApplicationUser user)
+        private async Task LoadSharedKeyAndQrCodeUriAsync(UserEntity userEntity)
         {
             // Load the authenticator key & QR code URI to display on the form
-            var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
+            var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(userEntity);
             if (!string.IsNullOrEmpty(unformattedKey))
             {
                 SharedKey = FormatKey(unformattedKey);
-                AuthenticatorUri = GenerateQrCodeUri(user.Email, unformattedKey);
+                AuthenticatorUri = GenerateQrCodeUri(userEntity.Email, unformattedKey);
             }
         }
 

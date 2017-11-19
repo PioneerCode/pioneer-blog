@@ -10,11 +10,11 @@ namespace Pioneer.Blog.Pages.Account.Manage
 {
     public class ResetAuthenticatorModel : PageModel
     {
-        UserManager<ApplicationUser> _userManager;
+        UserManager<UserEntity> _userManager;
         ILogger<ResetAuthenticatorModel> _logger;
 
         public ResetAuthenticatorModel(
-            UserManager<ApplicationUser> userManager,
+            UserManager<UserEntity> userManager,
             ILogger<ResetAuthenticatorModel> logger)
         {
             _userManager = userManager;

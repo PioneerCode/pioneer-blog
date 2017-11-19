@@ -12,12 +12,12 @@ namespace Pioneer.Blog.Pages.Account.Manage
 {
     public class ExternalLoginsModel : PageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<UserEntity> _userManager;
+        private readonly SignInManager<UserEntity> _signInManager;
 
         public ExternalLoginsModel(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            UserManager<UserEntity> userManager,
+            SignInManager<UserEntity> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
