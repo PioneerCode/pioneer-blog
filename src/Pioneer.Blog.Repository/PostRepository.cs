@@ -363,6 +363,7 @@ namespace Pioneer.Blog.Repository
             entity.ModifiedOn = DateTime.Now;
             entity.Meta = post.Meta;
             entity.Published = post.Published;
+            entity.Notes = post.Notes;
 
             // Excerpt
             entity.Excerpt.Content = post.Excerpt.Content;

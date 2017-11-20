@@ -58,6 +58,8 @@ namespace Pioneer.Blog.Entity
         [Display(Name = "Modified On")]
         public DateTime? ModifiedOn { get; set; }
 
+        public string Notes { get; set; }
+
         public int? ExcerptId { get; set; }
         public int? ArticleId { get; set; }
         public int? CategoryId { get; set; }

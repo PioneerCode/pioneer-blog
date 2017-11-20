@@ -33,6 +33,7 @@ namespace Pioneer.Blog.Model
         public string Image { get; set; }
         public string SmallImage { get; set; }
         public string IconImage { get; set; }
+        public string Notes { get; set; }
         public DateTime PostedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
         public DateTime CreatedOn { get; set; }
