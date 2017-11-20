@@ -12,6 +12,10 @@ Current deployment...
 - Site hosted at [DigitalOcean](http://www.digitalocean.com/?refcode=d95b905a1279)
   - Under Ubuntu and faced by NGINX
 
+## Admin 
+Full-featured admin portal.
+![alt text](assets/admin-screen.png)
+
 ## Setup
 
 ### Repository
