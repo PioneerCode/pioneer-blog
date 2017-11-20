@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +35,8 @@ namespace Pioneer.Blog
                 .AddEntityFrameworkStores<BlogDbContext>()
                 .AddDefaultTokenProviders();
 
+            ConfigureCookies(services);
+
             services.AddAuthorization(cfg =>
             {
                 cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
@@ -65,6 +69,41 @@ namespace Pioneer.Blog
             app.UseAuthentication();
 
             ConfigureMvc(app);
+        }
+
+        private static void ConfigureCookies(IServiceCollection services)
+        {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Events =
+                    new CookieAuthenticationEvents
+                    {
+                        OnRedirectToLogin = ctx =>
+                        {
+                            // If we were redirect to login from api..
+                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                            {
+                                ctx.Response.StatusCode = 401;
+                                return Task.FromResult<object>(null);
+                            }
+
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                            return Task.FromResult<object>(null);
+                        },
+                        OnRedirectToAccessDenied = ctx =>
+                        {
+                            // If access is denied from api...
+                            if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                            {
+                                ctx.Response.StatusCode = 403;
+                                return Task.FromResult<object>(null);
+                            }
+
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                            return Task.FromResult<object>(null);
+                        }
+                    };
+            });
         }
 
         private static void RegisterDependencies(IServiceCollection services)

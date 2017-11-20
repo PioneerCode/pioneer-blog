@@ -77,7 +77,6 @@ export class PostsPageComponent implements OnInit {
 
   onTagClick(tag: Tag): void {
     this.loading = true;
-
     if (!this.postService.isTagSet(tag)) {
       this.postService.addTag(tag)
       .then(() => {

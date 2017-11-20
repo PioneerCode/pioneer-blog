@@ -116,13 +116,21 @@
           <div class="large-6 columns">
             <label>
               Excerpt
-              <textarea [(ngModel)]="postService.getCurrent().excerpt.content" *ngIf="postService.getCurrent().excerpt"></textarea>
+              <textarea [(ngModel)]="postService.getCurrent().excerpt.content"></textarea>
             </label>
           </div>
           <div class="large-6 columns">
             <label>
               Article
-              <textarea [(ngModel)]="postService.getCurrent().article.content" *ngIf="postService.getCurrent().article"></textarea>
+              <textarea [(ngModel)]="postService.getCurrent().article.content"></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>
+              Notes
+              <textarea [(ngModel)]="postService.getCurrent().notes"></textarea>
             </label>
           </div>
         </div>
