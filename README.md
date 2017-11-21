@@ -58,7 +58,10 @@ Navigate to the `Pioneer.Blog` directory from your command prompt and run....
 - `npm install`
 - `npm rebuild node-sass --force`
 - `gulp public`
-- `gulp admin`
+
+Navigate to to `Pioneer.Blog\Areas\admin-app` from your command prompt and run....
+- `npm install`
+- `npm start`
 
 ### Run
 
