@@ -1,6 +1,6 @@
 # Pioneer Blog
 
-Active code based used for [Pioneer Code](https://pioneercode).
+Active code based used for [Pioneer Code](https://pioneercode.com).
 
 Current stack...
 - ASP.NET Core 2.x
