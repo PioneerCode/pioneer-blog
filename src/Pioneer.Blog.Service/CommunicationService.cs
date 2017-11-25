@@ -1,7 +1,9 @@
 ﻿using System;
+using AutoMapper;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Model.Views;
 using Pioneer.Blog.Repository;
@@ -10,8 +12,8 @@ namespace Pioneer.Blog.Service
 {
     public interface ICommunicationService
     {
-        //OperationResult<ContactViewModel> SendContactEmailNotification(ContactViewModel model);
-        //OperationResult<Contact> SignUpToMailingList(SignUpViewModel model);
+        OperationResult<ContactViewModel> SendContactEmailNotification(ContactViewModel model);
+        OperationResult<Contact> SignUpToMailingList(SignUpViewModel model);
     }
 
     public class CommunicationService : ICommunicationService
@@ -57,18 +59,18 @@ namespace Pioneer.Blog.Service
             }
         }
 
-        ///// <summary>
-        ///// Sign someone up to the mailing list.
-        ///// </summary>
-        //public OperationResult<Contact> SignUpToMailingList(SignUpViewModel model)
-        //{
-        //    if (_contactRepository.GetByEmail(model.Email) != null)
-        //    {
-        //        return new OperationResult<Contact>(null, OperationStatus.Error, "This email has already been added to the mailing list.");
-        //    }
+        /// <summary>
+        /// Sign someone up to the mailing list.
+        /// </summary>
+        public OperationResult<Contact> SignUpToMailingList(SignUpViewModel model)
+        {
+            if (_contactRepository.GetByEmail(model.Email) != null)
+            {
+                return new OperationResult<Contact>(null, OperationStatus.Error, "This email has already been added to the mailing list.");
+            }
 
-        //    var response = _contactRepository.Add(Mapper.Map<Contact, ContactEntity>(new Contact { Email = model.Email }));
-        //    return new OperationResult<Contact>(Mapper.Map<ContactEntity, Contact>(response), OperationStatus.Created);
-        //}
+            var response = _contactRepository.Add(Mapper.Map<Contact, ContactEntity>(new Contact { Email = model.Email }));
+            return new OperationResult<Contact>(Mapper.Map<ContactEntity, Contact>(response), OperationStatus.Created);
+        }
     }
 }
