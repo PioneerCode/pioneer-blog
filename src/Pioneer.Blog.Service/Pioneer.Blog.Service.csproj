@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.2.1" />
+    <PackageReference Include="Sendgrid" Version="9.9.0" />
   </ItemGroup>
 
   <ItemGroup>
