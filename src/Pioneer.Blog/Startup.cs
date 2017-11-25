@@ -11,7 +11,6 @@ using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Repository;
 using Pioneer.Blog.Service;
-using Pioneer.Blog.Services;
 using Pioneer.Pagination;
 
 namespace Pioneer.Blog
@@ -127,10 +126,6 @@ namespace Pioneer.Blog
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<ISiteMapService, SiteMapService>();
             services.AddTransient<ApplicationEnvironment>();
-
-            // Register no-op EmailSender used by account confirmation and password reset during development
-            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
-            services.AddSingleton<IEmailSender, EmailSender>();
         }
 
         private static void ConfigureMvc(IApplicationBuilder app)

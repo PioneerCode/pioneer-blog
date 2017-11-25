@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Pioneer.Blog.Model;
 using Pioneer.Blog.Model.Views;
 using Pioneer.Blog.Service;
 
@@ -41,20 +42,20 @@ namespace Pioneer.Blog.Controllers.Web
                 return View("~/Views/Contact/Index.cshtml");
             }
 
-            //var response = _communicationService.SendContactEmailNotification(model);
-            //ViewBag.IsValid = true;
-            //ViewBag.Selected = "contact";
+            var response = _communicationService.SendContactEmailNotification(model);
+            ViewBag.IsValid = true;
+            ViewBag.Selected = "contact";
 
-            //switch (response.Status)
-            //{
-            //    case OperationStatus.Ok:
-            //        ViewBag.MessageSent = true;
-            //        break;
-            //    case OperationStatus.Error:
-            //        ViewBag.IsValid = false;
-            //        ModelState.AddModelError("", "Sorry, we had an issue with sending your email. Please try again later. ");
-            //        break;
-            //}
+            switch (response.Status)
+            {
+                case OperationStatus.Ok:
+                    ViewBag.MessageSent = true;
+                    break;
+                case OperationStatus.Error:
+                    ViewBag.IsValid = false;
+                    ModelState.AddModelError("", "Sorry, our email servers are acting funny. For the time being, you can send us an email directly using the address located to your left.");
+                    break;
+            }
 
             return View("~/Views/Contact/Index.cshtml");
         }
