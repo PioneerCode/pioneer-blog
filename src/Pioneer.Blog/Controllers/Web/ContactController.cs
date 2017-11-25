@@ -53,7 +53,7 @@ namespace Pioneer.Blog.Controllers.Web
                     break;
                 case OperationStatus.Error:
                     ViewBag.IsValid = false;
-                    ModelState.AddModelError("", "Sorry, we had an issue with sending your email. Please try again later. ");
+                    ModelState.AddModelError("", "Sorry, our email servers are acting funny. For the time being, you can send us an email directly using the address located to your left.");
                     break;
             }
 
