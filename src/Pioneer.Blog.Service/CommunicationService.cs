@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using MailKit;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
@@ -34,7 +35,7 @@ namespace Pioneer.Blog.Service
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(_appConfiguration.Value.SiteTitle + " - Contact", model.Email));
-            message.To.Add(new MailboxAddress(_appConfiguration.Value.SiteTitle + " - Contact", _appConfiguration.Value.EmailUsername));
+            message.To.Add(new MailboxAddress(_appConfiguration.Value.SiteTitle + " - Contact", _appConfiguration.Value.SendEmailTo));
             message.Subject = _appConfiguration.Value.SiteTitle + " - Contact: " + model.Subject;
             message.Body = new TextPart("html")
             {
@@ -43,9 +44,10 @@ namespace Pioneer.Blog.Service
 
             try
             {
-                using (var client = new SmtpClient())
+                using (var client = new SmtpClient(new ProtocolLogger("smtp.log")))
                 {
-                    client.Connect(_appConfiguration.Value.EmailHost, Convert.ToInt32(_appConfiguration.Value.EmailPort), false);
+                    client.Connect(_appConfiguration.Value.EmailHost, Convert.ToInt32(_appConfiguration.Value.EmailPort));
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
                     client.Authenticate(_appConfiguration.Value.EmailUsername, _appConfiguration.Value.EmailPassword);
                     client.Send(message);
                     client.Disconnect(true);

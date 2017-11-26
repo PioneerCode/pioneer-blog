@@ -10,6 +10,7 @@ namespace Pioneer.Blog.Model
         }
 
         public string EmailUsername { get; set; }
+        public string SendEmailTo { get; set; }
         public string EmailHost { get; set; }
         public string EmailPassword { get; set; }
         public string EmailPort { get; set; }
