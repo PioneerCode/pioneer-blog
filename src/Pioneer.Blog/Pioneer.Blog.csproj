@@ -9,9 +9,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Areas\Admin\admin-app\**" />
+    <Compile Remove="dev\**" />
+    <Compile Remove="gulp-tasks\**" />
+    <Compile Remove="scripts\**" />
     <Content Remove="Areas\Admin\admin-app\**" />
+    <Content Remove="dev\**" />
+    <Content Remove="gulp-tasks\**" />
+    <Content Remove="scripts\**" />
     <EmbeddedResource Remove="Areas\Admin\admin-app\**" />
+    <EmbeddedResource Remove="dev\**" />
+    <EmbeddedResource Remove="gulp-tasks\**" />
+    <EmbeddedResource Remove="scripts\**" />
     <None Remove="Areas\Admin\admin-app\**" />
+    <None Remove="dev\**" />
+    <None Remove="gulp-tasks\**" />
+    <None Remove="scripts\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
