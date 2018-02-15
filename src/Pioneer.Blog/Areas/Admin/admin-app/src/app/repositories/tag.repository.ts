@@ -2,10 +2,11 @@
 import { Http, Response } from '@angular/http';
 import { Tag } from '../models/tag';
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class TagRepository {
-  private url = '/api/tags';
+  private url = environment.apiUrl + '/api/tags';
 
   constructor(private http: Http) { }
 

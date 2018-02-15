@@ -2,6 +2,9 @@
 
 @Component({
   selector: 'pc-loader',
+  styles: [
+    'loader.component.scss'
+  ],
   template: `
   <section class="pc-loader" *ngIf="loading">
     <div class="pc-loader-overlay"></div>

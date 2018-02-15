@@ -3,6 +3,9 @@ import { CategoryService } from './category.service';
 
 @Component({
   selector: 'pc-categories-page',
+  styles: [
+    'categories-page.component.scss'
+  ],
   templateUrl: './categories-page.component.html'
 })
 export class CategoriesPageComponent implements OnInit {

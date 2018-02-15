@@ -3,6 +3,9 @@ import { TagService } from './tag.service';
 
 @Component({
   selector: 'pc-tags-page',
+  styles: [
+    'tags-page.component.scss'
+  ],
   templateUrl: './tags-page.component.html'
 })
 
