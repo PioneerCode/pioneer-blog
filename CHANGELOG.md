@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Code Blog
 
+<a name="2.2"></a>
+# 2.2
+### Changed
+* Bypass MVC templating in favor of static Angular SPA route.
+
 <a name="2.1"></a>
 # 2.1
 ### Changed

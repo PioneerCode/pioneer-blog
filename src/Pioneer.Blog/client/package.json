@@ -1,0 +1,18 @@
+{
+  "name": "pioneer-code",
+  "version": "1.0.0",
+  "author": "Chad Ramos <chad@pioneercode.com>",
+  "description": "Pioneer Code Blog",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PioneerCode/pioneer-blog"
+  },
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "font-awesome": "^4.7.0",
+    "foundation-sites": "^6.4.4-rc1",
+    "webpack": "^3.11.0"
+  }
+}

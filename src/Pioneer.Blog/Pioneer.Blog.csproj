@@ -9,21 +9,29 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Areas\Admin\admin-app\**" />
+    <Compile Remove="client\styles\**" />
     <Compile Remove="dev\**" />
     <Compile Remove="gulp-tasks\**" />
     <Compile Remove="scripts\**" />
     <Content Remove="Areas\Admin\admin-app\**" />
+    <Content Remove="client\styles\**" />
     <Content Remove="dev\**" />
     <Content Remove="gulp-tasks\**" />
     <Content Remove="scripts\**" />
     <EmbeddedResource Remove="Areas\Admin\admin-app\**" />
+    <EmbeddedResource Remove="client\styles\**" />
     <EmbeddedResource Remove="dev\**" />
     <EmbeddedResource Remove="gulp-tasks\**" />
     <EmbeddedResource Remove="scripts\**" />
     <None Remove="Areas\Admin\admin-app\**" />
+    <None Remove="client\styles\**" />
     <None Remove="dev\**" />
     <None Remove="gulp-tasks\**" />
     <None Remove="scripts\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="client\package-lock.json" />
+    <Content Remove="client\package.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
@@ -40,5 +48,8 @@
     <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Service\Pioneer.Blog.Service.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="client\" />
   </ItemGroup>
 </Project>
