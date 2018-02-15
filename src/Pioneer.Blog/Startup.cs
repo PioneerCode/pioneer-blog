@@ -182,6 +182,7 @@ namespace Pioneer.Blog
                     template: "sitemap.xml",
                     defaults: new { controller = "home", action = "SiteMap" });
 
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

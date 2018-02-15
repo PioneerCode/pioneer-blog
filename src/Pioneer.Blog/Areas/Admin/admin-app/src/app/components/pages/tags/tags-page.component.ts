@@ -12,7 +12,7 @@ import { TagService } from './tag.service';
 export class TagsPageComponent implements OnInit {
   loading = false;
 
-  constructor(private tagService: TagService) {
+  constructor(public tagService: TagService) {
   }
 
   ngOnInit(): void {

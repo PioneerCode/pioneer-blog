@@ -11,7 +11,7 @@ import { CategoryService } from './category.service';
 export class CategoriesPageComponent implements OnInit {
   loading = false;
 
-  constructor(private categoryService: CategoryService) {
+  constructor(public categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
