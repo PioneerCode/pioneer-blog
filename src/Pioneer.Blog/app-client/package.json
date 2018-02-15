@@ -9,8 +9,8 @@
     "url": "https://github.com/PioneerCode/pioneer-blog"
   },
   "scripts": {
-    "start": "webpack --watch",
-    "build": "webpack"
+    "start": "gulp dev",
+    "build": "gulp build"
   },
   "dependencies": {},
   "devDependencies": {

@@ -69,6 +69,6 @@ function watch() {
     gulp.watch('./styles/**/*.scss', styles);
 }
 
-gulp.task('public-dev', gulp.series(clean, typescript, libs, scripts, styles, move, gulp.parallel(watch)));
+gulp.task('dev', gulp.series(clean, typescript, libs, scripts, styles, move, gulp.parallel(watch)));
 
-gulp.task('public', gulp.series(clean, typescript, libs, scripts, styles, move));
+gulp.task('build', gulp.series(clean, typescript, libs, scripts, styles, move));
