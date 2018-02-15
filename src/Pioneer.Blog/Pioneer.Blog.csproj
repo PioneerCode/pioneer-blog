@@ -10,26 +10,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Areas\Admin\admin-app\**" />
-    <Compile Remove="client-app\dist\**" />
-    <Compile Remove="client-app\temp\**" />
+    <Compile Remove="client-app\**" />
     <Compile Remove="dev\**" />
     <Compile Remove="gulp-tasks\**" />
     <Compile Remove="scripts\**" />
     <Content Remove="Areas\Admin\admin-app\**" />
-    <Content Remove="client-app\dist\**" />
-    <Content Remove="client-app\temp\**" />
+    <Content Remove="client-app\**" />
     <Content Remove="dev\**" />
     <Content Remove="gulp-tasks\**" />
     <Content Remove="scripts\**" />
     <EmbeddedResource Remove="Areas\Admin\admin-app\**" />
-    <EmbeddedResource Remove="client-app\dist\**" />
-    <EmbeddedResource Remove="client-app\temp\**" />
+    <EmbeddedResource Remove="client-app\**" />
     <EmbeddedResource Remove="dev\**" />
     <EmbeddedResource Remove="gulp-tasks\**" />
     <EmbeddedResource Remove="scripts\**" />
     <None Remove="Areas\Admin\admin-app\**" />
-    <None Remove="client-app\dist\**" />
-    <None Remove="client-app\temp\**" />
+    <None Remove="client-app\**" />
     <None Remove="dev\**" />
     <None Remove="gulp-tasks\**" />
     <None Remove="scripts\**" />
