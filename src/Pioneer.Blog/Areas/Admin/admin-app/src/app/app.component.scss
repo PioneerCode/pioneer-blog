@@ -1,3 +1,38 @@
-body {
-  background: #666;
+@import "../scss/settings";
+
+$headerHeight: 48px;
+
+.nav-admin {
+    padding: $headerHeight 0 0;
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background: lighten($black, 5%);
+    li.selected {
+        background: $primary-color;
+        &:hover {
+            background: $primary-color;
+        }
+    }
+    li {
+        &:hover {
+            background: $black;
+        }
+    }
+    a {
+        i {
+            margin-top: -6px;
+        }
+        color: $white;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.admin-canvas {
+  padding: $headerHeight 0 0;
+  position: relative;
+  margin: 1rem 0 0 250px;
+  min-height: 700px;
 }
