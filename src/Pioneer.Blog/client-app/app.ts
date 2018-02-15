@@ -1,5 +1,5 @@
 $(() => {
-    const doc = $(document);
+    var doc = $(document);
     doc.foundation();
   
     /**
@@ -11,13 +11,13 @@ $(() => {
   /**
    * Cache navigation
    */
-  const header = $('.nav-main');
+var header = $('.nav-main');
   
   /**
    * Manage transparent/un-transparent navigation
    */
   $(window).on('scroll', () => {
-    const top = header.offset().top;
+      var top = header.offset().top;
     if (top >= 100) {
       header.addClass('nav-main-show');
     } else {
