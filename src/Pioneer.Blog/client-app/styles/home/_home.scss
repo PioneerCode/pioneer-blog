@@ -1,4 +1,3 @@
-/// <reference path="../../../../bower_components/foundation-sites/scss/foundation" />
 @import "home-greatest-posts";
 @import "home-sign-up";
 
@@ -11,7 +10,7 @@
     margin: 0 0 .5rem;
 }
 
-.home-hero-content {
+.home-hero-content { 
   max-width: 800px;
   margin: 0 auto;
   display: table;
