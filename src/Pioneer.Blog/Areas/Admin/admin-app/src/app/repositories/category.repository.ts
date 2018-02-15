@@ -2,10 +2,11 @@
 import { Http, Response } from '@angular/http';
 import { Category } from '../models/category';
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CategoryRepository {
-  private url = '/api/categories';
+  private url = environment.apiUrl + '/api/categories';
 
   constructor(private http: Http) { }
 

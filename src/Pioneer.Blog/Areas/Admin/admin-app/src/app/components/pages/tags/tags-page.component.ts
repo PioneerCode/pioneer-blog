@@ -3,13 +3,16 @@ import { TagService } from './tag.service';
 
 @Component({
   selector: 'pc-tags-page',
+  styles: [
+    'tags-page.component.scss'
+  ],
   templateUrl: './tags-page.component.html'
 })
 
 export class TagsPageComponent implements OnInit {
   loading = false;
 
-  constructor(private tagService: TagService) {
+  constructor(public tagService: TagService) {
   }
 
   ngOnInit(): void {

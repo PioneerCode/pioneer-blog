@@ -2,10 +2,11 @@
 import { Http, Response } from '@angular/http';
 import { Post } from '../models/post';
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class PostRepository {
-  private url = '/api/posts';
+  private url = environment.apiUrl + '/api/posts';
 
   constructor(private http: Http) { }
 
