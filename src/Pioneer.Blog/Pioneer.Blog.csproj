@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-Pioneer.Blog-2E4EB4F7-B5D1-4391-8809-128717D22129</UserSecretsId>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
@@ -9,18 +10,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Areas\Admin\admin-app\**" />
+    <Compile Remove="client-app\**" />
     <Compile Remove="dev\**" />
     <Compile Remove="gulp-tasks\**" />
     <Compile Remove="scripts\**" />
     <Content Remove="Areas\Admin\admin-app\**" />
+    <Content Remove="client-app\**" />
     <Content Remove="dev\**" />
     <Content Remove="gulp-tasks\**" />
     <Content Remove="scripts\**" />
     <EmbeddedResource Remove="Areas\Admin\admin-app\**" />
+    <EmbeddedResource Remove="client-app\**" />
     <EmbeddedResource Remove="dev\**" />
     <EmbeddedResource Remove="gulp-tasks\**" />
     <EmbeddedResource Remove="scripts\**" />
     <None Remove="Areas\Admin\admin-app\**" />
+    <None Remove="client-app\**" />
     <None Remove="dev\**" />
     <None Remove="gulp-tasks\**" />
     <None Remove="scripts\**" />
