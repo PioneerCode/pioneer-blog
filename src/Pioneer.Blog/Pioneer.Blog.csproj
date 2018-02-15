@@ -9,21 +9,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Areas\Admin\admin-app\**" />
+    <Compile Remove="client\dist\**" />
     <Compile Remove="client\styles\**" />
     <Compile Remove="dev\**" />
     <Compile Remove="gulp-tasks\**" />
     <Compile Remove="scripts\**" />
     <Content Remove="Areas\Admin\admin-app\**" />
+    <Content Remove="client\dist\**" />
     <Content Remove="client\styles\**" />
     <Content Remove="dev\**" />
     <Content Remove="gulp-tasks\**" />
     <Content Remove="scripts\**" />
     <EmbeddedResource Remove="Areas\Admin\admin-app\**" />
+    <EmbeddedResource Remove="client\dist\**" />
     <EmbeddedResource Remove="client\styles\**" />
     <EmbeddedResource Remove="dev\**" />
     <EmbeddedResource Remove="gulp-tasks\**" />
     <EmbeddedResource Remove="scripts\**" />
     <None Remove="Areas\Admin\admin-app\**" />
+    <None Remove="client\dist\**" />
     <None Remove="client\styles\**" />
     <None Remove="dev\**" />
     <None Remove="gulp-tasks\**" />
