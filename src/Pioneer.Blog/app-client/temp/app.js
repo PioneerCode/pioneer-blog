@@ -16,7 +16,7 @@ var header = $('.nav-main');
 $(window).on('scroll', function () {
     var top = header.offset().top;
     if (top >= 100) {
-        header.addClass('nav-main-show');
+        header.addClass('nav-main-show'); 
     }
     else {
         header.removeClass('nav-main-show');
