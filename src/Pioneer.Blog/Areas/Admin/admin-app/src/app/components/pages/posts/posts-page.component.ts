@@ -7,6 +7,9 @@ import { Tag } from '../../../models/tag';
 
 @Component({
   selector: 'pc-posts-page',
+  styles: [
+    'posts-page.component.scss'
+  ],
   templateUrl: './posts-page.component.html'
 })
 

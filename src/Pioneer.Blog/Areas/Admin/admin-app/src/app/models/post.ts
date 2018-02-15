@@ -1,7 +1,7 @@
-﻿import Tag = require('./tag');
-import Article = require('./article');
-import Category = require('./category');
-import Excerpt = require('./excerpt');
+﻿import { Tag } from "./tag";
+import { Category } from "./category";
+import { Article } from "./article";
+import { Excerpt } from "./excerpt";
 
 export enum PreviousCurrentNextPosition {
   Previous = 0,
@@ -21,8 +21,8 @@ export class Post {
   link: string;
   postedOn: string;
   modifiedOn: string;
-  tags: Tag.Tag[];
-  article: Article.Article;
-  category: Category.Category;
-  excerpt: Excerpt.Excerpt;
+  tags: Tag[];
+  article: Article;
+  category: Category;
+  excerpt: Excerpt;
 }

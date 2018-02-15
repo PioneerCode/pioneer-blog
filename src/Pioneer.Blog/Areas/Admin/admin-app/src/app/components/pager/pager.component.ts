@@ -14,6 +14,9 @@ export interface IPager {
 
 @Component({
   selector: 'pc-pager',
+  styles: [
+    'pager.component.scss'
+  ],
   template: `
   <section class="pc-pager" *ngIf="show">
     <ul class="pagination" role="navigation" aria-label="Pagination">

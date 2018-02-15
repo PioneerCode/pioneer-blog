@@ -1,61 +1,108 @@
-@charset 'utf-8';
+/* You can add global styles to this file, and also import other style files */
+@import "scss/foundation";
+$fa-font-path: "./assets/fonts" !default;
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
 
-@import 'settings';
-@import '../node_modules/foundation-sites/scss/foundation';
-// @import 'motion-ui';
 
-@include foundation-global-styles;
-@include foundation-grid;
-// @include foundation-flex-grid;
-// @include foundation-xy-grid-classes;
-@include foundation-typography;
-@include foundation-button;
-@include foundation-forms;
-// @include foundation-range-input;
-// @include foundation-accordion;
-// @include foundation-accordion-menu;
-// @include foundation-badge;
-// @include foundation-breadcrumbs;
-// @include foundation-button-group;
-// @include foundation-callout;
-// @include foundation-card;
-// @include foundation-close-button;
-@include foundation-menu;
-// @include foundation-menu-icon;
-// @include foundation-drilldown-menu;
-// @include foundation-dropdown;
-// @include foundation-dropdown-menu;
-// @include foundation-responsive-embed;
-// @include foundation-label;
-// @include foundation-media-object;
-// @include foundation-off-canvas;
-// @include foundation-orbit;
-@include foundation-pagination;
-// @include foundation-progress-bar;
-// @include foundation-slider;
-// @include foundation-sticky;
-// @include foundation-reveal;
-// @include foundation-switch;
-// @include foundation-table;
-// @include foundation-tabs;
-// @include foundation-thumbnail;
-// @include foundation-title-bar;
-// @include foundation-tooltip;
-// @include foundation-top-bar;
-@include foundation-visibility-classes;
-@include foundation-float-classes;
-// @include foundation-flex-classes;
+.body-content-admin {
+    background: $light-gray;
+    padding: 3rem 0 2rem;
+    position: relative;
+}
 
-// @include foundation-prototype-classes;
+header {
+    position: fixed;
+    top: 0;
+    height: 3rem;
+    z-index: 999;
+    background: lighten($black, 15%);
+    width: 100%;
+    .home {
+        height: 3rem;
+        width: 250px;
+        background: lighten($black, 10%);
+        text-align: center;
+        a {
+            padding: 8px 0 0;
+            font-size: 18px;
+            display: block;
+            height: 3rem;
+            width: 100%;
+            color: $white;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    form {
+        button {
+            height: 3rem;
+        }
+    }
+}
 
-// @include motion-ui-transitions;
-// @include motion-ui-animations;
+.admin-collection-list {
+    list-style-type: none;
+    margin: 0 0 1rem;
+    font-size: 14px;
+    li {
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+        &:hover {
+            color: $white;
+            background: lighten($primary-color, 15%);
+        }
+    }
+    li.selected {
+        color: $white;
+        background: $primary-color;
+    }
+}
 
-@import "../node_modules/font-awesome/scss/font-awesome";
+.record-id {
+    color: $medium-gray;
+    font-size: 14px;
+}
 
-@import "app/components/pager/pager.component";
-@import "app/components/loader/loader.component";
-@import "app/components/pages/categories/categories-page.component";
-@import "app/components/pages/tags/tags-page.component";
-@import "app/components/pages/posts/posts-page.component";
-@import "app/app.component";
+.admin-canvas-content {
+    padding: 1rem 0 0 0;
+    background: $white;
+    button.save {
+        margin: 0;
+    }
+}
+
+#published {
+    display: inline-block;
+    margin: 30px 1rem 0 0.5rem;
+    vertical-align: baseline;
+}
+
+[type='checkbox']+label[for] {
+    cursor: pointer;
+}
+
+.admin-checkbox-vertial-align {
+    margin: 1.75rem 0 0;
+}
+
+.admin-button-group {
+    margin: 0;
+}
+
+.admin-post-description {
+    min-height: 199px;
+}
+
+.admin-post-collection-item {
+    float: left;
+}
+
+.empty-state {
+    margin: 8rem;
+    text-align: center;
+    i {
+        font-size: 6rem;
+        margin: 0 0 2rem;
+    }
+}
