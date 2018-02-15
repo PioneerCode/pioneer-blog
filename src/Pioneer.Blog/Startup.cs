@@ -177,16 +177,17 @@ namespace Pioneer.Blog
                     template: "blog/{page?}",
                     defaults: new { controller = "blog", action = "Index" });
 
+#if (DEBUG)
                 routes.MapRoute(
                     name: "Admin",
                     template: "admin",
                     defaults: new { controller = "admin", action = "Index" });
+#endif
 
                 routes.MapRoute(
                     name: "SiteMap",
                     template: "sitemap.xml",
                     defaults: new { controller = "home", action = "SiteMap" });
-
 
                 routes.MapRoute(
                     name: "default",
