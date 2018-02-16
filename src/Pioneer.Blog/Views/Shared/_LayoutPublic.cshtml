@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section metaShared {
@@ -21,17 +21,17 @@
 
 @section nav {
   <nav class="nav-main">
-    <input type="hidden" class="nav-main-show" />
-    <div class="title-bar clearfix hide" data-responsive-toggle="pioneer-public-menu" data-hide-for="medium">
-      <div class="title-bar-title float-left">
-        <a href="/" class="title">Pioneer <span>Code</span></a>
-      </div>
-      <button class="fa fa-bars fa-lg float-right" type="button" data-toggle></button>
-    </div>
-    <div class="top-bar" id="pioneer-public-menu">
-      <div class="row">
-        <div class="large-12 columns">
-          <div class="top-bar-left hide-for-small-only">
+    <div class="row">
+      <div class="large-12 columns">
+        <input type="hidden" class="nav-main-show" />
+        <div class="title-bar">
+          <div class="title-bar-title float-left">
+            <a href="/" class="title">Pioneer <span>Code</span></a>
+          </div>
+          <button class="fa fa-bars fa-lg float-right" type="button" id="hamburger"></button>
+        </div>
+        <div class="top-bar hide-for-small-only">
+          <div class="top-bar-left ">
             <ul class="menu">
               <li class="menu-text">
                 <a href="/" class="title" title="Pioneer Code">Pioneer <span>Code</span></a>
@@ -39,7 +39,7 @@
             </ul>
           </div>
           <div class="top-bar-right">
-            <ul class="dropdown menu" data-dropdown-menu>
+            <ul class="dropdown menu">
               <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
                 <a href="/blog" title="Blog">BLOG</a>
               </li>
@@ -52,15 +52,26 @@
               <li class="@(ViewBag.Selected == "contact" ? "selected" : "")">
                 <a href="/contact" class="margin-zero" title="Contact">CONTACT</a>
               </li>
-              <environment names="Development">
-                <li>
-                  @Html.Partial("_LoginPartial")
-                </li>
-              </environment>
             </ul>
           </div>
         </div>
       </div>
+    </div>
+    <div class="mobile-nav hide">
+      <ul class="dropdown menu">
+        <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
+          <a href="/blog" title="Blog">BLOG</a>
+        </li>
+        <li class="@(ViewBag.Selected == "about" ? "selected" : "")">
+          <a href="/about" title="About">ABOUT</a>
+        </li>
+        <li class="@(ViewBag.Selected == "search" ? "selected" : "")">
+          <a href="/search" title="Search">SEARCH</a>
+        </li>
+        <li class="@(ViewBag.Selected == "contact" ? "selected" : "")">
+          <a href="/contact" class="margin-zero" title="Contact">CONTACT</a>
+        </li>
+      </ul>
     </div>
   </nav>
 }

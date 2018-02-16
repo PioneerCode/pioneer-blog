@@ -47,6 +47,7 @@ function move() {
 
 function libs() {
     return gulp.src([
+        'node_modules/jquery/dist/jquery.min.js',
         'scripts/syntaxhighlighter.js'
     ])
         .pipe(concat('libs.js'))
@@ -57,7 +58,7 @@ function libs() {
 function scripts() {
     return gulp.src([
         'temp/lib/libs.js',
-        'temp/public/**/*.js'
+        'temp/**/*.js'
     ], { base: './temp/' })
         .pipe(concat('app.js'))
         .pipe(uglify())
