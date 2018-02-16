@@ -116,12 +116,14 @@
           <div class="large-6 columns">
             <label>
               Excerpt
+              <a class="fa fa-expand" (click)="isModalArticle = false; this.model.open();"></a>
               <textarea [(ngModel)]="postService.getCurrent().excerpt.content"></textarea>
             </label>
           </div>
           <div class="large-6 columns">
             <label>
               Article
+              <a class="fa fa-expand" (click)="isModalArticle = true; this.model.open();"></a>
               <textarea [(ngModel)]="postService.getCurrent().article.content"></textarea>
             </label>
           </div>
@@ -165,13 +167,22 @@
     </div>
   </div>
 </section>
-<pc-modal [width]="'90%'" class="article-modal">
-  <div class="row expanded">
+<pc-modal [width]="'90%'" class="modal">
+  <div class="row expanded" *ngIf="isModalArticle">
     <div class="large-6 columns">
       <textarea [(ngModel)]="postService.getCurrent().article.content"></textarea>
     </div>
     <div class="large-6 columns">
       <div class="canvas" [innerHTML]="postService.getCurrent().article.content">
+      </div>
+    </div>
+  </div>
+  <div class="row expanded" *ngIf="!isModalArticle">
+    <div class="large-6 columns">
+      <textarea [(ngModel)]="postService.getCurrent().excerpt.content"></textarea>
+    </div>
+    <div class="large-6 columns">
+      <div class="canvas" [innerHTML]="postService.getCurrent().excerpt.content">
       </div>
     </div>
   </div>

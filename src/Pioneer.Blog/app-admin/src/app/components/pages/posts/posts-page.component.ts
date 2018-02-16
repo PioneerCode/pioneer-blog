@@ -26,7 +26,6 @@ export class PostsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.model.open();
     this.tagService.init()
       .then(() => {
         return this.categoryService.init();
