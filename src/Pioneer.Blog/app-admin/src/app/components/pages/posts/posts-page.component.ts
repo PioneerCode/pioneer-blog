@@ -1,19 +1,22 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostService } from './post.service';
 import { CategoryService } from '../categories/category.service';
 import { TagService } from '../tags/tag.service';
 import { Category } from '../../../models/category';
 import { Tag } from '../../../models/tag';
+import { ModalComponent } from '../../modal/modal.component';
 
 @Component({
   selector: 'pc-posts-page',
-  styles: [
+  styleUrls: [
     'posts-page.component.scss'
   ],
   templateUrl: './posts-page.component.html'
 })
 
 export class PostsPageComponent implements OnInit {
+  @ViewChild(ModalComponent) model = new ModalComponent();
+
   loading = false;
 
   constructor(public postService: PostService,
@@ -82,9 +85,9 @@ export class PostsPageComponent implements OnInit {
     this.loading = true;
     if (!this.postService.isTagSet(tag)) {
       this.postService.addTag(tag)
-      .then(() => {
-        this.loading = false;
-      });
+        .then(() => {
+          this.loading = false;
+        });
       return;
     }
 

@@ -2,7 +2,7 @@
 
 @Component({
   selector: 'pc-loader',
-  styles: [
+  styleUrls: [
     'loader.component.scss'
   ],
   template: `
