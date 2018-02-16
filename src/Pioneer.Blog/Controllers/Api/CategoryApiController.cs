@@ -5,36 +5,36 @@ using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Service;
 
-namespace Pioneer.Blog.Areas.Admin.Controllers.Api
+namespace Pioneer.Blog.Controllers.Api
 {
 #if (!DEBUG)
     [Authorize]
 #endif
-    [Route("api/tags")]
-    public class TagApiController : Controller
+    [Route("api/categories")]
+    public class CategoryApiController : Controller
     {
-        private readonly ITagService _tagService;
+        private readonly ICategoryService _categoryService;
          
-        public TagApiController(ITagService tagService)
+        public CategoryApiController(ICategoryService categoryService)
         {
-            _tagService = tagService;
+            _categoryService = categoryService;
         }
 
         [HttpGet]
-        public IEnumerable<Tag> GetAll(int? count, int? page)
+        public IEnumerable<Category> GetAll(int? count, int? page)
         {
             if (count == null || page == null)
             {
-                return _tagService.GetAll();
+                return _categoryService.GetAll();
             }
 
-            return _tagService.GetAllPaged((int)count, (int)page);
+            return _categoryService.GetAllPaged((int)count, (int)page);
         }
 
-        [HttpGet("{id}", Name = "GetTag")]
+        [HttpGet("{id}", Name = "GetCategory")]
         public IActionResult GetById(int id)
         {
-            var item = _tagService.GetById(id);
+            var item = _categoryService.GetById(id);
             if (item == null)
             {
                 return NotFound();
@@ -45,33 +45,33 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
 
         [HttpPost]
         [Authorize(Policy = "isSuperUser")]
-        public IActionResult Create([FromBody]Tag tag)
+        public IActionResult Create([FromBody]Category tag)
         {
             if (tag == null)
             {
                 return BadRequest();
             }
 
-            _tagService.Add(tag);
-            return CreatedAtRoute("GetTag", new { id = tag.TagId }, tag);
+            _categoryService.Add(tag);
+            return CreatedAtRoute("GetCategory", new { id = tag.CategoryId }, tag);
         }
 
         [HttpPut("{id}")]
         [Authorize(Policy = "isSuperUser")]
-        public IActionResult Update(int id, [FromBody] Tag item)
+        public IActionResult Update(int id, [FromBody] Category item)
         {
-            if (item == null || item.TagId != id)
+            if (item == null || item.CategoryId != id)
             {
                 return BadRequest();
             }
 
-            var todo = _tagService.GetById(id);
+            var todo = _categoryService.GetById(id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            _tagService.Update(item);
+            _categoryService.Update(item);
             return new NoContentResult();
         }
 
@@ -79,13 +79,13 @@ namespace Pioneer.Blog.Areas.Admin.Controllers.Api
         //[Authorize(Policy = "isSuperUser")]
         //public IActionResult Delete(int id)
         //{
-        //    var todo = _tagService.GetById(id);
+        //    var todo = _categoryService.GetById(id);
         //    if (todo == null)
         //    {
         //        return NotFound();
         //    }
 
-        //    _tagService.Remove(id);
+        //    _categoryService.Remove(id);
         //    return new NoContentResult();
         //}
     }

@@ -1,13 +1,13 @@
 ﻿#if (DEBUG)
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Pioneer.Blog.Areas.Admin.Controllers.Api
+namespace Pioneer.Blog.Controllers.Api
 {
     [Route("api/accounts")]
     public class AccountApiController : Controller
