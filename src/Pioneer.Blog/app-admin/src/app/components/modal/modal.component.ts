@@ -16,7 +16,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ModalComponent {
   @Input() width = '50%';
-  private show = false;
+  show = false;
 
   close(): void {
     this.show = false;

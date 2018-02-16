@@ -165,11 +165,14 @@
     </div>
   </div>
 </section>
-<pc-modal [width]="'90%'">
+<pc-modal [width]="'90%'" class="article-modal">
   <div class="row expanded">
     <div class="large-6 columns">
       <textarea [(ngModel)]="postService.getCurrent().article.content"></textarea>
     </div>
-    <div class="large-6 columns"></div>
+    <div class="large-6 columns">
+      <div class="canvas" [innerHTML]="postService.getCurrent().article.content">
+      </div>
+    </div>
   </div>
 </pc-modal>

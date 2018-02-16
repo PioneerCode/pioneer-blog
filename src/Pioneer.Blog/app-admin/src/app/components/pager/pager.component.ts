@@ -14,7 +14,7 @@ export interface IPager {
 
 @Component({
   selector: 'pc-pager',
-  styles: [
+  styleUrls: [
     'pager.component.scss'
   ],
   template: `

@@ -8,7 +8,7 @@ import { ModalComponent } from '../../modal/modal.component';
 
 @Component({
   selector: 'pc-posts-page',
-  styles: [
+  styleUrls: [
     'posts-page.component.scss'
   ],
   templateUrl: './posts-page.component.html'
