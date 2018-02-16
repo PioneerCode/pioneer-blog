@@ -19,6 +19,7 @@ import { CategoryRepository } from './repositories/category.repository';
 import { PostTagRepository } from './repositories/post-tag.repository';
 import { PostRepository } from './repositories/post.repository';
 import { LoginComponent } from './components/pages/login/login.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { LoginComponent } from './components/pages/login/login.component';
     PostsPageComponent,
     LoaderComponent,
     PagerComponent,
-    LoginComponent
+    LoginComponent,
+    ModalComponent
   ],
   imports: [
     HttpModule,

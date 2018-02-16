@@ -1,23 +1,67 @@
-.pc-loader {
-  .pc-loader-wrapper {
-    position: absolute;
-    display: inline-block;
-    left: 1rem;
-    top: 1rem;
-  }
+.pbi-ui-modal {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid $black;
+}
 
-  .pc-loader-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $white;
-    opacity: 0.8;
-  }
+.pbi-ui-modal table {
+  margin: 0;
+}
 
-  i {
-    color: $dark-gray;
-    font-size: 5rem;
+.pbi-ui-modal-overlay {
+  position: absolute;
+  z-index: 9000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $black;
+  opacity: 0.8;
+}
+
+.pbi-ui-modal-dialog {
+  z-index: 9999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 95%;
+  transform: translate(-50%, -50%);
+  background-color: $white;
+  box-shadow: 4px 4px 80px $black;
+  padding: 1rem;
+}
+
+.pbi-ui-modal-dialog-content {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+
+  .row:not(.expanded),
+  .row {
+    max-width: 90rem;
+    margin-right: auto;
+    margin-left: auto;
   }
+}
+
+.pbi-ui-modal-close {
+  cursor: pointer;
+}
+
+.pbi-ui-modal-close:hover {
+  font-weight: bold;
+}
+
+.pbi-ui-modal-header {
+  padding: 0.5rem 1rem;
+  margin: 0 0 0.5rem;
+  background: $primary-color;
+  color: $white;
 }
