@@ -1,5 +1,10 @@
 ## Pioneer Code - Pioneer Code Blog
 
+<a name="2.3"></a>
+# 2.3
+### Added
+* Expanded view option for Excerpt and Article editing. 
+
 <a name="2.2"></a>
 # 2.2
 ### Changed
