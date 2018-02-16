@@ -44,7 +44,7 @@ namespace Pioneer.Blog
             RegisterDependencies(services);
 
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
-
+            services.AddCors();
             services.AddMvc();
         }
 
@@ -66,6 +66,15 @@ namespace Pioneer.Blog
 
             app.UseStaticFiles();
             app.UseAuthentication();
+
+            app.UseCors(builder =>
+            {
+                // Matches the url and port coming from app-admin
+                // TODO: Review AllowCredntials
+                // https://docs.microsoft.com/en-us/aspnet/core/security/cors#credentials-in-cross-origin-requests#credentials-in-cross-origin-requests
+                builder.WithOrigins("http://localhost:4200")
+                    .AllowCredentials();
+            });
 
             ConfigureMvc(app);
         }
@@ -132,11 +141,6 @@ namespace Pioneer.Blog
         {
             app.UseMvc(routes =>
             {
-                // Areas support
-                routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
                 routes.MapRoute(
                     name: "Post",
                     template: "post/{id}",

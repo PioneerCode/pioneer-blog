@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Service;
 
-namespace Pioneer.Blog.Areas.Admin.Controllers.Api
+namespace Pioneer.Blog.Controllers.Api
 {
 #if (!DEBUG)
     [Authorize]

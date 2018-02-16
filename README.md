@@ -39,34 +39,6 @@ dotnet ef database update
 
 At this point, a database and all corresponding tables should have been created in your database instance. 
 
-### Front-end
-
-Install [node](https://nodejs.org/en/) on your local environment and run the following.
-
-gulp
-```bash
-npm rm --global gulp
-npm install gulp-cli -g
-```
-
-typings
-```bash
-npm install typings -g
-```
-
-Navigate to the `Pioneer.Blog` directory from your command prompt and run....
-- `npm install`
-- `npm rebuild node-sass --force`
-- `gulp public`
-
-Navigate to to `Pioneer.Blog\Areas\admin-app` from your command prompt and run....
-- `npm install`
-- `npm start`
-
-### Run
-
-That is it! You now should be able to build and launch the project from your IDE of choosing. 
-
 ### Registering A Super Account
 
 - Launch your application in debug mode.
@@ -79,6 +51,43 @@ That is it! You now should be able to build and launch the project from your IDE
 ![alt text](assets/claims.png)
 
 You can now use this account to perform all administrative tasks. 
+
+### app-client
+
+The **app-client** folder holds public client code. 
+
+To build in dev.
+
+```bash
+npm start
+```
+
+To build for production.
+
+```bash
+npm run build
+```
+
+### app-admin
+
+The **app-admin** folder holds admin application client code. 
+
+To build in dev.
+
+```bash
+npm start
+```
+
+To build for production.
+
+```bash
+npm run build
+```
+
+### Run
+
+That is it! You now should be able to build and launch the project from your IDE of choosing. 
+
 
 ## What Is Next
 
