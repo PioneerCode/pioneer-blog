@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'pc-modal',
   template: `
   <div class="pc-modal" *ngIf="show">
     <div class="pc-modal-overlay" (click)="close()"></div>
-    <div class="pc-modal-dialog" ng-style="dialogStyle">
+    <div class="pc-modal-dialog" ng-style="dialogStyle" [style.width]="width">
       <div class="pc-modal-dialog-content">
         <ng-content></ng-content>
       </div>
@@ -15,8 +15,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent {
-
-  show = false;
+  @Input() width = '50%';
+  private show = false;
 
   close(): void {
     this.show = false;

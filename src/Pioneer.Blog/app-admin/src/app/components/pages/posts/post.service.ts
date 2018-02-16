@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class PostService {
   posts = [] as Post[];
-  selectedPost = {} as Post;
+  selectedPost = { article: {} } as Post;
   countPerPage = 10;
   currentPageIndex = 1;
   // TODO: This is an issue.  The initial state of the pager will represent this, not what comes from the repo.
