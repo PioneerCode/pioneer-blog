@@ -16,7 +16,7 @@ import { ModalComponent } from '../../modal/modal.component';
 
 export class PostsPageComponent implements OnInit {
   @ViewChild(ModalComponent) model = new ModalComponent();
-
+  isModalArticle = true;
   loading = false;
 
   constructor(public postService: PostService,
