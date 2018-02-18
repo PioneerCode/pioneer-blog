@@ -1,26 +1,23 @@
-$(() => {
-    /**
-     * FOUT fighter
-     */
-    $('.title-bar').removeClass('hide');
-});
-
-/**
- * Cache navigation
- */
-var header = $('.nav-main');
-
 /**
  * Manage transparent/un-transparent navigation
  */
-$(window).on('scroll', () => {
-    var top = header.offset().top;
-    if (top >= 100) {
-        header.addClass('nav-main-show');
+var header = document.getElementById('nav-main') as any;
+window.onscroll = () => {
+    if (window.pageYOffset >= 100) {
+        header.classList.add('nav-main-show');
     } else {
-        header.removeClass('nav-main-show');
-    } 
-});
+        header.classList.remove('nav-main-show');
+    }
+};
+
+//$(window).on('scroll', () => {
+//    var top = header.offset().top;
+//    if (top >= 100) {
+//        header.addClass('nav-main-show');
+//    } else {
+//        header.removeClass('nav-main-show');
+//    }
+//});
 
 /**
  * Trigger scroll event to handle middle of page loads for navigation
