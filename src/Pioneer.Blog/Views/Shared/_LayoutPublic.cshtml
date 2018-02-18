@@ -27,7 +27,7 @@
           <div class="title-bar-title float-left">
             <a href="/" class="title">Pioneer <span>Code</span></a>
           </div>
-          <button class="fa fa-bars fa-lg float-right" type="button" id="hamburger"></button>
+          <button class="fa fa-bars fa-lg float-right" type="button" onclick="hamburgerClick()"></button>
         </div>
         <div class="top-bar hide-for-small-only">
           <div class="top-bar-left ">
@@ -56,7 +56,7 @@
         </div>
       </div>
     </div>
-    <div class="mobile-nav hide">
+    <div id="mobile-nav" class="mobile-nav hide">
       <ul class="dropdown menu">
         <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
           <a href="/blog" title="Blog">BLOG</a>
