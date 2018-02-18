@@ -50,7 +50,7 @@ function libs() {
         'scripts/syntaxhighlighter.js'
     ])
         .pipe(concat('libs.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('temp/lib'));
 }
 
