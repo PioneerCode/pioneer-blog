@@ -10,49 +10,66 @@
     margin: 0 0 .5rem;
 }
 
-.home-hero-content { 
-  max-width: 800px;
-  margin: 0 auto;
-  display: table;
+.home-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: table;
 
-  svg {
-    path {
-      fill: $white;
+    .menu {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
     }
-  }
-  ul.menu.simple li {
-    margin-right: 0;
+
+    svg {
+        path {
+            fill: $white;
+        }
+    }
+
+    ul.menu.simple li {
+        margin-right: 0;
+
+        @include breakpoint(medium up) {
+            margin-right: 1rem;
+        }
+    }
+
+    .me {
+        display: block;
+        vertical-align: top;
+        min-width: 120px;
+        display: block;
+
+        @include breakpoint(medium up) {
+            display: table-cell;
+        }
+    }
+
+    .bio {
+        font-size: 20px;
+        display: block;
+        vertical-align: middle;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+
+        @include breakpoint(medium up) {
+            text-align: left;
+            padding: 0 0 0 24px;
+            display: table-cell;
+        }
+    }
 
     @include breakpoint(medium up) {
-      margin-right: 1rem;
+        .menu {
+            -webkit-box-pack: initial;
+            -webkit-justify-content: initial;
+            -ms-flex-pack: initial;
+            justify-content: initial;
+        }
     }
-  }
-
-  .me {
-    display: block;
-    vertical-align: top;
-    min-width: 120px;
-    display: block;
-
-    @include breakpoint(medium up) {
-      display: table-cell;
-    }
-  }
-
-  .bio {
-    font-size: 20px;
-    display: block;
-    vertical-align: middle;
-    padding: 0;
-    width: 100%;
-    text-align: center;
-
-    @include breakpoint(medium up) {
-      text-align: left;
-      padding: 0 0 0 24px;
-      display: table-cell;
-    }
-  }
 }
 
 .hg-large.home-hero {
