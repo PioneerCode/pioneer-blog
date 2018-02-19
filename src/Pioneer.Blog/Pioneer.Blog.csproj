@@ -9,21 +9,25 @@
     <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="app-admin\**" />
     <Compile Remove="app-client\temp\**" />
     <Compile Remove="client-app\**" />
     <Compile Remove="dev\**" />
     <Compile Remove="gulp-tasks\**" />
     <Compile Remove="scripts\**" />
+    <Content Remove="app-admin\**" />
     <Content Remove="app-client\temp\**" />
     <Content Remove="client-app\**" />
     <Content Remove="dev\**" />
     <Content Remove="gulp-tasks\**" />
     <Content Remove="scripts\**" />
+    <EmbeddedResource Remove="app-admin\**" />
     <EmbeddedResource Remove="app-client\temp\**" />
     <EmbeddedResource Remove="client-app\**" />
     <EmbeddedResource Remove="dev\**" />
     <EmbeddedResource Remove="gulp-tasks\**" />
     <EmbeddedResource Remove="scripts\**" />
+    <None Remove="app-admin\**" />
     <None Remove="app-client\temp\**" />
     <None Remove="client-app\**" />
     <None Remove="dev\**" />

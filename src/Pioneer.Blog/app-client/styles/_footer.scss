@@ -1,95 +1,108 @@
 footer.main {
-  padding: 3rem 0;
-  background: $black;
-  color: $dark-gray;
-  text-align: center;
-  position: relative;
-  z-index: 999;
-
-  .meta {
-    p {
-      text-align: center;
-      font-size: 12px;
-      margin: 0;
-      color: $dark-gray;
-    }
-
-    .disclaimer {
-      font-style: italic;
-    }
-  }
-
-  .copy {
-    color: #666;
-  }
-
-  p {
+    padding: 3rem 0;
+    background: $black;
     color: $dark-gray;
-    font-size: 14px;
-  }
+    text-align: center;
+    position: relative;
+    z-index: 999;
 
-  .heading {
-    color: $medium-gray;
-    font-weight: bold;
-  }
+    .meta {
+        p {
+            text-align: center;
+            font-size: 12px;
+            margin: 0;
+            color: $dark-gray;
+        }
 
-  ui.menu.vertical {
-    margin: 1rem 0 0;
-  }
-
-  ul.menu {
-    margin: -7px 0 1rem;
-  }
-
-  p.email {
-    a {
-      font-size: 1.5rem;
-      font-weight: 100;
-
-      &:hover {
-        text-decoration: underline;
-      }
+        .disclaimer {
+            font-style: italic;
+        }
     }
-  }
 
-  p.chad a {
-    font-weight: 300;
-  }
-
-  svg {
-    fill: $medium-gray;
-
-    &:hover {
-      fill: $white;
-      transition: fill 0.5s ease;
+    .copy {
+        color: #666;
     }
-  }
 
-  a {
-    font-weight: bold;
-    color: $medium-gray;
-    font-size: 14px;
-
-
-    &:hover {
-      text-decoration: none;
-      color: $white;
-      transition: color 0.5s ease;
+    p {
+        color: $dark-gray;
+        font-size: 14px;
     }
-  }
 
-  @include breakpoint(medium up) {
-    text-align: left;
-    padding: 6rem 0;
-
-    p.email {
-      a {
-        font-size: 2rem;
-      }
+    .heading {
+        color: $medium-gray;
+        font-weight: bold;
     }
 
     ui.menu.vertical {
-      margin: 0;
+        margin: 1rem 0 0;
     }
-  }
+
+    ul.menu {
+        margin: -7px 0 1rem;
+    }
+
+    p.email {
+        a {
+            font-size: 1.5rem;
+            font-weight: 100;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    p.chad a {
+        font-weight: 300;
+    }
+
+    svg {
+        fill: $medium-gray;
+
+        &:hover {
+            fill: $white;
+            transition: fill 0.5s ease;
+        }
+    }
+
+    a {
+        font-weight: bold;
+        color: $medium-gray;
+        font-size: 14px;
+
+
+        &:hover {
+            text-decoration: none;
+            color: $white;
+            transition: color 0.5s ease;
+        }
+    }
+
+    .menu {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    @include breakpoint(medium up) {
+        text-align: left;
+        padding: 6rem 0;
+
+        .menu {
+            -webkit-justify-content: initial;
+            -ms-flex-pack: initial;
+            justify-content: initial;
+        }
+
+        p.email {
+            a {
+                font-size: 2rem;
+            }
+        }
+
+        ui.menu.vertical {
+            margin: 0;
+        }
+    }
 }
