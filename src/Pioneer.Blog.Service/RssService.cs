@@ -47,11 +47,12 @@ namespace Pioneer.Blog.Service
         {
             var channel = new XElement("channel");
             channel.Add(new XElement("title", _config.Value.SiteTitle));
-            channel.Add(new XElement("link", $"{_config.Value.SiteUrl}/rssfeed.xml"));
+            channel.Add(new XElement("link", $"{_config.Value.SiteUrl}"));
             channel.Add(new XElement("description", "Chad Ramos at Pioneer Code, a Chicago-based software developer with a strong passion for .NET, C#, The Web, Open Source, Programming and more."));
             channel.Add(new XElement("copyright", $"©{DateTime.Now.Year}  {_config.Value.SiteTitle}"));
 
             var image = new XElement("image");
+            image.Add(new XElement("title", _config.Value.SiteTitle));
             image.Add(new XElement("url", $"{_config.Value.SiteUrl}/images/icons/mstile-144x144.png"));
             image.Add(new XElement("link", _config.Value.SiteUrl));
 
@@ -66,13 +67,7 @@ namespace Pioneer.Blog.Service
             itemElement.Add(new XElement("link", $"{_config.Value.SiteUrl}/post/{post.Url}"));
             itemElement.Add(new XElement("description", post.Description));
             itemElement.Add(new XElement("category", post.Category.Name));
-
-            foreach (var c in post.Tags)
-            {
-                itemElement.Add(new XElement("tag", c.Name));
-            }
-
-            if (post.PostedOn != DateTime.MinValue) itemElement.Add(new XElement("pubDate", post.PostedOn.ToString("r")));
+            itemElement.Add(new XElement("pubDate", post.PostedOn.ToString("r")));
 
             return itemElement;
         }
