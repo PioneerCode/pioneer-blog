@@ -68,7 +68,7 @@ namespace Pioneer.Blog.Service
             itemElement.Add(new XElement("description", post.Description));
             itemElement.Add(new XElement("category", post.Category.Name));
             itemElement.Add(new XElement("pubDate", post.PostedOn.ToString("r")));
-
+            itemElement.Add(new XElement("guid", $"{_config.Value.SiteUrl}/post/{post.Url}"));
             return itemElement;
         }
     }
