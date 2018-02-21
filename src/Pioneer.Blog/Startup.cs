@@ -135,6 +135,7 @@ namespace Pioneer.Blog
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<ISiteMapService, SiteMapService>();
             services.AddTransient<ApplicationEnvironment>();
+            services.AddTransient<IRssService, RssService>();
         }
 
         private static void ConfigureMvc(IApplicationBuilder app)
@@ -192,6 +193,11 @@ namespace Pioneer.Blog
                     name: "SiteMap",
                     template: "sitemap.xml",
                     defaults: new { controller = "home", action = "SiteMap" });
+
+                routes.MapRoute(
+                    name: "RssFeed",
+                    template: "rss.xml",
+                    defaults: new { controller = "home", action = "RssFeed" });
 
                 routes.MapRoute(
                     name: "default",

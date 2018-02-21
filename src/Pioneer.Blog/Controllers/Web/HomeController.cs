@@ -15,14 +15,17 @@ namespace Pioneer.Blog.Controllers.Web
         private readonly IPostService _postService;
         private readonly ISiteMapService _siteMapService;
         private readonly ICommunicationService _communicationService;
+        private readonly IRssService _rssService;
 
         public HomeController(IPostService postService,
             ISiteMapService siteMapService,
-            ICommunicationService communicationService)
+            ICommunicationService communicationService, 
+            IRssService rssService)
         {
             _postService = postService;
             _siteMapService = siteMapService;
             _communicationService = communicationService;
+            _rssService = rssService;
         }
 
         public IActionResult Index()
@@ -71,6 +74,11 @@ namespace Pioneer.Blog.Controllers.Web
         public IActionResult SiteMap()
         {
             return Content(_siteMapService.GetSiteMap(), "text/xml", Encoding.UTF8);
+        }
+
+        public IActionResult RssFeed()
+        {
+            return Content(_rssService.GetFeed(), "text/xml", Encoding.UTF8);
         }
     }
 }
