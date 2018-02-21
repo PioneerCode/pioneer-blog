@@ -50,6 +50,12 @@ namespace Pioneer.Blog.Service
             channel.Add(new XElement("link", $"{_config.Value.SiteUrl}/rssfeed.xml"));
             channel.Add(new XElement("description", "Chad Ramos at Pioneer Code, a Chicago-based software developer with a strong passion for .NET, C#, The Web, Open Source, Programming and more."));
             channel.Add(new XElement("copyright", $"©{DateTime.Now.Year}  {_config.Value.SiteTitle}"));
+
+            var image = new XElement("image");
+            image.Add(new XElement("url", $"{_config.Value.SiteUrl}/images/icons/mstile-144x144.png"));
+            image.Add(new XElement("link", _config.Value.SiteUrl));
+
+            channel.Add(image);
             return channel;
         }
 
