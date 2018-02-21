@@ -13,18 +13,12 @@ namespace Pioneer.Blog.Service
     public class RssService : IRssService
     {
         private readonly IPostService _postService;
-        private readonly ITagService _tagService;
-        private readonly ICategoryService _categoryService;
         private readonly IOptions<AppConfiguration> _config;
 
         public RssService(IPostService postService,
-            ITagService tagService,
-            ICategoryService categoryService,
             IOptions<AppConfiguration> config)
         {
             _postService = postService;
-            _tagService = tagService;
-            _categoryService = categoryService;
             _config = config;
         }
 
@@ -43,7 +37,7 @@ namespace Pioneer.Blog.Service
             return doc.ToString();
         }
 
-        private XDocument CreateDocument()
+        private static XDocument CreateDocument()
         {
             var doc = new XDocument(new XElement("rss"));
             doc.Root.Add(new XAttribute("version", "2.0"));
@@ -56,7 +50,7 @@ namespace Pioneer.Blog.Service
             channel.Add(new XElement("title", _config.Value.SiteUrl));
             channel.Add(new XElement("link", $"{_config.Value.SiteUrl}/rssfeed.xml"));
             channel.Add(new XElement("description", "Chad Ramos at Pioneer Code, a Chicago-based software developer with a strong passion for .NET, C#, The Web, Open Source, Programming and more."));
-            channel.Add(new XElement("copyright", $"© {DateTime.Now.Year} Pioneer Code"));
+            channel.Add(new XElement("copyright", $"© {DateTime.Now.Year}  {_config.Value.SiteTitle}"));
             return channel;
         }
 
