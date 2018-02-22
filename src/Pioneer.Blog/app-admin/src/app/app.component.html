@@ -1,25 +1,42 @@
-<nav class="nav-admin">
-  <ul class="menu vertical">
-    <li routerLink="/posts" routerLinkActive="active">
-      <a>
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        POSTS
-      </a>
-    </li>
-    <li routerLink="/categories" routerLinkActive="active">
-      <a>
-        <i class="fa fa-archive" aria-hidden="true"></i>
-        CATEGORIES
-      </a>
-    </li>
-    <li routerLink="/tags" routerLinkActive="active">
-      <a class="margin-zero">
-        <i class="fa fa-tags" aria-hidden="true"></i>
-        TAGS
-      </a>
-    </li>
-  </ul>
-</nav>
-<div class="admin-canvas">
+<ng-container *ngIf="authService.checkLogin()">
+  <header>
+    <div class="clearfix">
+      <div class="home float-left">
+        <a href="/">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          Pioneer Code
+        </a>
+      </div>
+      <div class="float-right">
+      </div>
+    </div>
+  </header>
+  <nav class="nav-admin">
+    <ul class="menu vertical">
+      <li routerLink="/posts" routerLinkActive="active">
+        <a>
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          POSTS
+        </a>
+      </li>
+      <li routerLink="/categories" routerLinkActive="active">
+        <a>
+          <i class="fa fa-archive" aria-hidden="true"></i>
+          CATEGORIES
+        </a>
+      </li>
+      <li routerLink="/tags" routerLinkActive="active">
+        <a class="margin-zero">
+          <i class="fa fa-tags" aria-hidden="true"></i>
+          TAGS
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="admin-canvas">
+    <router-outlet></router-outlet>
+  </div>
+</ng-container>
+<ng-container *ngIf="!authService.checkLogin()">
   <router-outlet></router-outlet>
-</div>
+</ng-container>
