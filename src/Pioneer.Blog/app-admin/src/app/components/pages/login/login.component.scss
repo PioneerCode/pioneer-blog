@@ -1,0 +1,25 @@
+@import "../../../../scss/settings";
+.login {
+    display: block;
+    height: 100%;
+    .pc-card {
+        margin: 8rem 0 0;
+        background: $white;
+        box-shadow: 5px 5px 9px 0 $dark-gray;
+        header {
+            text-align: center;
+            padding: 2rem;
+            img {
+                width: 50%;
+            }
+
+        }
+        form {
+            padding: 0 2rem 1rem 2rem;
+
+        }
+        a.button {
+            margin: 0;
+        }
+    }
+}
