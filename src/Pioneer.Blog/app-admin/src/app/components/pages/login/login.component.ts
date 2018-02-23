@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { UserRepository, ILoginRequest } from '../../../repositories/user.repository';
+import { IToken } from '../../../models/user';
 
 @Component({
   selector: 'pc-app-login',
@@ -26,6 +27,23 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/posts';
+  }
+
+  onSubmitForm() {
+    this.loading = true;
+    this.userRepository.login({ username: this.loginRequest.username, password: this.loginRequest.password } as ILoginRequest)
+      .subscribe((token: IToken) => {
+        console.log(token);
+        if (token && token.token) {
+          this.authenticationService.setCurrentToken(token);
+        }
+        this.router.navigate([this.returnUrl]);
+        this.loading = false;
+      }, error => {
+        //  this.alertService.error(error);
+        console.log(error);
+        this.loading = false;
+      });
   }
 }

@@ -10,7 +10,7 @@
             <input type="text" placeholder="Username">
             <input type="password" placeholder="Password">
           </div>
-          <a class="button expanded large" href="#">Login</a>
+          <button class="button expanded large" [disabled]="loginFrom.invalid">Login</button>
         </form>
       </div>
     </div>

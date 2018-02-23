@@ -20,12 +20,17 @@ export class UserRepository {
   constructor(private http: HttpClient) { }
 
   login(loginModel: ILoginRequest): Observable<IToken> {
-    return Observable.of<{ token: 'a' }>();
+    return Observable.create(observer => {
+      setTimeout(() => {
+        observer.next({ token: 'a' });
+        observer.complete();
+      }, 2000);
+    });
     // return this.http.post(`${API_URL}/api-token-auth/`, loginModel)
-    //   .map((resp: IToken) => {
-    //     return resp || {} as IToken;
-    //   })
-    //   .catch(this.handleError);
+    // .map((resp: IToken) => {
+    //   return resp || {} as IToken;
+    // })
+    // .catch(this.handleError);
   }
 
   private handleError(error: Response | any) {

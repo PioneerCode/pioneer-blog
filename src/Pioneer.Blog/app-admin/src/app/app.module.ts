@@ -22,6 +22,8 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { AuthenticationService } from './services/authentication.service';
+import { UserRepository } from './repositories/user.repository';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import { AuthenticationService } from './services/authentication.service';
   ],
   imports: [
     HttpModule,
+    HttpClientModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule
@@ -49,6 +52,7 @@ import { AuthenticationService } from './services/authentication.service';
     PostTagRepository,
     CategoryRepository,
     TagRepository,
+    UserRepository,
     PostService,
     CategoryService,
     TagService

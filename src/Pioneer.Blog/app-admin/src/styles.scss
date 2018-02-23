@@ -3,9 +3,6 @@
 $fa-font-path: "./assets/fonts" !default;
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 
-html, body {
-  height: 100%;
-}
 
 .body-content-admin {
     background: $light-gray;
