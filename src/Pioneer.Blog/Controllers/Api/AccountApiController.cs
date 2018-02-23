@@ -1,9 +1,14 @@
-﻿#if (DEBUG)
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
 
@@ -72,59 +77,58 @@ namespace Pioneer.Blog.Controllers.Api
             return Ok();
         }
 
-        //[HttpPost("token")]
-        //public async Task<IActionResult> Token([FromBody] UserRegisterAuthenticate model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPost("token")]
+        public async Task<IActionResult> Token([FromBody] UserRegisterAuthenticate model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
 
-        //    var user = await _userManager.FindByNameAsync(model.Email);
+            var user = await _userManager.FindByNameAsync(model.Email);
 
-        //    if (user == null || _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) != PasswordVerificationResult.Success)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (user == null || _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) != PasswordVerificationResult.Success)
+            {
+                return BadRequest();
+            }
 
-        //    var token = await GetJwtSecurityToken(user);
+            var token = await GetJwtSecurityToken(user);
 
-        //    return Ok(new
-        //    {
-        //        token = new JwtSecurityTokenHandler().WriteToken(token),
-        //        expiration = token.ValidTo
-        //    });
-        //}
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo
+            });
+        }
 
-        ///// <summary>
-        ///// Generate JWT Token based on valid User
-        ///// </summary>
-        //private async Task<JwtSecurityToken> GetJwtSecurityToken(UserEntity user)
-        //{
-        //    var userClaims = await _userManager.GetClaimsAsync(user);
+        /// <summary>
+        /// Generate JWT Token based on valid User
+        /// </summary>
+        private async Task<JwtSecurityToken> GetJwtSecurityToken(UserEntity user)
+        {
+            var userClaims = await _userManager.GetClaimsAsync(user);
 
-        //    return new JwtSecurityToken(
-        //        issuer: _appConfiguration.Value.SiteUrl,
-        //        audience: _appConfiguration.Value.SiteUrl,
-        //        claims: GetTokenClaims(user).Union(userClaims),
-        //        expires: DateTime.UtcNow.AddMinutes(10),
-        //        signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appConfiguration.Value.Key)), SecurityAlgorithms.HmacSha256)
-        //    );
-        //}
+            return new JwtSecurityToken(
+                issuer: _appConfiguration.Value.SiteUrl,
+                audience: _appConfiguration.Value.SiteUrl,
+                claims: GetTokenClaims(user).Union(userClaims),
+                expires: DateTime.UtcNow.AddMinutes(10),
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appConfiguration.Value.Key)), SecurityAlgorithms.HmacSha256)
+            );
+        }
 
         /// <summary>
         /// Generate additional JWT Token Claims.
         /// Use to any additional claims you might need.
         /// https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#rfc.section.4
         /// </summary>
-        //private static IEnumerable<Claim> GetTokenClaims(UserEntity user)
-        //{
-        //    return new List<Claim>
-        //    {
-        //        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        //        new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
-        //    };
-        //}
+        private static IEnumerable<Claim> GetTokenClaims(UserEntity user)
+        {
+            return new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
+            };
+        }
     }
 }
-#endif

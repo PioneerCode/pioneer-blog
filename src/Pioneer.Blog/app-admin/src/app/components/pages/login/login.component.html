@@ -8,8 +8,8 @@
         </header>
         <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
           <div class="form-content">
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
+            <input type="text" id="email" name="email" [(ngModel)]="loginRequest.email" placeholder="Email">
+            <input type="password" id="password" name="password" [(ngModel)]="loginRequest.password" placeholder="Password">
           </div>
           <button class="button expanded large" [disabled]="loginFrom.invalid">Login</button>
         </form>

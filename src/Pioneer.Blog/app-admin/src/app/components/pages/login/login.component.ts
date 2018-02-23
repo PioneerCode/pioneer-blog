@@ -32,16 +32,14 @@ export class LoginComponent implements OnInit {
 
   onSubmitForm() {
     this.loading = true;
-    this.userRepository.login({ username: this.loginRequest.username, password: this.loginRequest.password } as ILoginRequest)
+    this.userRepository.login({ email: this.loginRequest.email, password: this.loginRequest.password } as ILoginRequest)
       .subscribe((token: IToken) => {
-        console.log(token);
         if (token && token.token) {
           this.authenticationService.setCurrentToken(token);
         }
         this.router.navigate([this.returnUrl]);
         this.loading = false;
       }, error => {
-        //  this.alertService.error(error);
         console.log(error);
         this.loading = false;
       });
