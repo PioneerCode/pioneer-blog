@@ -20,6 +20,10 @@ import { PostTagRepository } from './repositories/post-tag.repository';
 import { PostRepository } from './repositories/post.repository';
 import { LoginComponent } from './components/pages/login/login.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { AuthenticationService } from './services/authentication.service';
+import { UserRepository } from './repositories/user.repository';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -36,15 +40,19 @@ import { ModalComponent } from './components/modal/modal.component';
   ],
   imports: [
     HttpModule,
+    HttpClientModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule
   ],
   providers: [
+    AuthenticationGuard,
+    AuthenticationService,
     PostRepository,
     PostTagRepository,
     CategoryRepository,
     TagRepository,
+    UserRepository,
     PostService,
     CategoryService,
     TagService
