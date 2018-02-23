@@ -5,11 +5,13 @@
         <header>
           <img src="assets/images/logo-large.png" alt="">
         </header>
-        <form>
-          <input type="text" placeholder="Username">
-          <input type="password" placeholder="Password">
+        <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
+          <div class="form-content">
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+          </div>
+          <a class="button expanded large" href="#">Login</a>
         </form>
-        <a class="button expanded large" href="#">Login</a>
       </div>
     </div>
   </div>
