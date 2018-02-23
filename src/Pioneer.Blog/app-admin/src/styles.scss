@@ -34,6 +34,13 @@ header.admin-header {
             }
         }
     }
+    .logout {
+      background: $primary-color;
+      color: $white;
+      display: block;
+      height: 48px;
+      padding: 12px 1rem 0 1rem;
+    }
     form {
         button {
             height: 3rem;
