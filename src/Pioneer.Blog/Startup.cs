@@ -40,15 +40,17 @@ namespace Pioneer.Blog
             ConfigureCookies(services);
             ConfigureJwt(services, Configuration);
 
-            services.AddAuthorization(cfg =>
-            {
-                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
-            });
 
             RegisterDependencies(services);
 
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
             services.AddCors();
+
+            services.AddAuthorization(cfg =>
+            {
+                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
+            });
+
             services.AddMvc();
         }
 
@@ -68,6 +70,7 @@ namespace Pioneer.Blog
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseAuthentication();
             app.UseCors(builder =>
             {
                 // Matches the url and port coming from app-admin
@@ -79,9 +82,7 @@ namespace Pioneer.Blog
                     .AllowAnyHeader()
                     .AllowCredentials();
             });
-
             app.UseStaticFiles();
-            app.UseAuthentication();
 
             ConfigureMvc(app);
         }
@@ -123,13 +124,20 @@ namespace Pioneer.Blog
 
         private static void ConfigureJwt(IServiceCollection services, IConfiguration configureation)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+                })
                 .AddJwtBearer(jwtBearerOptions =>
                 {
                     jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        //ValidateActor = true,
-                        //ValidateAudience = true,
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = configureation.GetSection("AppConfiguration:SiteUrl").Value,
