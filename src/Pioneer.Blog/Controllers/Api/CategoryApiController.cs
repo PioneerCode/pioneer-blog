@@ -1,5 +1,4 @@
-﻿#if (DEBUG)
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model;
@@ -7,9 +6,7 @@ using Pioneer.Blog.Service;
 
 namespace Pioneer.Blog.Controllers.Api
 {
-#if (!DEBUG)
     [Authorize]
-#endif
     [Route("api/categories")]
     public class CategoryApiController : Controller
     {
@@ -90,4 +87,3 @@ namespace Pioneer.Blog.Controllers.Api
         //}
     }
 }
-#endif

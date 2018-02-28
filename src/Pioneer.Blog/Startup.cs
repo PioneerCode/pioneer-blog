@@ -1,5 +1,7 @@
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.IdentityModel.Tokens;
 using Pioneer.Blog.Entity;
 using Pioneer.Blog.Model;
 using Pioneer.Blog.Repository;
@@ -22,7 +25,7 @@ namespace Pioneer.Blog
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public  IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -35,16 +38,19 @@ namespace Pioneer.Blog
                 .AddDefaultTokenProviders();
 
             ConfigureCookies(services);
+            ConfigureJwt(services, Configuration);
+
+
+            RegisterDependencies(services);
+
+            services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
+            services.AddCors();
 
             services.AddAuthorization(cfg =>
             {
                 cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
             });
 
-            RegisterDependencies(services);
-
-            services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
-            services.AddCors();
             services.AddMvc();
         }
 
@@ -64,17 +70,19 @@ namespace Pioneer.Blog
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseStaticFiles();
             app.UseAuthentication();
-
             app.UseCors(builder =>
             {
                 // Matches the url and port coming from app-admin
                 // TODO: Review AllowCredntials
                 // https://docs.microsoft.com/en-us/aspnet/core/security/cors#credentials-in-cross-origin-requests#credentials-in-cross-origin-requests
                 builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
                     .AllowCredentials();
             });
+            app.UseStaticFiles();
 
             ConfigureMvc(app);
         }
@@ -112,6 +120,31 @@ namespace Pioneer.Blog
                         }
                     };
             });
+        }
+
+        private static void ConfigureJwt(IServiceCollection services, IConfiguration configureation)
+        {
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+                })
+                .AddJwtBearer(jwtBearerOptions =>
+                {
+                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = configureation.GetSection("AppConfiguration:SiteUrl").Value,
+                        ValidAudience = configureation.GetSection("AppConfiguration:SiteUrl").Value,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configureation.GetSection("AppConfiguration:Key").Value))
+                    };
+                });
         }
 
         private static void RegisterDependencies(IServiceCollection services)
