@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Category } from '../models/category';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../../environments/environment';
@@ -8,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class CategoryRepository {
   private url = environment.apiUrl + '/api/categories';
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   get(id: number, includeExcerpt = false): Promise<Category> {
     return this.http.get(this.url + '/' + id)

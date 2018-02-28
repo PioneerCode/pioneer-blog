@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/post';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../../environments/environment';
@@ -8,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class PostRepository {
   private url = environment.apiUrl + '/api/posts';
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   get(idUrl: string, includeExcerpt = false): Promise<Post> {
     return this.http.get(this.url + '/' + idUrl + '?includeExcerpt=' + includeExcerpt, { withCredentials: true })

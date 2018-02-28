@@ -23,7 +23,8 @@ import { ModalComponent } from './components/modal/modal.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { AuthenticationService } from './services/authentication.service';
 import { UserRepository } from './repositories/user.repository';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 @NgModule({
@@ -55,7 +56,12 @@ import { HttpClientModule } from '@angular/common/http';
     UserRepository,
     PostService,
     CategoryService,
-    TagService
+    TagService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

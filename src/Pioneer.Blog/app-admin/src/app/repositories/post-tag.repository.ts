@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Tag } from '../models/tag';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../../environments/environment';
@@ -8,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class PostTagRepository {
   private url = environment.apiUrl + '/api/post-tags';
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   add(tagId: number, postId: number): Promise<Tag> {
     return this.http.post(this.url, { tagId: tagId, postId: postId })
