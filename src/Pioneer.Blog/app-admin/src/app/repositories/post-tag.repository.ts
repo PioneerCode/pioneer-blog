@@ -1,5 +1,4 @@
 ﻿import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Tag } from '../models/tag';
 import 'rxjs/add/operator/toPromise';
@@ -14,8 +13,8 @@ export class PostTagRepository {
   add(tagId: number, postId: number): Promise<Tag> {
     return this.http.post(this.url, { tagId: tagId, postId: postId })
       .toPromise()
-      .then((res: Response) => {
-        return res.json() as Tag;
+      .then((res: Tag) => {
+        return res as Tag;
       })
       .catch(this.handleError);
   }

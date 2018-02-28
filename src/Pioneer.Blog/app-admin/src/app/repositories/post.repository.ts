@@ -1,5 +1,4 @@
 ﻿import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/post';
 import 'rxjs/add/operator/toPromise';
@@ -14,8 +13,8 @@ export class PostRepository {
   get(idUrl: string, includeExcerpt = false): Promise<Post> {
     return this.http.get(this.url + '/' + idUrl + '?includeExcerpt=' + includeExcerpt, { withCredentials: true })
       .toPromise()
-      .then((res: Response) => {
-        const body: Post = res.json();
+      .then((res: Post) => {
+        const body: Post = res;
         return body || {} as Post;
       })
       .catch(this.handleError);
@@ -35,8 +34,8 @@ export class PostRepository {
 
     return this.http.get(this.url + query)
       .toPromise()
-      .then((res: Response) => {
-        const body: Post[] = res.json();
+      .then((res: Post[]) => {
+        const body: Post[] = res;
         return body || [] as Post[];
       })
       .catch(this.handleError);
@@ -47,8 +46,8 @@ export class PostRepository {
       withCredentials: true
     })
       .toPromise()
-      .then((res: Response) => {
-        const body: Post = res.json();
+      .then((res: Post) => {
+        const body: Post = res;
         return body || [];
       })
       .catch(this.handleError);
@@ -69,8 +68,8 @@ export class PostRepository {
   getTotalNumberOfPosts(): Promise<number> {
     return this.http.get(this.url + '\\count\\total')
       .toPromise()
-      .then((res: Response) => {
-        return res.json();
+      .then((res: number) => {
+        return res;
       })
       .catch(this.handleError);
   }

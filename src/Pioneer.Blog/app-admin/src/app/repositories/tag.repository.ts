@@ -1,5 +1,4 @@
 ﻿import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Tag } from '../models/tag';
 import 'rxjs/add/operator/toPromise';
@@ -14,8 +13,8 @@ export class TagRepository {
   get(id: number, includeExcerpt = false): Promise<Tag> {
     return this.http.get(this.url + '/' + id)
       .toPromise()
-      .then((res: Response) => {
-        const body: Tag = res.json();
+      .then((res: Tag) => {
+        const body: Tag = res;
         return body || {} as Tag;
       })
       .catch(this.handleError);
@@ -24,8 +23,8 @@ export class TagRepository {
   getAll(): Promise<Tag[]> {
     return this.http.get(this.url)
       .toPromise()
-      .then((res: Response) => {
-        const body: Tag[] = res.json();
+      .then((res: Tag[]) => {
+        const body: Tag[] = res;
         return body || [];
       })
       .catch(this.handleError);
@@ -34,8 +33,8 @@ export class TagRepository {
   create(): Promise<Tag> {
     return this.http.post(this.url, {} as Tag)
       .toPromise()
-      .then((res: Response) => {
-        const body: Tag = res.json();
+      .then((res: Tag) => {
+        const body: Tag = res;
         return body || {} as Tag;
       })
       .catch(this.handleError);
