@@ -1,0 +1,100 @@
+<p>Unlike its predecessor ASP.NET, ASP.NET Core is not "hosted" inside of IIS or for that matter any incarnation of a third-party
+  web server. Instead, ASP.NET Core runs as a standalone process backed by Kestrel.</p>
+<blockquote>
+  Kestrel is a cross-platform HTTP server based on libuv, a cross-platform asynchronous I/O library.
+  <cite>
+    <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/" title="Web server implementations in ASP.NET Core"
+      target="_blank">Web server implementations in ASP.NET Core</a>
+  </cite>
+</blockquote>
+<p>When an HTTP request is made to your ASP.NET Core application, it first hits Kestrel. Kestrel then manages that request and
+  passes it your application code. Your application code processes that request and sends a response back up the pipeline.
+</p>
+<div class="callout success">
+  <p class="text-center">
+    <b>Network</b>
+    <=< span style="font-size: 14px;">HTTP</span> =>
+      <b>Kestrel</b>
+      <=< span style="font-size: 14px;">HttpContext</span> =>
+        <b>Application Code</b>
+  </p>
+</div>
+<p>Kestrel's primary focus is performance and it is not intended to be a feature rich option when it comes to exposing your
+  application to the public. Because of this, we need to introduce a new layer to the pipeline that will act as a reverse
+  proxy server. We introduce this layer because with it, typically comes a server that can handle all the additional features
+  needed to safely and efficiently expose our applications to the public. </p>
+<div class="callout success">
+  <p class="text-center">
+    <b>Network</b>
+    <=< span style="font-size: 14px;">HTTP</span> =>
+      <b>Reverse Proxy Server</b>
+      <=< span style="font-size: 14px;">HTTP</span> =>
+        <b>Kestrel</b>
+        <=< span style="font-size: 14px;">HttpContext</span> =>
+          <b>Application Code</b>
+  </p>
+</div>
+<p>Because ASP.NET Core is cross-platform, we have a number of servers we can choose from such as IIS, Apache, and Nginx. The
+  primary focus of this post will be to show how to setup IIS to proxy accordingly. If you are interested in Nginx, the following
+  posts will be of value.</p>
+<ul>
+  <li>
+    <a href="http://pioneercode.com/post/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host" title="Developing A .NET Core Site In Windows and Deploying It To A Budget Linux Host"
+      target="_blank">Developing A .NET Core Site In Windows and Deploying It To A Budget Linux Host</a>
+  </li>
+  <li>
+    <a href="http://pioneercode.com/post/deploying-asp-net-core-teamcity-and-octopus-deploy-part-1" title="Deploying An ASP.NET Core Site, You're Still Doing It Wrong : Part 1"
+      target="_blank">Deploying An ASP.NET Core Site, You're Still Doing It Wrong: Part 1</a>
+  </li>
+</ul>
+<h2>Setup</h2>
+<p>In order to get IIS and the server it lives on in a state that it will face your ASP.NET Core application to the public,
+  we need to install three things.</p>
+<ol>
+  <li>.NET Core Runtime</li>
+  <li>.NET Core Library</li>
+  <li>ASP.NET Core Module</li>
+</ol>
+<p>The ASP.NET team has bundled these three items up into package named
+  <a href="https://go.microsoft.com/fwlink/?linkid=844461" target="_blank" title=".NET Core Windows Server Hosting">.NET Core Windows Server Hosting</a>. You can install the package using that executable but like anything else I do, I
+  like to use Chocolatey whenever possible. To do so, run the following command.</p>
+<pre class="brush: bash">choco install dotnetcore-windowshosting -y</pre>
+<p>In some cases, this package actually lags behind the official .NET Core SDK. Depending on the version of .NET Core your application
+  is running on, you might have to manually update the SDK from
+  <a href="https://www.microsoft.com/net/core#windowsvs2017">
+    the official download site</a> or run the following Chocolatey command.</p>
+<pre class="brush: bash">choco install dotnetcore-sdk -y</pre>
+<p>After your installs complete, we should be ready to deploy your site to IIS.</p>
+<h2>Deploying to IIS</h2>
+<h4>Confirmation</h4>
+<p>Open up your instance of IIS, head to the
+  <b>Modules</b> section and confirm the
+  <b>AspNetCoreModule</b> is available. If you do not see it, you might have to restart IIS before it is properly loaded.</p>
+<a href="/images/deploying-asp-dot-net-core-on-iis/iis-module.png" title="IIS Module" target="_blank">
+  <img src="/images/deploying-asp-dot-net-core-on-iis/iis-module.png" alt="IIS Module" style="max-width: 734px; border: 1px solid #ccc;"
+  />
+</a>
+<h3>Deploying</h3>
+<p>Regardless of how you deploy your application, be it manually, through continuous integration, or by Web Deploy, the following
+  will need to happen.</p>
+<h4>Creating A Site</h4>
+<ol>
+  <li>Right-Click the
+    <b>Sites</b> node in IIS and select
+    <b>Add Website</b>.</li>
+  <li>Configure your site accordingly.</li>
+</ol>
+<a href="/images/deploying-asp-dot-net-core-on-iis/create-site.png" title="IIS Create Site" target="_blank">
+  <img src="/images/deploying-asp-dot-net-core-on-iis/create-site.png" alt="IIS Create Site" style="max-width: 599px; border: 1px solid #ccc;"
+  />
+</a>
+<h4>Configuring You Application Pool</h4>
+<p>When you create a site, it automatically creates an Application Pool to run it under. Head to the Application Pool section
+  of your IIS portal, find the newly created Application Pool and ensure it matches the following configuration.</p>
+<a href="/images/deploying-asp-dot-net-core-on-iis/app-pool.png" title="IIS Create Site" target="_blank">
+  <img src="/images/deploying-asp-dot-net-core-on-iis/app-pool.png" alt="IIS Create Site" style="max-width: 316px; border: 1px solid #ccc;"
+  />
+</a>
+<p>That is it! Your .NET Core application will now be fronted by IIS affording you the opportunity to surround it with any features
+  that are available inside of IIS. Pretty simple, right!</p>
+<p>As always, any comments or questions, feel free to leave them below.</p>

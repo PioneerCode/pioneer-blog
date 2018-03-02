@@ -1,12 +1,11 @@
-﻿@using System.Collections.Generic
-@using System.Linq
+﻿@using System.Linq
 @model List<Post>
 @foreach (var post in Model)
             {
     <article class="archive-post">
       <a href="/post/@post.Url" class="post-card-hero" title="@post.Title">
         <span>
-          <img src="@post.SmallImage" alt="@post.Title" />
+          <img src="/blogs/@post.Url/@post.SmallImage" alt="@post.Title" />
         </span>
       </a>
       <div class="row collapse">

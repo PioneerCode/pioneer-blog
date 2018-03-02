@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using AutoMapper;
 using Pioneer.Blog.Model;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Pioneer.Blog.Service
         Post Add(Post post);
         void Update(Post item);
         void Remove(string id);
+        void Import(int id, bool isExcerpt = false);
     }
 
     public class PostService : IPostService
@@ -213,6 +215,31 @@ namespace Pioneer.Blog.Service
         public void Remove(string url)
         {
             _postRepository.Remove(url);
+        }
+
+        /// <summary>
+        /// Import article or excerpt from disk
+        /// </summary>
+        /// <param name="id">post id</param>
+        /// <param name="isExcerpt">Are we to import and excerpt or article</param>
+        public void Import(int id, bool isExcerpt = false)
+        {
+            var post = Mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));
+            var fileName = isExcerpt ? "/excerpt.html" : "/article.html";
+            var fileStream = new FileStream("wwwroot/blogs/" +  post.Url + fileName, FileMode.Open);
+            using (var reader = new StreamReader(fileStream))
+            {
+                var line = reader.ReadToEnd();
+                if (isExcerpt)
+                {
+                    post.Excerpt.Content = line;
+                }
+                else
+                {
+                    post.Article.Content = line;
+                }
+            }
+            Update(post);
         }
     }
 }

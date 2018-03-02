@@ -138,4 +138,12 @@ export class PostService {
     }
     return false;
   }
+
+  import(isExcerpt: boolean): Promise<Post> {
+    return this.postRepository.import(this.getCurrent().postId, isExcerpt)
+      .then(() => {
+        return this.setCurrent(this.getCurrent().url);
+      });
+
+  }
 }

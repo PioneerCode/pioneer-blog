@@ -1,5 +1,4 @@
-﻿@using System.Collections.Generic
-@using System.Linq
+﻿@using System.Linq
 <section class="home-greatest-posts">
   <h3 class="header-surround-bar"><span>Popular Posts</span></h3>
   <div class="row ">
@@ -7,7 +6,7 @@
       @foreach (var post in (ViewBag.PopularPosts as ICollection<Post>).Take(3))
       {
           <a class="clearfix home-greatest-posts-card" href="/post/@post.Url" title="@post.Title">
-            <div class="home-greatest-posts-card-image float-left" style="background-image: url('@post.IconImage')"></div>
+            <div class="home-greatest-posts-card-image float-left" style="background-image: url('blogs/@post.Url/@post.IconImage')"></div>
             <h4>@post.Title</h4>
           </a>
       }
@@ -16,7 +15,7 @@
       @foreach (var post in (ViewBag.PopularPosts as ICollection<Post>).Skip(3))
       {
           <a class="clearfix home-greatest-posts-card" href="/post/@post.Url" title="@post.Title">
-            <div class="home-greatest-posts-card-image float-left" style="background-image: url('@post.IconImage')"></div>
+            <div class="home-greatest-posts-card-image float-left" style="background-image: url('blogs/@post.Url/@post.IconImage')"></div>
             <h4>@post.Title</h4>
           </a>
       }

@@ -1,0 +1,147 @@
+<p>It is a bit alarming how many developers I see who do not run any type of profiling against their applications. Occasionally
+  I see some selective production profiling or some very thinly sliced use-cases at the end of development. An example of
+  this would be stress testing.</p>
+<p>I would argue that if you're not using profiling often and early in development, you are "
+  <b>doing it wrong</b>". Proper profiling not only offers a means of catching errors and exceptions early in dev, it also allows
+  you to have a forward looking view on some performance issues. For example, bad ORM execution plans can be identified up
+  front and resolved before they have a significant impact on your codebase.</p>
+<h2>Profiling in .NET</h2>
+<p>There are a couple profiling tools in the .NET arena. One such being
+  <a href="http://getglimpse.com/" title="Glimpse" target="_blank">Glimpse</a>.
+  <a href="http://getglimpse.com/" title="Glimpse" target="_blank">Glimpse</a> is awesome on so many levels but as of recent I have been using
+  <a href="http://stackify.com/prefix" title="Stackify Prefix"
+    target="_blankd">Stackify Prefix</a>.</p>
+<blockquote>
+  View your logs by request, find hidden exceptions, quickly spot suspicious behaviors, view SQL queries, to name a few...
+  <cite>
+    <a href="http://stackify.com/prefix" title="Stackify Prefix" target="_blankd">Stackify Prefix</a>
+  </cite>
+</blockquote>
+<p>For a comparison between the two, check our Stackify's article -
+  <a href="http://support.stackify.com/hc/en-us/articles/207800393-Prefix-vs-Glimpse-for-ASP-NET"
+    title="Prefix Vs Glimpse For ASP.NET" target="_blank">Prefix Vs Glimpse For ASP.NET</a>.</p>
+<p>That being said, let's get
+  <a href="http://stackify.com/prefix" title="Stackify Prefix" target="_blankd">Stackify Prefix</a> up and running on our local development machines.</p>
+<h2>Install</h2>
+<p>The way I see it, installing software on a Windows environment these days come in two flavors.</p>
+<h3>Traditional</h3>
+<ol>
+  <li>Head over to the
+    <a href="http://stackify.com/prefix" title="Stackify Prefix" target="_blankd">Stackify Prefix</a> website and download the
+    <a href="http://stackify.com/prefix" title="Prefix" target="_blankd">Prefix</a> installer.</li>
+  <li>
+    Launch the installer and follow the prompts to complete the install.
+    <br />
+    <a href="/images/profiling-asp-net-core-with-stackify-prefix/prefix-installer.png" title="Prefix Installer" target="_blank">
+      <img src="/images/profiling-asp-net-core-with-stackify-prefix/prefix-installer.png" alt="Prefix Installer" style="max-width: 498px;"
+      />
+    </a>
+  </li>
+</ol>
+<h3>
+  <a href="https://chocolatey.org/" target="_blank" title="Chocolatey">Chocolatey</a>
+</h3>
+<p>These days if you're not using
+  <a href="https://chocolatey.org/" target="_blank" title="Chocolatey">Chocolatey</a>, you are missing out on a lot.</p>
+<ol>
+  <li>
+    If you don't already have
+    <a href="https://chocolatey.org/" target="_blank" title="Chocolatey">Chocolatey</a> installed, open up a command prompt with administrative rights and run the following.
+    <br />
+    <pre class="brush: bash">@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"</pre>
+  </li>
+  <li>
+    Once
+    <a href="https://chocolatey.org/" target="_blank" title="Chocolatey">Chocolatey</a> is installed, run the following to install
+    <a href="http://stackify.com/prefix" title="Prefix" target="_blankd">Prefix</a>.
+    <pre class="brush: bash">choco install prefix</pre>
+  </li>
+</ol>
+<p>At this point (depending on your install method) a browser window should automatically open.</p>
+<a href="/images/profiling-asp-net-core-with-stackify-prefix/prefix-blank.png" title="Prefix Blank Browser" target="_blank">
+  <img src="/images/profiling-asp-net-core-with-stackify-prefix/prefix-blank.png" alt="Prefix Blank Browser" style="max-width: 900px;"
+  />
+</a>
+<p>If the browser did not launch, you can enable
+  <a href="http://stackify.com/prefix" title="Prefix" target="_blankd">Prefix</a> and launch it in a browser from the system tray.</p>
+<a href="/images/profiling-asp-net-core-with-stackify-prefix/context-menu.png" title="Prefix System Tray" target="_blank">
+  <img src="/images/profiling-asp-net-core-with-stackify-prefix/context-menu.png" alt="Prefix System Tray" style="max-width: 320px;"
+  />
+</a>
+<h2>Setting up your project</h2>
+<p>Now that we have
+  <a href="http://stackify.com/prefix" title="Prefix" target="_blankd">Prefix</a> up and running, it is time to configure our
+  <a href="https://docs.microsoft.com/en-us/aspnet/core/" title="ASP.NET Core"
+    target="_blank">ASP.NET Core</a> project to work with it.</p>
+<h3>Nuget</h3>
+<p>
+  <a href="http://stackify.com/prefix" title="Prefix" target="_blankd">Prefix</a> needs to be injected into the pipeline via
+  <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware"
+    target="_blank" title="Middleware">Middleware</a>. To do this, we need to obtain the
+  <a href="https://www.nuget.org/packages/StackifyMiddleware/" title="Stackify Middleware">Stackify Middleware</a> package by running the following from your Nuget command prompt.</p>
+<pre class="brush: bash">PM> Install-Package StackifyMiddleware</pre>
+<p>If you are working in Visual Studio, you can use the Nuget Package Manager instead. Search for
+  <b>"StackifyMiddleware"</b>.</p>
+<a href="/images/profiling-asp-net-core-with-stackify-prefix/visual-studio-package-manager.png" title="Prefix in Visual Studio Nuget Package Manager"
+  target="_blank">
+  <img src="/images/profiling-asp-net-core-with-stackify-prefix/visual-studio-package-manager.png" alt="Prefix in Visual Studio Nuget Package Manager"
+  />
+</a>
+<h3>Service</h3>
+<p>Now that we have the
+  <a href="https://www.nuget.org/packages/StackifyMiddleware/" title="Stackify Middleware">Stackify Middleware</a> referenced in our project, we need to configure it inside our
+  <b>Startup.Configure</b> method located in the
+  <b>Startup.cs</b> file. When adding Middleware in this method, the request in the ASP.NET Core pipeline passes through Middleware
+  in the order in which your projects Middleware is configured. Because we want our profiling to happen before the request
+  hits the actual MVC Middleware, it has to be setup early on in this function. More specifically, it needs to be setup prior
+  to the MVC Middleware.</p>
+<p>In addition, we don't want to be running our request through the Stackify Middleware when in production. That being the case,
+  we also want to ensure our configuration takes into account our environment by using
+  <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments"
+    title="ASP.NET Core Environment Variable" target="_blank">ASP.NET Core Environment Variables</a>.</p>
+<p>Following is an example of how I accomplish this.</p>
+<pre class="brush: csharp">public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    ServiceMapperConfig.Config();
+    loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+    loggerFactory.AddDebug();
+    if (env.IsDevelopment())
+    {
+        app.UseMiddleware&lt;StackifyMiddleware.RequestTracerMiddleware&gt;();
+        app.UseDeveloperExceptionPage();
+        app.UseDatabaseErrorPage();
+        app.UseBrowserLink();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Home/Error");
+    }
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        // Static File Configuration
+    });
+    app.UseIdentity();
+    app.UseMvc(routes =>
+    {
+        // Route Configuration
+    });
+}</pre>
+<h2>Lets Party!</h2>
+<p>That is it! Super simple setup, right? Let's start profiling.</p>
+<ol>
+  <li>Enable and launch
+    <a href="http://stackify.com/prefix" title="Prefix" target="_blankd">Prefix</a> in your browser.</li>
+  <li>Open up your project, compile and start it.
+    <ul>
+      <li>If you do this prior to launching
+        <a href="http://stackify.com/prefix" title="Prefix" target="_blankd">Prefix</a>, you will need to restart your project.</li>
+    </ul>
+  </li>
+  <li>Run your first request through the pipeline and watch
+    <a href="http://stackify.com/prefix" title="Prefix" target="_blankd">Prefix</a> work its magic!</li>
+</ol>
+<p>Following is an example of a request made for an MVC loaded page that is backed by Entity Framework operations.</p>
+<a href="/images/profiling-asp-net-core-with-stackify-prefix/prefix-running.png" title="Prefix Running" target="_blank">
+  <img src="/images/profiling-asp-net-core-with-stackify-prefix/prefix-running.png" alt="Prefix Running" />
+</a>
+<p>Look at all that awesomeness! Let me know your thoughts below in the comments section.</p>

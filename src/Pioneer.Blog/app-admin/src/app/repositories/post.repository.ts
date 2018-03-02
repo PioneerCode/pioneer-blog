@@ -53,13 +53,13 @@ export class PostRepository {
       .catch(this.handleError);
   }
 
-  save(post: Post): Promise<Response> {
+  save(post: Post): Promise<void> {
     return this.http.put(this.url + '\\' + post.postId, post)
       .toPromise()
       .catch(this.handleError);
   }
 
-  remove(idUrl: string): Promise<Response> {
+  remove(idUrl: string): Promise<void> {
     return this.http.delete(this.url + '\\' + idUrl)
       .toPromise()
       .catch(this.handleError);
@@ -71,6 +71,13 @@ export class PostRepository {
       .then((res: number) => {
         return res;
       })
+      .catch(this.handleError);
+  }
+
+  import(id: number, isExcerpt: boolean): Promise<void>  {
+    const type = isExcerpt ? 'excerpt\\' : 'article\\';
+    return this.http.put(this.url + '\\import\\' + type + id, {})
+      .toPromise()
       .catch(this.handleError);
   }
 

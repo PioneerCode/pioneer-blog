@@ -81,6 +81,14 @@ export class PostsPageComponent implements OnInit {
       });
   }
 
+  onImportClicked(isExcerpt: boolean): void {
+    this.loading = true;
+    this.postService.import(isExcerpt)
+      .then(() => {
+        this.loading = false;
+      });
+  }
+
   onTagClick(tag: Tag): void {
     this.loading = true;
     if (!this.postService.isTagSet(tag)) {
