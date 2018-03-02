@@ -1,11 +1,10 @@
-﻿@using System.Collections.Generic
-@model List<Post>
+﻿@model List<Post>
 <section class="sidebar">
   @foreach (var post in Model)
   {
       <a class="clearfix sidebar-popular-post" href="/post/@post.Url" title="@post.Title">
         <div class="sidebar-popular-post-left">
-          <div class="sidebar-popular-post-image" style="background-image: url('@post.IconImage')"></div>
+          <div class="sidebar-popular-post-image" style="background-image: url('blogs/@post.Url/@post.IconImage')"></div>
         </div>
         <div class="sidebar-popular-post-right">
           <p class="sidebar-popular-post-title">@post.Title</p>
