@@ -11,17 +11,17 @@ namespace Pioneer.Blog.Controllers.Api
     public class PostApiController : Controller
     {
         private readonly IPostService _postService;
-         
+
         public PostApiController(IPostService postService)
         {
             _postService = postService;
         }
 
         [HttpGet]
-        public IEnumerable<Post> GetAll(int? countPerPage, 
-            int? currentPageIndex, 
-            bool includeExcerpt = true, 
-            bool includeArticle = true, 
+        public IEnumerable<Post> GetAll(int? countPerPage,
+            int? currentPageIndex,
+            bool includeExcerpt = true,
+            bool includeArticle = true,
             bool includeUnpublished = false)
         {
             if (countPerPage == null || currentPageIndex == null)
@@ -79,6 +79,36 @@ namespace Pioneer.Blog.Controllers.Api
             }
 
             _postService.Update(item);
+            return new NoContentResult();
+        }
+
+
+        [HttpPut("import/excerpt/{id}")]
+        [Authorize(Policy = "isSuperUser")]
+        public IActionResult PostImportExcerpt(int id)
+        {
+            var todo = _postService.GetById(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            _postService.Import(id, true);
+
+            return new NoContentResult();
+        }
+
+
+        [HttpPut("import/article/{id}")]
+        [Authorize(Policy = "isSuperUser")]
+        public IActionResult PostImportArticle(int id)
+        {
+            var todo = _postService.GetById(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+            _postService.Import(id, false);
             return new NoContentResult();
         }
 
