@@ -1,0 +1,96 @@
+<p>Fact, times are changing for Windows Developers. A lot of innovation is coming from the open-source world and Microsoft has
+  stood up and taken notice. Case and point,
+  <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)" title="Bash" target="_blank">Bash</a> is officially a part of Windows 10. I know, crazy right?</p>
+<p>WTF factor aside, it is actually are great thing. </p>
+<ul>
+  <li>It lessens the price of entry for those Linux developers looking to dip there toes in the .NET world.</li>
+  <li> It helps unify the language web-developers speak across Windows and Linux.
+    <ul>
+      <li>Think of it this way, how often do you see "C:\>" in favor of "$" in modern web tooling documentation.</li>
+    </ul>
+  </li>
+  <li>Provides large set of tools to up our productivity game.</li>
+  <li>Removes the need to install third party
+    <a href="https://en.wikipedia.org/wiki/Secure_Shell" title="SSH" target="_blank">SSH</a> clients.</li>
+</ul>
+<p>My particular want for using
+  <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)" title="Bash" target="_blank">Bash</a> natively in windows came from the need to
+  <a href="https://en.wikipedia.org/wiki/Secure_Shell" title="SSH" target="_blank">SSH</a> into Linux servers. More specifically, now that ASP.NET Core is cross platform, I wanted to deploy this site (PioneerCode.com)
+  on a Linux machine.</p>
+<p>Alright, are you sold yet? If so, follow these simple steps and you will be up and running in no time.</p>
+<h2>Activate Developer Mode</h2>
+<ol>
+  <li>Hit the Windows Key and type (search) "
+    <b>For Developer Settings</b>".</li>
+  <li> Under the "
+    <b>Use developer features</b>", select the "
+    <b>Developer mode</b>" radio button.
+    <a href="/images/how-to-install-bash-on-windows-10/developer-mode.png" target="_blank"
+      title="Developer Mode">
+      <img src="/images/how-to-install-bash-on-windows-10/developer-mode.png" style="max-width: 865px" alt="Developer Mode"
+      />
+    </a>
+  </li>
+  <li> Once selected you will be prompted to verify you want to "
+    <b>Turn on developer mode</b>". Click
+    <b>Yes</b>.
+    <a href="/images/how-to-install-bash-on-windows-10/use-developer-features.png" target="_blank" title="Verify Selectoin">
+      <img src="/images/how-to-install-bash-on-windows-10/use-developer-features.png" alt="Verify Selection" style="max-width: 682px"
+      />
+    </a>. </li>
+  <li>Let Windows do its thing and when asked to
+    <b>reboot</b>,
+    <b>reboot</b>.</li>
+</ol>
+<h2>Install Linux Subsystem</h2>
+<ol>
+  <li> Hit the Windows Key and type (search) "
+    <b>Turn Windows features on or off</b>".
+    <a href="/images/how-to-install-bash-on-windows-10/windows-features.png" target="_blank"
+      title="Windows Features">
+      <img src="/images/how-to-install-bash-on-windows-10/windows-features.png" alt="Windows Features" style="max-width: 415px"
+      />
+    </a>
+  </li>
+  <li>Select "
+    <b>Windows Subsystem for Linux</b>" and click
+    <b>OK</b>.</li>
+  <li>Again, let Windows do its thing. Once prompted to
+    <b>restart</b>,
+    <b>restart</b>.</li>
+</ol>
+<h2>Installing
+  <a href="https://www.ubuntu.com/" title="Ubuntu" target="_blank">Ubuntu</a> on Windows</h2>
+<ol>
+  <li>Hit the Windows Key, type (search) "
+    <b>bash.exe</b>" and launch it.</li>
+  <li> You will be asked to verify you want to install
+    <a href="https://www.ubuntu.com/" title="Ubuntu" target="_blank">Ubuntu</a> by typing "
+    <b>y</b>" to continue. Type "
+    <b>y</b>" and hit
+    <b>enter</b>.
+    <a href="/images/how-to-install-bash-on-windows-10/ubuntu-setup.png" title="Ubuntu Setup" target="_blank">
+      <img src="/images/how-to-install-bash-on-windows-10/ubuntu-setup.png" alt="Ubuntu Setup" style="max-width: 979px" />
+    </a>
+    <ul>
+      <li>At this point Windows will again work its magic and install a native subsystem of
+        <a href="https://www.ubuntu.com/"
+          title="Ubuntu" target="_blank">Ubuntu</a> on Windows. Super cool stuff!</li>
+      <li>Once done, it will ask you to provide a username and password.</li>
+    </ul>
+  </li>
+</ol>
+<h2>Firing up
+  <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)" title="Bash" target="_blank">Bash</a>
+</h2>
+<ol>
+  <li> Hit the Windows Key, type (search) for "bash.exe" and launch it.
+    <a href="/images/how-to-install-bash-on-windows-10/bash.png"
+      target="_blank" title="Bash">
+      <img src="/images/how-to-install-bash-on-windows-10/bash.png" alt="Bash" style="max-width: 703px" />
+    </a>
+  </li>
+</ol>
+<p>That is it, your very own native
+  <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)" title="Bash" target="_blank">Bash</a> CLI running on a distro of
+  <a href="https://www.ubuntu.com/" title="Ubuntu" target="_blank">Ubuntu</a> in Windows! Oh how far we have come!</p>

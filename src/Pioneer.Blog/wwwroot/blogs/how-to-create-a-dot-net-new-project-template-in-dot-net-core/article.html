@@ -1,0 +1,297 @@
+<p class="note">Being this blog post was created using a VS 2017 RC, things are bound to change over time. I will do my best to keep this
+  post up-to-date as we get closer to a GA/RTM release of VS 2017.</p>
+<p>
+  March 7th, 2017 is just around the corner and with it comes the general availability of
+  <a href="https://www.visualstudio.com/"
+    title="Visual Studio 2017" target="_blank">Visual Studio 2017</a>. Those who have been exploring the RC builds might have noticed a slew of updates coming to the
+  <b>dotnet new</b> command in the dotnet cli. One such feature now allows us to create project templates that can be installed
+  from a
+  <a href="https://www.nuget.org/profiles/chad_ramos" title="NuGet" target="_blank">NuGet</a> package or local folder.
+</p>
+<p>
+  I will use the
+  <a href="https://github.com/PioneerCode/pioneer-console-boilerplate" title="Pioneer Console Boilerplate"
+    target="_blank">Pioneer Console Boilerplate</a> project I created to demonstrate the concepts of
+  <a href="" title="Dependency Injection, Logging, and Configuration In A .NET Core Console Application"
+    target="_blankd">"Dependency Injection, Logging and Configuration In A .NET Core Console Application</a>" to show the following.
+</p>
+<ol>
+  <li>
+    <a href="#migarting">Migrating
+      <b>project.json</b> to the new
+      <b>.csproj</b> build config required in VS 2017.</a>
+  </li>
+  <li>
+    <a href="#create">Create necessary config to allow your project to serve as a template.</a>
+  </li>
+  <li>
+    <a href="#install">Installing your template from a local folder.</a>
+  </li>
+  <li>
+    <a href="#remove">Removing your template.</li>
+  <li>
+    <a href="#publish">Publishing and installing from Nuget.</a>
+  </li>
+</ol>
+<p>That being said, it is worth mentioning that there is zero reason as to why this would not work in an ASP.Net project. Templating
+  is universal to .NET Core.</p>
+<h2 id="migrating">Migrating project.json</h2>
+<p>
+  In an effort to simplify compatibility with MSBuild,
+  <b>project.json</b> is being retired in favor of
+  <b>.csproj</b>. The process, in most cases, is dirt simple. You have one of two options, run
+  <b>dotnet migrate</b> or automation provided by Visual Studio 2017. For this project, I choose to have Visual Studio guide
+  me through the process.
+</p>
+<p>
+  When I opened up
+  <a href="https://github.com/PioneerCode/pioneer-console-boilerplate" title="Pioneer Console Boilerplate"
+    target="_blank">Pioneer Console Boilerplate</a> in VS 17, I was prompted with the following.
+</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-prompt.png" title="Migration Prompt"
+  target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-prompt.png" alt="Migration Prompt"
+    style="max-width: 686px;" />
+</a>
+<p>
+  After confirming by clicking
+  <b>OK</b>, I was supplied with the following report.
+</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-report.png" title="Migration Report"
+  target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-report.png" alt="Migration Report"
+    style="max-width: 1202px;" />
+</a>
+<p>
+  Everything is pretty self-explanatory. A backup was made of all files being touched prior to migration, followed by the actual
+  migration taking place. Below is a view of the original
+  <b>project.json</b> and the new
+  <b>Pioneer.Console.Boilerplate.csproj</b> files side by side for comparison.
+</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/side-by-side.png" title="Side by side comparison."
+  target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/side-by-side.png" alt="Side by side comparison."
+    style="max-width: 1783px;" />
+</a>
+<h2 id="create">Adding Template Configuration</h2>
+<div class="note">
+  <p>At the time a wrote this blog, details on the dotnet new templating system are understandable lacking. After all, I am
+    doing this in an RC of VS 17. The information I was able to gather came from one of three sources.</p>
+  <ol>
+    <li>The official
+      <a href="https://github.com/dotnet/templating/wiki/%22Runnable-Project%22-Templates" title="Dot Net Core templating documentation"
+        target="_blank">documentation</a>.</li>
+    <li>
+      A project that has the templating system already figure out.
+      <ul>
+        <li>In it I reference a build script used to generate necessary files.</li>
+        <li>
+          <a href="https://github.com/aspnet/JavaScriptServices/blob/dev/templates/package-builder/src/build/build.ts" target="_blank"
+            title="JavascriptServices GitHub">JavascriptServices</a> by
+          <a href="http://blog.stevensanderson.com/" target="_blank" title="Steve Standerson">Steve Standerson</a>.</li>
+      </ul>
+    </li>
+    <li>Going straight to the source and asking
+      <a href="https://twitter.com/sayedihashimi" title="Sayed I. Hashimi" target="_blank">Sayed I. Hashimi</a> on twitter.</li>
+  </ol>
+</div>
+<p>
+  Let's start by creating a folder called
+  <b>.template.config</b> in the project you want make a template. Inside that folder, add a file called
+  <b>template.json</b>.
+</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-config-view.png" title="Template Solution View"
+  target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-config-view.png" alt="Template Solution View"
+    style="max-width: 348px;" />
+</a>
+<p>
+  There is a pretty long list of configuration options that can go into your
+  <b>template.json</b> file. For more information, I recommend going to official
+  <a href="https://github.com/dotnet/templating/wiki/%22Runnable-Project%22-Templates"
+    title="Dot Net Core templating documentation" target="_blank">documentation</a>. Below is what I have added to my configuration, mostly consisting of required fields.
+</p>
+<pre class="brush: json">{
+  "author": "Chad Ramos &lt;chad@pioneercode.com&gt;",
+  "classifications": [ "Console", "Boilerplate", "Dependency Injection", "Logging", "Configuration" ],
+  "name": "Pioneer Code: Console Application with dependency injection, logging & configuration.",
+  "tags": {
+    "language": "C#"
+  },
+  "identity": "Pioneer.Console.Boilerplate",
+  "shortName": "consoleboilerplate",
+  "sourceName": "Pioneer.Console.Boilerplate"
+}</pre>
+<h2 id="install">Installing Your Template From a Local Folder</h2>
+<p>
+  To install your project as a template from your local folder, run the following -
+  <b>dotnet new --install C:\source\Repos\pioneer-console-boilerplate\Pioneer.Console.Boilerplate</b>. You will need to adjust
+  the path to your project as needed.
+</p>
+<p>
+  Once installed, you should see your template in the available list. Run
+  <b>dotnet new -l</b> to list all templates available.
+</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" title="Dot Net new list." target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" alt="Dot Net new list." style="max-width: 1551px;"
+  />
+</a>
+<p>
+  To use your new template to generate a project, run the following command with appropriate
+  <b>Short Name</b> and project name to output with,
+  <b>dotnet new consoleboilerplate -n my.console</b>. You should now see your new project in the directory specified.
+</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-project.png" title="New Project." target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-project.png" alt="New Project." style="max-width: 759px;"
+  />
+</a>
+<h3>Where Does Your New Template Cache Live?</h3>
+<p class="note">This section only exists because I was curious. At this point, I would not recommend manually editing these files.</p>
+<p>
+  By running the
+  <b>dotnet new -i [source]</b> command, you are telling the cli to cache a reference to your package configuration. The
+  <b>dotnetcli</b> needs to store this information in order to display your templates information when running
+  <b>dotnet new</b>. That being the case, I started searching around my local directories to find the file(s) holding this information.
+</p>
+<p>
+  Navigate to
+  <b>C:\Users\vagrant\.templateengine\dotnetcli\v1.0.0-rc4-004771</b>. You will obviously have to update the user and version
+  to suite your needs. In this folder there are few files,
+  <b>templatecache.json</b>,
+  <b>settings.json</b> &
+  <b>en-us.templatecache.json</b>. Each of held a reference to my local template.
+</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-cache.png" title="Template cache"
+  target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-cache.png" alt="Template cache" style="max-width: 960px;"
+  />
+</a>
+<p class="note">Side note, after manually deleting the references to my template from these files,
+  <b>dotnet new -l</b> no longer had a reference to my template.</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/empty-list.png" title="Empty List" target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/empty-list.png" alt="Empty List" style="max-width: 735px;"
+  />
+</a>
+<h2 id="remove">Removing your template</h2>
+<p class="note">Fair warning, being I can't find documentation on the
+  <b>reinit</b> flag I can only assume that you will lose all configuration you have done to your environment if it is ran.</p>
+<p>At the moment there is no syntax to remove a single template. Though, it appears to be coming soon. That being said, you
+  can run
+  <b>dotnet new --debug:reinit</b> to re-initialize your environment. Of which will effectively remove any new templates you
+  added. </p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/tweet.png" title="Tweet" target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/tweet.png" alt="Tweet" style="max-width: 631px; border: 1px solid #ccc;"
+  />
+</a>
+<h2 id="publish">Creating A NuGet Package To Serve Our Template.</h2>
+<p>What if we want to serve up our template through a NuGet package? Lucky for us, the process is pretty straight forward.</p>
+<h3>Creating A nuspec file</h3>
+<p class="note">For a full reference of possible configuration, you can visit the official
+  <a href="https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package">Creating A Package</a> documentation. At the date of this publishing, V4.0 of
+  <b>nuget.exe</b> was still a RC. That being said, the
+  <b>packageTypes</b> node was not yet documented because it is new to V4.0.</p>
+<p>We need to first create a manifest that describes our package. This file in the NuGet world is refereed to as a
+  <b>nuspec</b> file. That being said, let's start out by creating a file called
+  <b>Templates.nuspec</b> and place it at the root of your project for the time being.</p>
+<p>I added the following to my file.</p>
+<pre class="brush: xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"&gt;
+    &lt;metadata&gt;
+        &lt;id&gt;Pioneer.Console.Boilerplate&lt;/id&gt;
+        &lt;version&gt;0.1.0&lt;/version&gt;
+        &lt;description&gt;Pioneer Code: .NET Core Console Application with dependecy injection, logging &amp;amp; configuration&lt;/description&gt;
+        &lt;authors&gt;Chad Ramos (chad@pioneercode.com)&lt;/authors&gt;
+        &lt;language&gt;en-US&lt;/language&gt;
+        &lt;projectUrl&gt;https://github.com/PioneerCode/pioneer-console-boilerplate&lt;/projectUrl&gt;
+        &lt;licenseUrl&gt;https://github.com/PioneerCode/pioneer-console-boilerplate/blob/master/LICENSE&lt;/licenseUrl&gt;
+        &lt;copyright&gt;Copyright 2017: Chad Ramos - Pioneer Code. All right Reserved.&lt;/copyright&gt;
+        &lt;requireLicenseAcceptance&gt;true&lt;/requireLicenseAcceptance&gt;
+        &lt;packageTypes&gt;
+            &lt;packageType name="Template" /&gt;
+        &lt;/packageTypes&gt;
+    &lt;/metadata&gt;
+&lt;/package&gt;></pre>
+<h3>Reorganizing Our Project</h3>
+<p>The contract that NuGet defines is for your
+  <b>nuspec</b> file to live by a folder called content. The content folder will house the static files that make up your template.
+  With that in mind, I decided to nest my project code one level deeper to facilitate this. Make note that you will have
+  to move your
+  <b>nuspec</b> file out of your project source folder.</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-structure.png" title="Nuspec Contract"
+  target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-structure.png" alt="Nuspec Contract"
+    style="max-width: 631px;" />
+</a>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-content.png" title="Nuspec Content"
+  target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-content.png" alt="Nuspec Content" style="max-width: 631px;"
+  />
+</a>
+<h3>Building A Package</h3>
+<div class="note">
+  <p>According to the
+    <a href="https://dist.nuget.org/index.html" title="Nuget Distributions" target="_blank">Nuget Distributions</a> page, NuGet 4.x is included in the Visual Studio 2017 installation. With my current VS 2017 RC
+    install, I could not find the executable and ended up downloading it directly from the link I just provided. </p>
+  <p>Typically you would be able to reference
+    <b>nuget</b> directly on the command line by scoping to the directory your
+    <b>nuget.exe</b> is installed or by adding a
+    <b>PATH</b> variable to your environment. In my case I chose to temporary move the
+    <b>nuget.exe</b> I downloaded to the directory my
+    <b>nuspec</b> file lived.</p>
+  <p>I trust on a fresh install of VS 17 GA/RTM, the
+    <b>nuget.exe</b> will be available.</p>
+</div>
+<p>Now that we have our
+  <b>nuspec</b> file created and our static content in the appropriate folder, let's go ahead and create our package by running
+  the following command,
+  <b>nuget pack</b>. You should end up with a file that with the following structure,
+  <b>[id][version].nupkg</b>. The id and version variables come directly from your
+  <b>nuspec</b> configuration.</p>
+<p class="note">
+  <b>.nupkg</b> can be extracted with a zip client. I used 7-Zip to peek into my package and verify the contents of the
+  <b>Content</b> folder.</p>
+<h3>Publishing A Package</h3>
+<p>This is a topic that is out of the scope of this blog post. In short, I did the following.</p>
+<ol>
+  <li>Create a new account at
+    <a href="nuget.org" title="Nuget Site" target="_blank">nuget.org</a>
+  </li>
+  <li>Used the
+    <b>Upload Package</b> dashboard to verify and upload my package.</li>
+</ol>
+<p>My package was then made available at
+  <a href="https://www.nuget.org/packages/Pioneer.Console.Boilerplate/" title="Pioneer Console Boilerplate Nuget Feed"
+    target="_blank">Pioneer.Console.Boilerplate</a>.</p>
+<p class="note">For more information on how to publish your package, head over to the official
+  <a href="https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package">Creating A Package</a> documentation.</p>
+<h3>Consuming Your Package</h3>
+<p>Now that your package is available from the NuGet repository, you can install your template directly from your new feed.</p>
+<p>After running
+  <b>dotnet new -i Pioneer.Console.Boilerplate::*</b>, I ended up with the following.</p>
+<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" title="Dot Net new list." target="_blank">
+  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" alt="Dot Net new list." style="max-width: 1551px;"
+  />
+</a>
+<p>In regards to the
+  <b>Pioneer.Console.Boilerplate::*</b> portion of that command, the
+  <b>asterisk</b> signifies "I want the latest version". I could have targeted a specific version using something like
+  <b>Pioneer.Console.Boilerplate::0.1.0</b>
+</p>
+<div class="note">
+  <p>As of the date this was posted, the syntax for install a nuget package is as follows
+    <b>dotnet new --install [name]::[version]</b>. In the very near future this will change to
+    <b>dotnet new --version [name]::[version]</b>. For more information, you can check out the open issue at
+    <a href="https://github.com/dotnet/templating/issues/330"
+      title="GitHub Templating" target="_blank">GitHub</a>
+  </p>
+  <a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-version.png" title="Dot Net new version."
+    target="_blank">
+    <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-version.png" alt="Dot Net new version."
+      style="max-width: 590px;" />
+  </a>
+</div>
+<p>At this point, you can again install your template by running the following command with appropriate Short Name and project
+  name to output with,
+  <b>dotnet new consoleboilerplate -n my.console</b>.</p>
+<p>That is that. Though there are still some challenges to overcome with dotnet new templating being new and all, the future
+  looks very bright. As always, let me know your thoughts below in the comments section.</p>
