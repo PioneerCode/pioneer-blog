@@ -138,4 +138,8 @@ export class PostService {
     }
     return false;
   }
+
+  import(isExcerpt: boolean): Promise<void> {
+    return this.postRepository.import(this.selectedPost.postId, isExcerpt);
+  }
 }

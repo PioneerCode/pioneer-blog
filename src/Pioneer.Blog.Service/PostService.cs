@@ -224,12 +224,12 @@ namespace Pioneer.Blog.Service
         /// <param name="isExcerpt">Are we to import and excerpt or article</param>
         public void Import(int id, bool isExcerpt = false)
         {
-            var post = Mapper.Map<PostEntity, Post>(_postRepository.GetById(id, isExcerpt));
+            var post = Mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));
             var fileName = isExcerpt ? "/excerpt.html" : "/article.html";
             var fileStream = new FileStream("wwwroot/blogs/" +  post.Url + fileName, FileMode.Open);
             using (var reader = new StreamReader(fileStream))
             {
-                var line = reader.ReadLine();
+                var line = reader.ReadToEnd();
                 if (isExcerpt)
                 {
                     post.Excerpt.Content = line;

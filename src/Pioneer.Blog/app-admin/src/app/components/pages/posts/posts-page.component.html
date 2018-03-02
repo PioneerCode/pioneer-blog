@@ -117,14 +117,16 @@
             <label>
               Excerpt
               <a class="fa fa-expand" (click)="isModalArticle = false; this.model.open();"></a>
-              <textarea [(ngModel)]="postService.getCurrent().excerpt.content"></textarea>
+              <a class="fa fa-download" (click)="onImportClicked(true)"></a>
+              <textarea [(ngModel)]="postService.getCurrent().excerpt.content" disabled></textarea>
             </label>
           </div>
           <div class="large-6 columns">
             <label>
               Article
               <a class="fa fa-expand" (click)="isModalArticle = true; this.model.open();"></a>
-              <textarea [(ngModel)]="postService.getCurrent().article.content"></textarea>
+              <a class="fa fa-download" (click)="onImportClicked(false)"></a>
+              <textarea [(ngModel)]="postService.getCurrent().article.content" disabled></textarea>
             </label>
           </div>
         </div>
