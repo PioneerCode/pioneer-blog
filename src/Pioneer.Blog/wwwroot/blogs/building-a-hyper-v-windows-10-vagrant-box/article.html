@@ -28,8 +28,8 @@
   <li>
     Head on over to the "Turn Windows features on and off" settings and enable Hyper-V.
     <br/>
-    <a href="/images/building-a-hyper-v-windows-10-vagrant-box/features.jpg" title="Installing Hyper-V" target="_blank">
-      <img src="/images/building-a-hyper-v-windows-10-vagrant-box/features.jpg" alt="Installing Hyper-V" style="max-width: 415px;"
+    <a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/features.jpg" title="Installing Hyper-V" target="_blank">
+      <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/features.jpg" alt="Installing Hyper-V" style="max-width: 415px;"
       />
     </a>
   </li>
@@ -50,8 +50,8 @@
   <li>Open up your Hyper-V manager and select the "Virtual Switch Manager" option located in the "Actions Pane".</li>
   <li>Once open, create a new Switch and configure it like so...
     <br/>
-    <a href="/images/building-a-hyper-v-windows-10-vagrant-box/switch.png" title="Hyper-V Switch" target="_blank">
-      <img src="/images/building-a-hyper-v-windows-10-vagrant-box/switch.png" alt="Hyper-V Switch" style="max-width: 722px;" />
+    <a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/switch.png" title="Hyper-V Switch" target="_blank">
+      <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/switch.png" alt="Hyper-V Switch" style="max-width: 722px;" />
     </a>
   </li>
 </ol>
@@ -60,8 +60,8 @@
 <ol>
   <li>Initiate a new VM creation from the Hyper-V Manager.
     <br/>
-    <a href="/images/building-a-hyper-v-windows-10-vagrant-box/create-1.png" title="Hyper-V Switch" target="_blank">
-      <img src="/images/building-a-hyper-v-windows-10-vagrant-box/create-1.png" alt="Hyper-V Switch" style="max-width: 470px;"
+    <a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/create-1.png" title="Hyper-V Switch" target="_blank">
+      <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/create-1.png" alt="Hyper-V Switch" style="max-width: 470px;"
       />
     </a>
   </li>
@@ -101,8 +101,8 @@
       <li>Select "Change User Account Control Settings".</li>
       <li>Disable UAC.
         <br/>
-        <a href="/images/building-a-hyper-v-windows-10-vagrant-box/uac.png" title="Disable UAC" target="_blank">
-          <img src="/images/building-a-hyper-v-windows-10-vagrant-box/uac.png" alt="Disable UAC" style="max-width: 746px;" />
+        <a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/uac.png" title="Disable UAC" target="_blank">
+          <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/uac.png" alt="Disable UAC" style="max-width: 746px;" />
         </a>
       </li>
     </ul>
@@ -148,8 +148,8 @@ sc config WinRM start= auto</pre>
   <li>Defrag your VM.
     <ul>
       <li>Hit the **windows** key, type "defrag" and run the native windows defragmentation tool.
-        <a href="/images/building-a-hyper-v-windows-10-vagrant-box/defrag.png" title="Defrag" target="_blank">
-          <img src="/images/building-a-hyper-v-windows-10-vagrant-box/defrag.png" alt="Defrag" style="max-width: 701px;" />
+        <a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/defrag.png" title="Defrag" target="_blank">
+          <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/defrag.png" alt="Defrag" style="max-width: 701px;" />
         </a>
       </li>
       <li>
@@ -177,25 +177,25 @@ sc config WinRM start= auto</pre>
 <p>Now that we have configured and created our VM, we can move to building our actual Vagrant Box.</p>
 <h3>Exporting Your Hyper-V VM</h3>
 <p>Right-click your VM in the Hyper-V manager and select "Export".</p>
-<a href="/images/building-a-hyper-v-windows-10-vagrant-box/export.png" title="Export VM" target="_blank">
-  <img src="/images/building-a-hyper-v-windows-10-vagrant-box/export.png" alt="Export VM" style="max-width: 436px;" />
+<a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/export.png" title="Export VM" target="_blank">
+  <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/export.png" alt="Export VM" style="max-width: 436px;" />
 </a>
 <p>Specify a location and hit export.</p>
-<a href="/images/building-a-hyper-v-windows-10-vagrant-box/export-location.png" title="Export VM Location" target="_blank">
-  <img src="/images/building-a-hyper-v-windows-10-vagrant-box/export-location.png" alt="Export VM Location" style="max-width: 481px;"
+<a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/export-location.png" title="Export VM Location" target="_blank">
+  <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/export-location.png" alt="Export VM Location" style="max-width: 481px;"
   />
 </a>
 <h3>Building Your Folder Structure</h3>
 <p>The Export process will take a couple of minutes and once done, you will end up with a folder structure like so.</p>
-<a href="/images/building-a-hyper-v-windows-10-vagrant-box/export-folder.png" title="Exported folder structure" target="_blank">
-  <img src="/images/building-a-hyper-v-windows-10-vagrant-box/export-folder.png" alt="Exported folder structure" style="max-width: 628px;"
+<a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/export-folder.png" title="Exported folder structure" target="_blank">
+  <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/export-folder.png" alt="Exported folder structure" style="max-width: 628px;"
   />
 </a>
 <h3>Adding Vagrant metadata.json</h3>
 <p>Delete the "Snapshots" folder and add a
   <b>metadata.json</b> file.</p>
-<a href="/images/building-a-hyper-v-windows-10-vagrant-box/new-folder.png" title="New folder structure" target="_blank">
-  <img src="/images/building-a-hyper-v-windows-10-vagrant-box/new-folder.png" alt="New folder structure" style="max-width: 641px;"
+<a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/new-folder.png" title="New folder structure" target="_blank">
+  <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/new-folder.png" alt="New folder structure" style="max-width: 641px;"
   />
 </a>
 <p>The
@@ -215,13 +215,13 @@ sc config WinRM start= auto</pre>
   <a href="http://www.7-zip.org/download.html" title="7Zip site" target="_blank">7Zip site</a> or install it with Chocolatey.</p>
 <pre class="brush:bash">choco install 7zip.install</pre>
 <p>Once installed, create a tar file with 7zip.</p>
-<a href="/images/building-a-hyper-v-windows-10-vagrant-box/tar.png" title="Create tar file" target="_blank">
-  <img src="/images/building-a-hyper-v-windows-10-vagrant-box/tar.png" alt="Create tar file" style="max-width: 626px;" />
+<a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/tar.png" title="Create tar file" target="_blank">
+  <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/tar.png" alt="Create tar file" style="max-width: 626px;" />
 </a>
 <p>This process will take a few minutes. Once complete, gzip your new tar file in 7Zip. Depending on the "Compression level"
   you choose, the time to completion will vary. For reference, when I ran "Ultra", it was measurable in hours.</p>
-<a href="/images/building-a-hyper-v-windows-10-vagrant-box/gzip.png" title="GZip tar file" target="_blank">
-  <img src="/images/building-a-hyper-v-windows-10-vagrant-box/gzip.png" alt="GZip tar file" style="max-width: 626px;" />
+<a href="/blogs/building-a-hyper-v-windows-10-vagrant-box/gzip.png" title="GZip tar file" target="_blank">
+  <img src="/blogs/building-a-hyper-v-windows-10-vagrant-box/gzip.png" alt="GZip tar file" style="max-width: 626px;" />
 </a>
 <p>Though not needed, once complete, you can strip the
   <b>tar.gz</b> extension and replace it with

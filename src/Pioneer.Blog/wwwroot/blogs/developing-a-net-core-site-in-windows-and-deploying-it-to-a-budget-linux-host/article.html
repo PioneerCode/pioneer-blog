@@ -91,9 +91,9 @@ sudo apt-get update</pre>
   <h3>3: Verify installation</h3>
   <pre class="brush: bash">dotnet</pre>
   <p>You should end up with something like this.</p>
-  <a href="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-install.png" target="_blank"
+  <a href="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-install.png" target="_blank"
     title="Verify .NET Core install">
-    <img src="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-install.png" alt="Verify .NET Core install"
+    <img src="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-install.png" alt="Verify .NET Core install"
       style="max-width: 903px;" />
   </a>
   <h2>Installing Nginx</h2>
@@ -134,22 +134,22 @@ sudo service nginx start</pre>
   <h3>3: Verify</h3>
   <p>Run the following command to verify your firewall was setup correctly.</p>
   <pre class="brush: bash">sudo ufw status</pre>
-  <a href="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-nginx-firewall.png"
+  <a href="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-nginx-firewall.png"
     title="Nginx Firewall Verify" target="_blank">
-    <img src="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-nginx-firewall.png"
+    <img src="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-nginx-firewall.png"
       alt="Nginx Firewall Verify" style="max-width: 505px;" />
   </a>
   <p>Run the following command to insure Nginx was setup properly.</p>
   <pre class="brush: bash">systemctl status nginx</pre>
-  <a href="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-nginx.png" title="Verify Nginx"
+  <a href="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-nginx.png" title="Verify Nginx"
     target="_blank">
-    <img src="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-nginx.png" alt="Nginx"
+    <img src="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/verify-nginx.png" alt="Nginx"
       style="max-width: 739px;" />
   </a>
   <p>At this point should be able to hit Nginx from the public IP assigned to your server.</p>
-  <a href="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/public-nginx.png" title="Nginx in a browser"
+  <a href="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/public-nginx.png" title="Nginx in a browser"
     target="_blank">
-    <img src="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/public-nginx.png" alt="Nginx in a browser"
+    <img src="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/public-nginx.png" alt="Nginx in a browser"
       style="max-width: 585px;" />
   </a>
   <h2>Configure Reverse Proxy</h2>
@@ -163,9 +163,9 @@ sudo apt-get install nano</pre>
   <p>In the following picture you will see what I used to get started. Any place that there is a # in the first column, it signifies
     something I commented out. Any lines that are highlighted, it signifies something I added. Anything that is off screen
     is commented out by default.</p>
-  <a href="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/nginx-reverse.png" title="Nginx Reverse Proxy"
+  <a href="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/nginx-reverse.png" title="Nginx Reverse Proxy"
     target="_blank">
-    <img src="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/nginx-reverse.png" alt="Nginx Reverse Proxy"
+    <img src="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/nginx-reverse.png" alt="Nginx Reverse Proxy"
       style="max-width: 850px" />
   </a>
   <p>Commit and save your changes by hitting
@@ -231,9 +231,9 @@ sudo chown {user-name}: /var/{your-app}</pre>
     </li>
     <li>
       User your (S)FTP client to move assets. Here is what it look like in FileZilla.
-      <a href="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/filezilla.png" title="FileZilla Example"
+      <a href="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/filezilla.png" title="FileZilla Example"
         target="_blank">
-        <img src="/images/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/filezilla.png" style="max-width: 721px;"
+        <img src="/blogs/developing-a-net-core-site-in-windows-and-deploying-it-to-a-budget-linux-host/filezilla.png" style="max-width: 721px;"
           alt="FileZilla Example" />
       </a>
     </li>

@@ -63,8 +63,8 @@
   <li>AppSettings\AppSettings.Production.config</li>
 </ul>
 <p>In your web.config file, make the following changes.</p>
-<div class="brush: xml">&lt;connectionStrings configSource=&quot;ConnectionStrings.Local.config&quot; /&gt;</div>
-<div class="brush: xml">&lt;appSettings file=&quot;AppSettings\AppSettings.Local.config&quot;&gt;&lt;/appSettings&gt;</div>
+<pre class="brush: xml">&lt;connectionStrings configSource=&quot;ConnectionStrings.Local.config&quot; /&gt;</pre>
+<pre class="brush: xml">&lt;appSettings file=&quot;AppSettings\AppSettings.Local.config&quot;&gt;&lt;/appSettings&gt;</pre>
 <p>Your ConnectionStrings.Local.config file can look like this...</p>
 <pre class="brush: xml">&lt;connectionStrings&gt;
   &lt;add name=&quot;DefaultConnection&quot; connectionString=&quot;Server=localhost\SQLEXPRESS;Database=Pioneer;Trusted_Connection=True;&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;
