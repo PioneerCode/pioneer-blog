@@ -43,8 +43,8 @@
   <a href="deploying-asp-net-core-teamcity-and-octopus-deploy-part-2">Part 2</a> of this series.</p>
 <p>Once installed, head back to your Project's Build Configuration and add a Build Step of the type "OctopusDeploy: Push Packages"
   as the last step in your build process.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-1.png" title="TeamCity Octopus Push" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-1.png" alt="TeamCity Octopus Push" style="max-width: 1325px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-revisit-1.png" title="TeamCity Octopus Push" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-revisit-1.png" alt="TeamCity Octopus Push" style="max-width: 1325px; border: 1px solid #ccc;"
   />
 </a>
 <p>A basic configuration would encompass the following.</p>
@@ -59,8 +59,8 @@
           <li>
             This key is generated and obtained by and per users inside of Octopus.
             <br />
-            <a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-2.png" title="TeamCity Octopus Push" target="_blank">
-              <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-2.png" alt="TeamCity Octopus Push" style="max-width: 580px; border: 1px solid #ccc;"
+            <a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-revisit-2.png" title="TeamCity Octopus Push" target="_blank">
+              <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-revisit-2.png" alt="TeamCity Octopus Push" style="max-width: 580px; border: 1px solid #ccc;"
               />
             </a>
           </li>
@@ -88,8 +88,8 @@
 <p>Once you have this step configured, in TeamCity, manually tell your Project to "Run". If your new build step was setup correctly,
   you can view that Octopus Deploy received the artifact from TeamCity by heading the
   <b>configuration > audit</b> screen in the Octopus Deploy portal and looking for a "pushed" log in your feed.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-3.png" title="TeamCity Octopus Log" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-revisit-3.png" alt="TeamCity Octopus Log" style="max-width: 417px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-revisit-3.png" title="TeamCity Octopus Log" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-revisit-3.png" alt="TeamCity Octopus Log" style="max-width: 417px; border: 1px solid #ccc;"
   />
 </a>
 <h2>Creating A Project</h2>
@@ -132,8 +132,8 @@
 }</pre>
 <p>Using the
   <b>DefaultConnection</b> value as an example, we can add it to our Project Variables like so.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-var-1.png" title="TeamCity Variables" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-var-1.png" alt="TeamCity Variables" style="max-width: 1445px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-var-1.png" title="TeamCity Variables" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-var-1.png" alt="TeamCity Variables" style="max-width: 1445px; border: 1px solid #ccc;"
   />
 </a>
 <p class="note">In order to scope to a nested value in a JSON file, we have to use the
@@ -158,18 +158,18 @@
 <p>Now that we have setup "one source of truth" in regards to our configuration variables, we can start putting together a Deployment
   Process. Head to the Project you are working on go to the Process tab and click "Add Step". You should be presented with
   a list of Process template to choose from.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-1.png" title="Octopus Deploy Process Step Templates"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-step-1.png" title="Octopus Deploy Process Step Templates"
   target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-1.png" alt="Octopus Deploy Process Step Templates"
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-step-1.png" alt="Octopus Deploy Process Step Templates"
     style="max-width: 1209px; border: 1px solid #ccc;" />
 </a>
 <h4>Linux</h4>
 <p>For my Linux Target, I picked the template title "Deploy a package". Once selected, you are presented with a list of configuration
   options. Here you are going to want to define things such as what package you want to deploy, what Target you want to deploy
   to, where you want to deploy on your Target, and what files to target for Configuration updates.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-2.png" title="Octopus Deploy Process Step Configuration"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-step-2.png" title="Octopus Deploy Process Step Configuration"
   target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-step-2.png" alt="Octopus Deploy Process Step Configuration"
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-step-2.png" alt="Octopus Deploy Process Step Configuration"
     style="max-width: 881px; border: 1px solid #ccc;" />
 </a>
 <p class="note">
@@ -192,27 +192,27 @@
   what suits your goals. Meaning, there is nothing stopping you from controlling NgNix on Linux from your automated deployment
   just like you would with IIS on Windows.</p>
 <h2>Is This Actually Going To Work?</h2>
-<p>Yes, yes it will. Eariler in this post, we already verified Octopus Deploy was receiving packages from TeamCity by looking
+<p>Yes, yes it will. Earlier in this post, we already verified Octopus Deploy was receiving packages from TeamCity by looking
   at the
   <b>configuration > audit</b> logs. Now, head back to your Project page and on the top left click "Create release".</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-1.png" title="Octopus Deploy Create Release"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-release-1.png" title="Octopus Deploy Create Release"
   target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-1.png" alt="Octopus Deploy Create Release"
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-release-1.png" alt="Octopus Deploy Create Release"
     style="max-width: 197px; border: 1px solid #ccc;" />
 </a>
 <p>After you click "Create release", you will end up at configuration screen for you release where you can specify a version
   number that is relative to Octopus Deploy, a package version coming from TeamCity and release notes if you desire.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-2.png" title="Octopus Deploy Configure Release"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-release-2.png" title="Octopus Deploy Configure Release"
   target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-2.png" alt="Octopus Deploy Configure Release"
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-release-2.png" alt="Octopus Deploy Configure Release"
     style="max-width: 835px; border: 1px solid #ccc;" />
 </a>
 <p>Once you hit "Save", if all is setup correctly your Project will start its Deployment Process. Upon successful completion,
   you will end up with something similar on your Octopus Deploy portal homepage. If something went wrong, you will get a
   red "X" instead of a green check, along with an opportunity to view the associated logs.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-3.png" title="Octopus Deploy Successful Release"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-release-3.png" title="Octopus Deploy Successful Release"
   target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/octo-release-3.png" alt="Octopus Deploy Successful Release"
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-4/octo-release-3.png" alt="Octopus Deploy Successful Release"
     style="max-width: 423px; border: 1px solid #ccc;" />
 </a>
 <h4>Congratulations!</h4>

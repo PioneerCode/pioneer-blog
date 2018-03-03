@@ -21,15 +21,15 @@
   <b>Console Application (
     <a href="https://www.microsoft.com/net/core" target="_blank" title=".NET Core">.NET Core</a>) project type from the templates.</b>
 </p>
-<a title="Create Project" href="/images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/create-project.png"
+<a title="Create Project" href="/blogs/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/create-project.png"
   target="_blank">
-  <img src="/images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/create-project.png" title="Create Project"
+  <img src="/blogs/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/create-project.png" title="Create Project"
     style="max-width: 941px;" />
 </a>
 <p>Visual studio will scaffold a project for you which will end up looking like this.</p>
-<a href="/images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/project.png" title="New Console Project"
+<a href="/blogs/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/project.png" title="New Console Project"
   target="_blank">
-  <img src="/images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/project.png" title="New Console Project"
+  <img src="/blogs/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/project.png" title="New Console Project"
     style="max-width: 297px;" />
 </a>
 <h3>Dependencies</h3>
@@ -41,15 +41,15 @@
   <a href="https://www.microsoft.com/net/core" target="_blank" title=".NET Core">.NET Core</a> you are using.
 </p>
 <pre class="brush: json">  "dependencies": {
-"Microsoft.NETCore.App": "1.1.0",
-"Microsoft.Extensions.DependencyInjection": "1.1.0",
-"Microsoft.Extensions.Configuration.Json": "1.1.0",
-"Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
-"Microsoft.Extensions.Configuration": "1.1.0",
-"Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
-"Microsoft.Extensions.Logging": "1.1.0",
-"Microsoft.Extensions.Logging.Console": "1.1.0",
-"Microsoft.Extensions.Logging.Debug": "1.1.0"
+  "Microsoft.NETCore.App": "1.1.0",
+  "Microsoft.Extensions.DependencyInjection": "1.1.0",
+  "Microsoft.Extensions.Configuration.Json": "1.1.0",
+  "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
+  "Microsoft.Extensions.Configuration": "1.1.0",
+  "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
+  "Microsoft.Extensions.Logging": "1.1.0",
+  "Microsoft.Extensions.Logging.Console": "1.1.0",
+  "Microsoft.Extensions.Logging.Debug": "1.1.0"
 }</pre>
 <p class="note">
   Fair warning,
@@ -82,18 +82,18 @@ class TestService : ITestService
 </p>
 <pre class="brush: csharp">public class App
 {
-private readonly ITestService _testService;
+  private readonly ITestService _testService;
 
-public App(ITestService testService)
-{
-_testService = testService;
-}
+  public App(ITestService testService)
+  {
+    _testService = testService;
+  }
 
-public void Run()
-{
-_testService.Run();
-System.Console.ReadKey();
-}
+  public void Run()
+  {
+    _testService.Run();
+    System.Console.ReadKey();
+  }
 }</pre>
 <p>
   <b>App.cs</b> needs an object that meets the
@@ -105,27 +105,27 @@ System.Console.ReadKey();
 </p>
 <pre class="brush: csharp">public class Program
 {
-public static void Main(string[] args)
-{
-// create service collection
-var serviceCollection = new ServiceCollection();
-ConfigureServices(serviceCollection);
+  public static void Main(string[] args)
+  {
+    // create service collection
+    var serviceCollection = new ServiceCollection();
+    ConfigureServices(serviceCollection);
 
-// create service provider
-var serviceProvider = serviceCollection.BuildServiceProvider();
+    // create service provider
+    var serviceProvider = serviceCollection.BuildServiceProvider();
 
-// entry to run app
-serviceProvider.GetService&lt;App&gt;().Run();
-}
+    // entry to run app
+    serviceProvider.GetService&lt;App&gt;().Run();
+  }
 
-private static void ConfigureServices(IServiceCollection serviceCollection)
-{
-// add services
-serviceCollection.AddTransient&lt;ITestService, TestService&gt;();
+  private static void ConfigureServices(IServiceCollection serviceCollection)
+  {
+    // add services
+    serviceCollection.AddTransient&lt;ITestService, TestService&gt;();
 
-// add app
-serviceCollection.AddTransient&lt;App&gt;();
-}
+    // add app
+    serviceCollection.AddTransient&lt;App&gt;();
+  }
 }</pre>
 <p>
   Our console app starts out in
@@ -163,17 +163,17 @@ serviceCollection.AddTransient&lt;App&gt;();
 </p>
 <pre class="brush: csharp">private static void ConfigureServices(IServiceCollection serviceCollection)
 {
-// add logging
-serviceCollection.AddSingleton(new LoggerFactory()
-.AddConsole()
-.AddDebug());
-serviceCollection.AddLogging(); 
+  // add logging
+  serviceCollection.AddSingleton(new LoggerFactory()
+    .AddConsole()
+    .AddDebug());
+  serviceCollection.AddLogging(); 
 
-// add services
-serviceCollection.AddTransient&lt;ITestService, TestService&gt;();
+  // add services
+  serviceCollection.AddTransient&lt;ITestService, TestService&gt;();
 
-// add app
-serviceCollection.AddTransient&lt;App&gt;();
+  // add app
+  serviceCollection.AddTransient&lt;App&gt;();
 }</pre>
 <p>
   We first add new instances of
@@ -187,24 +187,24 @@ serviceCollection.AddTransient&lt;App&gt;();
   Update the
   <b>App</b> class with the following.
 </p>
-<pre class="brush: csharp">    public class App
+<pre class="brush: csharp">public class App
 {
-private readonly ITestService _testService;
-private readonly ILogger&lt;App&gt; _logger;
+  private readonly ITestService _testService;
+  private readonly ILogger&lt;App&gt; _logger;
 
-public App(ITestService testService,
-    ILogger&lt;App&gt; logger)
-{
-    _testService = testService;
-    _logger = logger;
-}
+  public App(ITestService testService,
+      ILogger&lt;App&gt; logger)
+  {
+      _testService = testService;
+      _logger = logger;
+  }
 
-public void Run()
-{
-    _logger.LogInformation($"This is a console application for {_config.Title}");
-    _testService.Run();
-    System.Console.ReadKey();
-}
+  public void Run()
+  {
+      _logger.LogInformation($"This is a console application for {_config.Title}");
+      _testService.Run();
+      System.Console.ReadKey();
+  }
 }</pre>
 <p>
   We now are injecting an instance of
@@ -220,22 +220,22 @@ public void Run()
 </p>
 <pre class="brush: csharp">public interface ITestService
 {
-void Run();
+  void Run();
 }
 
 class TestService : ITestService
 {
-private readonly ILogger&lt;TestService&gt; _logger;
+  private readonly ILogger&lt;TestService&gt; _logger;
 
-public TestService(ILogger&lt;TestService&gt; logger)
-{
-_logger = logger;
-}
+  public TestService(ILogger&lt;TestService&gt; logger)
+  {
+    _logger = logger;
+  }
 
-public void Run()
-{
-_logger.LogWarning("Wow! We are now in the test service.");
-}
+  public void Run()
+  {
+    _logger.LogWarning("Wow! We are now in the test service.");
+  }
 }</pre>
 <p>
   Much like
@@ -248,9 +248,9 @@ _logger.LogWarning("Wow! We are now in the test service.");
   If we run our console app now, we should end up with something like the following. Of which shows our path down to the
   <b>ITestService</b> instance through our logging.
 </p>
-<a href="/images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/console-1.png" title="Console with logging."
+<a href="/blogs/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/console-1.png" title="Console with logging."
   target="_blank">
-  <img src="/images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/console-1.png" title="Console with logging."
+  <img src="/blogs/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/console-1.png" title="Console with logging."
     style="max-width: 504px" />
 </a>
 <h2>Configuration</h2>
@@ -264,9 +264,9 @@ _logger.LogWarning("Wow! We are now in the test service.");
   <b>app-settings.json</b> and add the following.
 </p>
 <pre class="brush: json">{
-"Configuration": {
-"Title": "Pioneer Console Boilerplate"
-}
+  "Configuration": {
+    "Title": "Pioneer Console Boilerplate"
+  }
 }</pre>
 <p>
   Create a file called
@@ -275,7 +275,7 @@ _logger.LogWarning("Wow! We are now in the test service.");
 </p>
 <pre class="brush: csharp">public class AppSettings
 {
-public string Title { get; set; }
+  public string Title { get; set; }
 }</pre>
 <p>
   Update
@@ -283,27 +283,27 @@ public string Title { get; set; }
 </p>
 <pre class="brush: csharp">private static void ConfigureServices(IServiceCollection serviceCollection)
 {
-// add configured instance of logging
-serviceCollection.AddSingleton(new LoggerFactory()
-.AddConsole()
-.AddDebug());
+  // add configured instance of logging
+  serviceCollection.AddSingleton(new LoggerFactory()
+    .AddConsole()
+    .AddDebug());
 
-// add logging
-serviceCollection.AddLogging(); 
+  // add logging
+  serviceCollection.AddLogging(); 
 
-// build configuration
-var configuration = new ConfigurationBuilder()
-.SetBasePath(Directory.GetCurrentDirectory())
-.AddJsonFile("app-settings.json", false)
-.Build();
-serviceCollection.AddOptions();
-serviceCollection.Configure&lt;AppSettings&gt;(configuration.GetSection("Configuration"));
+  // build configuration
+  var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("app-settings.json", false)
+    .Build();
+  serviceCollection.AddOptions();
+  serviceCollection.Configure&lt;AppSettings&gt;(configuration.GetSection("Configuration"));
 
-// add services 
-serviceCollection.AddTransient&lt;ITestService, TestService&gt;();
+  // add services 
+  serviceCollection.AddTransient&lt;ITestService, TestService&gt;();
 
-// add app
-serviceCollection.AddTransient&lt;App&gt;();
+  // add app
+  serviceCollection.AddTransient&lt;App&gt;();
 }</pre>
 <p>
   We use a
@@ -343,25 +343,25 @@ serviceCollection.AddTransient&lt;App&gt;();
 </p>
 <pre class="brush: csharp">public class App
 {
-private readonly ITestService _testService;
-private readonly ILogger&lt;App&gt; _logger;
-private readonly AppSettings _config;
+  private readonly ITestService _testService;
+  private readonly ILogger&lt;App&gt; _logger;
+  private readonly AppSettings _config;
 
-public App(ITestService testService,
-IOptions&lt;AppSettings&gt; config,
-ILogger&lt;App&gt; logger)
-{
-_testService = testService;
-_logger = logger;
-_config = config.Value;
-}
+  public App(ITestService testService,
+  IOptions&lt;AppSettings&gt; config,
+  ILogger&lt;App&gt; logger)
+  {
+    _testService = testService;
+    _logger = logger;
+    _config = config.Value;
+  }
 
-public void Run()
-{
-_logger.LogInformation($"This is a console application for {_config.Title}");
-_testService.Run();
-System.Console.ReadKey();
-}
+  public void Run()
+  {
+    _logger.LogInformation($"This is a console application for {_config.Title}");
+    _testService.Run();
+    System.Console.ReadKey();
+  }
 }</pre>
 <p>
   Open up your
@@ -369,20 +369,20 @@ System.Console.ReadKey();
 </p>
 <pre class="brush: csharp">class TestService : ITestService
 {
-private readonly ILogger&lt;TestService&gt; _logger;
-private readonly AppSettings _config;
+  private readonly ILogger&lt;TestService&gt; _logger;
+  private readonly AppSettings _config;
 
-public TestService(ILogger&lt;TestService&gt; logger,
-IOptions&lt;AppSettings&gt; config)
-{
-_logger = logger;
-_config = config.Value;
-}
+  public TestService(ILogger&lt;TestService&gt; logger,
+  IOptions&lt;AppSettings&gt; config)
+  {
+    _logger = logger;
+    _config = config.Value;
+  }
 
-public void Run()
-{
-_logger.LogWarning($"Wow! We are now in the test service of: {_config.Title}");
-}
+  public void Run()
+  {
+    _logger.LogWarning($"Wow! We are now in the test service of: {_config.Title}");
+  }
 }</pre>
 <p>
   In both updates, we inject an
@@ -392,9 +392,9 @@ _logger.LogWarning($"Wow! We are now in the test service of: {_config.Title}");
   <b>Title</b> variable out with our logging message.
 </p>
 <p>Run the application and you should now get something that looks like this.</p>
-<a title="Console with configuration" href="/images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/console-2.png"
+<a title="Console with configuration" href="/blogs/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/console-2.png"
   target="_blank">
-  <img src="/images/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/console-2.png" style="max-width: 765px"
+  <img src="/blogs/dependency-injection-logging-and-configuration-in-a-dot-net-core-console-app/console-2.png" style="max-width: 765px"
     title="Console with configuration" />
 </a>
 <p>

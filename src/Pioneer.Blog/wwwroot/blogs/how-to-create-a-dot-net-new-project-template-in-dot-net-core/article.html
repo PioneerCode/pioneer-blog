@@ -48,18 +48,18 @@
   <a href="https://github.com/PioneerCode/pioneer-console-boilerplate" title="Pioneer Console Boilerplate"
     target="_blank">Pioneer Console Boilerplate</a> in VS 17, I was prompted with the following.
 </p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-prompt.png" title="Migration Prompt"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-prompt.png" title="Migration Prompt"
   target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-prompt.png" alt="Migration Prompt"
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-prompt.png" alt="Migration Prompt"
     style="max-width: 686px;" />
 </a>
 <p>
   After confirming by clicking
   <b>OK</b>, I was supplied with the following report.
 </p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-report.png" title="Migration Report"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-report.png" title="Migration Report"
   target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-report.png" alt="Migration Report"
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/migration-report.png" alt="Migration Report"
     style="max-width: 1202px;" />
 </a>
 <p>
@@ -68,9 +68,9 @@
   <b>project.json</b> and the new
   <b>Pioneer.Console.Boilerplate.csproj</b> files side by side for comparison.
 </p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/side-by-side.png" title="Side by side comparison."
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/side-by-side.png" title="Side by side comparison."
   target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/side-by-side.png" alt="Side by side comparison."
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/side-by-side.png" alt="Side by side comparison."
     style="max-width: 1783px;" />
 </a>
 <h2 id="create">Adding Template Configuration</h2>
@@ -100,9 +100,9 @@
   <b>.template.config</b> in the project you want make a template. Inside that folder, add a file called
   <b>template.json</b>.
 </p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-config-view.png" title="Template Solution View"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-config-view.png" title="Template Solution View"
   target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-config-view.png" alt="Template Solution View"
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-config-view.png" alt="Template Solution View"
     style="max-width: 348px;" />
 </a>
 <p>
@@ -132,8 +132,8 @@
   Once installed, you should see your template in the available list. Run
   <b>dotnet new -l</b> to list all templates available.
 </p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" title="Dot Net new list." target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" alt="Dot Net new list." style="max-width: 1551px;"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" title="Dot Net new list." target="_blank">
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" alt="Dot Net new list." style="max-width: 1551px;"
   />
 </a>
 <p>
@@ -141,8 +141,8 @@
   <b>Short Name</b> and project name to output with,
   <b>dotnet new consoleboilerplate -n my.console</b>. You should now see your new project in the directory specified.
 </p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-project.png" title="New Project." target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-project.png" alt="New Project." style="max-width: 759px;"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-project.png" title="New Project." target="_blank">
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-project.png" alt="New Project." style="max-width: 759px;"
   />
 </a>
 <h3>Where Does Your New Template Cache Live?</h3>
@@ -161,15 +161,15 @@
   <b>settings.json</b> &
   <b>en-us.templatecache.json</b>. Each of held a reference to my local template.
 </p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-cache.png" title="Template cache"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-cache.png" title="Template cache"
   target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-cache.png" alt="Template cache" style="max-width: 960px;"
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/template-cache.png" alt="Template cache" style="max-width: 960px;"
   />
 </a>
 <p class="note">Side note, after manually deleting the references to my template from these files,
   <b>dotnet new -l</b> no longer had a reference to my template.</p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/empty-list.png" title="Empty List" target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/empty-list.png" alt="Empty List" style="max-width: 735px;"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/empty-list.png" title="Empty List" target="_blank">
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/empty-list.png" alt="Empty List" style="max-width: 735px;"
   />
 </a>
 <h2 id="remove">Removing your template</h2>
@@ -179,8 +179,8 @@
   can run
   <b>dotnet new --debug:reinit</b> to re-initialize your environment. Of which will effectively remove any new templates you
   added. </p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/tweet.png" title="Tweet" target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/tweet.png" alt="Tweet" style="max-width: 631px; border: 1px solid #ccc;"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/tweet.png" title="Tweet" target="_blank">
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/tweet.png" alt="Tweet" style="max-width: 631px; border: 1px solid #ccc;"
   />
 </a>
 <h2 id="publish">Creating A NuGet Package To Serve Our Template.</h2>
@@ -217,14 +217,14 @@
   With that in mind, I decided to nest my project code one level deeper to facilitate this. Make note that you will have
   to move your
   <b>nuspec</b> file out of your project source folder.</p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-structure.png" title="Nuspec Contract"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-structure.png" title="Nuspec Contract"
   target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-structure.png" alt="Nuspec Contract"
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-structure.png" alt="Nuspec Contract"
     style="max-width: 631px;" />
 </a>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-content.png" title="Nuspec Content"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-content.png" title="Nuspec Content"
   target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-content.png" alt="Nuspec Content" style="max-width: 631px;"
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/nuspec-content.png" alt="Nuspec Content" style="max-width: 631px;"
   />
 </a>
 <h3>Building A Package</h3>
@@ -268,8 +268,8 @@
 <p>Now that your package is available from the NuGet repository, you can install your template directly from your new feed.</p>
 <p>After running
   <b>dotnet new -i Pioneer.Console.Boilerplate::*</b>, I ended up with the following.</p>
-<a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" title="Dot Net new list." target="_blank">
-  <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" alt="Dot Net new list." style="max-width: 1551px;"
+<a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" title="Dot Net new list." target="_blank">
+  <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-list.png" alt="Dot Net new list." style="max-width: 1551px;"
   />
 </a>
 <p>In regards to the
@@ -284,9 +284,9 @@
     <a href="https://github.com/dotnet/templating/issues/330"
       title="GitHub Templating" target="_blank">GitHub</a>
   </p>
-  <a href="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-version.png" title="Dot Net new version."
+  <a href="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-version.png" title="Dot Net new version."
     target="_blank">
-    <img src="/images/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-version.png" alt="Dot Net new version."
+    <img src="/blogs/how-to-create-a-dot-net-new-project-template-in-dot-net-core/new-version.png" alt="Dot Net new version."
       style="max-width: 590px;" />
   </a>
 </div>

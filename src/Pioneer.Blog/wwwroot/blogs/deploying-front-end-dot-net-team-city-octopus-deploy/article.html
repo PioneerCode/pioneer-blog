@@ -44,8 +44,8 @@
   choice, just like you would do during your development process. In this step, I am simply telling TeamCity to execute the
   following command.</p>
 <pre class="brush: bash">npm install</pre>
-<a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/npm-build.PNG" title="Npm Build" target="_blank">
-  <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/npm-build.PNG" alt="Npm Build" style="max-width: 805px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/npm-build.PNG" title="Npm Build" target="_blank">
+  <img src="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/npm-build.PNG" alt="Npm Build" style="max-width: 805px; border: 1px solid #ccc;"
   />
 </a>
 <h3>bower</h3>
@@ -53,8 +53,8 @@
   executes the following.</p>
 <pre class="brush: bash">bower install</pre>
 <p>Unfortunately, that is not the case. If you do, you will end up with an error like so.</p>
-<a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-error.PNG" title="Bower Error" target="_blank">
-  <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-error.PNG" alt="Bower Error" style="max-width: 598px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/bower-error.PNG" title="Bower Error" target="_blank">
+  <img src="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/bower-error.PNG" alt="Bower Error" style="max-width: 598px; border: 1px solid #ccc;"
   />
 </a>
 <p>In most cases, TeamCity is installed with a Service Account running its services. This means you have a few options on how
@@ -68,8 +68,8 @@
   <li>Target the bower executable with an absolute path.</li>
 </ol>
 <p>I chose option 4.</p>
-<a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-build.PNG" title="Bower build" target="_blank">
-  <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/bower-build.PNG" alt="Bower build" style="max-width: 1013px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/bower-build.PNG" title="Bower build" target="_blank">
+  <img src="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/bower-build.PNG" alt="Bower build" style="max-width: 1013px; border: 1px solid #ccc;"
   />
 </a>
 <h3>gulp</h3>
@@ -77,8 +77,8 @@
   command.</p>
 <pre class="brush: bash">gulp</pre>
 <p>Much like last time, we again end up with an error.</p>
-<a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-error.PNG" title="Bower build" target="_blank">
-  <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-error.PNG" alt="Bower build" style="max-width: 601px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-error.PNG" title="Bower build" target="_blank">
+  <img src="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-error.PNG" alt="Bower build" style="max-width: 601px; border: 1px solid #ccc;"
   />
 </a>
 <p>Since I know TeamCity already has access to node, this time around I am going to target my gulp build by proxy using a node
@@ -89,8 +89,8 @@
 "gulp-admin": "gulp admin"
 },</pre>
 <p>This will allow you to create a command line build step like the following.</p>
-<a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-build.PNG" title="Bower build" target="_blank">
-  <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-build.PNG" alt="Bower build" style="max-width: 807px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-build.PNG" title="Bower build" target="_blank">
+  <img src="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/gulp-build.PNG" alt="Bower build" style="max-width: 807px; border: 1px solid #ccc;"
   />
 </a>
 <p>And that is that. At this point, TeamCity should be producing a deployable version of front-end assets.</p>
@@ -103,15 +103,15 @@
 <div class="row">
   <div class="large-6 columns">
     <h4>csproj</h4>
-    <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/exclude-1.PNG" title="Exclude csporoj" target="_blank">
-      <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/exclude-1.PNG" alt="Exclude csporoj" style="max-width: 431px; border: 1px solid #ccc;"
+    <a href="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/exclude-1.PNG" title="Exclude csporoj" target="_blank">
+      <img src="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/exclude-1.PNG" alt="Exclude csporoj" style="max-width: 431px; border: 1px solid #ccc;"
       />
     </a>
   </div>
   <div class="large-6 columns">
     <h4>Solution Explorer</h4>
-    <a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/exclude-2.PNG" title="Exclude Solution Explorer" target="_blank">
-      <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/exclude-2.PNG" alt="Exclude Solution Explorer" style="max-width: 237px; border: 1px solid #ccc;"
+    <a href="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/exclude-2.PNG" title="Exclude Solution Explorer" target="_blank">
+      <img src="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/exclude-2.PNG" alt="Exclude Solution Explorer" style="max-width: 237px; border: 1px solid #ccc;"
       />
     </a>
   </div>
@@ -135,25 +135,25 @@
 </blockquote>
 <p>Inside your .nuspec file, you want to explicitly include files and folders you want octo-pack to package before publishing.</p>
 <pre class="brush: xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;package xmlns=&quot;http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd&quot;&gt;
-&lt;metadata&gt;
-&lt;version&gt;0.00&lt;/version&gt;
-&lt;authors&gt;Xerox&lt;/authors&gt;
-&lt;id&gt;Your.Project&lt;/id&gt;
-&lt;title&gt;Your.Project&lt;/title&gt;
-&lt;description&gt;Your.Project Build&lt;/description&gt;
-&lt;/metadata&gt;
-&lt;files&gt;
-&lt;file src=&quot;wwwroot\app.css*&quot; target=&quot;wwwroot&quot; /&gt;
-&lt;/files&gt;
+  &lt;package xmlns=&quot;http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd&quot;&gt;
+  &lt;metadata&gt;
+  &lt;version&gt;0.00&lt;/version&gt;
+  &lt;authors&gt;Xerox&lt;/authors&gt;
+  &lt;id&gt;Your.Project&lt;/id&gt;
+  &lt;title&gt;Your.Project&lt;/title&gt;
+  &lt;description&gt;Your.Project Build&lt;/description&gt;
+  &lt;/metadata&gt;
+  &lt;files&gt;
+  &lt;file src=&quot;wwwroot\app.css*&quot; target=&quot;wwwroot&quot; /&gt;
+  &lt;/files&gt;
 &lt;/package&gt;</pre>
 <p>If you don't explicitly define includes in your .nuspec file, octo-pack will look to your project file for information on
   what to pack into its final outputted packaged. If you do add explicit definitions targeting what to include, octo-pack
   will override you project file definition and only include what is in your .nuspec file. In our case, we want to include
   everything that is in the project file in addition to the file and folders we have added to our .nuspec file (front-end
   assets). To accomplish this, we will need to add a command line flag to our octo-pack operation in TeamCity.</p>
-<a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/octo-pack-line.PNG" title="Octo Pack" target="_blank">
-  <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/octo-pack-line.PNG" alt="Octo Pack" style="max-width: 790px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/octo-pack-line.PNG" title="Octo Pack" target="_blank">
+  <img src="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/octo-pack-line.PNG" alt="Octo Pack" style="max-width: 790px; border: 1px solid #ccc;"
   />
 </a>
 <p>With a nuspec file in place and the appropriate command-line parameters being set, octo-pack will now pack up the entire
@@ -163,8 +163,8 @@
   or for that matter including a .nuspec file at all, I pack the entire
   <b>dotnet publish</b> build and exclude what I don't want packed in the
   <b>Octopus Push</b> build step configuration .</p>
-<a href="/images/deploying-front-end-dot-net-team-city-octopus-deploy/octopus-push.PNG" title="Octo Pack" target="_blank">
-  <img src="/images/deploying-front-end-dot-net-team-city-octopus-deploy/octopus-push.PNG" alt="Octo Pack" style="max-width: 1118px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/octopus-push.PNG" title="Octo Pack" target="_blank">
+  <img src="/blogs/deploying-front-end-dot-net-team-city-octopus-deploy/octopus-push.PNG" alt="Octo Pack" style="max-width: 1118px; border: 1px solid #ccc;"
   />
 </a>
 <h2>Conclusion</h2>

@@ -76,13 +76,13 @@
 <p>Once installed head over to
   <b>http://localhost:8111</b> and follow the prompts.</p>
 <p>Set the location where TeamCity will store its metadata on disk.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-1.jpg" title="TeamCity Directory" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-1.jpg" alt="TeamCity Directory" style="max-width: 805px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-1.jpg" title="TeamCity Directory" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-1.jpg" alt="TeamCity Directory" style="max-width: 805px; border: 1px solid #ccc;"
   />
 </a>
 <p>Make your connection to the database you want TeamCity to use.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-2.jpg" title="TeamCity Database" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-2.jpg" alt="TeamCity Database" style="max-width: 805px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-2.jpg" title="TeamCity Database" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-2.jpg" alt="TeamCity Database" style="max-width: 805px; border: 1px solid #ccc;"
   />
 </a>
 <p>It will take a minute or two to initialize the rest of TeamCity components but once it is done, you will be asked to accept
@@ -93,8 +93,8 @@
   A Build Configuration is a set of steps that will automate the process of building an asset that we can use to deploy.
   Let's start with a blank project and configure everything manually. On the "Create Project" screen select "Manually" and
   fill out the required fields.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-6.png" title="TeamCity Create Project" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-6.png" alt="TeamCity Create Project" style="max-width: 895px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-6.png" title="TeamCity Create Project" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-6.png" alt="TeamCity Create Project" style="max-width: 895px; border: 1px solid #ccc;"
   />
 </a>
 <h2>Connecting Up With Our Source Code</h2>
@@ -104,14 +104,14 @@
 <p>If your install of TeamCity can be reached on the open Internet, you can set up GitHub to initiate a build every time code
   is pushed to your repository. To accomplish this you would create what is called a "Connection". This connection will allow
   for GitHub to talk directly to TeamCity.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-4.jpg" title="TeamCity Create Connection" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-4.jpg" alt="TeamCity Create Connection" style="max-width: 870px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-4.jpg" title="TeamCity Create Connection" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-4.jpg" alt="TeamCity Create Connection" style="max-width: 870px; border: 1px solid #ccc;"
   />
 </a>
 <p>You will be required to register your instance of TeamCity with GitHub. Once register, you will be supplied with a "Client
   ID" and "Client secret" to finalize the contract between the two apps.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-5.jpg" title="TeamCity Polling" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-5.jpg" alt="TeamCity Polling" style="max-width: 764px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-5.jpg" title="TeamCity Polling" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-5.jpg" alt="TeamCity Polling" style="max-width: 764px; border: 1px solid #ccc;"
   />
 </a>
 <h3>Polling GitHub</h3>
@@ -143,9 +143,9 @@
 </ul>
 <p>Head over to your projects "General Settings" page and select "Create Build Configuration". Let's again select the "Manually"
   option and fill out the required fields before hitting create.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-8.png" title="TeamCity Create Build Configuration"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-8.png" title="TeamCity Create Build Configuration"
   target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-8.png" alt="TeamCity Create Build Configuration"
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-8.png" alt="TeamCity Create Build Configuration"
     style="max-width: 742px; border: 1px solid #ccc;" />
 </a>
 <h2>Version Number</h2>
@@ -156,8 +156,8 @@
   <b>1.0.0.%build.counter%</b> in the "Build number format" field. This establishes a semantic version number with a hanging
   auto-incrementing counter off the end. It will be up to you to version forward the "semantic" portion of the version, but
   the "counter" will increment on ever build.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-13.png" title="TeamCity Versioning" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-13.png" alt="TeamCity Versioning" style="max-width: 1275px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-13.png" title="TeamCity Versioning" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-13.png" alt="TeamCity Versioning" style="max-width: 1275px; border: 1px solid #ccc;"
   />
 </a>
 <h2>Detect</h2>
@@ -167,18 +167,18 @@
   required information including any branch targeting you would like to do. I am leaving mine so it polls the "master" branch.
   I do this because I consider my "master" to be deployable at all time. Any important code only reaches my master branch
   when it has gone through a proper pull request.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-7.png" title="TeamCity Create VCS" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-7.png" alt="TeamCity Create VCS" style="max-width: 727px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-7.png" title="TeamCity Create VCS" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-7.png" alt="TeamCity Create VCS" style="max-width: 727px; border: 1px solid #ccc;"
   />
 </a>
 <p>Once the "VCS root" has been created, head over to your "Version Control Settings" and attach it to your Build Configuration.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-9.png" title="TeamCity Attach VCS Root" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-9.png" alt="TeamCity Attach VCS Root" style="max-width: 1145px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-9.png" title="TeamCity Attach VCS Root" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-9.png" alt="TeamCity Attach VCS Root" style="max-width: 1145px; border: 1px solid #ccc;"
   />
 </a>
 <p>In the "Triggers" section, "Add New Trigger" and select the "VCS Trigger" type.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-10.png" title="TeamCity Add Trigger" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-10.png" alt="TeamCity Add Trigger" style="max-width: 1038px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-10.png" title="TeamCity Add Trigger" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-10.png" alt="TeamCity Add Trigger" style="max-width: 1038px; border: 1px solid #ccc;"
   />
 </a>
 <p>The new "Trigger" will now add a build to the queue when a VCS check-in is detected.</p>
@@ -210,14 +210,14 @@
 <h3>Restore</h3>
 <p>Head to your Build Configuration and under "Build Steps", select "Add Build Step". You will be given a choice of "Runner
   Type(s)". Select the ".NET Core (dotnet)" runner that we just installed with the plugin.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-11.png" title="TeamCity Add Step" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-11.png" alt="TeamCity Add Step" style="max-width: 869px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-11.png" title="TeamCity Add Step" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-11.png" alt="TeamCity Add Step" style="max-width: 869px; border: 1px solid #ccc;"
   />
 </a>
 <p>You will be presented with a list of configuration options. The values of which will be determined by your goals. For my
   setup I added a "Step Name", changed the "Command" to "restore" and targeted my solution file in the "Projects" section.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-12.png" title="TeamCity Config Restore" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-12.png" alt="TeamCity Config Restore" style="max-width: 812px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-12.png" title="TeamCity Config Restore" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-12.png" alt="TeamCity Config Restore" style="max-width: 812px; border: 1px solid #ccc;"
   />
 </a>
 <h3>Build</h3>
@@ -226,8 +226,8 @@
   pipeline. With that in mind, best we just set it up now. After all, Unit Tests are great!</p>
 <p>Again, head to the "Build Steps" and select "Add Build Step". This time we will configure it with the same "Runner Type"
   but switch the command to "build". We will also set the "Configuration" which to build under to "Release".</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-14.png" title="TeamCity Config Build" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-14.png" alt="TeamCity Config Build" style="max-width: 804px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-14.png" title="TeamCity Config Build" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-14.png" alt="TeamCity Config Build" style="max-width: 804px; border: 1px solid #ccc;"
   />
 </a>
 <h3>Publish</h3>
@@ -235,8 +235,8 @@
   <b>dotnet cli</b> to "publish" our build to the file system. Just like we did previously, we again "Add Build Step" and configure
   it to the same "Runner Type". This time we switch the "command" to publish and set the "Configuration" which to build under
   to "Release".</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-15.png" title="TeamCity Config Publish" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-15.png" alt="TeamCity Config Publish" style="max-width: 804px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-15.png" title="TeamCity Config Publish" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-15.png" alt="TeamCity Config Publish" style="max-width: 804px; border: 1px solid #ccc;"
   />
 </a>
 <h2>Assets</h2>
@@ -246,8 +246,8 @@
   access at the end of our build pipeline. That being said, lets head to the "General Settings" section of our Build Configuration
   and add
   <b>publish => your.name.%build.number%</b> to the "Artifact paths" value.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-16.png" title="TeamCity Artifacts" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-16.png" alt="TeamCity Artifacts" style="max-width: 804px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-16.png" title="TeamCity Artifacts" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-16.png" alt="TeamCity Artifacts" style="max-width: 804px; border: 1px solid #ccc;"
   />
 </a>
 <p>By doing this, we should now be able to access the assets from our build portal.</p>
@@ -255,8 +255,8 @@
 <p>Setup of TeamCity and its necessary configuration should be complete at this point. Go ahead and check some code into your
   "master branch" on GitHub, watch your TeamCity portal to see the Build Agent recognize the change and then view your assets
   when your Build completes successfully. If all went well, you should end up with something like this.</p>
-<a href="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-17.png" title="TeamCity Success" target="_blank">
-  <img src="/images/deploying-asp-net-core-teamcity-and-octopus-deploy/team-17.png" alt="TeamCity Success" style="max-width: 640px; border: 1px solid #ccc;"
+<a href="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-17.png" title="TeamCity Success" target="_blank">
+  <img src="/blogs/deploying-asp-net-core-teamcity-and-octopus-deploy-part-2/team-17.png" alt="TeamCity Success" style="max-width: 640px; border: 1px solid #ccc;"
   />
 </a>
 <h2>Up Next</h2>

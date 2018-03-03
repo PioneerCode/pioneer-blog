@@ -6,11 +6,11 @@
   <h4>Authentication In A Dot Net Core API</h4>
   <ol style="margin-bottom: 0;">
     <li>
-      <a href="/post/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied" title="ASP.NET Core Identity Access Denied"
+      <a href="/post/authentication-in-an-asp-dot-net-core-api-part-1-identity-access-denied" title="ASP.NET Core Identity Access Denied"
         target="_blank">ASP.NET Core Identity, Accessed Denied.</a>
     </li>
     <li>
-      <a href="/post/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted"
+      <a href="/post/authentication-in-an-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted"
         target="_blank">ASP.NET Core Identity, Accessed Granted.</a>
     </li>
     <li>
@@ -23,7 +23,7 @@
   </ol>
 </div>
 <p>In part 2 (
-  <a href="/post/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted"
+  <a href="/post/authentication-in-an-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted"
     target="_blank">ASP.NET Core Identity, Accessed Granted.</a>) of this series, I explored how to create a valid user using Identity and
   grant access to your ASP.NET Core API endpoints with that user. In this post, I will show you how I provide a JSON Web
   Token (JWT) to a valid user and use that token to authenticate the user using the
@@ -33,8 +33,8 @@
   <b>Microsoft.AspNetCore.Authentication.JwtBearer</b> NuGet package into my project. This package contains the necessary extensions
   needed to validate a bearer token, consume and decrypt header-payload data associated with a valid token, and have the
   token authentication pipeline sit nicely aside ASP.NET Core Identity.</p>
-<a href="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/nuget.png" target="blank" title="Bearer Nuget Package">
-  <img src="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/nuget.png" alt="Bearer Nuget Package" style="max-width: 878px;"
+<a href="/blogs/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token/nuget.png" target="blank" title="Bearer Nuget Package">
+  <img src="/blogs/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token/nuget.png" alt="Bearer Nuget Package" style="max-width: 878px;"
   />
 </a>
 <p>Once the package is pulled in, we need to add and configure the
@@ -43,16 +43,16 @@
   <b>Startup.Configure</b> function I added the following.</p>
 <pre class="brush: csharp">app.UseJwtBearerAuthentication(new JwtBearerOptions
 {
-AutomaticAuthenticate = true,
-AutomaticChallenge = true,
-TokenValidationParameters = new TokenValidationParameters
-{
-IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection(&quot;AppConfiguration:Key&quot;).Value)),
-ValidAudience = Configuration.GetSection(&quot;AppConfiguration:SiteUrl&quot;).Value,
-ValidateIssuerSigningKey = true,
-ValidateLifetime = true,
-ValidIssuer = Configuration.GetSection(&quot;AppConfiguration:SiteUrl&quot;).Value
-}
+  AutomaticAuthenticate = true,
+  AutomaticChallenge = true,
+  TokenValidationParameters = new TokenValidationParameters
+  {
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetSection(&quot;AppConfiguration:Key&quot;).Value)),
+    ValidAudience = Configuration.GetSection(&quot;AppConfiguration:SiteUrl&quot;).Value,
+    ValidateIssuerSigningKey = true,
+    ValidateLifetime = true,
+    ValidIssuer = Configuration.GetSection(&quot;AppConfiguration:SiteUrl&quot;).Value
+  }
 });</pre>
 <p>Here I am passing a
   <b>JwtBearerOptions</b> object to my
@@ -66,7 +66,7 @@ ValidIssuer = Configuration.GetSection(&quot;AppConfiguration:SiteUrl&quot;).Val
   to add
   <b>Identity</b> after the
   <b>JwtBearerMiddleware</b> middleware. By doing so, the event handlers we set up in
-  <a href="/post/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied"
+  <a href="/post/authentication-in-an-asp-dot-net-core-api-part-1-identity-access-denied"
     title="ASP.NET Core Identity Access Denied" target="_blank">Part 1</a> of this series will still have the desired outcome.</p>
 <p class="note">For more information on configuration options check out
   <a href="https://docs.microsoft.com/en-us/aspnet/core/api/microsoft.aspnetcore.builder.jwtbeareroptions"
@@ -78,25 +78,25 @@ ValidIssuer = Configuration.GetSection(&quot;AppConfiguration:SiteUrl&quot;).Val
 <pre class="brush: csharp">[HttpPost(&quot;token&quot;)]
 public async Task&lt;IActionResult&gt; Token([FromBody] UserRegisterAuthenticate model)
 {
-if (!ModelState.IsValid)
-{
-return BadRequest();
-}
+  if (!ModelState.IsValid)
+  {
+    return BadRequest();
+  }
 
-var user = await _userManager.FindByNameAsync(model.Email);
+  var user = await _userManager.FindByNameAsync(model.Email);
 
-if (user == null || _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) != PasswordVerificationResult.Success)
-{
-return BadRequest();
-}
+  if (user == null || _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.Password) != PasswordVerificationResult.Success)
+  {
+    return BadRequest();
+  }
 
-var token = await GetJwtSecurityToken(user);
+  var token = await GetJwtSecurityToken(user);
 
-return Ok(new
-{
-token = new JwtSecurityTokenHandler().WriteToken(token),
-expiration = token.ValidTo
-});
+  return Ok(new
+  {
+    token = new JwtSecurityTokenHandler().WriteToken(token),
+    expiration = token.ValidTo
+  });
 }</pre>
 <p>First up is the API endpoint, of which is accessed by making a POST request against the
   <b>api/account/token</b> route. We start by checking if our
@@ -107,15 +107,15 @@ expiration = token.ValidTo
 <p>We get our token by making a request to following function.</p>
 <pre class="brush: csharp">private async Task&lt;JwtSecurityToken&gt; GetJwtSecurityToken(UserEntity user)
 {
-var userClaims =  await _userManager.GetClaimsAsync(user);
+  var userClaims =  await _userManager.GetClaimsAsync(user);
 
-return new JwtSecurityToken(
-issuer: _appConfiguration.Value.SiteUrl,
-audience: _appConfiguration.Value.SiteUrl,
-claims: GetTokenClaims(user).Union(userClaims),
-expires: DateTime.UtcNow.AddMinutes(10),
-signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appConfiguration.Value.Key)), SecurityAlgorithms.HmacSha256)
-);
+  return new JwtSecurityToken(
+    issuer: _appConfiguration.Value.SiteUrl,
+    audience: _appConfiguration.Value.SiteUrl,
+    claims: GetTokenClaims(user).Union(userClaims),
+    expires: DateTime.UtcNow.AddMinutes(10),
+    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appConfiguration.Value.Key)), SecurityAlgorithms.HmacSha256)
+  );
 }</pre>
 <p>In this function, we are building up a
   <b>JwtSecurityToken</b> object to pass back to the caller.</p>
@@ -148,11 +148,11 @@ signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF
 <p>To build the actual claims need for a valid JSON Web Token, I use the following function.</p>
 <pre class="brush: csharp">private static IEnumerable&lt;Claim&gt; GetTokenClaims(UserEntity user)
 {
-return new List&lt;Claim&gt;
-{
-new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
-};
+  return new List&lt;Claim&gt;
+  {
+    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+    new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
+  };
 }</pre>
 <p>What is represented in this function in regards to claims is a bear minimum. For more information about the long list of
   claims you can associate with your JSON Web Token, take a look at official
@@ -162,20 +162,20 @@ new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
 <p>Now that we have our middleware configured and setup up, and a means for a client to get a validated token from our API,
   we should be good to go. Let's test this by making a request to our new
   <b>api/account/token</b> endpoint with valid credentials.</p>
-<a href="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/request-token.png" target="blank" title="Request Token">
-  <img src="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/request-token.png" alt="Request Token" style="max-width: 899px;"
+<a href="/blogs/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token/request-token.png" target="blank" title="Request Token">
+  <img src="/blogs/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token/request-token.png" alt="Request Token" style="max-width: 899px;"
   />
 </a>
 <p>If our credentials are correct, we will be passed back a token and the expiration date of said token.</p>
-<a href="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/response-token.png" target="blank" title="Response Token">
-  <img src="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/response-token.png" alt="Response Token"
+<a href="/blogs/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token/response-token.png" target="blank" title="Response Token">
+  <img src="/blogs/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token/response-token.png" alt="Response Token"
     style="max-width: 899px;" />
 </a>
 <p>We then can use that token and pass it to any request that needs authentication by setting an
   <b>Authorization</b> header key with the value of
   <b>bearer</b>, followed by the token.</p>
-<a href="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/valid.png" target="blank" title="Validated Request">
-  <img src="/images/authentication-in-a-asp-dot-net-core-api-part-3-json-web-token/valid.png" alt="Validated Request" style="max-width: 917px;"
+<a href="/blogs/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token/valid.png" target="blank" title="Validated Request">
+  <img src="/blogs/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token/valid.png" alt="Validated Request" style="max-width: 917px;"
   />
 </a>
 <p>And that is that! In this series, I showed how I...</p>

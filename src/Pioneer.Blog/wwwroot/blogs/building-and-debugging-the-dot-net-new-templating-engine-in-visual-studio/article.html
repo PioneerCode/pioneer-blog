@@ -29,15 +29,15 @@
   <b>Setup.sh</b> which is for Mac or Linux. Based on your environment, run the appropriate script. This will kick of a series
   of automated build steps that will create a new command,
   <b>dotnet new3</b>, and make it available n your command line.</p>
-<a href="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/setup.png" title="Setup scripts"
+<a href="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/setup.png" title="Setup scripts"
   target="_blank">
-  <img src="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/setup.png" style="max-width: 506px;"
+  <img src="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/setup.png" style="max-width: 506px;"
     alt="Setup scripts" />
 </a>
 <p>The entire build takes about a minute to complete and you should end up with something similar to the following.</p>
-<a href="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/build-success.png" title="Successful Template Engine Build"
+<a href="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/build-success.png" title="Successful Template Engine Build"
   target="_blank">
-  <img src="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/build-success.png" style="max-width: 979px;"
+  <img src="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/build-success.png" style="max-width: 979px;"
     alt="Successful Template Engine Build" />
 </a>
 <p>Now that we have a successful build, we can start passing arguments against the newly added
@@ -58,15 +58,15 @@
 <h4>Configuring dontnet new3 To DEBUG</h4>
 <p>Open up a new command line session and navigate to the root of your project. In the root, you will find a script called
   <b>dn3buildmode-debug.cmd</b>. Execute this script.</p>
-<a href="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/debug.png" title="debug script"
+<a href="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/debug.png" title="debug script"
   target="_blank">
-  <img src="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/debug.png" style="max-width: 506px;"
+  <img src="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/debug.png" style="max-width: 506px;"
     alt="debug script" />
 </a>
 <p>Upon completion you should end up with the following.</p>
-<a href="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/debug-mode.png" title="debug script complete"
+<a href="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/debug-mode.png" title="debug script complete"
   target="_blank">
-  <img src="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/debug-mode.png" style="max-width: 465px;"
+  <img src="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/debug-mode.png" style="max-width: 465px;"
     alt="debug script complete" />
 </a>
 <p>Now that
@@ -87,34 +87,34 @@
   <b>Console.Readline()</b> request will be triggered. This effectively pauses the Template Engine at an early point in its
   execution. At any point past the
   <b>Console.Readline()</b>, set a breakpoint.</p>
-<a href="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/breakpoint.png" title="Breakpoint"
+<a href="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/breakpoint.png" title="Breakpoint"
   target="_blank">
-  <img src="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/breakpoint.png" style="max-width: 1317px;"
+  <img src="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/breakpoint.png" style="max-width: 1317px;"
     alt="Breakpoint" />
 </a>
 <p>Head back to your command line session and run the following.</p>
 <pre class="brush: bash">dotnet new3 --debug:attach {{additonal args}}</pre>
 <p>In your console window you will see an empty new line, of which is the
   <b>Console.Readline()</b> request being triggered. This will now give you an opportunity to attach your debugger.</p>
-<a href="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/newline.png" title="Attach process"
+<a href="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/newline.png" title="Attach process"
   target="_blank">
-  <img src="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/newline.png" style="max-width: 465px;"
+  <img src="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/newline.png" style="max-width: 465px;"
     alt="Console Realine Trigger" />
 </a>
 <p>In Visual Studio, open the
   <b>Attach To Process</b> window from the Debug menu or by hitting the following keyboard shortcut -
   <b>ctrl+alt+p</b>. Locate the
   <b>dotnet-new3.exe</b> process, highlight it and hit the attach button.</p>
-<a href="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/attach.png" title="Attach process"
+<a href="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/attach.png" title="Attach process"
   target="_blank">
-  <img src="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/attach.png" style="max-width: 856px;"
+  <img src="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/attach.png" style="max-width: 856px;"
     alt="Console Realine Trigger" />
 </a>
 <p>Head back to your command line and hit enter. This will trigger the
   <b>Console.Readline()</b> to return and allow the breakpoint that you set to bit hit.</p>
-<a href="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/hit.png" title="Breakpoint hit"
+<a href="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/hit.png" title="Breakpoint hit"
   target="_blank">
-  <img src="/images/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/hit.png" style="max-width: 728px;"
+  <img src="/blogs/building-and-debugging-the-dot-net-new-templating-engine-in-visual-studio/hit.png" style="max-width: 728px;"
     alt="Breakpoint hit" />
 </a>
 <p class="note">The steps I outlined are specific to debugging in Visual Studio. That being said, debugging generally can take place in any
