@@ -82,10 +82,9 @@ namespace Pioneer.Blog.Controllers.Api
             return new NoContentResult();
         }
 
-
         [HttpPut("import/excerpt/{id}")]
         [Authorize(Policy = "isSuperUser")]
-        public IActionResult PostImportExcerpt(int id)
+        public IActionResult ImportExcerpt(int id)
         {
             var todo = _postService.GetById(id);
             if (todo == null)
@@ -98,18 +97,29 @@ namespace Pioneer.Blog.Controllers.Api
             return new NoContentResult();
         }
 
-
         [HttpPut("import/article/{id}")]
         [Authorize(Policy = "isSuperUser")]
-        public IActionResult PostImportArticle(int id)
+        public IActionResult ImportArticle(int id)
         {
             var todo = _postService.GetById(id);
             if (todo == null)
             {
                 return NotFound();
             }
-            _postService.Import(id, false);
+            _postService.Import(id);
             return new NoContentResult();
+        }
+
+        [HttpGet("dev/markup/{id}")]
+        [Authorize(Policy = "isSuperUser")]
+        public IActionResult PostDevFile(int id)
+        {
+            var markup = _postService.GetDevFile(id);
+            if (markup == null)
+            {
+                return NotFound();
+            }
+            return Ok(markup);
         }
 
         //[HttpDelete("{url}")]
