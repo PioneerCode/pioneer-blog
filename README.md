@@ -13,7 +13,7 @@ Current deployment...
   - Under Ubuntu and faced by NGINX
  
 Wiki
- - [How do I set Pioneer Blog up?](https://github.com/PioneerCode/pioneer-blog/wiki)
+ - [How do I set Pioneer Blog up?](https://github.com/PioneerCode/pioneer-blog/wiki/Setup)
 
 ## Admin 
 Full-featured admin portal.
