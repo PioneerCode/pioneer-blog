@@ -1,13 +1,13 @@
-﻿import { Tag } from "./tag";
-import { Category } from "./category";
-import { Article } from "./article";
-import { Excerpt } from "./excerpt";
+﻿import { Tag } from './tag';
+import { Category } from './category';
+import { Article } from './article';
+import { Excerpt } from './excerpt';
 
 export enum PreviousCurrentNextPosition {
   Previous = 0,
   Current,
   Next
-};
+}
 
 export class Post {
   postId: number;

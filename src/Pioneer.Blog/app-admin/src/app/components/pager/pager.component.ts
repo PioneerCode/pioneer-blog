@@ -45,7 +45,7 @@ export class PagerComponent implements OnInit {
   @Input() totalItemsInCollection = 1;
   @Input() show = false;
 
-  @Output() onPageClicked = new EventEmitter<number>();
+  @Output() pageClicked = new EventEmitter<number>();
 
   pager = {} as IPager;
 
@@ -57,7 +57,7 @@ export class PagerComponent implements OnInit {
    * Omit an event when a page is clicked
    */
   onClick(selectedPage: number) {
-    this.onPageClicked.emit(selectedPage);
+    this.pageClicked.emit(selectedPage);
     this.setPager(selectedPage, this.totalItemsInCollection);
   }
 

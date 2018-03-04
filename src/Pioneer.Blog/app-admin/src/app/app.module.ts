@@ -40,7 +40,6 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     ModalComponent
   ],
   imports: [
-    HttpModule,
     HttpClientModule,
     FormsModule,
     BrowserModule,
