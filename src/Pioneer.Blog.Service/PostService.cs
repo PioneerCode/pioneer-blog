@@ -27,6 +27,7 @@ namespace Pioneer.Blog.Service
         void Update(Post item);
         void Remove(string id);
         void Import(int id, bool isExcerpt = false);
+        string GetDevFile(int id);
     }
 
     public class PostService : IPostService
@@ -240,6 +241,21 @@ namespace Pioneer.Blog.Service
                 }
             }
             Update(post);
+        }
+
+        /// <summary>
+        /// Get markup from blog post dev file
+        /// </summary>
+        /// <param name="id">Id of post</param>
+        /// <returns>Makrup string</returns>
+        public string GetDevFile(int id)
+        {
+            var post = Mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));
+            var fileStream = new FileStream("wwwroot/blogs/" + post.Url + "/excerpt.html", FileMode.Open);
+            using (var reader = new StreamReader(fileStream))
+            {
+                return reader.ReadToEnd();
+            }
         }
     }
 }
