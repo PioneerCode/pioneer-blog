@@ -15,6 +15,7 @@ using Pioneer.Blog.Model;
 using Pioneer.Blog.Repository;
 using Pioneer.Blog.Service;
 using Pioneer.Pagination;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Pioneer.Blog
 {
@@ -37,13 +38,13 @@ namespace Pioneer.Blog
                 .AddEntityFrameworkStores<BlogDbContext>()
                 .AddDefaultTokenProviders();
 
-            ConfigureCookies(services);
-            ConfigureJwt(services, Configuration);
+            services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
 
-
+            ConfigureServicesCookies(services);
+            ConfigureServicesJwt(services, Configuration);
+            ConfigureServicesSwagger(services);
             RegisterDependencies(services);
 
-            services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
             services.AddCors();
 
             services.AddAuthorization(cfg =>
@@ -71,23 +72,14 @@ namespace Pioneer.Blog
             }
 
             app.UseAuthentication();
-            app.UseCors(builder =>
-            {
-                // Matches the url and port coming from app-admin
-                // TODO: Review AllowCredntials
-                // https://docs.microsoft.com/en-us/aspnet/core/security/cors#credentials-in-cross-origin-requests#credentials-in-cross-origin-requests
-                builder.WithOrigins("http://localhost:4200")
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();
-            });
             app.UseStaticFiles();
 
+            ConfigureCors(app);
+            ConfigureSwagger(app);
             ConfigureMvc(app);
         }
 
-        private static void ConfigureCookies(IServiceCollection services)
+        private static void ConfigureServicesCookies(IServiceCollection services)
         {
             services.ConfigureApplicationCookie(options =>
             {
@@ -122,7 +114,7 @@ namespace Pioneer.Blog
             });
         }
 
-        private static void ConfigureJwt(IServiceCollection services, IConfiguration configureation)
+        private static void ConfigureServicesJwt(IServiceCollection services, IConfiguration configureation)
         {
             services
                 .AddAuthentication(options =>
@@ -147,6 +139,23 @@ namespace Pioneer.Blog
                 });
         }
 
+        private static void ConfigureServicesSwagger(IServiceCollection services)
+        {
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Pioneer Blog API", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
+            });
+
+        }
+
         private static void RegisterDependencies(IServiceCollection services)
         {
             // Third-party
@@ -169,6 +178,34 @@ namespace Pioneer.Blog
             services.AddTransient<ISiteMapService, SiteMapService>();
             services.AddTransient<ApplicationEnvironment>();
             services.AddTransient<IRssService, RssService>();
+        }
+
+        private static void ConfigureCors(IApplicationBuilder app)
+        {
+            app.UseCors(builder =>
+            {
+                // Matches the url and port coming from app-admin
+                // TODO: Review AllowCredntials
+                // https://docs.microsoft.com/en-us/aspnet/core/security/cors#credentials-in-cross-origin-requests#credentials-in-cross-origin-requests
+                builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            });
+        }
+
+        private static void ConfigureSwagger(IApplicationBuilder app)
+        {
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pioneer Blog API V1");
+                c.DocumentTitle = "Pionerr Blog API";
+            });
         }
 
         private static void ConfigureMvc(IApplicationBuilder app)
