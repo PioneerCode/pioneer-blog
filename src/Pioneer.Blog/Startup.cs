@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -17,7 +16,6 @@ using Pioneer.Blog.Repository;
 using Pioneer.Blog.Service;
 using Pioneer.Pagination;
 using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Pioneer.Blog
 {
@@ -143,12 +141,14 @@ namespace Pioneer.Blog
 
         private static void ConfigureServicesSwagger(IServiceCollection services)
         {
+#if DEBUG
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Pioneer Blog API", Version = "v1" });
                 c.OperationFilter<AddAuthTokenHeaderParameter>();
             });
+#endif
         }
 
         private static void RegisterDependencies(IServiceCollection services)
@@ -192,6 +192,7 @@ namespace Pioneer.Blog
 
         private static void ConfigureSwagger(IApplicationBuilder app)
         {
+#if DEBUG
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -201,6 +202,7 @@ namespace Pioneer.Blog
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pioneer Blog API V1");
                 c.DocumentTitle = "Pionerr Blog API";
             });
+#endif
         }
 
         private static void ConfigureMvc(IApplicationBuilder app)
@@ -267,23 +269,6 @@ namespace Pioneer.Blog
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
-    }
-
-    public class AddAuthTokenHeaderParameter : IOperationFilter
-    {
-        public void Apply(Operation operation, OperationFilterContext context)
-        {
-            if (operation.Parameters == null)
-                operation.Parameters = new List<IParameter>();
-
-            operation.Parameters.Add(new NonBodyParameter
-            {
-                Name = "Authorization",
-                In = "header",
-                Type = "string",
-                Required = false
             });
         }
     }
