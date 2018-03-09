@@ -45,6 +45,7 @@ namespace Pioneer.Blog.Controllers.Api
         }
 
         [Route("count/total")]
+        [HttpGet]
         public IActionResult GetTotalNumberOfPosts()
         {
             return new ObjectResult(_postService.GetTotalNumberOfPosts());
