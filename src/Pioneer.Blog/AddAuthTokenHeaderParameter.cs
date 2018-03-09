@@ -4,6 +4,10 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Pioneer.Blog
 {
+    /// <summary>
+    /// Operation filter used to add necessary UI elements that will populate Authentication
+    /// header value on outbound requests
+    /// </summary>
     public class AddAuthTokenHeaderParameter : IOperationFilter
     {
         public void Apply(Operation operation, OperationFilterContext context)
