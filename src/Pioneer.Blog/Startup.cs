@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -16,6 +17,7 @@ using Pioneer.Blog.Repository;
 using Pioneer.Blog.Service;
 using Pioneer.Pagination;
 using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Pioneer.Blog
 {
@@ -145,15 +147,8 @@ namespace Pioneer.Blog
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Pioneer Blog API", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = "header",
-                    Type = "apiKey"
-                });
+                c.OperationFilter<AddAuthTokenHeaderParameter>();
             });
-
         }
 
         private static void RegisterDependencies(IServiceCollection services)
@@ -272,6 +267,23 @@ namespace Pioneer.Blog
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+    }
+
+    public class AddAuthTokenHeaderParameter : IOperationFilter
+    {
+        public void Apply(Operation operation, OperationFilterContext context)
+        {
+            if (operation.Parameters == null)
+                operation.Parameters = new List<IParameter>();
+
+            operation.Parameters.Add(new NonBodyParameter
+            {
+                Name = "Authorization",
+                In = "header",
+                Type = "string",
+                Required = false
             });
         }
     }
