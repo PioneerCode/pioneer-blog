@@ -1,0 +1,72 @@
+<blockquote>Let me preface this post with the following. The work that has been done on
+  <a href="https://www.microsoft.com/net/core#windows"
+    title=".NET Core" target="_blank"> .NET Core 1.0</a> and the tooling supporting it inside of Visual Studio is fantastic. It is a wonderful representation
+  of how much Microsoft has listened to the community's needs and desires and signifies a clear path towards the future.
+  I for one, am all in.</blockquote>
+<p>Those of use who use Visual Studio as their main IDE will, for the most part, proclaim it to be unmatched in quality of features.
+  A great debugging experience and world-class Intellisense are bolstered by a slew of tooling features, making for an efficient
+  and productive environment to work in.</p>
+<p>For all the good, given the opportunity, a lot of
+  <a href="https://www.visualstudio.com/en-us/visual-studio-homepage-vs.aspx"
+    target="_blank" title="Visual Studio">Visual Studio</a> users will still be able to present an exhaustive list of things that they "wish" were different. </p>
+<p>Personally, one of my main complaints revolves around the idea Visual Studio assumes to know what you as a developer wants.
+  </p>
+<p>For example, in most project types, file tracking in a Solution is opt-in. When adding a file outside of Visual Studio using
+  Windows File Explorer to your Solution directory, you need to explicitly tell it "Hey, I want to see this file inside my
+  IDE." </p>
+<p>Now as a .NET developer and long time user of Visual Studio, I certainly have come to terms with this over the years. What
+  was once an issue has magically turned into an inconvenience that up until the last few years, I flat out stopped questioning.</p>
+<h2>What exactly is the issue?</h2>
+<p class="note">The problem with settling into acceptance is that we forget to challenge the existence we live in.</p>
+<p>About two years ago I was reminded of this on one of my weekly huddles. This team consisted of what most would consider being
+  the hip modern web developer types. You know, the I only use NodeJs, React and any other new flavors of the month type.</p>
+<p>I was bringing them up to speed on an ASP.NET 4.x project that they were going contribute to and there number one concern
+  was if they had to use Visual Studio. I kid you not, the words "your files do not even show up in Visual Studio when you
+  add them to a folder" where said out loud. </p>
+<p>
+  <em>- Based on pure logic, how was I or anyone else to argue this?</em>
+</p>
+<h2>Desires to attract new developers.</h2>
+<p>Since the concept of .NET Core was born, time and time again I heard from those at Microsoft that .NET Core was more than
+  a technology shift. In addition to improvements in technology, it was also to serve as an avenue to shift the way developers
+  outside of the .NET world perceived Microsoft. </p>
+<p>I once heard Scott Hanselman talk about his desire to attract developers that are starting out their development career's
+  or are still in school. To make them feel like the investment in .NET will help align them with a broad community of developers
+  who are all marching to the same beat. To not further perpetuate the stigma that surrounds .NET developers and make it
+  a logic choice to all developer instead of the select.</p>
+<p>Let's face the facts, the stigma Microsoft faces is real and will take a lot of effort to overcome. You can only hold a developers
+  attention for so long when trying to convince them to believe in a new development stack. The slightest chink in the armor
+  of the developers testing out the waters of .NET and Visual Studio for the first time, can send them running for the hills.
+  </p>
+<p>If Microsoft is to attract new developers, every opportunity they have to make the .NET development story a more familiar
+  and comfortable experience, they must approach with the up most critical eye. </p>
+<h2>.NET Core and the evolution of tooling.</h2>
+<p class="note">Tooling in the open-source community always ends up with a familiar lexicon.</p>
+<p>ASP.NET Core and the tooling supplied in Visual Studio is a great step towards removing the idea that Visual Studio knows
+  what the developer wants (Opt-Out) and has shifted a lot of the experience to Opt-In. </p>
+<p>Once such scenario that I came across the other day where this is not the case, revolves around the experience of using
+  <a
+    href="https://bower.io/" title="Bower" target="_blank">Bower</a> in a .NET Core project.
+    <a href="https://bower.io/" title="Bower" target="_blank">Bower</a> has had deep roots in a multitude of communities for a while now. Because if this, there is an expectation
+    of how we interact with it. That expectation can be argued to be that of the default behavior championed by those who
+    developed
+    <a href="https://bower.io/" title="Bower" target="_blank">Bower</a>. </p>
+<p>If the vast majority of developers are used to working directly with the Bower file, why would the default behavior of Visual
+  Studio be to hide it in favor of a GUI? Again, Something we need to Opt-Out of.</p>
+<p>If the rest of the world is used to the default location of Bower packages being "bower_components", why would the templates
+  provided inside of Visual Studio change that to "wwwroot\libs"? Again, Something we need to Opt-Out of.</p>
+<a href="/blogs/why-does-visual-studio-assume-it-knows-best/hidden-bower-in-visual-studio.gif"
+  title="Bower Hidden In Solution Explorer" target="_blank">
+  <img src="/blogs/why-does-visual-studio-assume-it-knows-best/hidden-bower-in-visual-studio.gif" style="max-width: 400px;"
+    alt="Bower Hidden In Solution Explorer" />
+</a>
+<h2>And your point was?</h2>
+<p>On the surface, many would argue the
+  <a href="https://bower.io/" title="Bower" target="_blank">Bower</a> example as something minor. Stating that those working on Visual Studio are trying to improve the developer experience.
+  And to a degree, I can't argue with that. </p>
+<p> That being said if the end goal is to provide an experience that is familiar to most, attractive to newcomers and is as least
+  alienating as possible to those who have settled into "acceptance", small things like this will continue to result in missed
+  opportunities. </p>
+<p>Let me know what your thoughts are about Visual Studio, it's tooling as is and where it is headed in the comments section
+  below.
+  </p

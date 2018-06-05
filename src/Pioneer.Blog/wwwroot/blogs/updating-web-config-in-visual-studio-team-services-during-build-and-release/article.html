@@ -1,0 +1,121 @@
+<p>One key task when automating builds and releases is the configuration of any given deployment. In the .NET world this often
+  equates to setting a number of values in the web.config file so that when a build becomes a release and a release is ready
+  for deployment, that release will be pre-configured to run in the targeted environment prior to the actual deployment.</p>
+<p>Some of these settings might include...</p>
+<ul>
+  <li>Application Settings</li>
+  <li>Database Connection Strings</li>
+  <li>Rewrite Rules</li>
+</ul>
+<h2>
+  <a href="https://octopus.com/" title="Octopus Deploy" target="_blank">Octopus Deploy</a>
+</h2>
+<p>Those of us who have experience with
+  <a href="https://octopus.com/" title="Octopus Deploy" target="_blank">Octopus Deploy</a> are familiar with a handy built-in feature, that when enabled, allows for easy updates to be made to
+  the web.config file.</p>
+<p>This process works something like this...</p>
+<ul>
+  <li>Enable the "Configuration Variables" feature in your Octopus Project.</li>
+  <li>Define Variables to associate with a release.</li>
+  <li>When a release is triggered for deployment, Octopus will search for a defined variable (key/value) in your web.config file
+    that matches a variable you defined in the Octopus web portal and will replace its value accordingly.</li>
+</ul>
+<p>There are some limitations to the above workflow, of which are explained
+  <a href="http://docs.octopusdeploy.com/display/OD/Configuration+files"
+    title="Octopus Configuration" target="_blank">on there support pages</a>, but most use-cases are managed for you.</p>
+<h2>
+  <a href="https://www.visualstudio.com/en-us/products/visual-studio-team-services-vs.aspx" title="Visual Studio Team Services"
+    target="_blank">Visual Studio Team Services</a>
+</h2>
+<p>
+  <b>Team Foundation Server for you on-premises folks.</b>
+</p>
+<p>At the time this post was published this type of "feature" was not hardened into VSTS. That being said, with a few additional
+  steps and considerations, we can achieve a similar workflow and automate our configuration during our release phase using
+  VSTS.</p>
+<h3>Tokens</h3>
+<p>We will need a means to setup "Tokens" inside our web.config file so that during our Release build, we can locate these tokens
+  and replace them with new values.</p>
+<p>To achieve this, we can make use of a VSTS extension called Replace Tokens.</p>
+<ul>
+  <li>Log into your VSTS control panel.</li>
+  <li>Head to
+    <a href="https://marketplace.visualstudio.com" title="Visual Studio Team Services Marketplace" target="_blank">VSTS Marketplace</a> and locate
+    <a href="https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens" title="Replace Tokens"
+      target="_blank">Replace Token</a>.</li>
+  <li>Select the install button to initiate installation of this extension.</li>
+</ul>
+<h3>Applying Tokens To web.config</h3>
+<p>One of the biggest sticking points in this equation is figuring out how to apply these tokens to your development environment
+  in a way that does not break your local workflow.</p>
+<p>For example...</p>
+<pre class="brush: xml">&lt;add name=&quot;DefaultConnection&quot; connectionString=&quot;#{connection-string}#&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;</pre>
+<p>For obvious reasons, this will cause issues in your local environment. So how do we manage this?</p>
+<p>There are a few approaches you can take but the approach I currently prefer is to abstract configuration variables into their
+  own files. What this does for us is limit the environment/process specific code that is located in our web.config file
+  and instead off-loads it to a file that can be referenced.</p>
+<h3>Putting It All Together</h3>
+<p>Add the following files to your project.</p>
+<ul>
+  <li>ConnectionString.Local.config</li>
+  <li>ConnectionString.Production.config</li>
+  <li>AppSettings\AppSettings.Local.config</li>
+  <li>AppSettings\AppSettings.Production.config</li>
+</ul>
+<p>In your web.config file, make the following changes.</p>
+<pre class="brush: xml">&lt;connectionStrings configSource=&quot;ConnectionStrings.Local.config&quot; /&gt;</pre>
+<pre class="brush: xml">&lt;appSettings file=&quot;AppSettings\AppSettings.Local.config&quot;&gt;&lt;/appSettings&gt;</pre>
+<p>Your ConnectionStrings.Local.config file can look like this...</p>
+<pre class="brush: xml">&lt;connectionStrings&gt;
+  &lt;add name=&quot;DefaultConnection&quot; connectionString=&quot;Server=localhost\SQLEXPRESS;Database=Pioneer;Trusted_Connection=True;&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;
+&lt;/connectionStrings&gt;</pre>
+<p>Your ConnectionString.Production.config file can look like this...</p>
+<pre class="brush: xml">&lt;connectionStrings&gt;
+  &lt;add name=&quot;DefaultConnection&quot; connectionString=&quot;#{connection-string}#&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;
+&lt;/connectionStrings&gt;</pre>
+<p>Your AppSettings.Local.config file can look like this...</p>
+<pre class="brush: xml">&lt;appSettings&gt;
+  &lt;add key=&quot;Test&quot; value=&quot;2&quot; /&gt;
+&lt;/appSettings&gt;</pre>
+<p>Your AppSettings.Production.config file can look like this...</p>
+<pre class="brush: xml">&lt;appSettings&gt;
+  &lt;add key=&quot;Test&quot; value=&quot;#{test}#&quot; /&gt;
+&lt;/appSettings&gt;</pre>
+<p>We now have our local configuration in our *.Local.config files and our production configuration in our *.Production.config
+  files. During our release phase, all we will have to do is update our web.config file to reference our production configuration
+  instead of local.</p>
+<p>As a bonus, we can add our local configuration files to .gitignore and never have to worry about accidently publishing our
+  personal environment variables. </p>
+<h4>Build - PowerShell</h4>
+<p>We are going to need to update our web.config file to point to our *Production.config files during our build step. To do
+  this, we will need a way to run PowerShell commands during this phase.</p>
+<ul>
+  <li>Log into your VSTS control panel.</li>
+  <li>Head to
+    <a href="https://marketplace.visualstudio.com" title="Visual Studio Team Services Marketplace" target="_blank">VSTS Marketplace</a> and locate
+    <a href="https://marketplace.visualstudio.com/items?itemName=petergroenewegen.PeterGroenewegen-Xpirit-Vsts-Build-InlinePowershell&targetId=03d737d8-6565-415d-be9e-cbe1c81c026a"
+      title="Run Inline PowerShell and Azure PowerShell" target="_blank">Run Inline PowerShell and Azure PowerShell</a>.</li>
+  <li>Add the new step to your Build process with the following command.</li>
+</ul>
+<pre class="brush: powershell">Write-Host "$(build.artifactstagingdirectory)\Web.config"
+$webConfig = "$(build.artifactstagingdirectory)\Web.config"
+$doc = (Get-Content $webConfig) -as [Xml]
+$connectionObj = $doc.configuration.connectionStrings
+$connectionObj.configSource = 'ConnectionStrings.Production.config'
+$appSettingsObj = $doc.configuration.appSettings
+$appSettingsObj.file = 'AppSettings\AppSettings.Production.config'
+$doc.Save($webConfig)</pre>
+<h4>Variables</h4>
+<p>Now that we have a means of putting tokens in our web.config file, we will have to add Variables in VSTS that can be used
+  to replace those tokens.</p>
+<ul>
+  <li>Head to your Release Definition in VSTS.</li>
+  <li>When editing that Release Definition, under the Variables tab, add the Tokens we set up earlier with a value you would
+    like to replace those Tokens with.</li>
+</ul>
+<h4>Release - Replace Tokens</h4>
+<p>The last step is to tell VSTS is to actually replace your configuration tokens during the release phase. To do so, add the
+  Replace Tokens extension as a step of your release phase. The default configuration should work for you out of the box.</p>
+<h2>Success!</h2>
+<p>Thats it, we have effectively setup a means to update your web.config files during the build and release phase of VSTS.</p>
+<p>Any question or suggestions, as always, feel free to leave a comment.</p>

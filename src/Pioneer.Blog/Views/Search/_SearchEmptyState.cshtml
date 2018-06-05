@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+<div class="search-empty-state">
+  <div class="copy">
+    <i class="fa fa-eye"></i>
+    <p class="heading">Nothing to see here!</p>
+    <p class="sub-heading">Try another search...</p>
+  </div>
+  <section>
+    <div class="row">
+      <div class="large-8 large-push-2 columns">
+        @Html.Partial("_SearchBar")
+      </div>
+    </div>
+  </section>
+</div>

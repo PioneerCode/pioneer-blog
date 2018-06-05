@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Pioneer.Blog.Entity
+
+@inject SignInManager<UserEntity> SignInManager
+@inject UserManager<UserEntity> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm">
+      <button type="submit" class="button nav-main-log-off">LOG OFF</button>
+    </form>
+}

@@ -1,0 +1,147 @@
+<div class="note">
+  <p>In this series, I am going to outline some basic approaches to authenticating your .NET Core API using either ASP.NET Core
+    Identity or token-based authentication with a JSON Web Token (JWT). I will also explore how to configure your application
+    to return proper response types to both Redirect To Login and Redirect To Access Denied events when using ASP.NET Core
+    Identity.</p>
+  <h4>Authentication In A Dot Net Core API</h4>
+  <ol style="margin-bottom: 0;">
+    <li>
+      <a href="/post/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied" title="ASP.NET Core Identity Access Denied"
+        target="_blank">ASP.NET Core Identity, Accessed Denied.</a>
+    </li>
+    <li>
+      <a href="/post/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted"
+        target="_blank">ASP.NET Core Identity, Accessed Granted.</a>
+    </li>
+    <li>
+      <a href="/post/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token" title="Token based authentication with a JSON Web Token (JWT)"
+        target="_blank">Token based authentication with a JSON Web Token (JWT).</a>
+    </li>
+    <li>
+      <a href="#" title="Migrating to ASP.NET Core 2.0" target="_blank">Migrating to ASP.NET Core 2.0. (Coming Soon)</a>
+    </li>
+  </ol>
+</div>
+<p>In part 1 (
+  <a href="/posts/authentication-in-a-dot-net-core-api-part-1-identity-access-denied.html" title="ASP.NET Core Identity Access Denied"
+    target="_blank">ASP.NET Core Identity, Accessed Denied</a>) of this series, I explored how to deny access to your ASP.NET Core API endpoints
+  and return proper response types to both the Redirect To Login and Redirect To Access Denied events using ASP.NET Core
+  Identity. In this post, I will show you how to register a user with ASP.NET Core Identity and authenticate that user so
+  that it will have access to our now secure endpoints.</p>
+<h2>Registering A User</h2>
+<p>When we set up our DB Context to derive from a
+  <b>IdentityDbContext</b> type and created the database through our Entity Framework migrations, we were provide with the necessary
+  tables needed to support our Identity configuration.</p>
+<a href="/blogs/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted/db-tables.jpg" target="blank" title="Database Tables">
+  <img src="/blogs/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted/db-tables.jpg" alt="Database Tables"
+    style="max-width: 249px;" />
+</a>
+<p>To register a user and populate these tables with the data needed to authenticate, I created the following endpoint in a
+  new controller called
+  <b>AccountApiController</b> located in the
+  <b>Admin</b> area of my project.</p>
+<pre class="brush: csharp">[HttpPost]
+public async Task&lt;IActionResult&gt; Create([FromBody] AccountRegisterLogin model)
+{
+  if (!ModelState.IsValid)
+  {
+    return BadRequest(ModelState.Values.SelectMany(v => v.Errors).Select(modelError => modelError.ErrorMessage).ToList());
+  }
+
+  var user = new UserEntity { UserName = model.Email, Email = model.Email };
+  var result =  await _userManager.CreateAsync(user, model.Password);
+
+  if (!result.Succeeded)
+  {
+    return BadRequest(result.Errors.Select(x => x.Description).ToList());
+  }
+
+  await _signInManager.SignInAsync(user, false);
+
+  return Ok();
+}</pre>
+<p>We start by passing a representative of the
+  <b>AccountRegisterLogin</b> to this endpoint. Of which looks like this.</p>
+<pre class="brush: json">{
+  "email": "you_email@email.com",
+  "password": "youpassword1"
+}</pre>
+<p>This payload will serialize to the
+  <b>AccountRegisterLogin</b> model.</p>
+<pre class="brush: csharp">public class AccountRegisterLogin
+{
+  [Required]
+  [EmailAddress]
+  [Display(Name = "Email")]
+  public string Email { get; set; }
+
+  [Required]
+  [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+  [DataType(DataType.Password)]
+  [Display(Name = "Password")]
+  public string Password { get; set; }
+}</pre>
+<p>In the
+  <b>Create</b> method, we are...</p>
+<ol>
+  <li>
+    Checking the Model State to ensure the data populating our model is valid.
+    <ul>
+      <li>If it is not valid, return our model validation errors.</li>
+    </ul>
+  </li>
+  <li>Create a mapping to our
+    <b>UserEntity</b> object.</li>
+  <li>Make an asynchronous request to our
+    <b>UserManager&lt;UserEntity&gt;</b> to create a new user record.</li>
+  <li>
+    Check the result for success.
+    <ul>
+      <li>If it is not valid, return our
+        <b>UserManager</b> service errors.</li>
+    </ul>
+  </li>
+  <li>Make an asynchronous request to our
+    <b>SignInManager&lt;UserEntity&gt;</b> object to sign that user in.</li>
+</ol>
+<p>That is it for registration!</p>
+<h2>Authenticating</h2>
+<p>Now that we have a user record in our tables, we need to create a method to log in that user. Of which will again live in
+  the
+  <b>AccountApiController</b> located in the
+  <b>Admin</b> area of my project.</p>
+<pre class="brush: csharp">[HttpPost("login")]
+public async Task&lt;IActionResult&gt; Login([FromBody] AccountRegisterLogin model)
+{
+  if (!ModelState.IsValid)
+  {
+    return BadRequest();
+  }
+
+  var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: false, lockoutOnFailure: false);
+
+  if (!result.Succeeded)
+  {
+    return BadRequest();
+  }
+
+  return Ok();
+}</pre>
+<p>In this method, we again pass in our
+  <b>AccountRegisterLogin</b> request and start by checking to see if the state of that Model is valid. If it is, we make a
+  request to our
+  <b>SignInManager&lt;UserEntity&gt;</b> object to attempt to sign in that user with the Model's current properties. If that
+  request succeeded, we return a status of
+  <b>200 Ok</b>.</p>
+<p>During the sign in request, when successful the necessary cookie needed to authenticate with Identity is passed back as part
+  of the response.</p>
+<a href="/blogs/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted/cookie.jpg" target="blank" title="Identity Cookie">
+  <img src="/blogs/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted/cookie.jpg" alt="Identity Cookie"
+    style="max-width: 899px;" />
+</a>
+<p>With this cookie set on the client, we now have everything we need to authenticate with Identity. So long as the cookie is
+  current, all future requests to our API endpoints that are guarded with the
+  <b>[Authorize]</b> will be authenticated.</p>
+<p>This is it! We now have a way to register a user and log that user in while supplying the necessary cookie. In the next part
+  of this series, I will talk about adding token authentication to my blog using JSON Web Tokens. Until then, feel free to
+  leave any comments you might have below.</p>

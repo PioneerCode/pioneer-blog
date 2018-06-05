@@ -1,0 +1,175 @@
+<div class="note">
+  <p>In this series, I am going to outline some basic approaches to authenticating your .NET Core API using either ASP.NET Core
+    Identity or token-based authentication with a JSON Web Token (JWT). I will also explore how to configure your application
+    to return proper response types to both Redirect To Login and Redirect To Access Denied events when using ASP.NET Core
+    Identity.</p>
+  <h4>Authentication In A Dot Net Core API</h4>
+  <ol style="margin-bottom: 0;">
+    <li>
+      <a href="/post/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied" title="ASP.NET Core Identity Access Denied"
+        target="_blank">ASP.NET Core Identity, Accessed Denied.</a>
+    </li>
+    <li>
+      <a href="/post/authentication-in-a-asp-dot-net-core-api-part-2-identity-access-granted" title="ASP.NET Core Identity Access Granted"
+        target="_blank">ASP.NET Core Identity, Accessed Granted.</a>
+    </li>
+    <li>
+      <a href="/post/authentication-in-an-asp-dot-net-core-api-part-3-json-web-token" title="Token based authentication with a JSON Web Token (JWT)"
+        target="_blank">Token based authentication with a JSON Web Token (JWT).</a>
+    </li>
+    <li>
+      <a href="#" title="Migrating to ASP.NET Core 2.0" target="_blank">Migrating to ASP.NET Core 2.0. (Coming Soon)</a>
+    </li>
+  </ol>
+</div>
+<h2>Setup</h2>
+<p>To demonstrate these concepts of authentication, I will use the
+  <a href="https://github.com/PioneerCode/pioneer-blog">Pioneer Code Blog</a> source code to illustrate how I secured API endpoints that allow for CRUD operations against the
+  supporting tables in its database. That being said, let's take look at the file structure and identify where the API controllers
+  exist today.</p>
+<a href="/blogs/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied/solution-explorer-start.jpg" target="blank"
+  title="Solution Explorer Area API Endpoints">
+  <img src="/blogs/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied/solution-explorer-start.jpg" alt="Solution Explorer Area API Endpoints"
+    style="max-width: 336px;" />
+</a>
+<p>As you can see, I created an Area to house all my operations that are related to the administration of my site. Notably,
+  those that allow me to managed my blog posts. In the Area titled "Admin" lives a collection of API Controllers that correspond
+  to individual tables (entities) in the database.</p>
+<p class="note">For more information about creating Areas, you can visit my blog post entitled
+  <a href="http://pioneercode.com/post/creating-areas-in-asp-net-core"
+    target="_blank" title="Creating Areas In ASP.NET MVC Core">Creating Areas In ASP.NET MVC Core</a>. </p>
+<p>To keep things simple lets focus on a single endpoint that lives in a single API controller.</p>
+<pre class="brush: csharp">[Route("api/categories")]
+public class CategoryApiController : Controller
+{
+  private readonly ICategoryService _categoryService;
+
+  public CategoryApiController(ICategoryService categoryService)
+  {
+    _categoryService = categoryService;
+  }
+
+  [HttpGet]
+  public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
+  {
+    if (count == null || page == null)
+    {
+      return _categoryService.GetAll();
+    }
+
+    return _categoryService.GetAllPaged((int)count, (int)page);
+  }
+}</pre>
+<p>Here you can see an endpoint the maps to a GET request on the
+  <b>api/categories</b> endpoint. If we make a request to this endpoint, we will get a collection of categories with a Response
+  of
+  <b>200 OK</b>.</p>
+<a href="/blogs/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied/un-auth.jpg" target="blank" title="Unauthenticated Endpoint">
+  <img src="/blogs/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied/un-auth.jpg" alt="Unauthenticated Endpoint"
+    style="max-width: 898px;" />
+</a>
+<h2>ASP.NET Identity</h2>
+<blockquote>
+  ASP.NET Core Identity is a membership system which allows you to add login functionality to your application. Users can create
+  an account and login with a username and password or they can use an external login providers such as Facebook, Google,
+  Microsoft Account, Twitter and more.
+  <cite>
+    <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity" title="ASP.Net Core Identity" target="_blank">ASP.NET Core Identity</a>
+  </cite>
+</blockquote>
+<p>We will start out securing our API endpoints by introducing ASP.NET Core Identity into our application. If you are working
+  on an MVC project, Identity is available in the
+  <b>Microsoft.AspNetCore.Builder</b> lib. Of which, is scaffold in just about every MVC project you are creating. On the other
+  hand, if you are creating an API without the "typical" MVC lib project dependencies, you might have to add a reference
+  to
+  <b>&lt;PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" /&gt;</b> in your csproj
+  file.</p>
+<h3>Setting up DbContext</h3>
+<p>Before we configure our Identity service, we first must ensure our database is in order. To do this, I needed to implement
+  my existing
+  <b>Blog Context</b> as a derived class of
+  <b>IdentityDbContext&lt;UserEntity&gt;</b>. I set the type as
+  <b>UserEntity</b>, which itself is a derived class of
+  <b>IdentityUser</b>. Once the context was setup, I ran my Entity Framework migrations to scaffold the necessary tables.</p>
+<p>In short, this now ensures my db context has all the necessary configuration needed for Identity and my
+  <b>UserEntity</b> shares all the base types provided by
+  <b>IdentityUser</b> while being expendable to suite any future needs.</p>
+<h3>Configuring Identity</h3>
+<p>Once our data store is in order, we can now add and configure our Identity Service. In the
+  <b>Startup.ConfigServices(IServiceCollection services)</b> function, I added the following.</p>
+<pre class="brush: csharp">services.AddIdentity&lt;UserEntity, IdentityRole&gt;()
+  .AddEntityFrameworkStores&lt;BlogContext&gt;();</pre>
+<p>This effectively adds Identity to the Pioneer Blog services collection.</p>
+<p>Next, we need to tell our application to use Identity. This need to be done before we add MVC in order to apply authentication
+  to our MVC calls do to order of operation concerns.</p>
+<pre class="brush: csharp">public void Configure(IApplicationBuilder app,
+  IHostingEnvironment env,
+  ILoggerFactory loggerFactory,
+  IdentitySetup identitySetup)
+  {
+  // Shortened.....
+  app.UseIdentity();
+  // Add MVC
+}</pre>
+<h2>Authorization Attribute</h2>
+<p>In order to tell Identity that we don't want to allow unauthorized user access to our endpoint, we need to add the Authorization
+  Attribute to either a class or directly on a method. This depends on the scope you want to apply to your authorization
+  plan. In my case, I will apply this attribute to a backing service method that supports my GET Categories API Controller
+  endpoint.</p>
+<pre class="brush: csharp">[Authorize]
+[HttpGet]
+public IEnumerable&lt;Category&gt; GetAll(int? count, int? page)
+{
+  if (count == null || page == null)
+  {
+    return _categoryService.GetAll();
+  }
+
+  return _categoryService.GetAllPaged((int)count, (int)page);
+}</pre>
+<p>Let's try hitting our API endpoint again.</p>
+<a href="/blogs/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied/failed-redirect.jpg" target="blank"
+  title="Fail and Redirect">
+  <img src="/blogs/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied/failed-redirect.jpg" alt="Fail and Redirect"
+    style="max-width: 899px;" />
+</a>
+<p>This time around we are not getting any Categories back in the Response. Which is great, this is what we wanted. But what
+  about our Status Code being
+  <b>200 OK</b> and the Response payload returning HTML? This happened because Identity by default is configured to redirect
+  an unauthenticated request to a login in page.</p>
+<p>This obviously does not suit our APIs needs. That being said, let's configure our
+  <b>IdentityOptions</b> to take in account cases where we do not want to redirect to login and instead we want to return a
+  <b>401 Unauthorized</b> response. In the
+  <b>Startup.ConfigServices(IServiceCollection services)</b> method add the following.</p>
+<pre class="brush: csharp">services.Configure&lt;IdentityOptions&gt;(config =&gt;
+{
+  config.Cookies.ApplicationCookie.Events =
+  new CookieAuthenticationEvents
+  {
+      OnRedirectToLogin = ctx =>
+      {
+          if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+          {
+              ctx.Response.StatusCode = 401;
+              return Task.FromResult&lt;object&gt;(null);
+          }
+
+          ctx.Response.Redirect(ctx.RedirectUri);
+          return Task.FromResult&lt;object&gt;(null);
+      }
+  };
+});</pre>
+<p>In the
+  <b>IdentityOptions</b> configuration we are setting up a way to intercept an Event, of which is the
+  <b>OnRedirectToLogin</b> Event. When this Event is raised, we first check our URL segment to see if it starts with "/api".
+  If it does and the response is of type
+  <b>200 OK</b>, we know we have run into the exact issue identified above. This time, we will return immediately with a status
+  code of
+  <b>401 Unauthorized</b>.</p>
+<a href="/blogs/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied/401-identity.jpg" target="blank"
+  title="401 Identity">
+  <img src="/blogs/authentication-in-a-asp-dot-net-core-api-part-1-identity-access-denied/401-identity.jpg" alt="401 Identity"
+    style="max-width: 899px;" />
+</a>
+<p>That is it! We now have a way to block access to API endpoints of our choosing using Identity. In the next part of this series,
+  I will talk about adding a way to register a user using Identity and allowing access to API endpoints that require authentication.</p>
