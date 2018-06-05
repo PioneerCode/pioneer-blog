@@ -1,11 +1,14 @@
-using System.Text;
+﻿using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Pioneer.Blog.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
@@ -15,7 +18,6 @@ using Pioneer.Blog.Model;
 using Pioneer.Blog.Repository;
 using Pioneer.Blog.Service;
 using Pioneer.Pagination;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Pioneer.Blog
 {
@@ -26,11 +28,18 @@ namespace Pioneer.Blog
             Configuration = configuration;
         }
 
-        public  IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -52,7 +61,7 @@ namespace Pioneer.Blog
                 cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
             });
 
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,16 +72,18 @@ namespace Pioneer.Blog
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
             app.UseAuthentication();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             ConfigureCors(app);
             ConfigureSwagger(app);
@@ -142,11 +153,11 @@ namespace Pioneer.Blog
         private static void ConfigureServicesSwagger(IServiceCollection services)
         {
 #if DEBUG
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "Pioneer Blog API", Version = "v1" });
-                c.OperationFilter<AddAuthTokenHeaderParameter>();
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new Info { Title = "Pioneer Blog API", Version = "v1" });
+            //    c.OperationFilter<AddAuthTokenHeaderParameter>();
+            //});
 #endif
         }
 
@@ -192,12 +203,12 @@ namespace Pioneer.Blog
         private static void ConfigureSwagger(IApplicationBuilder app)
         {
 #if DEBUG
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pioneer Blog API V1");
-                c.DocumentTitle = "Pionerr Blog API";
-            });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pioneer Blog API V1");
+            //    c.DocumentTitle = "Pionerr Blog API";
+            //});
 #endif
         }
 

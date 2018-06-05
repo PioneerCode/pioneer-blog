@@ -1,55 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
+
   <PropertyGroup>
-    <Version>0.0.0</Version>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <UserSecretsId>aspnet-Pioneer.Blog-2E4EB4F7-B5D1-4391-8809-128717D22129</UserSecretsId>
-    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-Pioneer.Blog-DCBE7208-F00D-4033-A932-D1614BB49D2C</UserSecretsId>
   </PropertyGroup>
-  <PropertyGroup>
-    <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
-    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Remove="app-admin\**" />
-    <Compile Remove="app-client\temp\**" />
-    <Compile Remove="client-app\**" />
-    <Compile Remove="dev\**" />
-    <Compile Remove="gulp-tasks\**" />
-    <Compile Remove="scripts\**" />
-    <Content Remove="app-admin\**" />
-    <Content Remove="app-client\temp\**" />
-    <Content Remove="client-app\**" />
-    <Content Remove="dev\**" />
-    <Content Remove="gulp-tasks\**" />
-    <Content Remove="scripts\**" />
-    <EmbeddedResource Remove="app-admin\**" />
-    <EmbeddedResource Remove="app-client\temp\**" />
-    <EmbeddedResource Remove="client-app\**" />
-    <EmbeddedResource Remove="dev\**" />
-    <EmbeddedResource Remove="gulp-tasks\**" />
-    <EmbeddedResource Remove="scripts\**" />
-    <None Remove="app-admin\**" />
-    <None Remove="app-client\temp\**" />
-    <None Remove="client-app\**" />
-    <None Remove="dev\**" />
-    <None Remove="gulp-tasks\**" />
-    <None Remove="scripts\**" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
+    <PackageReference Include="Pioneer.Pagination" Version="2.1.1" />
   </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
-    <PackageReference Include="Pioneer.Pagination" Version="2.1.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
-    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Pioneer.Blog.Entity\Pioneer.Blog.Entity.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Model\Pioneer.Blog.Model.csproj" />
-    <ProjectReference Include="..\Pioneer.Blog.Repository\Pioneer.Blog.Repository.csproj" />
     <ProjectReference Include="..\Pioneer.Blog.Service\Pioneer.Blog.Service.csproj" />
   </ItemGroup>
+
 </Project>

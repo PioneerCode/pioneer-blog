@@ -1,0 +1,10 @@
+{
+    "files.exclude": {
+        "temp": true
+    },
+    "cSpell.words": [
+        "pioneercode",
+        "syntaxhighlighter",
+        "wwwroot"
+    ]
+}
