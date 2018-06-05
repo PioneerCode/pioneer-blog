@@ -1,0 +1,19 @@
+<section class="login">
+  <div class="row">
+    <div class="large-4 large-push-4 columns">
+      <div class="pc-card clearfix">
+        <header>
+          <img src="assets/images/logo-large.png" alt="">
+          <p>Admin Login</p>
+        </header>
+        <form #loginFrom="ngForm" (ngSubmit)="onSubmitForm()">
+          <div class="form-content">
+            <input type="text" id="email" name="email" [(ngModel)]="loginRequest.email" placeholder="Email">
+            <input type="password" id="password" name="password" [(ngModel)]="loginRequest.password" placeholder="Password">
+          </div>
+          <button class="button expanded large" [disabled]="loginFrom.invalid">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

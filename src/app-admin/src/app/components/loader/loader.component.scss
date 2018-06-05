@@ -1,0 +1,22 @@
+@import "../../../scss/settings";
+.pc-loader {
+    .pc-loader-wrapper {
+        position: absolute;
+        display: inline-block;
+        left: 1rem;
+        top: 1rem;
+    }
+    .pc-loader-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $white;
+        opacity: 0.8;
+    }
+    i {
+        color: $dark-gray;
+        font-size: 5rem;
+    }
+}

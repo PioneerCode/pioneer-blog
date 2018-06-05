@@ -1,0 +1,7 @@
+.modal {
+  textarea, .canvas {
+    height: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}

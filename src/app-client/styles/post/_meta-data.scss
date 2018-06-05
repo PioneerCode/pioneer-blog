@@ -1,0 +1,61 @@
+﻿.article-meta-data {
+    width: 100%;
+    display: table;
+    background: $black;
+    margin: 0 0 1.5rem;
+    display: table;
+    width: 100%;
+    table-layout: initial;
+
+    @include breakpoint(medium up) {
+        table-layout: fixed;
+    }
+}
+
+.post a.article-meta-data-section, .post .article-meta-data-section {
+  font-weight: normal;
+
+  a {
+    font-weight: normal;
+  }
+}
+
+.article-meta-data-section {
+  color: $white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1rem 0;
+  display: block;
+
+
+  @include breakpoint(medium up) {
+    display: table-cell;
+  }
+
+  a {
+    color: $white;
+    font-weight: normal;
+
+    &:hover {
+      color: $primary-color;
+      text-decoration: none;
+      transition: ease all .3s;
+    }
+  }
+}
+
+a.article-meta-data-section {
+    display: block;
+
+    &:hover {
+        text-decoration: none;
+        color: $white;
+        background-color: $primary-color;
+        transition: ease all .3s;
+    }
+
+    @include breakpoint(medium up) {
+        height: 4rem;
+        display: table-cell;
+    }
+}
