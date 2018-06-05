@@ -29,7 +29,7 @@ function styles() {
         .pipe(autoprefixer({
             browsers: ['last 2 versions', 'ie >= 9']
         }))
-        .pipe(gulp.dest('../wwwroot/'));
+        .pipe(gulp.dest('../Pioneer.Blog/wwwroot/'));
 }
 
 function typescript() {
@@ -42,7 +42,7 @@ function move() {
     return gulp.src([
         'node_modules/font-awesome/fonts/**/*'
     ])
-        .pipe(gulp.dest('../wwwroot/fonts'));
+        .pipe(gulp.dest('../Pioneer.Blog/wwwroot/fonts'));
 }
 
 function libs() {
@@ -61,7 +61,7 @@ function scripts() {
     ], { base: './temp/' })
         .pipe(concat('app.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('../wwwroot'));
+        .pipe(gulp.dest('../Pioneer.Blog/wwwroot'));
 }
 
 function watch() {
