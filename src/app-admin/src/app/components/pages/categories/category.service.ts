@@ -1,8 +1,8 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Category } from '../../../models/category';
 import { CategoryRepository } from '../../../repositories/category.repository';
 
-import 'rxjs/add/operator/toPromise';
+
 
 @Injectable()
 export class CategoryService {

@@ -1,8 +1,8 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Tag } from '../../../models/tag';
 import { TagRepository } from '../../../repositories/tag.repository';
 
-import 'rxjs/add/operator/toPromise';
+
 
 @Injectable()
 export class TagService {

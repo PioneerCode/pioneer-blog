@@ -1,11 +1,11 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { PostRepository } from '../../../repositories/post.repository';
 import { Post } from '../../../models/post';
 import { Category } from '../../../models/category';
 import { Tag } from '../../../models/tag';
 import { PostTagRepository } from '../../../repositories/post-tag.repository';
 
-import 'rxjs/add/operator/toPromise';
+
 
 @Injectable()
 export class PostService {
