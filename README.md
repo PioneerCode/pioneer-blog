@@ -3,9 +3,9 @@
 Active code based used for [Pioneer Code](https://pioneercode.com).
 
 Current stack...
-- ASP.NET Core 2.x
-- Entity Framework Core 2.x
-- Angular 5.x
+- ASP.NET Core 2.1
+- Entity Framework Core 2.1
+- Angular 6.x
 
 Current deployment...
 - SQL Database hosted at [WinHost](http://www.winhost.com/a/chadr)
