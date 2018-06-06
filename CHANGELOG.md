@@ -1,4 +1,11 @@
-# Pioneer Code - Pioneer Code Blog
+<a name="3.0.0"></a>
+# [v3.0.0](https://github.com/PioneerCode/pioneer-charts/releases/tag/0.13.3) (2018-06-06)
+
+### Changed
+
+- Migrated to...
+  - .NET Core 2.1
+  - Angular 6.x
 
 <a name="2.4"></a>
 ## 2.4
