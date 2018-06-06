@@ -52,6 +52,6 @@
     </div>
   </div>
 </div>
-@Html.Partial("_HomeLatestPosts", (List<Post>)ViewBag.LatestPosts)
-@Html.Partial("_HomeGreatestPosts")
-@Html.Partial("_HomeSignUp")
+@Html.PartialAsync("_HomeLatestPosts", (List<Post>)ViewBag.LatestPosts)
+@Html.PartialAsync("_HomeGreatestPosts")
+@Html.PartialAsync("_HomeSignUp")

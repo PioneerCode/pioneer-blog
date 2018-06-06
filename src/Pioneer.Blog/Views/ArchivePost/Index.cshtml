@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/ArchivePost/_Template.cshtml";
 }
-@using System.Collections.Generic
+
 @using Microsoft.AspNetCore.Mvc.Rendering
 @model List<Post>
 <div class="hero-gradient hg-small" style="background-image: url(/images/hero-archive-post.jpg)">
@@ -15,35 +15,35 @@
 <section class="archive">
   <div class="row">
     <div class="large-8 columns">
-      @Html.Partial("ArchivePost/_ArchivePost", Model)
+      @Html.PartialAsync("ArchivePost/_ArchivePost", Model)
       <pioneer-pagination info="@ViewBag.PaginatedMeta" route="/@ViewBag.Pager"></pioneer-pagination>
     </div>
     <aside class="large-4 columns">
       <div class="hide-for-small-only">
-        @Html.Partial("ArchivePost/_SidebarTitle", "Popular Posts")
-        @Html.Partial("ArchivePost/_SidebarPopularPosts", (List<Post>)ViewBag.PopularPosts)
+        @Html.PartialAsync("ArchivePost/_SidebarTitle", "Popular Posts")
+        @Html.PartialAsync("ArchivePost/_SidebarPopularPosts", (List<Post>)ViewBag.PopularPosts)
       </div>
       <div class="hide-for-small-only">
-        @Html.Partial("ArchivePost/_SidebarTitle", "New Posts")
-        @Html.Partial("ArchivePost/_SidebarNewPosts", (List<Post>)ViewBag.NewPosts)
+        @Html.PartialAsync("ArchivePost/_SidebarTitle", "New Posts")
+        @Html.PartialAsync("ArchivePost/_SidebarNewPosts", (List<Post>)ViewBag.NewPosts)
       </div>
       <div class="hide-for-small-only">
-        @Html.Partial("ArchivePost/_SidebarTitle", "Search!")
+        @Html.PartialAsync("ArchivePost/_SidebarTitle", "Search!")
         <section class="sidebar">
-          @Html.Partial("_SearchBar")
+          @Html.PartialAsync("_SearchBar")
         </section>
       </div>
       <div class="follow-us-on hide-for-small-only">
-        @Html.Partial("ArchivePost/_SidebarTitle", "Follow Me @!")
-        @Html.Partial("ArchivePost/_SidebarFollowUs")
+        @Html.PartialAsync("ArchivePost/_SidebarTitle", "Follow Me @!")
+        @Html.PartialAsync("ArchivePost/_SidebarFollowUs")
       </div>
       <div class="hide-for-small-only">
-        @Html.Partial("ArchivePost/_SidebarTitle", "Tags")
-        @Html.Partial("ArchivePost/_SidebarTags", (List<Tag>)ViewBag.Tags)
+        @Html.PartialAsync("ArchivePost/_SidebarTitle", "Tags")
+        @Html.PartialAsync("ArchivePost/_SidebarTags", (List<Tag>)ViewBag.Tags)
       </div>
       <div class="hide-for-small-only">
-        @Html.Partial("ArchivePost/_SidebarTitle", "Categories")
-        @Html.Partial("ArchivePost/_SidebarCategories", (List<Category>)ViewBag.Categories)
+        @Html.PartialAsync("ArchivePost/_SidebarTitle", "Categories")
+        @Html.PartialAsync("ArchivePost/_SidebarCategories", (List<Category>)ViewBag.Categories)
       </div>
     </aside>
   </div>

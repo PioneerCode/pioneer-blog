@@ -12,7 +12,6 @@
             @Model[(int)PreviousCurrentNextPosition.Current].Title
           </h1>
           <div class="image-box">
-
             <a href="https://twitter.com/chad_ramos" title="Chad Ramos Twitter" target="_blank" class="name">
               By:
               Chad Ramos
@@ -21,22 +20,22 @@
         </div>
       </div>
     </section>
-    @Html.Partial("_MetaData", Model[(int)PreviousCurrentNextPosition.Current])
+    @Html.PartialAsync("_MetaData", Model[(int)PreviousCurrentNextPosition.Current])
     <div class="row">
       <div class="large-10 large-push-1 columns">
         @Html.Raw(Model[(int)PreviousCurrentNextPosition.Current].Article.Content)
-        @Html.Partial("_SocialShareIcons", Model[(int)PreviousCurrentNextPosition.Current])
+        @Html.PartialAsync("_SocialShareIcons", Model[(int)PreviousCurrentNextPosition.Current])
       </div>
     </div>
-    @Html.Partial("_PreviousNext")
+    @Html.PartialAsync("_PreviousNext")
     <footer>
       <div class="row">
         <div class="large-12 columns">
-          @Html.Partial("_FooterSectionTitle", "Author")
-          @Html.Partial("_FooterAuthor")
-          @Html.Partial("_FooterSectionTitle", "Popular Posts")
-          @Html.Partial("_FooterPopularPosts")
-          @Html.Partial("_FooterComments", Model[(int)PreviousCurrentNextPosition.Current])
+          @Html.PartialAsync("_FooterSectionTitle", "Author")
+          @Html.PartialAsync("_FooterAuthor")
+          @Html.PartialAsync("_FooterSectionTitle", "Popular Posts")
+          @Html.PartialAsync("_FooterPopularPosts")
+          @Html.PartialAsync("_FooterComments", Model[(int)PreviousCurrentNextPosition.Current])
         </div>
       </div>
     </footer>
