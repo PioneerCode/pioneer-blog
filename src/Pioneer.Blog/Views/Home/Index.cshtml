@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Rendering
 @{
-    Layout = "~/Views/Home/_Template.cshtml";
-    ViewBag.Title = "Chad Ramos";
+  Layout = "~/Views/Home/_Template.cshtml";
+  ViewBag.Title = "Chad Ramos";
 }
 <input type="hidden" value="d9197f1e-e49b-4d41-9851-440cfa63abb7">
 <div class="hero-gradient hg-large home-hero" style="background-image: url(/images/hero-home.jpg)">
@@ -52,6 +52,6 @@
     </div>
   </div>
 </div>
-@Html.PartialAsync("_HomeLatestPosts", (List<Post>)ViewBag.LatestPosts)
-@Html.PartialAsync("_HomeGreatestPosts")
-@Html.PartialAsync("_HomeSignUp")
+@await Html.PartialAsync("_HomeLatestPosts", (List<Post>)ViewBag.LatestPosts)
+@await Html.PartialAsync("_HomeGreatestPosts")
+@await Html.PartialAsync("_HomeSignUp")

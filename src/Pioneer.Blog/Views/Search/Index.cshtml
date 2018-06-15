@@ -18,44 +18,44 @@
     <div class="large-8 columns">
       @if (Model.Count == 0)
       {
-          @Html.PartialAsync("_SearchEmptyState")
+          @await Html.PartialAsync("_SearchEmptyState")
       }
       else
       {
-          @Html.PartialAsync("_SearchMeta", (int)ViewBag.TotalQueryMatches)
-          @Html.PartialAsync("ArchivePost/_ArchivePost", Model)
+          @await Html.PartialAsync("_SearchMeta", (int)ViewBag.TotalQueryMatches)
+          @await Html.PartialAsync("ArchivePost/_ArchivePost", Model)
           <pioneer-pagination info="@ViewBag.PaginatedMeta" route="/search/@Uri.EscapeUriString(ViewBag.Query)"></pioneer-pagination>
       }
     </div>
     <aside class="large-4 columns">
       <div class="hide-for-small-only">
-        @Html.PartialAsync("ArchivePost/_SidebarTitle", "Popular Posts")
-        @Html.PartialAsync("ArchivePost/_SidebarPopularPosts", (List<Post>)ViewBag.PopularPosts)
+        @await Html.PartialAsync("ArchivePost/_SidebarTitle", "Popular Posts")
+        @await Html.PartialAsync("ArchivePost/_SidebarPopularPosts", (List<Post>)ViewBag.PopularPosts)
       </div>
       <div class="hide-for-small-only">
-        @Html.PartialAsync("ArchivePost/_SidebarTitle", "New Posts")
-        @Html.PartialAsync("ArchivePost/_SidebarNewPosts", (List<Post>)ViewBag.NewPosts)
+        @await Html.PartialAsync("ArchivePost/_SidebarTitle", "New Posts")
+        @await Html.PartialAsync("ArchivePost/_SidebarNewPosts", (List<Post>)ViewBag.NewPosts)
       </div>
       @if (Model.Count != 0)
       {
           <div class="hide-for-small-only">
-            @Html.PartialAsync("ArchivePost/_SidebarTitle", "Search!")
+            @await Html.PartialAsync("ArchivePost/_SidebarTitle", "Search!")
             <section class="sidebar">
-              @Html.PartialAsync("_SearchBar")
+              @await Html.PartialAsync("_SearchBar")
             </section>
           </div>
       }
       <div class="follow-us-on hide-for-small-only">
-        @Html.PartialAsync("ArchivePost/_SidebarTitle", "Follow Me @!")
-        @Html.PartialAsync("ArchivePost/_SidebarFollowUs")
+        @await Html.PartialAsync("ArchivePost/_SidebarTitle", "Follow Me @!")
+        @await Html.PartialAsync("ArchivePost/_SidebarFollowUs")
       </div>
       <div class="hide-for-small-only">
-        @Html.PartialAsync("ArchivePost/_SidebarTitle", "Tags")
-        @Html.PartialAsync("ArchivePost/_SidebarTags", (List<Tag>)ViewBag.Tags)
+        @await Html.PartialAsync("ArchivePost/_SidebarTitle", "Tags")
+        @await Html.PartialAsync("ArchivePost/_SidebarTags", (List<Tag>)ViewBag.Tags)
       </div>
       <div class="hide-for-small-only">
-        @Html.PartialAsync("ArchivePost/_SidebarTitle", "Categories")
-        @Html.PartialAsync("ArchivePost/_SidebarCategories", (List<Category>)ViewBag.Categories)
+        @await Html.PartialAsync("ArchivePost/_SidebarTitle", "Categories")
+        @await Html.PartialAsync("ArchivePost/_SidebarCategories", (List<Category>)ViewBag.Categories)
       </div>
     </aside>
   </div>

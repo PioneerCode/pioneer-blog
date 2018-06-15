@@ -20,22 +20,22 @@
         </div>
       </div>
     </section>
-    @Html.PartialAsync("_MetaData", Model[(int)PreviousCurrentNextPosition.Current])
+    @await Html.PartialAsync("_MetaData", Model[(int)PreviousCurrentNextPosition.Current])
     <div class="row">
       <div class="large-10 large-push-1 columns">
         @Html.Raw(Model[(int)PreviousCurrentNextPosition.Current].Article.Content)
-        @Html.PartialAsync("_SocialShareIcons", Model[(int)PreviousCurrentNextPosition.Current])
+        @await Html.PartialAsync("_SocialShareIcons", Model[(int)PreviousCurrentNextPosition.Current])
       </div>
     </div>
-    @Html.PartialAsync("_PreviousNext")
+    @await Html.PartialAsync("_PreviousNext")
     <footer>
       <div class="row">
         <div class="large-12 columns">
-          @Html.PartialAsync("_FooterSectionTitle", "Author")
-          @Html.PartialAsync("_FooterAuthor")
-          @Html.PartialAsync("_FooterSectionTitle", "Popular Posts")
-          @Html.PartialAsync("_FooterPopularPosts")
-          @Html.PartialAsync("_FooterComments", Model[(int)PreviousCurrentNextPosition.Current])
+          @await Html.PartialAsync("_FooterSectionTitle", "Author")
+          @await Html.PartialAsync("_FooterAuthor")
+          @await Html.PartialAsync("_FooterSectionTitle", "Popular Posts")
+          @await Html.PartialAsync("_FooterPopularPosts")
+          @await Html.PartialAsync("_FooterComments", Model[(int)PreviousCurrentNextPosition.Current])
         </div>
       </div>
     </footer>
