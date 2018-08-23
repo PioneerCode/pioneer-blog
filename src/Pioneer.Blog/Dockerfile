@@ -28,4 +28,4 @@ FROM microsoft/dotnet:2.1-aspnetcore-runtime
 WORKDIR /app
 COPY bin/Debug/netcoreapp2.1/publish .
 
-# ENTRYPOINT ["dotnet", "Pioneer.Blog.dll"]
+ENTRYPOINT ["dotnet", "Pioneer.Blog.dll"]
