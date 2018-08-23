@@ -6,42 +6,20 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <Compile Remove="%2a%2a\**" />
-    <EmbeddedResource Remove="%2a%2a\**" />
-    <None Remove="%2a%2a\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="%2a%2a/%2a.resx" />
-  </ItemGroup>
-
-  <!-- <ItemGroup>
-    <Compile Remove="%2a%2a\**" />
-    <Compile Remove="app-client\**" />
-    <Content Remove="%2a%2a\**" />
     <Content Remove="app-client\**" />
-    <EmbeddedResource Remove="%2a%2a\**" />
     <EmbeddedResource Remove="app-client\**" />
-    <None Remove="%2a%2a\**" />
     <None Remove="app-client\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="%2a%2a\%2a.config" />
-    <Content Remove="%2a%2a\%2a.cshtml" />
-    <Content Remove="%2a%2a\%2a.json" />
-  </ItemGroup> -->
-
-  <!-- <ItemGroup>
-    <EmbeddedResource Remove="%2a%2a/%2a.resx" />
-  </ItemGroup> -->
+    <Content Include="appsettings*json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appsettings.Development.json" />
-    <Content Include="appsettings.json" />
-    <Content Include="appsettings.Production.json" />
     <Content Include="Areas\Identity\Pages\_ViewStart.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\About\_Template.cshtml" />
