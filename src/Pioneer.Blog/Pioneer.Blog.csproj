@@ -12,17 +12,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Remove="%2a%2a\**" />
-    <Content Remove="%2a%2a\**" />
-    <EmbeddedResource Remove="%2a%2a\**" />
-    <None Remove="%2a%2a\**" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <EmbeddedResource Remove="%2a%2a/%2a.resx" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
