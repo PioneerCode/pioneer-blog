@@ -4,14 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Pioneer.Blog-DCBE7208-F00D-4033-A932-D1614BB49D2C</UserSecretsId>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <Content Include="appsettings*json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
