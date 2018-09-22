@@ -1,2 +1,3 @@
-*
-!bin/Debug/netcoreapp2.1/publish
+ bin/
+ obj/
+ node_modules/

@@ -1,6 +1,24 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime
+# 1) Build Project
+FROM microsoft/aspnetcore-build AS builder
+WORKDIR /source
 
-WORKDIR /app
-COPY bin/Debug/netcoreapp2.1/publish .
+# caches restore result by copying csproj file separately
+COPY *.csproj .
+RUN dotnet restore
 
-ENTRYPOINT ["dotnet", "Pioneer.Blog.dll"]
+# copies the rest of your code
+COPY . .
+RUN dotnet publish --output /app/ --configuration Release
+
+ # 2) Build runtime image
+ FROM microsoft/aspnetcore
+ WORKDIR /app
+ COPY --from=builder /app .
+ ENTRYPOINT ["dotnet", "Pioneer.Blog.dll"]
+
+ # Build image
+ # docker build -t pioneercode/pioneer.blog .
+ #
+ # Start container
+ # docker run --rm -it -p 8080:80 pioneercode/pioneer-blog
+
