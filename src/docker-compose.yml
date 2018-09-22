@@ -1,0 +1,19 @@
+﻿version: '3.7'
+
+services:
+  app:
+    build:
+      context:  ./Pioneer.Blog
+      dockerfile: Dockerfile
+    # Expose port without out publish to host machine. 
+    # expose: 
+    #   - "5000"
+    # ports: 
+    #   - "8080:80"
+
+  nginx:
+    build:
+      context:  ./nginx
+      dockerfile: Dockerfile
+    ports: 
+      - "80:80"

@@ -1,19 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Pioneer.Blog-DCBE7208-F00D-4033-A932-D1614BB49D2C</UserSecretsId>
+    <DockerTargetOS>Linux</DockerTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="%2a%2a\**" />
-    <Compile Remove="app-client\**" />
     <Content Remove="%2a%2a\**" />
-    <Content Remove="app-client\**" />
     <EmbeddedResource Remove="%2a%2a\**" />
-    <EmbeddedResource Remove="app-client\**" />
     <None Remove="%2a%2a\**" />
-    <None Remove="app-client\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,64 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appsettings.Development.json" />
-    <Content Include="appsettings.json" />
-    <Content Include="appsettings.Production.json" />
-    <Content Include="Areas\Identity\Pages\_ViewStart.cshtml" />
-    <Content Include="Views\About\Index.cshtml" />
-    <Content Include="Views\About\_Template.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\ArchivePost\Index.cshtml" />
-    <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Contact\_Template.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Privacy.cshtml" />
-    <Content Include="Views\Home\_HomeGreatestPosts.cshtml" />
-    <Content Include="Views\Home\_HomeLatestPosts.cshtml" />
-    <Content Include="Views\Home\_HomePostCard.cshtml" />
-    <Content Include="Views\Home\_HomeSignUp.cshtml" />
-    <Content Include="Views\Home\_Template.cshtml" />
-    <Content Include="Views\Post\Index.cshtml" />
-    <Content Include="Views\Post\_FooterAuthor.cshtml" />
-    <Content Include="Views\Post\_FooterComments.cshtml" />
-    <Content Include="Views\Post\_FooterPopularPosts.cshtml" />
-    <Content Include="Views\Post\_FooterSectionTitle.cshtml" />
-    <Content Include="Views\Post\_MetaData.cshtml" />
-    <Content Include="Views\Post\_PreviousNext.cshtml" />
-    <Content Include="Views\Post\_Template.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Search\_SearchEmptyState.cshtml" />
-    <Content Include="Views\Search\_SearchMeta.cshtml" />
-    <Content Include="Views\Shared\ArchivePost\_ArchivePost.cshtml" />
-    <Content Include="Views\Shared\ArchivePost\_SidebarCategories.cshtml" />
-    <Content Include="Views\Shared\ArchivePost\_SidebarFollowUs.cshtml" />
-    <Content Include="Views\Shared\ArchivePost\_SidebarNewPosts.cshtml" />
-    <Content Include="Views\Shared\ArchivePost\_SidebarPopularPosts.cshtml" />
-    <Content Include="Views\Shared\ArchivePost\_SidebarSearch.cshtml" />
-    <Content Include="Views\Shared\ArchivePost\_SidebarTags.cshtml" />
-    <Content Include="Views\Shared\ArchivePost\_SidebarTitle.cshtml" />
-    <Content Include="Views\Shared\ArchivePost\_Template.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_CookieConsentPartial.cshtml" />
-    <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LayoutPublic.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_SearchBar.cshtml" />
-    <Content Include="Views\Shared\_SocialShareButtons.cshtml" />
-    <Content Include="Views\Shared\_SocialShareIcons.cshtml" />
-    <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
-    <Content Include="Views\_ViewImports.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
     <PackageReference Include="Pioneer.Pagination" Version="2.1.1" />
   </ItemGroup>
 
