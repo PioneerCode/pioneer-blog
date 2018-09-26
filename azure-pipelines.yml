@@ -10,5 +10,5 @@ variables:
   imageName: 'pioneercode/pioneer-blog:$(build.buildId)'
 
 steps:
-- script: docker build -t $(imageName) . 
+- script: docker build -f src/Dockerfile -t $(imageName) . 
   displayName: 'docker build'
