@@ -3,11 +3,11 @@ FROM microsoft/dotnet:2.1-sdk AS builder
 WORKDIR /source
 
 # caches restore result by copying csproj file separately
-COPY ["Pioneer.Blog/Pioneer.Blog.csproj", "Pioneer.Blog/"]
-COPY ["Pioneer.Blog.Model/Pioneer.Blog.Model.csproj", "Pioneer.Blog.Model/"]
-COPY ["Pioneer.Blog.Service/Pioneer.Blog.Service.csproj", "Pioneer.Blog.Service/"]
-COPY ["Pioneer.Blog.Repository/Pioneer.Blog.Repository.csproj", "Pioneer.Blog.Repository/"]
-COPY ["Pioneer.Blog.Entity/Pioneer.Blog.Entity.csproj", "Pioneer.Blog.Entity/"]
+COPY ["src/Pioneer.Blog/Pioneer.Blog.csproj", "Pioneer.Blog/"]
+COPY ["src/Pioneer.Blog.Model/Pioneer.Blog.Model.csproj", "Pioneer.Blog.Model/"]
+COPY ["src/Pioneer.Blog.Service/Pioneer.Blog.Service.csproj", "Pioneer.Blog.Service/"]
+COPY ["src/Pioneer.Blog.Repository/Pioneer.Blog.Repository.csproj", "Pioneer.Blog.Repository/"]
+COPY ["src/Pioneer.Blog.Entity/Pioneer.Blog.Entity.csproj", "Pioneer.Blog.Entity/"]
 
 WORKDIR /source/Pioneer.Blog
 RUN dotnet restore
