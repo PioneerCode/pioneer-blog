@@ -10,8 +10,13 @@ variables:
   imageName: 'pioneer-blog:$(build.buildId)'
 
 steps:
+
+# Build Image
 - script: docker build -f Dockerfile -t $(imageName) . 
   displayName: 'docker build'
+
+# Publish Image To Docker Hub
 - script: |
-    docker login -u $(dockerId) -p $(pswd)
+    docker login -u $(dockerId) -p $(dockerPassword)
     docker push $(dockerId)/$(imageName)
+  displayName: 'docker push'  
