@@ -23,7 +23,7 @@ RUN dotnet publish --output /app/ --configuration Release
  ENTRYPOINT ["dotnet", "Pioneer.Blog.dll"]
 
  # Build image
- # docker build -t pioneercode/pioneer.blog .
+ # docker build -t pioneercode/pioneer-blog .
  #
  # Start container
  # docker run --rm -it -p 8080:80 pioneercode/pioneer.blog

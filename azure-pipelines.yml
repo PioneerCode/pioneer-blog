@@ -7,8 +7,11 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 variables:
-  imageName: 'pioneercode/pioneer-blog:$(build.buildId)'
+  imageName: 'pioneer-blog:$(build.buildId)'
 
 steps:
 - script: docker build -f Dockerfile -t $(imageName) . 
   displayName: 'docker build'
+- script: |
+    docker login -u $(dockerId) -p $(pswd)
+    docker push $(dockerId)/$(imageName)
