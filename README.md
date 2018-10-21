@@ -1,5 +1,7 @@
 # Pioneer Blog
 
+[![Build Status](https://dev.azure.com/pioneer-code/Pioneer%20Blog/_apis/build/status/PioneerCode.pioneer-blog)](https://dev.azure.com/pioneer-code/Pioneer%20Blog/_build/latest?definitionId=2)
+
 Active code based used for [Pioneer Code](https://pioneercode.com).
 
 Current stack...
