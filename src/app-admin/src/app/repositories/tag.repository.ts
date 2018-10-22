@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Tag } from '../models/tag';
 
+import { Tag } from '../models/tag';
 import { environment } from '../../environments/environment';
 
 @Injectable()
