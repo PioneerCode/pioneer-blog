@@ -30,8 +30,9 @@ steps:
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
     Contents: |
-    **\*.js
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/_PioneerCode.pioneer-blog/drop'
+      **\*.js
+      package.json
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 # Publish all build artifacts
 - task: PublishBuildArtifacts@1
