@@ -29,9 +29,9 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
-    Contents: **\*
+    Contents: |
+    **\*.js
     TargetFolder: '$(Build.ArtifactStagingDirectory)/_PioneerCode.pioneer-blog/drop'
-# $(System.DefaultWorkingDirectory)/_PioneerCode.pioneer-blog/drop
 
 # Publish all build artifacts
 - task: PublishBuildArtifacts@1
