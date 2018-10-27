@@ -31,9 +31,9 @@ steps:
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
     Contents: |
-      **/app.js
-      **/app.css
-      **/fonts
+      src/Pioneer.Blog/wwwroot/app.js
+      src/Pioneer.Blog/wwwroot/app.css
+      src/Pioneer.Blog/wwwroot/fonts/**
     TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot'
 
 - task: PublishBuildArtifacts@1
