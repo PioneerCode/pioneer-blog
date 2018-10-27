@@ -23,7 +23,6 @@ steps:
 - script: |
     npm install --prefix src/app-client
     npm run build --prefix src/app-client
-    displayName: 'Build Client App'
 
 # Publish all build artifacts
 - task: PublishBuildArtifacts@1
