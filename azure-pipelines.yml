@@ -29,7 +29,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/src/Pioneer.Blog/wwwroot'
+    SourceFolder: '$(System.DefaultWorkingDirectory)
     Contents: |
       **\*.js
       package.json
