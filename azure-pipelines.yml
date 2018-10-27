@@ -30,6 +30,10 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: |
+      app.js
+      app.css
+      fonts
     TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot'
 
 - task: PublishBuildArtifacts@1
