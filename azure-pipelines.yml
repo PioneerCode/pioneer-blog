@@ -27,20 +27,10 @@ steps:
     npm install --prefix src/app-client
     npm run build --prefix src/app-client
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)
-    Contents: |
-      **\*.js
-      package.json
-    TargetFolder: '$(System.ArtifactStagingDirectory)'
-
 - task: PublishBuildArtifacts@1
-
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(System.DefaultWorkingDirectory)/src/Pioneer.Blog/wwwroot'
-#     displayName: 'Publish Artifacts'
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/src/Pioneer.Blog/wwwroot'
+    displayName: 'Publish Artifacts'
 
 # # Publish all build artifacts
 # - task: PublishBuildArtifacts@1
