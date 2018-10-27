@@ -15,8 +15,6 @@ steps:
   displayName: 'dotnet build $(buildConfiguration)'
 - script: dotnet publish src/Pioneer.Blog/Pioneer.Blog.csproj --output $(Build.ArtifactStagingDirectory)
   displayName: 'Publish To Pipleline'
-# - task: PublishBuildArtifacts@1
-#   displayName: 'Publish Artifacts'
 
 # Public Assets
 - task: NodeTool@0
@@ -25,5 +23,8 @@ steps:
 - script: |
     npm install --prefix src/app-client
     npm run build --prefix src/app-client
+    displayName: 'Build Client App'
+
+# Publish all build artifacts
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifacts'
