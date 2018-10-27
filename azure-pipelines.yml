@@ -33,7 +33,7 @@ steps:
     Contents: |
       **\*.js
       package.json
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    TargetFolder: '$(System.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
 
