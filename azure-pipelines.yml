@@ -29,8 +29,8 @@ steps:
     
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/src/PioneerBlog'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot'
 
 - task: PublishBuildArtifacts@1
 # - task: PublishBuildArtifacts@1
