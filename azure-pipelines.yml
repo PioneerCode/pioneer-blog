@@ -22,17 +22,15 @@ steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
+    
 - script: |
     npm install --prefix src/app-client
     npm run build --prefix src/app-client
     
-- task: CopyFiles@2
+- task: PublishBuildArtifacts@1
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)'
-    Contents: |
-      **\*.js
-      package.json
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)'
+    displayName: 'Publish Artifacts'
 
 # Publish all build artifacts
 - task: PublishBuildArtifacts@1
