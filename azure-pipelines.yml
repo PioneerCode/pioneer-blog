@@ -31,6 +31,7 @@ steps:
       **/app.css
       **/app.js
     TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot'
+    FlattenFolders: true
 
 # Publish all build artifacts
 - task: PublishBuildArtifacts@1
