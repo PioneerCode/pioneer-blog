@@ -22,7 +22,8 @@ steps:
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
     Contents: |
-      app.css
+      **/app.css
+      **/app.js
     TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot'
 
 
