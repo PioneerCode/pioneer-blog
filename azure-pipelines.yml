@@ -22,8 +22,8 @@ steps:
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
     Contents: |
-      package.json
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      app.css
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot'
 
 
 # ASP.NET Core
