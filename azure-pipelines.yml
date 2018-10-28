@@ -24,14 +24,14 @@ steps:
     Contents: |
       **/app.css
       **/app.js
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/qwerty'
 
 
 # ASP.NET Core
-# - script: dotnet build src/Pioneer.Blog/Pioneer.Blog.csproj --configuration $(buildConfiguration)
-#   displayName: 'dotnet build $(buildConfiguration)'
-# - script: dotnet publish src/Pioneer.Blog/Pioneer.Blog.csproj --output $(Build.ArtifactStagingDirectory)
-#   displayName: 'Publish To Pipleline'
+- script: dotnet build src/Pioneer.Blog/Pioneer.Blog.csproj --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+- script: dotnet publish src/Pioneer.Blog/Pioneer.Blog.csproj --output $(Build.ArtifactStagingDirectory)
+  displayName: 'Publish To Pipleline'
 
 
 # Publish all build artifacts
