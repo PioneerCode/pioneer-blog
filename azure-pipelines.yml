@@ -40,7 +40,7 @@ steps:
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)'
     Contents: |
-      src/admin-client/node_modules/font-awesome/fonts/**/*
+      src/app-client/node_modules/font-awesome/fonts/**/*
     TargetFolder: '$(Build.ArtifactStagingDirectory)/wwwroot/fonts'
     FlattenFolders: true
   displayName: 'Public Assets: Move Fonts'
