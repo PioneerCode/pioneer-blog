@@ -10,11 +10,27 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+# Public Assets
+- task: NodeTool@0 
+  inputs:
+    versionSpec: '10.x'
+
+- script: npm install
+- script: npm run build
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: |
+      package.json
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+
 # ASP.NET Core
-- script: dotnet build src/Pioneer.Blog/Pioneer.Blog.csproj --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet publish src/Pioneer.Blog/Pioneer.Blog.csproj --output $(Build.ArtifactStagingDirectory)
-  displayName: 'Publish To Pipleline'
+# - script: dotnet build src/Pioneer.Blog/Pioneer.Blog.csproj --configuration $(buildConfiguration)
+#   displayName: 'dotnet build $(buildConfiguration)'
+# - script: dotnet publish src/Pioneer.Blog/Pioneer.Blog.csproj --output $(Build.ArtifactStagingDirectory)
+#   displayName: 'Publish To Pipleline'
 
 
 # Publish all build artifacts
