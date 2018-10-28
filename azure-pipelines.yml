@@ -15,8 +15,8 @@ steps:
   inputs:
     versionSpec: '10.x'
 
-- script: npm install
-- script: npm run build
+- script: npm install --prefix src/app-client
+- script: npm run build --prefix src/app-client
 
 - task: CopyFiles@2
   inputs:
