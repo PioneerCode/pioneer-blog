@@ -44,6 +44,8 @@ namespace Pioneer.Blog.Repository
                .PostTags
                .FirstOrDefault(x => x.PostId == postTag.PostId && x.TagId == postTag.TagId);
 
+            if (entity == null) return;
+
             _blogContext.PostTags.Remove(entity);
             _blogContext.SaveChanges();
         }

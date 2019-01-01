@@ -352,6 +352,8 @@ namespace Pioneer.Blog.Repository
                 .Include(x => x.Excerpt)
                 .FirstOrDefault(x => x.PostId == post.PostId);
 
+            if (entity == null) return;
+
             // Post
             entity.Url = post.Url;
             entity.Title = post.Title;
@@ -387,6 +389,8 @@ namespace Pioneer.Blog.Repository
             var entity = _blogContext
                 .Posts
                 .FirstOrDefault(x => x.Url == url);
+
+            if (entity == null) return;
 
             _blogContext.Posts.Remove(entity);
             _blogContext.SaveChanges();

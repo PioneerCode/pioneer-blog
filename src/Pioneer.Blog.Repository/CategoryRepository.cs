@@ -72,6 +72,8 @@ namespace Pioneer.Blog.Repository
                 .Categories
                 .FirstOrDefault(x => x.CategoryId == category.CategoryId);
 
+            if (entity == null) return;
+
             entity.Url = category.Url;
             entity.Name = category.Name;
 
@@ -87,6 +89,8 @@ namespace Pioneer.Blog.Repository
             var entity = _blogContext
                 .Categories
                 .FirstOrDefault(x => x.CategoryId == id);
+
+            if (entity == null) return;
 
             _blogContext.Categories.Remove(entity);
             _blogContext.SaveChanges();
