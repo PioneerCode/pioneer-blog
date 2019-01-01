@@ -26,7 +26,7 @@ namespace Pioneer.Blog.Service
         {
             var doc = CreateDocument();
             var channel = CreateChannel();
-            doc.Root.Add(channel);
+            doc.Root?.Add(channel);
 
             foreach (var post in _postService.GetAll(false, false))
             {
@@ -39,7 +39,7 @@ namespace Pioneer.Blog.Service
         private static XDocument CreateDocument()
         {
             var doc = new XDocument(new XElement("rss"));
-            doc.Root.Add(new XAttribute("version", "2.0"));
+            doc.Root?.Add(new XAttribute("version", "2.0"));
             return doc;
         }
 

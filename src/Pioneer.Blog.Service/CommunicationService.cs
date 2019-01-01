@@ -39,7 +39,7 @@ namespace Pioneer.Blog.Service
             message.Subject = _appConfiguration.Value.SiteTitle + " - Contact: " + model.Subject;
             message.Body = new TextPart("html")
             {
-                Text = string.Format("<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>", model.Name, model.Email, model.Message)
+                Text = $"<p>Email From: {model.Name} ({model.Email})</p><p>Message:</p><p>{model.Message}</p>"
             };
 
             try

@@ -6,9 +6,6 @@ using Pioneer.Blog.Service;
 
 namespace Pioneer.Blog.Controllers.Web
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class ContactController : Controller
     {
         private readonly ICommunicationService _communicationService;

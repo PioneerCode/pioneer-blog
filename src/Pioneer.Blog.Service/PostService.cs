@@ -53,7 +53,7 @@ namespace Pioneer.Blog.Service
         /// <summary>
         /// Get total number of posts by category
         /// </summary>
-        /// <param name="category">category url</param>
+        /// <param name="category">category URL</param>
         public int GetTotalNumberOfPostsByCategory(string category)
         {
             return _postRepository.GetTotalNumberOfPostsByCategory(category);
@@ -62,14 +62,14 @@ namespace Pioneer.Blog.Service
         /// <summary>
         /// Get total number of posts by tag
         /// </summary>
-        /// <param name="tag">tag url</param>
+        /// <param name="tag">tag URL</param>
         public int GetTotalNumberOfPostByTag(string tag)
         {
             return _postRepository.GetTotalNumberOfPostByTag(tag);
         }
 
         /// <summary>
-        /// Get Post by url
+        /// Get Post by URL
         /// </summary>
         /// <param name="url">URL of post</param>
         /// <param name="includeExcerpt">Include excerpt</param>
@@ -160,7 +160,7 @@ namespace Pioneer.Blog.Service
         /// <summary>
         /// Get Previous, Current and Next post based on id
         /// </summary>
-        /// <param name="id">Current post url</param>
+        /// <param name="id">Current post URL</param>
         /// <returns>Collection with first index being previous, second index being current and third index being next</returns>
         // TODO: Profile and work to reduce trips to the database
         public IEnumerable<Post> GetPreviousCurrentNextPost(string id)
@@ -244,10 +244,10 @@ namespace Pioneer.Blog.Service
         }
 
         /// <summary>
-        /// Get markup from blog post dev file
+        /// Get markup from blog post development file
         /// </summary>
         /// <param name="id">Id of post</param>
-        /// <returns>Makrup string</returns>
+        /// <returns>Markup string</returns>
         public string GetDevFile(int id)
         {
             var post = Mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));

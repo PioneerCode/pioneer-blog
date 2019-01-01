@@ -72,9 +72,10 @@ namespace Pioneer.Blog.Repository
                 .Tags
                 .FirstOrDefault(x => x.TagId == tag.TagId);
 
+            if (entity == null) return;
+
             entity.Url = tag.Url;
             entity.Name = tag.Name;
-
             _blogContext.SaveChanges();
         }
 
@@ -87,6 +88,8 @@ namespace Pioneer.Blog.Repository
             var entity = _blogContext
                 .Tags
                 .FirstOrDefault(x => x.TagId == id);
+
+            if (entity == null) return;
 
             _blogContext.Tags.Remove(entity);
             _blogContext.SaveChanges();

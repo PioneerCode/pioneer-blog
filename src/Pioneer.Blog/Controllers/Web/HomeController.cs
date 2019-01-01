@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Pioneer.Blog.Model;
 using Pioneer.Blog.Model.Views;
 using Pioneer.Blog.Service;
-
 
 namespace Pioneer.Blog.Controllers.Web
 {
