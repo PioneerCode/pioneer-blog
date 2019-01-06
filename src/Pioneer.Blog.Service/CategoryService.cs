@@ -47,8 +47,8 @@ namespace Pioneer.Blog.Service
         /// <returns>Count of categories starting at page</returns>
         public IEnumerable<Category> GetAllPaged(int count, int page)
         {
-            return _categoryRepository
-                    .GetAllPaged(count, page).Select(Mapper.Map<CategoryEntity, Category>);
+            return _categoryRepository.GetAllPaged(count, page)
+                    .Select(Mapper.Map<CategoryEntity, Category>);
         }
 
         /// <summary>

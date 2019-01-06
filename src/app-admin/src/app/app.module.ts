@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpModule } from '@angular/http';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { TagsPageComponent } from './components/pages/tags/tags-page.component';
 import { CategoriesPageComponent } from './components/pages/categories/categories-page.component';
@@ -25,7 +25,6 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserRepository } from './repositories/user.repository';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-
 
 @NgModule({
   declarations: [
