@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model.Views;
 using Pioneer.Blog.Service;
+using Pioneer.Blog.ViewModels;
 
 namespace Pioneer.Blog.Controllers.Web
 {
@@ -16,7 +17,7 @@ namespace Pioneer.Blog.Controllers.Web
 
         public HomeController(IPostService postService,
             ISiteMapService siteMapService,
-            ICommunicationService communicationService, 
+            ICommunicationService communicationService,
             IRssService rssService)
         {
             _postService = postService;
@@ -30,23 +31,24 @@ namespace Pioneer.Blog.Controllers.Web
             ViewBag.Description =
                 "Hi, my name is Chad Ramos. I am a Chicago-based software developer with a strong passion for .NET, C#, The Web, Open Source, Programming and more. Brought to you by Pioneer Code.";
 
-            ViewBag.PopularPosts = _postService.GetPopularPosts().ToList();
-            ViewBag.LatestPosts = _postService.GetAll(true, false, false, 8).ToList();
-
-            return View();
+            return View(new HomeViewModel
+            {
+                PopularPosts = _postService.GetPopularPosts().ToList(),
+                LatestPosts = _postService.GetAll(true, false, false, 8).ToList(),
+            });
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         //TODO: Figure out how to combine logic with Index
-        public ActionResult SignUp(SignUpViewModel model)
+        public ActionResult SignUp(HomeViewModel model)
         {
             ViewBag.Description =
                 "Sign up for How-to's, life hacks and insight into .NET, C#, The Web, Open Source, Programming and more from Chad Ramos. Brought to you by Pioneer Code.";
 
-            ViewBag.PopularPosts = _postService.GetPopularPosts().ToList();
-            ViewBag.LatestPosts = _postService.GetAll(true, false, false, 8).ToList();
+            model.PopularPosts = _postService.GetPopularPosts().ToList();
+            model.LatestPosts = _postService.GetAll(true, false, false, 8).ToList();
 
             if (!ModelState.IsValid)
             {
