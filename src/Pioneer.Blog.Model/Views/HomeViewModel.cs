@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Pioneer.Blog.Model;
 
-namespace Pioneer.Blog.ViewModels
+namespace Pioneer.Blog.Model.Views
 {
     public class HomeViewModel : BaseViewModel
     {

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pioneer.Blog.Model.Views;
 using Pioneer.Blog.Service;
-using Pioneer.Blog.ViewModels;
 
 namespace Pioneer.Blog.Controllers.Web
 {

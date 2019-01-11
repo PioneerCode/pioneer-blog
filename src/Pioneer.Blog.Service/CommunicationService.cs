@@ -14,7 +14,7 @@ namespace Pioneer.Blog.Service
     public interface ICommunicationService
     {
         OperationResult<ContactViewModel> SendContactEmailNotification(ContactViewModel model);
-        OperationResult<Contact> SignUpToMailingList(SignUpViewModel model);
+        OperationResult<Contact> SignUpToMailingList(string email);
     }
 
     public class CommunicationService : ICommunicationService
@@ -64,14 +64,14 @@ namespace Pioneer.Blog.Service
         /// <summary>
         /// Sign someone up to the mailing list.
         /// </summary>
-        public OperationResult<Contact> SignUpToMailingList(SignUpViewModel model)
+        public OperationResult<Contact> SignUpToMailingList(string email)
         {
-            if (_contactRepository.GetByEmail(model.Email) != null)
+            if (_contactRepository.GetByEmail(email) != null)
             {
                 return new OperationResult<Contact>(null, OperationStatus.Error, "This email has already been added to the mailing list.");
             }
 
-            var response = _contactRepository.Add(Mapper.Map<Contact, ContactEntity>(new Contact { Email = model.Email }));
+            var response = _contactRepository.Add(Mapper.Map<Contact, ContactEntity>(new Contact { Email = email }));
             return new OperationResult<Contact>(Mapper.Map<ContactEntity, Contact>(response), OperationStatus.Created);
         }
     }
