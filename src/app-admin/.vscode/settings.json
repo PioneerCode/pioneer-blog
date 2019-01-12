@@ -2,9 +2,12 @@
     "cSpell.words": [
         "Injectable",
         "Truthy",
+        "codelyzer",
         "devkit",
+        "jasminewd",
         "pioneercode",
         "polyfills",
+        "tslib",
         "wwwroot"
     ]
 }

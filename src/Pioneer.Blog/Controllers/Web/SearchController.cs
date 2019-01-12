@@ -31,8 +31,8 @@ namespace Pioneer.Blog.Controllers.Web
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Description = "Pioneer Code search page. " +
-                                  "Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
+            ViewBag.Description =
+                "Pioneer Code search page. Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
 
             ViewBag.Header = "Search";
             ViewBag.Title = "Search";
@@ -53,8 +53,8 @@ namespace Pioneer.Blog.Controllers.Web
             var searchResults = _searchService.SearchPosts(request.Query, 5, request.Page);
             ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(searchResults.TotalMatchingPosts, request.Page, 5);
 
-            ViewBag.Description = "Pioneer Code search results for \"" + request.Query + "\", page " + request.Page + ". " +
-                                  "Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
+            ViewBag.Description =
+                $"Pioneer Code search results for \"{request.Query}\", page {request.Page}. Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
 
             ViewBag.Header = "Search";
             ViewBag.Title = "Search";
@@ -76,8 +76,8 @@ namespace Pioneer.Blog.Controllers.Web
             var searchResults = _searchService.SearchPosts(query, 5, selectedPage);
             ViewBag.PaginatedMeta = _paginatedMetaService.GetMetaData(searchResults.TotalMatchingPosts, selectedPage, 5);
 
-            ViewBag.Description = "Pioneer Code search results for \"" + query + "\", page " + selectedPage + ". " +
-                                  "Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
+            ViewBag.Description =
+                $"Pioneer Code search results for \"{query}\", page {selectedPage}. Chad Ramos talks about .NET, C#, The Web, Open Source, Programming and more.";
 
             ViewBag.Header = "Search";
             ViewBag.Title = "Search";
