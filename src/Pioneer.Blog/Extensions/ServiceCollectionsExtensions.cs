@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ namespace Pioneer.Blog.Extensions
     {
         public static void ConfigureServicesCookies(this IServiceCollection services)
         {
+
             services.ConfigureApplicationCookie(options =>
             {
                 options.Events =

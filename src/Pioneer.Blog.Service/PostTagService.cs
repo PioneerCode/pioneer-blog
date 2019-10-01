@@ -14,10 +14,12 @@ namespace Pioneer.Blog.Service
     public class PostTagService : IPostTagService
     {
         private readonly IPostTagRepository _postTagRepository;
+        private readonly IMapper _mapper;
 
-        public PostTagService(IPostTagRepository postTagRepository)
+        public PostTagService(IPostTagRepository postTagRepository, IMapper mapper)
         {
             _postTagRepository = postTagRepository;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -27,7 +29,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Qualified PostTag</returns>
         public PostTag Add(PostTag postTag)
         {
-            var entity = _postTagRepository.Add(Mapper.Map<PostTag, PostTagEntity>(postTag));
+            var entity = _postTagRepository.Add(_mapper.Map<PostTag, PostTagEntity>(postTag));
             postTag.PostTagId = entity.PostTagId;
             return postTag;
         }
@@ -38,7 +40,7 @@ namespace Pioneer.Blog.Service
         /// <param name="postTag">Compound Key</param>
         public void Delete(PostTag postTag)
         {
-            _postTagRepository.RemoveByCompound(Mapper.Map<PostTag, PostTagEntity>(postTag));
+            _postTagRepository.RemoveByCompound(_mapper.Map<PostTag, PostTagEntity>(postTag));
         }
     }
 }

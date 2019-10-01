@@ -22,10 +22,12 @@ namespace Pioneer.Blog.Service
     public class TagService : ITagService
     {
         private readonly ITagRepository _tagRepository;
+        private readonly IMapper _mapper;
 
-        public TagService(ITagRepository tagRepository)
+        public TagService(ITagRepository tagRepository, IMapper mapper)
         {
             _tagRepository = tagRepository;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -35,7 +37,7 @@ namespace Pioneer.Blog.Service
         public IEnumerable<Tag> GetAll()
         {
             return _tagRepository.GetAll()
-                .Select(Mapper.Map<TagEntity, Tag>)
+                .Select(_mapper.Map<TagEntity, Tag>)
                 .OrderBy(x => x.Name)
                 .ToList();
         }
@@ -63,7 +65,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Tag Object</returns>
         public Tag GetById(int id)
         {
-            return Mapper.Map<TagEntity, Tag>(_tagRepository.GetById(id));
+            return _mapper.Map<TagEntity, Tag>(_tagRepository.GetById(id));
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace Pioneer.Blog.Service
                 tag.Url = tag.Name;
             }
 
-            var response = _tagRepository.Add(Mapper.Map<Tag, TagEntity>(tag));
+            var response = _tagRepository.Add(_mapper.Map<Tag, TagEntity>(tag));
             tag.TagId = response.TagId;
             return tag;
         }
@@ -110,7 +112,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Count of tags starting at page</returns>
         public IEnumerable<Tag> GetAllPaged(int count = 10, int page = 1)
         {
-            return _tagRepository.GetAllPaged(count, page).Select(Mapper.Map<TagEntity, Tag>);
+            return _tagRepository.GetAllPaged(count, page).Select(_mapper.Map<TagEntity, Tag>);
         }
     }
 }

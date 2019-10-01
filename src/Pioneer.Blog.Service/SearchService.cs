@@ -14,10 +14,12 @@ namespace Pioneer.Blog.Service
     public class SearchService : ISearchService
     {
         private readonly IPostRepository _postRepository;
+        private readonly IMapper _mapper;
 
-        public SearchService(IPostRepository postRepository)
+        public SearchService(IPostRepository postRepository, IMapper mapper)
         {
             _postRepository = postRepository;
+            _mapper = mapper;
         }
 
         public SearchResults SearchPosts(string query, int count, int page = 1)
@@ -26,7 +28,7 @@ namespace Pioneer.Blog.Service
 
             if (string.IsNullOrEmpty(query)) return searchResults;
 
-            searchResults.Posts = _postRepository.GetQueryPaged(query, count, page).Select(Mapper.Map<PostEntity, Post>).ToList();
+            searchResults.Posts = _postRepository.GetQueryPaged(query, count, page).Select(_mapper.Map<PostEntity, Post>).ToList();
             searchResults.TotalMatchingPosts = _postRepository.GetQueryPagedCount(query);
 
             return searchResults;
