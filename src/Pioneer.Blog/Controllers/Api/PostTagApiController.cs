@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Pioneer.Blog.Model;
-using Pioneer.Blog.Service;
+using Pioneer.Blog.Models;
+using Pioneer.Blog.Services;
 
 namespace Pioneer.Blog.Controllers.Api
 {

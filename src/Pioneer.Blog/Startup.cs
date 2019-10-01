@@ -8,11 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Pioneer.Blog.Entity;
+using Pioneer.Blog.Entites;
 using Pioneer.Blog.Extensions;
-using Pioneer.Blog.Model;
-using Pioneer.Blog.Repository;
-using Pioneer.Blog.Service;
+using Pioneer.Blog.Models;
+using Pioneer.Blog.Repositories;
 
 namespace Pioneer.Blog
 {

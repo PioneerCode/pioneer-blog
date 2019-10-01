@@ -2,8 +2,8 @@
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Pioneer.Blog.Model.Views;
-using Pioneer.Blog.Service;
+using Pioneer.Blog.Models.Views;
+using Pioneer.Blog.Services;
 
 namespace Pioneer.Blog.Controllers.Web
 {

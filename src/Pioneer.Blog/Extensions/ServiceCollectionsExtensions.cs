@@ -7,8 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.PlatformAbstractions;
-using Pioneer.Blog.Repository;
-using Pioneer.Blog.Service;
+using Pioneer.Blog.Repositories;
+using Pioneer.Blog.Services;
 using Pioneer.Pagination;
 
 namespace Pioneer.Blog.Extensions

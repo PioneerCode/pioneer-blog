@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Pioneer.Blog.Model;
-using Pioneer.Blog.Service;
+using Pioneer.Blog.Models;
+using Pioneer.Blog.Services;
 using Pioneer.Pagination;
 
 namespace Pioneer.Blog.Controllers.Web

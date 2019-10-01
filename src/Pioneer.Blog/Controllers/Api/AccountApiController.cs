@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Pioneer.Blog.Entity;
-using Pioneer.Blog.Model;
+using Pioneer.Blog.Entites;
+using Pioneer.Blog.Models;
 
 namespace Pioneer.Blog.Controllers.Api
 {
