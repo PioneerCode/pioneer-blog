@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -42,6 +44,7 @@ namespace Pioneer.Blog
 
             services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // Keep public contracts clean
             services.ConfigureServicesCookies();
             services.ConfigureServicesJwt(Configuration);
             services.ConfigureServicesSwagger();
@@ -60,8 +63,6 @@ namespace Pioneer.Blog
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            ServiceMapperConfig.Config();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

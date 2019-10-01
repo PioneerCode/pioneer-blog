@@ -21,10 +21,12 @@ namespace Pioneer.Blog.Service
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
 
-        public CategoryService(ICategoryRepository categoryRepository)
+        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -34,7 +36,7 @@ namespace Pioneer.Blog.Service
         public IEnumerable<Category> GetAll()
         {
             return _categoryRepository.GetAll()
-                    .Select(Mapper.Map<CategoryEntity, Category>)
+                    .Select(_mapper.Map<CategoryEntity, Category>)
                     .OrderBy(x => x.Name)
                     .ToList();
         }
@@ -48,7 +50,7 @@ namespace Pioneer.Blog.Service
         public IEnumerable<Category> GetAllPaged(int count, int page)
         {
             return _categoryRepository.GetAllPaged(count, page)
-                    .Select(Mapper.Map<CategoryEntity, Category>);
+                    .Select(_mapper.Map<CategoryEntity, Category>);
         }
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Category Object</returns>
         public Category GetById(int id)
         {
-            return Mapper.Map<CategoryEntity, Category>(_categoryRepository.GetById(id));
+            return _mapper.Map<CategoryEntity, Category>(_categoryRepository.GetById(id));
         }
 
 
@@ -75,7 +77,7 @@ namespace Pioneer.Blog.Service
                 category.Url = category.Name;
             }
 
-            var response = _categoryRepository.Add(Mapper.Map<Category, CategoryEntity>(category));
+            var response = _categoryRepository.Add(_mapper.Map<Category, CategoryEntity>(category));
             category.CategoryId = response.CategoryId;
             return category;
         }

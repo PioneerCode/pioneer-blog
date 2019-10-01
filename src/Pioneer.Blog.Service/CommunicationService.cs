@@ -21,11 +21,13 @@ namespace Pioneer.Blog.Service
     {
         private readonly IOptions<AppConfiguration> _appConfiguration;
         private readonly IContactRepository _contactRepository;
+        private readonly IMapper _mapper;
 
-        public CommunicationService(IOptions<AppConfiguration> appConfiguration, IContactRepository contactRepository)
+        public CommunicationService(IOptions<AppConfiguration> appConfiguration, IContactRepository contactRepository, IMapper mapper)
         {
             _appConfiguration = appConfiguration;
             _contactRepository = contactRepository;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -71,8 +73,8 @@ namespace Pioneer.Blog.Service
                 return new OperationResult<Contact>(null, OperationStatus.Error, "This email has already been added to the mailing list.");
             }
 
-            var response = _contactRepository.Add(Mapper.Map<Contact, ContactEntity>(new Contact { Email = email }));
-            return new OperationResult<Contact>(Mapper.Map<ContactEntity, Contact>(response), OperationStatus.Created);
+            var response = _contactRepository.Add(_mapper.Map<Contact, ContactEntity>(new Contact { Email = email }));
+            return new OperationResult<Contact>(_mapper.Map<ContactEntity, Contact>(response), OperationStatus.Created);
         }
     }
 }

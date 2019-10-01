@@ -34,12 +34,14 @@ namespace Pioneer.Blog.Service
     {
         private readonly IPostRepository _postRepository;
         private readonly IOptions<AppConfiguration> _appConfiguration;
+        private readonly IMapper _mapper;
 
         public PostService(IPostRepository postRepository,
-            IOptions<AppConfiguration> appConfiguration)
+            IOptions<AppConfiguration> appConfiguration, IMapper mapper)
         {
             _postRepository = postRepository;
             _appConfiguration = appConfiguration;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Post</returns>
         public Post GetByUrl(string url, bool includeExcerpt = false)
         {
-            return Mapper.Map<PostEntity, Post>(_postRepository.GetByUrl(url, includeExcerpt));
+            return _mapper.Map<PostEntity, Post>(_postRepository.GetByUrl(url, includeExcerpt));
         }
 
         /// <summary>
@@ -87,7 +89,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Post</returns>
         public Post GetById(int id, bool includeExcerpt = false)
         {
-            return Mapper.Map<PostEntity, Post>(_postRepository.GetById(id, includeExcerpt));
+            return _mapper.Map<PostEntity, Post>(_postRepository.GetById(id, includeExcerpt));
         }
 
         /// <summary>
@@ -109,7 +111,7 @@ namespace Pioneer.Blog.Service
                     .OrderByDescending(x => x.PostedOn)
                     .ToList();
 
-            return posts.Select(Mapper.Map<PostEntity, Post>);
+            return posts.Select(_mapper.Map<PostEntity, Post>);
         }
 
         /// <summary>
@@ -121,7 +123,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Count of posts starting at page</returns>
         public IEnumerable<Post> GetAllPaged(int count, int page = 1, bool includeUnpublished = false)
         {
-            return _postRepository.GetAllPaged(count, page, includeUnpublished).Select(Mapper.Map<PostEntity, Post>);
+            return _postRepository.GetAllPaged(count, page, includeUnpublished).Select(_mapper.Map<PostEntity, Post>);
         }
 
         /// <summary>
@@ -133,7 +135,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Count of posts starting at page</returns>
         public IEnumerable<Post> GetAllByTag(string tag, int count, int page = 1)
         {
-            return Mapper.Map<IList<PostEntity>, IList<Post>>(_postRepository.GetAllByTagPaged(tag, count, page).ToList());
+            return _mapper.Map<IList<PostEntity>, IList<Post>>(_postRepository.GetAllByTagPaged(tag, count, page).ToList());
         }
 
         /// <summary>
@@ -145,7 +147,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Count of posts starting at page</returns>
         public IEnumerable<Post> GetAllByCategory(string category, int count, int page = 1)
         {
-            return Mapper.Map<IList<PostEntity>, IList<Post>>(_postRepository.GetAllByCategoryPaged(category, count, page).ToList());
+            return _mapper.Map<IList<PostEntity>, IList<Post>>(_postRepository.GetAllByCategoryPaged(category, count, page).ToList());
         }
 
         /// <summary>
@@ -154,7 +156,7 @@ namespace Pioneer.Blog.Service
         /// <returns></returns>
         public IEnumerable<Post> GetPopularPosts()
         {
-            return Mapper.Map<IList<PostEntity>, IList<Post>>(_postRepository.GetPostsBasedOnIdCollection(_appConfiguration.Value.PopularPosts).ToList());
+            return _mapper.Map<IList<PostEntity>, IList<Post>>(_postRepository.GetPostsBasedOnIdCollection(_appConfiguration.Value.PopularPosts).ToList());
         }
 
         /// <summary>
@@ -173,7 +175,7 @@ namespace Pioneer.Blog.Service
                 _postRepository.GetNextBasedOnId(currentPost.PostId)
             };
 
-            return Mapper.Map<IList<PostEntity>, IList<Post>>(posts);
+            return _mapper.Map<IList<PostEntity>, IList<Post>>(posts);
         }
 
         /// <summary>
@@ -195,7 +197,7 @@ namespace Pioneer.Blog.Service
             post.CreatedOn = post.PostedOn;
             post.Published = false;
 
-            var response = _postRepository.Add(Mapper.Map<Post, PostEntity>(post));
+            var response = _postRepository.Add(_mapper.Map<Post, PostEntity>(post));
             post.PostId = response.PostId;
             return post;
         }
@@ -225,7 +227,7 @@ namespace Pioneer.Blog.Service
         /// <param name="isExcerpt">Are we to import and excerpt or article</param>
         public void Import(int id, bool isExcerpt = false)
         {
-            var post = Mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));
+            var post = _mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));
             var fileName = isExcerpt ? "/excerpt.html" : "/article.html";
             var fileStream = new FileStream("wwwroot/blogs/" +  post.Url + fileName, FileMode.Open);
             using (var reader = new StreamReader(fileStream))
@@ -250,7 +252,7 @@ namespace Pioneer.Blog.Service
         /// <returns>Markup string</returns>
         public string GetDevFile(int id)
         {
-            var post = Mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));
+            var post = _mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));
             var fileStream = new FileStream("wwwroot/blogs/" + post.Url + "/excerpt.html", FileMode.Open);
             using (var reader = new StreamReader(fileStream))
             {
