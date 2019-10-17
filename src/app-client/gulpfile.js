@@ -5,7 +5,6 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var cleanCss = require('gulp-clean-css');
 var ts = require('gulp-typescript');
-var autoprefixer = require('gulp-autoprefixer');
 var tsProject = ts.createProject('tsconfig.json');
 
 var sassPaths = [
@@ -25,10 +24,6 @@ function styles() {
             includePaths: sassPaths
         }).on('error', sass.logError))
         .pipe(cleanCss({ keepSpecialComments: 0 }))
-
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'ie >= 9']
-        }))
         .pipe(gulp.dest('../Pioneer.Blog/wwwroot/'));
 }
 
