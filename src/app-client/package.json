@@ -16,7 +16,7 @@
   "devDependencies": {
     "del": "^5.1.0",
     "font-awesome": "^4.7.0",
-    "foundation-sites": "^6.4.4-rc1",
+    "foundation-sites": "^6.5.3",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",

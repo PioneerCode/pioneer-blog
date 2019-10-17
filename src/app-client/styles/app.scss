@@ -1,6 +1,7 @@
 ﻿/* You can add global styles to this file, and also import other style files */
 @import "foundation/foundation";
-// $fa-font-path: "./assets/fonts" !default;
+@include foundation-everything(false,false);
+$fa-font-path: "./assets/fonts" !default;
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 
 @import "styles/paged-list";
@@ -16,11 +17,6 @@
 @import "styles/social";
 @import "styles/card";
 @import "styles/search/search";
-
-// img {
-//     width: 100%;
-//     height: auto;
-// }
 
 .circle {
     border-radius: 50%;

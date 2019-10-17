@@ -8,7 +8,6 @@ var ts = require('gulp-typescript');
 var tsProject = ts.createProject('tsconfig.json');
 
 var sassPaths = [
-    'node_modules/normalize.scss/sass',
     'node_modules/foundation-sites/scss'
 ];
 
