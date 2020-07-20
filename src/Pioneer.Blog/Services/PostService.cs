@@ -257,10 +257,10 @@ namespace Pioneer.Blog.Services
         {
             var post = _mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));
             var fileStream = new FileStream("wwwroot/blogs/" + post.Url + "/excerpt.html", FileMode.Open);
-            using (var reader = new StreamReader(fileStream))
-            {
-                return reader.ReadToEnd();
-            }
+            
+            using var reader = new StreamReader(fileStream);
+            
+            return reader.ReadToEnd();
         }
     }
 }
