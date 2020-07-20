@@ -17,11 +17,11 @@ namespace Pioneer.Blog.Services
         int GetTotalNumberOfPostByTag(string tag);
         Post GetById(int id, bool includeExceprt = false);
         Post GetByUrl(string url, bool includeExceprt = false);
-        IEnumerable<Post> GetAll(bool includeExcerpt = true, bool includeArticle = true, bool includeUnpublished = false, int ? top = null);
+        IEnumerable<Post> GetAll(bool includeExcerpt = true, bool includeArticle = true, bool includeUnpublished = false, int? top = null);
         IEnumerable<Post> GetAllPaged(int count, int page = 1, bool includeUnpublished = false);
         IEnumerable<Post> GetAllByTag(string tag, int count, int page = 1);
         IEnumerable<Post> GetAllByCategory(string category, int count, int page = 1);
-        IEnumerable<Post>GetPopularPosts();
+        IEnumerable<Post> GetPopularPosts();
         IEnumerable<Post> GetPreviousCurrentNextPost(string id);
         Post Add(Post post);
         void Update(Post item);
@@ -100,10 +100,10 @@ namespace Pioneer.Blog.Services
         /// <param name="includeUnpublished">Include Unpublished</param>
         /// <param name="top">Take top.  If null returns all posts</param>
         /// <returns>Collection of Post</returns>
-        public IEnumerable<Post> GetAll(bool includeExcerpt = true, 
-            bool includeArticle = true, 
-            bool includeUnpublished = false, 
-            int ? top = null)
+        public IEnumerable<Post> GetAll(bool includeExcerpt = true,
+            bool includeArticle = true,
+            bool includeUnpublished = false,
+            int? top = null)
         {
             var posts = top != null
                 ? _postRepository.GetTop((int)top).ToList()
@@ -156,7 +156,10 @@ namespace Pioneer.Blog.Services
         /// <returns></returns>
         public IEnumerable<Post> GetPopularPosts()
         {
-            return _mapper.Map<IList<PostEntity>, IList<Post>>(_postRepository.GetPostsBasedOnIdCollection(_appConfiguration.Value.PopularPosts).ToList());
+            var ids = _appConfiguration.Value.PopularPosts;
+            return _mapper.Map<IList<PostEntity>, IList<Post>>(
+                _postRepository.GetPostsBasedOnIdCollection(ids).OrderBy(d => ids.IndexOf(d.PostId)).ToList()
+                );
         }
 
         /// <summary>
@@ -229,7 +232,7 @@ namespace Pioneer.Blog.Services
         {
             var post = _mapper.Map<PostEntity, Post>(_postRepository.GetById(id, true));
             var fileName = isExcerpt ? "/excerpt.html" : "/article.html";
-            var fileStream = new FileStream("wwwroot/blogs/" +  post.Url + fileName, FileMode.Open);
+            var fileStream = new FileStream("wwwroot/blogs/" + post.Url + fileName, FileMode.Open);
             using (var reader = new StreamReader(fileStream))
             {
                 var line = reader.ReadToEnd();

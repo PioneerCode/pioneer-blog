@@ -3,8 +3,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -68,7 +66,7 @@ namespace Pioneer.Blog
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseDatabaseErrorPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -88,7 +86,7 @@ namespace Pioneer.Blog
 
             //app.ConfigureCors();
             app.ConfigureSwagger();
-            app.ConfigureRoutes();
+            app.PoineerUseEndpoints();
         }
     }
 }

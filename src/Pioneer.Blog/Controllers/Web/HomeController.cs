@@ -30,7 +30,7 @@ namespace Pioneer.Blog.Controllers.Web
             return View(new HomeViewModel
             {
                 PopularPosts = _postService.GetPopularPosts().ToList(),
-                //LatestPosts = _postService.GetAll(true, false, false, 8).ToList(),
+                LatestPosts = _postService.GetAll(true, false, false, 8).ToList(),
             });
         }
 
