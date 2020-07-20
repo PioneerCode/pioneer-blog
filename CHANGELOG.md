@@ -1,5 +1,15 @@
+<a name="3.1.0"></a>
+# [v3.1.0](https://github.com/PioneerCode/pioneer-blog/releases/tag/v3.1.0) (2010-07-10)
+
+### Changed
+
+- Migrated to...
+  - .NET Core 3.x
+  - Angular 10.x
+
+
 <a name="3.0.0"></a>
-# [v3.0.0](https://github.com/PioneerCode/pioneer-charts/releases/tag/0.13.3) (2018-06-06)
+# [v3.0.0](https://github.com/PioneerCode/pioneer-blog/releases/tag/v3.0.0) (2018-06-06)
 
 ### Changed
 
