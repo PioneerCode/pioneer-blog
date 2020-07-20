@@ -46,15 +46,15 @@ namespace Pioneer.Blog.Services
 
             try
             {
-                using (var client = new SmtpClient(new ProtocolLogger("smtp.log")))
-                {
-                    client.Connect(_appConfiguration.Value.EmailHost, Convert.ToInt32(_appConfiguration.Value.EmailPort));
-                    client.AuthenticationMechanisms.Remove("XOAUTH2");
-                    client.Authenticate(_appConfiguration.Value.EmailUsername, _appConfiguration.Value.EmailPassword);
-                    client.Send(message);
-                    client.Disconnect(true);
-                    return new OperationResult<ContactViewModel>(model, OperationStatus.Ok);
-                }
+                using var client = new SmtpClient(new ProtocolLogger("smtp.log"));
+                
+                client.Connect(_appConfiguration.Value.EmailHost, Convert.ToInt32(_appConfiguration.Value.EmailPort));
+                client.AuthenticationMechanisms.Remove("XOAUTH2");
+                client.Authenticate(_appConfiguration.Value.EmailUsername, _appConfiguration.Value.EmailPassword);
+                client.Send(message);
+                client.Disconnect(true);
+                
+                return new OperationResult<ContactViewModel>(model, OperationStatus.Ok);
             }
             catch (Exception)
             {

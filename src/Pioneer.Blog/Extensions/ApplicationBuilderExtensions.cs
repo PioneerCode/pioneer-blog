@@ -6,17 +6,17 @@ namespace Pioneer.Blog.Extensions
     {
         public static void ConfigureCors(this IApplicationBuilder app)
         {
-            app.UseCors(builder =>
-            {
-                // Matches the url and port coming from app-admin
-                // TODO: Review AllowCredntials
-                // https://docs.microsoft.com/en-us/aspnet/core/security/cors#credentials-in-cross-origin-requests#credentials-in-cross-origin-requests
-                builder.WithOrigins("http://localhost:4200")
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();
-            });
+            //app.UseCors(builder =>
+            //{
+            //    // Matches the url and port coming from app-admin
+            //    // TODO: Review AllowCredntials
+            //    // https://docs.microsoft.com/en-us/aspnet/core/security/cors#credentials-in-cross-origin-requests#credentials-in-cross-origin-requests
+            //    builder.WithOrigins("http://localhost:4200")
+            //        .AllowAnyOrigin()
+            //        .AllowAnyMethod()
+            //        .AllowAnyHeader()
+            //        .AllowCredentials();
+            //});
         }
 
         public static void ConfigureSwagger(this IApplicationBuilder app)
@@ -31,70 +31,70 @@ namespace Pioneer.Blog.Extensions
 #endif
         }
 
-        public static void ConfigureRoutes(this IApplicationBuilder app)
+        public static void PoineerUseEndpoints(this IApplicationBuilder app)
         {
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "Post",
-                    template: "post/{id}",
+                    pattern: "post/{id}",
                     defaults: new { controller = "Post", action = "Index" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "BlogPost",
-                    template: "post",
+                    pattern: "post",
                     defaults: new { controller = "blog", action = "Index" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "BlogTag",
-                    template: "tag",
+                    pattern: "tag",
                     defaults: new { controller = "blog", action = "Index" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "BlogCategory",
-                    template: "category",
+                    pattern: "category",
                     defaults: new { controller = "blog", action = "Index" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "Category",
-                    template: "category/{id}/{page?}",
+                    pattern: "category/{id}/{page?}",
                     defaults: new { controller = "blog", action = "Category" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "Tag",
-                    template: "tag/{id}/{page?}",
+                    pattern: "tag/{id}/{page?}",
                     defaults: new { controller = "blog", action = "Tag" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "BlogFlat",
-                    template: "blog",
+                    pattern: "blog",
                     defaults: new { controller = "blog", action = "Index" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "Blog",
-                    template: "blog/{page?}",
+                    pattern: "blog/{page?}",
                     defaults: new { controller = "blog", action = "Index" });
 
 #if (DEBUG)
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "Admin",
-                    template: "admin",
+                    pattern: "admin",
                     defaults: new { controller = "admin", action = "Index" });
 #endif
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "SiteMap",
-                    template: "sitemap.xml",
+                    pattern: "sitemap.xml",
                     defaults: new { controller = "home", action = "SiteMap" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "RssFeed",
-                    template: "rss.xml",
+                    pattern: "rss.xml",
                     defaults: new { controller = "home", action = "RssFeed" });
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
