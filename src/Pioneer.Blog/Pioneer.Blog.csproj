@@ -22,6 +22,5 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\assets\" />
-    <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 </Project>
