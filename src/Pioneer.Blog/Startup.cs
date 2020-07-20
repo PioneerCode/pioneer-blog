@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Pioneer.Blog.Entites;
 using Pioneer.Blog.Extensions;
 using Pioneer.Blog.Models;
@@ -27,12 +28,12 @@ namespace Pioneer.Blog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
 
             services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -49,23 +50,25 @@ namespace Pioneer.Blog
             services.ConfigureServicesSwagger();
             services.RegisterDependencies();
 
-            services.AddCors();
+            //services.AddCors();
 
-            services.AddAuthorization(cfg =>
-            {
-                cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
-            });
+            //services.AddAuthorization(cfg =>
+            //{
+            //    cfg.AddPolicy("isSuperUser", p => p.RequireClaim("isSuperUser", "true"));
+            //});
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                //app.UseDatabaseErrorPage();
             }
             else
             {
@@ -73,13 +76,17 @@ namespace Pioneer.Blog
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
-            app.ConfigureCors();
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            //app.UseAuthentication();
+            //app.UseCookiePolicy();
+
+            //app.ConfigureCors();
             app.ConfigureSwagger();
             app.ConfigureRoutes();
         }
