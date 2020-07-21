@@ -1,0 +1,13 @@
+$black: #000;
+$white: #fff;
+$dark-gray: #24282e;
+$medium-gray: #cacaca;
+$primary: #3b805e;
+
+.bg-dark {
+    background-color: $dark-gray;
+}
+
+.text-primary {
+    color: $primary;
+}

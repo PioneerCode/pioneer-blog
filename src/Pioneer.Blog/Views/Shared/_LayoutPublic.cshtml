@@ -1,89 +1,90 @@
 ﻿@{
-  Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section metaShared {
-  <meta property="og:locale" content="en_US">
-  <meta property="og:description" content="@ViewBag.Description">
-  <meta property="og:title" content="@ViewBag.Title">
-  <meta property="og:url" content="@Context.Request.Host@Context.Request.Path">
-  <meta property="og:site_name" content="PioneerCode">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@(" @")chad_ramos">
-  <meta name="twitter:domain" content="PioneerCode">
-  @RenderSection("metaPage", false)
+    <meta property="og:locale" content="en_US">
+    <meta property="og:description" content="@ViewBag.Description">
+    <meta property="og:title" content="@ViewBag.Title">
+    <meta property="og:url" content="@Context.Request.Host@Context.Request.Path">
+    <meta property="og:site_name" content="PioneerCode">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@(" @")chad_ramos">
+    <meta name="twitter:domain" content="PioneerCode">
+    @RenderSection("metaPage", false)
 }
 
 @section headEnd {
-  <link href="/app.css" rel="stylesheet" asp-append-version="true" />
+    <link href="/app.css" rel="stylesheet" asp-append-version="true" />
 }
 
 @section nav {
-  <nav class="nav-main" id="nav-main">
-    <div class="row">
-      <div class="large-12 columns">
-        <input type="hidden" class="nav-main-show" />
-        <div class="title-bar clearfix">
-          <div class="title-bar-title float-left">
-            <a href="/" class="title">Pioneer <span>Code</span></a>
-          </div>
-          <button class="fa fa-bars fa-lg float-right" type="button" onclick="hamburgerClick()"></button>
+    <nav id="nav-main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 pl-4 pr-4 pt-1 pb-2 text-bold">
+                    @*<input type="hidden" class="nav-main-show" />*@
+                    @*<div class="title-bar clearfix">
+                          <div class="title-bar-title float-left">
+                            <a href="/">Pioneer <span>Code</span></a>
+                          </div>
+                          <button class="fa fa-bars fa-lg float-right" type="button" onclick="hamburgerClick()"></button>
+                        </div>*@
+                    <div class="d-flex">
+                        <ul class="list-inline brand">
+                            <li class="list-inline-item ">
+                                <div class="d-flex align-items-center">
+                                    <img src="/images/logo-large.png" alt="Pioneer Code Logo" class="mr-3">
+                                    <a href="/" title="Pioneer Code" class="mt-1">Pioneer <span class="text-primary">Code</span></a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-inline ml-auto links d-flex align-items-center">
+                            <li class="list-inline-item @(ViewBag.Selected == "blog" ? "selected" : "")">
+                                <a href="/blog" title="Blog" class="text-white mr-4">BLOG</a>
+                            </li>
+                            <li class="list-inline-item @(ViewBag.Selected == "about" ? "selected" : "")">
+                                <a href="/about" title="About" class="text-white mr-4">ABOUT</a>
+                            </li>
+                            <li class="list-inline-item @(ViewBag.Selected == "search" ? "selected" : "")">
+                                <a href="/search" title="Search" class="text-white mr-4">SEARCH</a>
+                            </li>
+                            <li class="list-inline-item @(ViewBag.Selected == "contact" ? "selected" : "")">
+                                <a href="/contact" title="Contact" class="text-white">CONTACT</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @*<div id="mobile-nav" class="mobile-nav hide">
+                    <ul class="dropdown menu">
+                        <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
+                            <a href="/blog" title="Blog">BLOG</a>
+                        </li>
+                        <li class="@(ViewBag.Selected == "about" ? "selected" : "")">
+                            <a href="/about" title="About">ABOUT</a>
+                        </li>
+                        <li class="@(ViewBag.Selected == "search" ? "selected" : "")">
+                            <a href="/search" title="Search">SEARCH</a>
+                        </li>
+                        <li class="@(ViewBag.Selected == "contact" ? "selected" : "")">
+                            <a href="/contact" class="margin-zero" title="Contact">CONTACT</a>
+                        </li>
+                    </ul>
+                </div>*@
         </div>
-        <div class="top-bar hide-for-small-only">
-          <div class="top-bar-left ">
-            <ul class="menu">
-              <li class="menu-text">
-                <a href="/" class="title" title="Pioneer Code">Pioneer <span>Code</span></a>
-              </li>
-            </ul>
-          </div>
-          <div class="top-bar-right">
-            <ul class="dropdown menu">
-              <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
-                <a href="/blog" title="Blog">BLOG</a>
-              </li>
-              <li class="@(ViewBag.Selected == "about" ? "selected" : "")">
-                <a href="/about" title="About">ABOUT</a>
-              </li>
-              <li class="@(ViewBag.Selected == "search" ? "selected" : "")">
-                <a href="/search" title="Search">SEARCH</a>
-              </li>
-              <li class="@(ViewBag.Selected == "contact" ? "selected" : "")">
-                <a href="/contact" class="margin-zero" title="Contact">CONTACT</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="mobile-nav" class="mobile-nav hide">
-      <ul class="dropdown menu">
-        <li class="@(ViewBag.Selected == "blog" ? "selected" : "")">
-          <a href="/blog" title="Blog">BLOG</a>
-        </li>
-        <li class="@(ViewBag.Selected == "about" ? "selected" : "")">
-          <a href="/about" title="About">ABOUT</a>
-        </li>
-        <li class="@(ViewBag.Selected == "search" ? "selected" : "")">
-          <a href="/search" title="Search">SEARCH</a>
-        </li>
-        <li class="@(ViewBag.Selected == "contact" ? "selected" : "")">
-          <a href="/contact" class="margin-zero" title="Contact">CONTACT</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    </nav>
 }
 
-<section class="body-content">
-  @RenderBody()
-</section>
+<main>
+    @RenderBody()
+</main>
 
 @section bodyEnd {
-  @* TODO: Make this aysnc.  Issue currently is jQuery load. *@
-  <script src="/app.js" asp-append-version="true"></script>
-  <environment names="Production">
-    <script>
+    @* TODO: Make this aysnc.  Issue currently is jQuery load. *@
+    <script src="/app.js" asp-append-version="true"></script>
+    <environment names="Production">
+        <script>
       (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
           (i[r].q = i[r].q || []).push(arguments)
@@ -92,6 +93,6 @@
       })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
       ga('create', '@AppConfiguration.Value.GoogleAnalyticsId', 'auto');
       ga('send', 'pageview');
-    </script>
-  </environment>
+        </script>
+    </environment>
 }

@@ -1,143 +1,217 @@
-﻿/* You can add global styles to this file, and also import other style files */
-@import "foundation/foundation";
-@include foundation-everything(false,false);
+﻿@import "_normalize";
+@import "_bootstrap-grid.min";
+@import "_utilities";
+@import "_colors";
+@import "_text";
+/* You can add global styles to this file, and also import other style files */
+// Font Awesome
+// $fa-font-path: "assets/webfonts";
 $fa-font-path: "./images/fonts" !default;
-@import "../node_modules/font-awesome/scss/font-awesome.scss";
-
-@import "styles/paged-list";
-@import "styles/nav";
-@import "styles/home/home";
-@import "styles/post/article";
-@import "styles/about";
-@import "styles/contact";
-@import "styles/hero/hero";
-@import "styles/footer";
-@import "styles/archive-post/archive";
-@import "styles/syntax";
-@import "styles/social";
-@import "styles/card";
-@import "styles/search/search";
-
-.circle {
-    border-radius: 50%;
-}
-
-.width-100 {
-    max-width: 100%;
-    width: 100%;
-}
+@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/regular.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
 
 body {
-    transition: all .3s;
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+   color: $dark-gray;
 }
 
-h2.sub-heading {
-    font-size: 30px;
-    font-weight: 300;
-    letter-spacing: -2.5px;
+main {
+   padding: 66px 0 0;
 }
 
-h1, h2, h3, h4, h5 {
-    letter-spacing: -2px;
+img {
+   width: 100%;
+   height: auto;
 }
 
-.callout.filter {
-    border-color: $light-gray;
-    border-left: 6px solid map-get($foundation-palette, pioneer);
-}
+// Nav
+nav {
+   border-top: 3px $primary solid;
+   box-shadow: 0 2px 10px rgba(0,0,0,.15);
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 150;
+   background-color: $white;
 
-pre {
-    background: $black;
-    color: $white;
-    padding: 5px 10px;
-    margin: 0 0 15px 0;
-}
+   a {
+      color: $dark-gray;
+      text-decoration: none;
+   }
 
-.text-danger {
-    ul {
-        margin: 0;
-    }
-}
+   .brand {
+      img {
+         width: 50px;
+      }
+   }
 
-.body-content {
-    background: transparent;
-}
-
-em.question {
-    margin: 0 0 1rem 0;
-    font-weight: bold;
-}
-
-ul.meta {
-    margin-bottom: 2rem;
-}
-
-p.note, div.note {
-    background: $light-gray;
-    font-size: 14px;
-    border-left: 3px solid $primary-color;
-    padding: 1rem;
-}
-
-div.note {
-    margin: 0 0 1rem;
-}
-
-a.button.empty {
-    background: none;
-    border: 2px solid $white;
-
-    &:hover {
-        color: map-get($foundation-palette, pioneer);
-        background: $white;
-        text-decoration: none;
-    }
-}
-
-a.button.empty-reverse {
-    background: none;
-    border: 2px solid $black;
-    color: $black;
-
-    &:hover {
-        border: 2px solid map-get($foundation-palette, pioneer);
-        color: $white;
-        background: map-get($foundation-palette, pioneer);
-        text-decoration: none;
-    }
-}
-
-.category {
-    margin: 30px 0 0;
+   .links {
+      font-size: 15px;
+   }
 }
 
 
-.login {
-    input[type="checkbox"] {
-        margin: 6px 5px 0 0;
-    }
+// Footer
+footer {
+   color: $medium-gray;
+
+   a {
+      text-decoration: none;
+      color: $medium-gray;
+
+      &:hover {
+         transition: all 0.25s;
+         color: $white;
+      }
+   }
+
+   .heading {
+      color: $medium-gray;
+   }
+
+   .sub {
+      font-size: 14px;
+      border-top: 1px solid $medium-gray;
+   }
 }
 
-li ul, li ol {
-    margin-bottom: 0;
-}
+// @import "styles/paged-list";
+// @import "styles/nav";
+// @import "styles/home/home";
+// @import "styles/post/article";
+// @import "styles/about";
+// @import "styles/contact";
+// @import "styles/hero/hero";
+// @import "styles/footer";
+// @import "styles/archive-post/archive";
+// @import "styles/syntax";
+// @import "styles/social";
+// @import "styles/card";
+// @import "styles/search/search"; 
 
-.header-surround-bar {
-    text-align: center;
-    margin: 0 0 2rem;
-    font-weight: 300;
+// .circle {
+//     border-radius: 50%;
+// }
 
-    span {
-        margin: 0 1rem;
-    }
+// .width-100 {
+//     max-width: 100%;
+//     width: 100%;
+// }
 
-    &:before, &:after {
-        display: inline-block;
-        content: "";
-        width: 70px;
-        margin-top: -2px;
-        vertical-align: middle;
-        background: $primary-color;
-        height: 1px !important;
-    }
-}
+// body {
+//     transition: all .3s;
+// };
+
+// h2.sub-heading {
+//     font-size: 30px;
+//     font-weight: 300;
+//     letter-spacing: -2.5px;
+// }
+
+// h1, h2, h3, h4, h5 {
+//     letter-spacing: -2px;
+// }
+
+// .callout.filter {
+//     border-color: $light-gray;
+//     border-left: 6px solid map-get($foundation-palette, pioneer);
+// }
+
+// pre {
+//     background: $black;
+//     color: $white;
+//     padding: 5px 10px;
+//     margin: 0 0 15px 0;
+// }
+
+// .text-danger {
+//     ul {
+//         margin: 0;
+//     }
+// }
+
+// .body-content {
+//     background: transparent;
+// }
+
+// em.question {
+//     margin: 0 0 1rem 0;
+//     font-weight: bold;
+// }
+
+// ul.meta {
+//     margin-bottom: 2rem;
+// }
+
+// p.note, div.note {
+//     background: $light-gray;
+//     font-size: 14px;
+//     border-left: 3px solid $primary-color;
+//     padding: 1rem;
+// }
+
+// div.note {
+//     margin: 0 0 1rem;
+// }
+
+// a.button.empty {
+//     background: none;
+//     border: 2px solid $white;
+
+//     &:hover {
+//         color: map-get($foundation-palette, pioneer);
+//         background: $white;
+//         text-decoration: none;
+//     }
+// }
+
+// a.button.empty-reverse {
+//     background: none;
+//     border: 2px solid $black;
+//     color: $black;
+
+//     &:hover {
+//         border: 2px solid map-get($foundation-palette, pioneer);
+//         color: $white;
+//         background: map-get($foundation-palette, pioneer);
+//         text-decoration: none;
+//     }
+// }
+
+// .category {
+//     margin: 30px 0 0;
+// }
+
+
+// .login {
+//     input[type="checkbox"] {
+//         margin: 6px 5px 0 0;
+//     }
+// }
+
+// li ul, li ol {
+//     margin-bottom: 0;
+// }
+
+// .header-surround-bar {
+//     text-align: center;
+//     margin: 0 0 2rem;
+//     font-weight: 300;
+
+//     span {
+//         margin: 0 1rem;
+//     }
+
+//     &:before, &:after {
+//         display: inline-block;
+//         content: "";
+//         width: 70px;
+//         margin-top: -2px;
+//         vertical-align: middle;
+//         background: $primary-color;
+//         height: 1px !important;
+//     }
+// }

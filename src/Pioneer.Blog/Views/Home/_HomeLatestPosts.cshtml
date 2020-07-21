@@ -2,21 +2,23 @@
 @using Microsoft.AspNetCore.Mvc.Rendering
 @model List<Post>
 <section class="home-latest-posts">
-  <h3 class="header-surround-bar"><span>Latest Posts</span></h3>
-  <div class="row width-100">
-    @foreach (var post in Model.Take(4))
-    {
-      <div class="large-3 medium-6 columns end">
-        @await Html.PartialAsync("_HomePostCard", post)
-      </div>
-    }
-  </div>
-  <div class="row width-100">
-    @foreach (var post in Model.Skip(4))
-    {
-        <div class="large-3 medium-6 columns end">
-          @await Html.PartialAsync("_HomePostCard", post)
+    <h3 class="header-surround-bar"><span>Latest Posts</span></h3>
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var post in Model.Take(4))
+            {
+                <div class="col-lg-3 col-md-6 end">
+                    @await Html.PartialAsync("_HomePostCard", post)
+                </div>
+            }
         </div>
-    }
-  </div>
+        <div class="row">
+            @foreach (var post in Model.Skip(4))
+            {
+                <div class="col-lg-3 col-md-6 end">
+                    @await Html.PartialAsync("_HomePostCard", post)
+                </div>
+            }
+        </div>
+    </div>
 </section>
