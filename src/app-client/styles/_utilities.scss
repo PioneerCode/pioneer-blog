@@ -1,5 +1,10 @@
 @import "_colors";
 
+
+/**************
+ * Lists
+ **************/
+
 // List Inline
 .list-inline {
     padding-left: 0;
@@ -22,7 +27,15 @@
     margin: 0;
 }
 
-
+/**************
+ * Misc
+ **************/
 .circle {
     border-radius: 50%;
+}
+
+.bar {
+    height: 4px;
+    background-color: $primary;
+    width: 100px;
 }

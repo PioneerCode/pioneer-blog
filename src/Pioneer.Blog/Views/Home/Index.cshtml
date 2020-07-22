@@ -55,11 +55,29 @@
     @await Html.PartialAsync("_HomeGreatestPosts", Model.PopularPosts)
     @await Html.PartialAsync("_HomeSignUp", Model)*@
 
-<section class="bg-dark pt-5 pb-5 text-center text-light">
-    <h1 class="text-thin mt-5">Donec Vitae Maximus Quisque</h1>
-    <h1 class="text-thin mb-3">Duis, Vel, & Lobortis</h1>
-    <p class="text-thin mb-2">Ut pharetra velit lorem, quis maximus lectus ultricies non</p>
-    <p class="mb-5">Quis maximus lectus ultricies non</p>
+<section class="hero bg-dark text-light">
+    <div class="d-flex">
+        <div>
+            <h1 class="mt-4 mb-0 text-thin">Hello</h1>
+            <h1 class="mb-0 text-thin">My Name Is</h1>
+            <h1 class="mb-0 text-thin">Chad Ramos</h1>
+            <div class="bar mt-4 mb-4"></div>
+            <h5 class="mb-2">
+                I am a software developer based in Chicago, IL. 
+            </h5>
+            <h5>
+                I help build, design, and deploy applications.
+            </h5>
+        </div>
+        <div class="flex-fill  text-center">
+            @*<a href="https://twitter.com/chad_ramos" title="Chad Ramos Twitter" target="_blank" class="me">
+                <img src="/images/me300.jpg" alt="Chad Ramos" class="circle" />
+            </a>*@
+        </div>
+    </div>
+
+
+
 </section>
 
 @await Html.PartialAsync("_HomeLatestPosts", Model.LatestPosts)

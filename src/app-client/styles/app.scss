@@ -1,16 +1,16 @@
 ﻿@import "_normalize";
 @import "_bootstrap-grid.min";
-@import "_utilities";
-@import "_colors";
-@import "_text";
-/* You can add global styles to this file, and also import other style files */
-// Font Awesome
-// $fa-font-path: "assets/webfonts";
 $fa-font-path: "./images/fonts" !default;
 @import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 @import "../node_modules/@fortawesome/fontawesome-free/scss/regular.scss";
 @import "../node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
+
+@import "_utilities";
+@import "_colors";
+@import "_text";
+
+@import "_home";
 
 body {
    font-family: Roboto, "Helvetica Neue", sans-serif;

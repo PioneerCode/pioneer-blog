@@ -1,0 +1,16 @@
+@import "_colors";
+
+.hero {
+    padding: 6rem 7rem 7rem;
+
+    h1 {
+        font-size: 6rem;
+    }
+}
+
+.me {
+    img {
+        border: 3px solid $white;
+        max-width: 200px;
+    }
+}
