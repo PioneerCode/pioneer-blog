@@ -6,7 +6,7 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
-variables:
+variables: 
   buildConfiguration: 'Release'
 
 steps:
