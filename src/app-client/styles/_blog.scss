@@ -1,0 +1,30 @@
+@import "_colors";
+
+.sidebar-title {
+    font-weight: 100;
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 0 0 0.5rem;
+
+    &:after {
+        display: block;
+        content: "";
+        width: 100px;
+        height: 5px;
+        background-color: $light-gray;
+        margin: 0.5rem 0;
+    }
+}
+
+.sidebar-popular-post-image {
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.sidebar-popular-post-date {
+    font-style: italic;
+    color: $dark-gray;
+}

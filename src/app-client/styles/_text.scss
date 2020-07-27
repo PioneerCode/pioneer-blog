@@ -6,14 +6,19 @@ p {
 a {
     text-decoration: none;
     color: $primary;
-    
-    &:hover {
-       transition: all 0.25s;
-       color: darken($color: $primary, $amount: 10%);
-    }
- }
 
-h1, h2, h3, h4, h5, h6 {
+    &:hover {
+        transition: all 0.25s;
+        color: darken($color: $primary, $amount: 10%);
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0 0 .5rem;
     font-weight: 500;
     line-height: 1.2;
@@ -43,8 +48,16 @@ h6 {
     font-size: 1rem;
 }
 
+.text-size-1 {
+    font-size: 12px;
+}
+
+.text-size-2 {
+    font-size: 14px;
+}
+
 .text-thin {
-    font-weight: 300;
+    font-weight: 100;
 }
 
 .text-bold {

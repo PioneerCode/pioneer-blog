@@ -1,15 +1,17 @@
 ﻿@model List<Post>
-<section class="sidebar">
-  @foreach (var post in Model)
-  {
-      <a class="clearfix sidebar-popular-post" href="/post/@post.Url" title="@post.Title">
-        <div class="sidebar-popular-post-left">
-          <div class="sidebar-popular-post-image" style="background-image: url('/blogs/@post.Url/@post.IconImage')"></div>
+<section class="sidebar mb-3">
+    @foreach (var post in Model)
+    {
+        <div class="mb-2">
+            <a class="d-flex" href="/post/@post.Url" title="@post.Title">
+                <div class="sidebar-popular-post-left">
+                    <div class="sidebar-popular-post-image" style="background-image: url('/blogs/@post.Url/@post.IconImage')"></div>
+                </div>
+                <div class="sidebar-popular-post-right ml-2">
+                    <p class="sidebar-popular-post-title mb-1 text-size-2">@post.Title</p>
+                    <p class="sidebar-popular-post-date  m-0 text-size-1">@post.PostedOn.ToString("MMM d, yyyy")</p>
+                </div>
+            </a>
         </div>
-        <div class="sidebar-popular-post-right">
-          <p class="sidebar-popular-post-title">@post.Title</p>
-          <p class="sidebar-popular-post-date">@post.PostedOn.ToString("MMM d, yyyy")</p>
-        </div>
-      </a>
-  }
+    }
 </section>
