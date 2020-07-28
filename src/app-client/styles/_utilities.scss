@@ -28,6 +28,54 @@
 }
 
 /**************
+ * Button
+ **************/
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+    &:hover {
+        color: #212529;
+        text-decoration: none;
+    }
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.btn-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+}
+
+.btn-primary {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+
+    &:hover {
+        color: $white;
+        background-color: darken($color: $primary, $amount: 10%);
+        border-color: darken($color: $primary, $amount: 15%);
+    }
+}
+
+/**************
  * Misc
  **************/
 .circle {

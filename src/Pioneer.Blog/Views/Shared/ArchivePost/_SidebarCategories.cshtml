@@ -1,8 +1,8 @@
 ﻿@using System.Collections.Generic
 @model List<Category>
-<section class="sidebar sidebar-button-collection">
+<section class="">
   @foreach (var category in Model)
   {
-      <a class="button small" href="/category/@category.Url">@category.Name</a>
+      <a class="btn btn-primary btn-sm mb-1" href="/category/@category.Url">@category.Name</a>
   }
 </section>
