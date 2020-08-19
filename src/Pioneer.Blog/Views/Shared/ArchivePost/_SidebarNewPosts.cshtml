@@ -1,8 +1,13 @@
 ﻿@using System.Collections.Generic
 @model List<Post>
-<ul class="mb-4">
-  @foreach (var post in Model)
-  {
-      <li><a href="/post/@post.Url" title="@post.Title">@post.Title</a></li>
-  }
-</ul>
+<div class="mb-4">
+    @{ Boolean first = true; }
+    @foreach (var post in Model)
+    {
+        <div class="text-size-2 pb-3 border-bottom @( !first ? "pt-3" : "" )">
+            <a href="/post/@post.Url" title="@post.Title">@post.Title</a>
+        </div>
+
+        first = false;
+    }
+</div>
