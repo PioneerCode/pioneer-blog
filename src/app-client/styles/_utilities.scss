@@ -82,6 +82,11 @@
     border-radius: 50%;
 }
 
+.circle-border {
+    border-radius: 50%;
+    border: 4px $white solid;
+}
+
 .bar {
     height: 4px;
     background-color: $primary;
@@ -91,3 +96,4 @@
 .border-bottom {
     border-bottom: 1px solid $light-gray; 
 }
+
