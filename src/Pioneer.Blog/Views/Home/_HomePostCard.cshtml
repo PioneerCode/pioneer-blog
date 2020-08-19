@@ -4,13 +4,13 @@
       <img src="/blogs/@Model.Url/@Model.SmallImage" alt="@Model.Title" />
     </span>
   </a>
-  <div class="home-post-card-content">
+  <div class="home-post-card-content mt-3">
     <h4>
       <a href="/post/@Model.Url"> 
         @Model.Title
       </a>
     </h4>
-    <div class="home-post-card-date">
+    <div class="home-post-card-date mb-2">
       @Model.PostedOn.ToString("MM/dd/yy")
     </div>
     @Html.Raw(Model.Excerpt.Content)

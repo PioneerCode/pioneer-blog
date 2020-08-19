@@ -1,8 +1,8 @@
 ﻿@using System.Linq
 @using Microsoft.AspNetCore.Mvc.Rendering
 @model List<Post>
-<section class="home-latest-posts">
-    <h3 class="header-surround-bar"><span>Latest Posts</span></h3>
+<section class="pt-5 pb-5">
+    <h3 class="surround-bar text-center mb-4"><span>Latest Posts</span></h3>
     <div class="container-fluid">
         <div class="row">
             @foreach (var post in Model.Take(4))

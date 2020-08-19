@@ -93,7 +93,34 @@
     width: 100px;
 }
 
-.border-bottom {
-    border-bottom: 1px solid $light-gray; 
+.surround-bar {
+    font-weight: 300;
+
+    & span {
+        margin: 0 1rem;
+    }
+
+    &:before {
+        display: inline-block;
+        content: "";
+        width: 70px;
+        margin-top: -2px;
+        vertical-align: middle;
+        background: $primary;
+        height: 1px !important;
+    }
+
+    &:after {
+        display: inline-block;
+        content: "";
+        width: 70px;
+        margin-top: -2px;
+        vertical-align: middle;
+        background: $primary;
+        height: 1px !important;
+    }
 }
 
+.border-bottom {
+    border-bottom: 1px solid $light-gray;
+}
