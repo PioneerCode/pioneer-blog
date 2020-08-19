@@ -1,26 +1,32 @@
 ﻿@model List<Post>
-<section class="home-greatest-posts">
-    <h3 class="header-surround-bar"><span>Popular Posts</span></h3>
+<section class="home-greatest-posts pt-5 pb-5">
+    <h3 class="surround-bar text-center mb-4"><span>Popular Posts</span></h3>
     <div class="container">
-        <div class="row">
+        <div class="row text-white">
             <div class="col-lg-6">
                 @foreach (var post in Model.Take(3))
                 {
-                    <a class="clearfix home-greatest-posts-card" href="/post/@post.Url" title="@post.Title">
-                        <div class="home-greatest-posts-card-image float-left" style="background-image: url('blogs/@post.Url/@post.IconImage')"></div>
-                        <h4>@post.Title</h4>
+                    <a class=" home-greatest-posts-card d-flex mb-3 pb-3" href="/post/@post.Url" title="@post.Title">
+                        <div>
+                            <div class="home-greatest-posts-card-image" style="background-image: url('blogs/@post.Url/@post.IconImage')"></div>
+                        </div>
+                        <h5 class="ml-3">@post.Title</h5>
                     </a>
                 }
             </div>
             <div class="col-lg-6">
                 @foreach (var post in Model.Skip(3))
                 {
-                    <a class="clearfix home-greatest-posts-card" href="/post/@post.Url" title="@post.Title">
-                        <div class="home-greatest-posts-card-image float-left" style="background-image: url('blogs/@post.Url/@post.IconImage')"></div>
-                        <h4>@post.Title</h4>
+                    <a class=" home-greatest-posts-card d-flex mb-3 pb-3" href="/post/@post.Url" title="@post.Title">
+                        <div>
+                            <div class="home-greatest-posts-card-image" style="background-image: url('blogs/@post.Url/@post.IconImage')"></div>
+                        </div>
+                        <h5 class="ml-3">@post.Title</h5>
                     </a>
                 }
-                <a class="home-greatest-posts-more" href="/blog" title="Blog Posts"><i class="fa fa-hand-o-right">&nbsp;</i>Read More This Way </a>
+                <div class="text-right">
+                    <a href="/blog" title="Blog Posts"><i class="far fa-hand-point-right">&nbsp;</i>Read More This Way </a>
+                </div>
             </div>
         </div>
     </div>

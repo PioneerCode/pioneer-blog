@@ -14,3 +14,63 @@
         max-width: 200px;
     }
 }
+
+
+.home-greatest-posts {
+    padding: 4rem 0 2rem;
+    background: $black;
+    background-image: url('images/popular.jpg');
+    background-attachment: fixed;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+
+    h3 {
+        position: relative;
+        margin: 0 0 4rem;
+        color: $white;
+    }
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+        height: 100%;
+        background-image: linear-gradient(to right, transparent, $black, $black);
+    }
+
+    p,
+    a {
+        font-size: 18px;
+        color: $white;
+        position: relative;
+    }
+
+
+    // @include breakpoint(medium up) {
+    //     padding: 6rem 0;
+
+    //     a.home-greatest-posts-more {
+    //         text-align: right;
+    //         margin: 0;
+    //     }
+    // }
+}
+
+
+a.home-greatest-posts-card {
+    border-bottom: 1px solid darken(desaturate($primary, 10%), 20%);
+    h4 {
+        font-weight: 300;
+    }
+}
+
+.home-greatest-posts-card-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid $white;
+}
